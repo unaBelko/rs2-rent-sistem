@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'active_reservation_list_item.freezed.dart';
-
 part 'active_reservation_list_item.g.dart';
 
 @Freezed()
