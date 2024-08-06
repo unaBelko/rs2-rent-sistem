@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\rs2-rent-sistem-api.props" />
-</Project>
