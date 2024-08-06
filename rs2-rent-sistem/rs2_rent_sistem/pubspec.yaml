@@ -1,0 +1,33 @@
+name: rs2_rent_sistem
+description: "Flutter app for mobile and desktop for rent system"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  freezed_annotation: ^2.4.2
+  json_annotation: ^4.9.0
+  dio: ^5.5.0+1
+  cached_network_image: ^3.4.0
+  hooks_riverpod: ^2.5.1
+  flutter_rating_bar: ^4.0.1
+
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  freezed: ^2.5.2
+  build_runner: 2.4.11
+  json_serializable: ^6.7.1
+
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
