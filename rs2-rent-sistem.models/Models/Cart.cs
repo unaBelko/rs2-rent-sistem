@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace rs2_rent_sistem.models.Models
+﻿namespace rs2_rent_sistem.models.Models
 {
-    internal class Cart
+    public class Cart
     {
+        public int Id { get; set; }
+        public DateTime? DateAdded { get; set; }
+        public ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
+
     }
 }
