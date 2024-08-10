@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace rs2_rent_sistem.services.Models;
+namespace rs2_rent_sistem.Services.Database;
 
 public partial class Equipment
 {
@@ -28,6 +28,8 @@ public partial class Equipment
     public int? AddedByUserID { get; set; }
 
     public int? EquipmentCategoryId { get; set; }
+
+    public bool? IsDeleted { get; set; }
 
     public virtual User? AddedByUser { get; set; }
 

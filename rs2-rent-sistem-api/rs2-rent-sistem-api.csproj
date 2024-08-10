@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\rs2-rent-sistem.models\rs2-rent-sistem.models.csproj" />
-    <ProjectReference Include="..\rs2-rent-sistem.services\rs2-rent-sistem.services.csproj" />
+    <ProjectReference Include="..\rs2-rent-sistem.Models\rs2-rent-sistem.Models.csproj" />
+    <ProjectReference Include="..\rs2-rent-sistem.services\rs2-rent-sistem.Services.csproj" />
   </ItemGroup>
 
 </Project>

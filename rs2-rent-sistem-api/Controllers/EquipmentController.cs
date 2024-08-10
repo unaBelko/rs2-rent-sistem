@@ -1,26 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
-using rs2_rent_sistem.models;
-using rs2_rent_sistem.services;
+using rs2_rent_sistem.Services.Interfaces;
 
 namespace rs2_rent_sistem_api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class EquipmentController : ControllerBase
+    public class EquipmentController : BaseController<rs2_rent_sistem.Models.Models.EquipmentCategory, rs2_rent_sistem.Models.SearchObjects.EquipmentCategorySearchObject>
     {
-        private readonly IEquipmentService _equipmentService;
-        private readonly ILogger<EquipmentController> _logger;
-
-        public EquipmentController(ILogger<EquipmentController> logger, IEquipmentService equipmentService)
+        public EquipmentController(ILogger<BaseController<rs2_rent_sistem.Models.Models.EquipmentCategory, rs2_rent_sistem.Models.SearchObjects.EquipmentCategorySearchObject>> logger, IEquipmentService service) : base(logger, service)
         {
-            _logger = logger;
-            _equipmentService = equipmentService;
-        }
-
-        [HttpGet()]
-        public IEnumerable<EquipmentListItem> Get()
-        {
-            return _equipmentService.Get();
         }
     }
 }

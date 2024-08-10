@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using rs2_rent_sistem.services.Models;
+using rs2_rent_sistem.Services.Database;
 
-namespace rs2_rent_sistem.services.Data;
+namespace rs2_rent_sistem.Services.Data;
 
 public partial class RentSistemDbContext : DbContext
 {

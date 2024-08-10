@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace rs2_rent_sistem.services.Models;
+namespace rs2_rent_sistem.Services.Database;
 
 public partial class OrderItem
 {

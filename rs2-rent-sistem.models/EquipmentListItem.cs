@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace rs2_rent_sistem.models
+namespace rs2_rent_sistem.Models
 {
     public class EquipmentListItem
     {

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rs2-rent-sistem-api", "rs2-rent-sistem-api.csproj", "{D4C76013-0B4C-4A56-8D17-5D8DB3BD9E5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rs2-rent-sistem-api", "rs2-rent-sistem-api.csproj", "{D4C76013-0B4C-4A56-8D17-5D8DB3BD9E5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rs2-rent-sistem.models", "..\rs2-rent-sistem.models\rs2-rent-sistem.models.csproj", "{A1152BAD-2F10-4863-9215-246C0EFBA67E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rs2-rent-sistem.Models", "..\rs2-rent-sistem.models\rs2-rent-sistem.Models.csproj", "{A1152BAD-2F10-4863-9215-246C0EFBA67E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rs2-rent-sistem.services", "..\rs2-rent-sistem.services\rs2-rent-sistem.services.csproj", "{DD1A2201-097B-45EA-87BC-B68135CDE2D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rs2-rent-sistem.Services", "..\rs2-rent-sistem.services\rs2-rent-sistem.Services.csproj", "{DD1A2201-097B-45EA-87BC-B68135CDE2D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
