@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\rs2-rent-sistem.models\rs2-rent-sistem.Models.csproj" />
+    <ProjectReference Include="..\rs2-rent-sistem.Models\rs2-rent-sistem.Models.csproj" />
   </ItemGroup>
 
 </Project>

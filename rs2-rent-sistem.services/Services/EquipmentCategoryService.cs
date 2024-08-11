@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using rs2_rent_sistem.models.Requests;
+using rs2_rent_sistem.Models.Requests;
 using rs2_rent_sistem.Services.Data;
 using rs2_rent_sistem.Services.Interfaces;
 

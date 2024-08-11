@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using rs2_rent_sistem.models.Models;
-using rs2_rent_sistem.models.Requests;
+using rs2_rent_sistem.Models.Requests;
 using rs2_rent_sistem.Models.Models;
 
 namespace rs2_rent_sistem.Services.Services
@@ -19,6 +18,7 @@ namespace rs2_rent_sistem.Services.Services
             CreateMap<EquipmentCategoryUpsertObject, Database.EquipmentCategory>();
 
             CreateMap<Database.Manufacturer, Manufacturer>();
+            CreateMap<ManufacturerUpsertObject, Database.Manufacturer>();
 
             CreateMap<Database.Order, Order>();
 

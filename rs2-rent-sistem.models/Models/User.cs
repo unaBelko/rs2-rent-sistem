@@ -1,4 +1,4 @@
-﻿namespace rs2_rent_sistem.models.Models
+﻿namespace rs2_rent_sistem.Models.Models
 {
     public class User
     {
