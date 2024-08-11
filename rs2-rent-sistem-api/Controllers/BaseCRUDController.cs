@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using rs2_rent_sistem.Models.Models;
+using rs2_rent_sistem.Models.SearchObjects;
 using rs2_rent_sistem.Services.Interfaces;
 
 namespace rs2_rent_sistem_api.Controllers
@@ -10,6 +12,8 @@ namespace rs2_rent_sistem_api.Controllers
     {
         protected new readonly ICRUDService<T, TSearch, TInsert, Tupdate> _service;
         protected readonly ILogger<BaseController<T, TSearch>> _logger;
+        private ILogger<BaseController<EquipmentCategory, EquipmentCategorySearchObject>> logger;
+        private IEquipmentService service;
 
         public BaseCRUDController(ILogger<BaseController<T, TSearch>> logger, ICRUDService<T, TSearch, TInsert, Tupdate> service)
             : base(logger, service)
