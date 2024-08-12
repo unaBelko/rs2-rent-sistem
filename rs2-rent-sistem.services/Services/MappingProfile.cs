@@ -13,6 +13,9 @@ namespace rs2_rent_sistem.Services.Services
             CreateMap<Database.CartItem, CartItem>();
 
             CreateMap<Database.Equipment, Equipment>();
+            CreateMap<EquipmentUpsertObject, Database.Equipment>()
+                .ForMember(dest => dest.IsDeleted, opt => opt.MapFrom(src => false));
+
 
             CreateMap<Database.EquipmentCategory, EquipmentCategory>();
             CreateMap<EquipmentCategoryUpsertObject, Database.EquipmentCategory>();

@@ -1,6 +1,8 @@
-﻿namespace rs2_rent_sistem.Services.Interfaces
+﻿using rs2_rent_sistem.Models.Requests;
+
+namespace rs2_rent_sistem.Services.Interfaces
 {
-    public interface IEquipmentService : IService<Models.Models.EquipmentCategory, Models.SearchObjects.EquipmentCategorySearchObject>
+    public interface IEquipmentService : ICRUDService<Models.Models.Equipment, Models.SearchObjects.EquipmentSearchObject, EquipmentUpsertObject, EquipmentUpsertObject>
     {
     }
 }

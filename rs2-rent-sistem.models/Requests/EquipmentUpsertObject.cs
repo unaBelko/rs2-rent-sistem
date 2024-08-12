@@ -1,9 +1,7 @@
-﻿namespace rs2_rent_sistem.Models.Models
+﻿namespace rs2_rent_sistem.Models.Requests
 {
-    public class Equipment
+    public class EquipmentUpsertObject
     {
-        public int ID { get; set; }
-
         public string? ItemName { get; set; }
 
         public string? ImageUrl { get; set; }
@@ -20,7 +18,6 @@
 
         public DateTime? DateAdded { get; set; }
         public int? EquipmentCategoryID { get; set; }
-
         public int? ManufacturerID { get; set; }
     }
 }
