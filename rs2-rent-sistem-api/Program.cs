@@ -13,7 +13,7 @@ builder.Services.AddAutoMapper(typeof(Program), typeof(MappingProfile));
 builder.Services.AddTransient<IEquipmentCategoryService, EquipmentCategoryService>();
 builder.Services.AddTransient<IManufacturerService, ManufacturerService>();
 builder.Services.AddTransient<IEquipmentService, EquipmentService>();
-
+builder.Services.AddTransient<ICartService, CartService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
