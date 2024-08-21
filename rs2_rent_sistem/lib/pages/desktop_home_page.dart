@@ -71,7 +71,7 @@ class DesktopHomePage extends ConsumerWidget {
                         }),
                     _buildDrawerItem(
                       icon: Icons.warning,
-                      text: 'Zahtjevi',
+                      text: 'Narudzbe',
                       index: 2,
                       currentIndex: currentIndex,
                       onTap: (val) {

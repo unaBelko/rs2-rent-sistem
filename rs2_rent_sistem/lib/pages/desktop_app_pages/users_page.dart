@@ -20,7 +20,10 @@ class _UsersPageState extends ConsumerState<UsersPage> {
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: 20.0,
+              vertical: 12.0,
+            ),
             child: Row(
               children: [
                 Expanded(flex: 7, child: Text('Ime i prezime')),

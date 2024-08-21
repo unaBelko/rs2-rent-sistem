@@ -350,7 +350,7 @@ class UserReviewWidget extends StatelessWidget {
               flex: 4,
               child: Text(
                 item.content,
-                style: TextStyle(
+                style: const TextStyle(
                   fontStyle: FontStyle.italic,
                 ),
               ),

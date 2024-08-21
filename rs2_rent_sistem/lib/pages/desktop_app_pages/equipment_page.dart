@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:rs2_rent_sistem/models/equipment_list_item.dart' as EquipmentItemModel;
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/add_equipment_page.dart';
+import 'package:rs2_rent_sistem/pages/desktop_app_pages/equipment_details_admin_page.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 import 'package:rs2_rent_sistem/shared/widgets/confirmation_modal.dart';
+import 'package:rs2_rent_sistem/shared/widgets/delete_equipment_button.dart';
 import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
 
 class EquipmentPage extends StatelessWidget {
@@ -145,31 +147,19 @@ class EquipmentListItem extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const EquipmentDetailsAdminPage(),
+                        ),
+                      );
+                    },
                     icon: Icon(
                       Icons.info,
                       color: Colors.lightBlue.withOpacity(0.5),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) => ConfirmationModal(
-                                title: 'Brisanje opreme',
-                                content: "Da li ste sigurni da zelite izbrisati opremu?",
-                                buttonText: "Izbrisi",
-                                onConfirm: () {
-                                  log("izbrisano");
-                                },
-                                isDestructiveAction: true,
-                              ));
-                    },
-                    icon: const Icon(
-                      Icons.delete,
-                      color: Colors.red,
-                    ),
-                  ),
+                  const DeleteEquipmentButton(),
                 ],
               ),
             ),
