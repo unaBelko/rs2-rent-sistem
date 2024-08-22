@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using rs2_rent_sistem.Models.Models;
-using rs2_rent_sistem.Models.Requests;
+using rs2_rent_sistem.Model.Models;
+using rs2_rent_sistem.Model.Requests;
 
 namespace rs2_rent_sistem.Services.Services
 {

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using rs2_rent_sistem.Models.SearchObjects;
+using rs2_rent_sistem.Model.SearchObjects;
 using rs2_rent_sistem.Services.Data;
 using System.Security.Cryptography;
 using System.Text;

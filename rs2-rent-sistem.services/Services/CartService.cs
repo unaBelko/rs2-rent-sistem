@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using rs2_rent_sistem.Models.Models;
-using rs2_rent_sistem.Models.Requests;
-using rs2_rent_sistem.Models.SearchObjects;
+using rs2_rent_sistem.Model.Models;
+using rs2_rent_sistem.Model.Requests;
+using rs2_rent_sistem.Model.SearchObjects;
 using rs2_rent_sistem.Services.Data;
 using rs2_rent_sistem.Services.Interfaces;
 

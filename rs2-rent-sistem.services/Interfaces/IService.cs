@@ -1,4 +1,4 @@
-﻿using rs2_rent_sistem.Models;
+﻿using rs2_rent_sistem.Model;
 
 namespace rs2_rent_sistem.Services.Interfaces
 {
