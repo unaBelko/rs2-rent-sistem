@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using rs2_rent_sistem.Models.Requests;
 using rs2_rent_sistem.Models.Models;
+using rs2_rent_sistem.Models.Requests;
 
 namespace rs2_rent_sistem.Services.Services
 {
@@ -9,8 +9,10 @@ namespace rs2_rent_sistem.Services.Services
         public MappingProfile()
         {
             CreateMap<Database.Cart, Cart>();
+            CreateMap<Cart, Database.Cart>();
 
             CreateMap<Database.CartItem, CartItem>();
+            CreateMap<CartItemUpsertObject, Database.CartItem>();
 
             CreateMap<Database.Equipment, Equipment>();
             CreateMap<EquipmentUpsertObject, Database.Equipment>()

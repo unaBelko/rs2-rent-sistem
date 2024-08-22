@@ -1,12 +1,10 @@
-﻿namespace rs2_rent_sistem.Models.Models
+﻿namespace rs2_rent_sistem.Models.Requests
 {
-    public class CartItem
+    public class CartItemUpsertObject
     {
-        public int ID { get; set; }
         public int? Quantity { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public int EquipmentID { get; set; }
-        public Equipment Equipment { get; set; }
     }
 }
