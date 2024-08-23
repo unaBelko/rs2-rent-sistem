@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace rs2_rent_sistem.Services.Database;
 
-namespace rs2_rent_sistem.Services.Database;
 public partial class Order
 {
     public int ID { get; set; }

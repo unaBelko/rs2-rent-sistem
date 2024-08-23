@@ -8,7 +8,7 @@ namespace rs2_rent_sistem.Services.Interfaces
     {
         Task<Cart> AddToCart(CartItemUpsertObject cartItem);
 
-        Task<Cart> RemoveFromCart(CartItem cartItem);
+        Task<Cart> RemoveFromCart(int cartItemId);
         Task EmptyCart(int id);
     }
 }

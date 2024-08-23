@@ -14,9 +14,9 @@ public partial class User
 
     public bool? IsActive { get; set; }
 
-    public byte[]? PasswordHash { get; set; }
+    public string? PasswordHash { get; set; }
 
-    public byte[]? Salt { get; set; }
+    public string? Salt { get; set; }
 
     public virtual ICollection<Cart> Carts { get; } = new List<Cart>();
 

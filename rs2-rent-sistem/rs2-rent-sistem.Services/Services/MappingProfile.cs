@@ -26,14 +26,18 @@ namespace rs2_rent_sistem.Services.Services
             CreateMap<ManufacturerUpsertObject, Database.Manufacturer>();
 
             CreateMap<Database.Order, Order>();
+            CreateMap<Order, Database.Order>();
 
             CreateMap<Database.OrderItem, OrderItem>();
+            CreateMap<OrderItem, Database.OrderItem>();
 
             CreateMap<Database.Review, Review>();
 
             CreateMap<Database.Role, Role>();
+            CreateMap<Role, Database.Role>();
 
             CreateMap<Database.User, User>();
+            CreateMap<UserUpsertObject, Database.User>();
 
         }
     }

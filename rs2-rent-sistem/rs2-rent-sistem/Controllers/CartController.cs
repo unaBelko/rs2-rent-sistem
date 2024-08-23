@@ -19,7 +19,6 @@ namespace rs2_rent_sistem_api.Controllers
             _logger = logger;
         }
 
-        // POST: api/Cart/AddItem
         [HttpPost("AddItem")]
         public async Task<IActionResult> AddItemToCart([FromBody] CartItemUpsertObject cartItem)
         {
@@ -35,29 +34,21 @@ namespace rs2_rent_sistem_api.Controllers
             }
             catch (Exception ex)
             {
-                // Log the error if needed
                 _logger.LogError(ex, "Error adding item to cart");
                 return StatusCode(500, "An error occurred while adding the item to the cart.");
             }
         }
 
-        // POST: api/Cart/RemoveItem
-        [HttpPost("RemoveItem")]
-        public async Task<IActionResult> RemoveItemFromCart([FromBody] CartItem cartItem)
+        [HttpDelete("RemoveItem")]
+        public async Task<IActionResult> RemoveItemFromCart(int cartItemId)
         {
-            if (cartItem == null)
-            {
-                return BadRequest("Invalid cart item.");
-            }
-
             try
             {
-                var updatedCart = await _cartService.RemoveFromCart(cartItem);
+                var updatedCart = await _cartService.RemoveFromCart(cartItemId);
                 return Ok(updatedCart);
             }
             catch (Exception ex)
             {
-                // Log the error if needed
                 _logger.LogError(ex, "Error removing item from cart");
                 return StatusCode(500, "An error occurred while removing the item from the cart.");
             }

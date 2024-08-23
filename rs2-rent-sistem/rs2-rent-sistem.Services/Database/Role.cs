@@ -1,4 +1,5 @@
 ﻿namespace rs2_rent_sistem.Services.Database;
+
 public partial class Role
 {
     public int ID { get; set; }

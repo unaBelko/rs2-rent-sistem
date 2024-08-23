@@ -10,31 +10,25 @@ namespace rs2_rent_sistem.Services.Services
 {
     public class CartService : BaseService<Cart, Database.Cart, CartSearchObject>, ICartService
     {
-        public CartService(RentSistemDbContext context, IMapper mapper) : base(context, mapper)
-        {
-        }
+        public CartService(RentSistemDbContext context, IMapper mapper) : base(context, mapper) { }
 
         public override async Task<Cart> GetById(int id)
         {
-            // Fetch the Cart including its CartItems and the associated Equipment using Entity Framework
             var cartEntity = await _context.Carts
                 .Include(c => c.CartItems)
-                    .ThenInclude(ci => ci.Equipment)  // Include the Equipment related to CartItems
+                    .ThenInclude(ci => ci.Equipment)
                 .FirstOrDefaultAsync(c => c.ID == id);
 
-            // If cartEntity is null, handle accordingly (e.g., return null or throw an exception)
             if (cartEntity == null)
             {
-                return null; // Or throw a NotFoundException, etc.
+                return null;
             }
 
-            // Map the entity to the DTO
             return _mapper.Map<Cart>(cartEntity);
         }
 
         public async Task<Cart> AddToCart(CartItemUpsertObject cartItem)
         {
-            // Create or find the default user (replace this with your logic to get the current user)
             var defaultUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == "defaultuser@example.com");
             if (defaultUser == null)
             {
@@ -49,7 +43,6 @@ namespace rs2_rent_sistem.Services.Services
                 await _context.SaveChangesAsync();
             }
 
-            // Check if the user already has a cart
             var existingCart = await _context.Carts
                 .Include(c => c.CartItems)
                 .FirstOrDefaultAsync(c => c.UserID == defaultUser.ID);
@@ -58,56 +51,63 @@ namespace rs2_rent_sistem.Services.Services
 
             if (existingCart == null)
             {
-                // Create a new cart for the user
-                var newCart = new Database.Cart
+                cartEntity = new Database.Cart
                 {
                     UserID = defaultUser.ID,
                     DateAdded = DateTime.UtcNow,
                 };
 
-                // Map the DTO Cart to Database Cart entity
-                cartEntity = _mapper.Map<Database.Cart>(newCart);
                 _context.Carts.Add(cartEntity);
-                await _context.SaveChangesAsync(); // Save to get the CartID
+                await _context.SaveChangesAsync();
             }
             else
             {
                 cartEntity = existingCart;
             }
 
-            // Map CartItem DTO to Database CartItem entity
-            var cartItemEntity = _mapper.Map<Database.CartItem>(cartItem);
-            cartItemEntity.CartID = cartEntity.ID;
-
-            _context.CartItems.Add(cartItemEntity);
-            await _context.SaveChangesAsync();
-
-            // Return the updated Cart mapped to the DTO
-            return _mapper.Map<Cart>(cartEntity);
-        }
-
-        public async Task<Cart> RemoveFromCart(CartItem cartItem)
-        {
-            // Map CartItem DTO to Database CartItem entity
-            var cartItemEntity = _mapper.Map<Database.CartItem>(cartItem);
-
-            // Retrieve the cart item from the database
-            var existingCartItem = await _context.CartItems
-                .FirstOrDefaultAsync(ci => ci.CartID == cartItemEntity.CartID && ci.EquipmentID == cartItemEntity.EquipmentID);
+            var existingCartItem = cartEntity.CartItems
+                .FirstOrDefault(ci => ci.EquipmentID == cartItem.EquipmentID);
 
             if (existingCartItem != null)
             {
-                _context.CartItems.Remove(existingCartItem);
-                await _context.SaveChangesAsync();
+                existingCartItem.Quantity += cartItem.Quantity;
+                _context.CartItems.Update(existingCartItem);
+            }
+            else
+            {
+                var cartItemEntity = _mapper.Map<Database.CartItem>(cartItem);
+                cartItemEntity.CartID = cartEntity.ID;
+                _context.CartItems.Add(cartItemEntity);
             }
 
-            // Retrieve the cart and map it back to the Cart DTO
-            var cartEntity = await _context.Carts
-                .Include(c => c.CartItems)
-                .FirstOrDefaultAsync(c => c.ID == cartItemEntity.CartID);
+            await _context.SaveChangesAsync();
 
             return _mapper.Map<Cart>(cartEntity);
         }
+
+
+        public async Task<Cart> RemoveFromCart(int cartItemID)
+        {
+            var existingCartItem = await _context.CartItems
+                .FirstOrDefaultAsync(ci => ci.ID == cartItemID);
+
+            if (existingCartItem != null)
+            {
+                var cartID = existingCartItem.CartID;
+
+                _context.CartItems.Remove(existingCartItem);
+                await _context.SaveChangesAsync();
+
+                var cartEntity = await _context.Carts
+                    .Include(c => c.CartItems)
+                    .FirstOrDefaultAsync(c => c.ID == cartID);
+
+                return _mapper.Map<Cart>(cartEntity);
+            }
+
+            return null;
+        }
+
 
         public async Task EmptyCart(int id)
         {

@@ -44,7 +44,7 @@ public partial class RentSistemDbContext : DbContext
     {
         modelBuilder.Entity<Cart>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Cart__3214EC27EA0C6239");
+            entity.HasKey(e => e.ID).HasName("PK__Cart__3214EC27F5A5BBC0");
 
             entity.ToTable("Cart");
 
@@ -52,12 +52,12 @@ public partial class RentSistemDbContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Carts)
                 .HasForeignKey(d => d.UserID)
-                .HasConstraintName("FK__Cart__UserID__534D60F1");
+                .HasConstraintName("FK__Cart__UserID__5535A963");
         });
 
         modelBuilder.Entity<CartItem>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__CartItem__3214EC27B82CE2FC");
+            entity.HasKey(e => e.ID).HasName("PK__CartItem__3214EC27BA8D4C79");
 
             entity.ToTable("CartItem");
 
@@ -66,21 +66,24 @@ public partial class RentSistemDbContext : DbContext
 
             entity.HasOne(d => d.Cart).WithMany(p => p.CartItems)
                 .HasForeignKey(d => d.CartID)
-                .HasConstraintName("FK__CartItem__CartID__5629CD9C");
+                .HasConstraintName("FK__CartItem__CartID__5812160E");
 
             entity.HasOne(d => d.Equipment).WithMany(p => p.CartItems)
                 .HasForeignKey(d => d.EquipmentID)
-                .HasConstraintName("FK__CartItem__Equipm__571DF1D5");
+                .HasConstraintName("FK__CartItem__Equipm__59063A47");
         });
 
         modelBuilder.Entity<Equipment>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Equipmen__3214EC27911FDFBA");
+            entity.HasKey(e => e.ID).HasName("PK__Equipmen__3214EC277167F78F");
 
             entity.Property(e => e.CostPerUse).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.DateAdded).HasColumnType("datetime");
             entity.Property(e => e.Description).HasMaxLength(500);
             entity.Property(e => e.ImageUrl).HasMaxLength(100);
+            entity.Property(e => e.IsDeleted)
+                .IsRequired()
+                .HasDefaultValueSql("((1))");
             entity.Property(e => e.ItemName).HasMaxLength(100);
 
             entity.HasOne(d => d.AddedByUser).WithMany(p => p.Equipment)
@@ -98,7 +101,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<EquipmentCategory>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Equipmen__3214EC27FBD853F2");
+            entity.HasKey(e => e.ID).HasName("PK__Equipmen__3214EC279A108D1A");
 
             entity.ToTable("EquipmentCategory");
 
@@ -108,7 +111,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<Manufacturer>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Manufact__3214EC275D5D54E7");
+            entity.HasKey(e => e.ID).HasName("PK__Manufact__3214EC27351E6CCA");
 
             entity.ToTable("Manufacturer");
 
@@ -118,7 +121,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Order__3214EC2732F21B09");
+            entity.HasKey(e => e.ID).HasName("PK__Order__3214EC27AD30E497");
 
             entity.ToTable("Order");
 
@@ -126,12 +129,12 @@ public partial class RentSistemDbContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.UserID)
-                .HasConstraintName("FK__Order__UserID__48CFD27E");
+                .HasConstraintName("FK__Order__UserID__49C3F6B7");
         });
 
         modelBuilder.Entity<OrderItem>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__OrderIte__3214EC27EC1D8DB5");
+            entity.HasKey(e => e.ID).HasName("PK__OrderIte__3214EC278C84634E");
 
             entity.ToTable("OrderItem");
 
@@ -141,35 +144,38 @@ public partial class RentSistemDbContext : DbContext
 
             entity.HasOne(d => d.Equipment).WithMany(p => p.OrderItems)
                 .HasForeignKey(d => d.EquipmentID)
-                .HasConstraintName("FK__OrderItem__Equip__4CA06362");
+                .HasConstraintName("FK__OrderItem__Equip__4D94879B");
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderItems)
                 .HasForeignKey(d => d.OrderID)
-                .HasConstraintName("FK__OrderItem__Order__4BAC3F29");
+                .HasConstraintName("FK__OrderItem__Order__4CA06362");
         });
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Review__3214EC2785F82C02");
+            entity.HasKey(e => e.ID).HasName("PK__Review__3214EC270DF37F55");
 
             entity.ToTable("Review");
 
             entity.Property(e => e.DateAdded).HasColumnType("datetime");
             entity.Property(e => e.Description).HasMaxLength(500);
+            entity.Property(e => e.IsDeleted)
+                .IsRequired()
+                .HasDefaultValueSql("((1))");
             entity.Property(e => e.NumberOfStars).HasColumnType("decimal(1, 1)");
 
             entity.HasOne(d => d.AddedByUser).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.AddedByUserID)
-                .HasConstraintName("FK__Review__AddedByU__4F7CD00D");
+                .HasConstraintName("FK__Review__AddedByU__5070F446");
 
             entity.HasOne(d => d.OrderItem).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.OrderItemID)
-                .HasConstraintName("FK__Review__OrderIte__5070F446");
+                .HasConstraintName("FK__Review__OrderIte__5165187F");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Role__3214EC27E0A34F51");
+            entity.HasKey(e => e.ID).HasName("PK__Role__3214EC27EC728A61");
 
             entity.ToTable("Role");
 
@@ -179,7 +185,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__User__3214EC278C4D66AC");
+            entity.HasKey(e => e.ID).HasName("PK__User__3214EC27D8A65025");
 
             entity.ToTable("User");
 
@@ -189,9 +195,9 @@ public partial class RentSistemDbContext : DbContext
                 .IsRequired()
                 .HasDefaultValueSql("((1))");
             entity.Property(e => e.LastName).HasMaxLength(50);
-            entity.Property(e => e.PasswordHash).HasMaxLength(64);
+            entity.Property(e => e.PasswordHash).HasMaxLength(300);
             entity.Property(e => e.Phone).HasMaxLength(20);
-            entity.Property(e => e.Salt).HasMaxLength(16);
+            entity.Property(e => e.Salt).HasMaxLength(300);
 
             entity.HasMany(d => d.Roles).WithMany(p => p.Users)
                 .UsingEntity<Dictionary<string, object>>(
@@ -206,7 +212,7 @@ public partial class RentSistemDbContext : DbContext
                         .HasConstraintName("FK__UserRole__UserID__3C69FB99"),
                     j =>
                     {
-                        j.HasKey("UserID", "RoleID").HasName("PK__UserRole__AF27604F3FD15EFF");
+                        j.HasKey("UserID", "RoleID").HasName("PK__UserRole__AF27604F0FE3DFC3");
                         j.ToTable("UserRole");
                     });
         });
