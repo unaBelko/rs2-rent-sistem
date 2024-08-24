@@ -29,23 +29,9 @@ namespace rs2_rent_sistem.Services.Services
 
         public async Task<Cart> AddToCart(CartItemUpsertObject cartItem)
         {
-            var defaultUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == "defaultuser@example.com");
-            if (defaultUser == null)
-            {
-                defaultUser = new Database.User
-                {
-                    FirstName = "Default",
-                    LastName = "User",
-                    Email = "defaultuser@example.com",
-                    IsActive = true
-                };
-                _context.Users.Add(defaultUser);
-                await _context.SaveChangesAsync();
-            }
-
             var existingCart = await _context.Carts
                 .Include(c => c.CartItems)
-                .FirstOrDefaultAsync(c => c.UserID == defaultUser.ID);
+                .FirstOrDefaultAsync(c => c.UserID == cartItem.UserID);
 
             Database.Cart cartEntity;
 
@@ -53,7 +39,7 @@ namespace rs2_rent_sistem.Services.Services
             {
                 cartEntity = new Database.Cart
                 {
-                    UserID = defaultUser.ID,
+                    UserID = cartItem.UserID,
                     DateAdded = DateTime.UtcNow,
                 };
 

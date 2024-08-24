@@ -10,11 +10,17 @@ namespace rs2_rent_sistem.Services.Services
 {
     public class OrderService : BaseService<Order, Database.Order, OrderSearchObject>, IOrderService
     {
-        public OrderService(RentSistemDbContext context, IMapper mapper) : base(context, mapper) { }
+        private readonly ICartService _cartService;
+
+        public OrderService(RentSistemDbContext context, IMapper mapper, ICartService cartService) : base(context, mapper)
+        {
+            _cartService = cartService;
+        }
 
         public async Task<Order> CreateOrder(OrderCreationRequest request)
         {
             var cart = await _context.Carts
+                .Where(c => c.UserID == request.UserId)
                 .Include(c => c.CartItems)
                 .ThenInclude(ci => ci.Equipment)
                 .FirstOrDefaultAsync(c => c.ID == request.CartId);
@@ -28,7 +34,8 @@ namespace rs2_rent_sistem.Services.Services
             {
                 UserID = cart.UserID,
                 DatePlaced = DateTime.UtcNow,
-                IsActive = true
+                IsActive = true,
+                TotalPrice = 0
             };
 
             foreach (var cartItem in cart.CartItems)
@@ -38,6 +45,13 @@ namespace rs2_rent_sistem.Services.Services
                     throw new Exception($"Equipment not found for CartItem with EquipmentID {cartItem.EquipmentID}.");
                 }
 
+                var numberOfDays = (cartItem.EndDate - cartItem.StartDate).TotalDays;
+
+                var quantity = cartItem.Quantity ?? 1;
+                var costPerUse = cartItem.Equipment.CostPerUse ?? 0m;
+
+                var orderItemPrice = costPerUse * quantity * (decimal)numberOfDays;
+
                 var orderItem = new Database.OrderItem
                 {
                     EquipmentID = cartItem.EquipmentID,
@@ -45,18 +59,20 @@ namespace rs2_rent_sistem.Services.Services
                     CostPerUse = cartItem.Equipment.CostPerUse,
                     StartDate = cartItem.StartDate,
                     EndDate = cartItem.EndDate,
+                    Price = orderItemPrice
                 };
 
                 newOrder.OrderItems.Add(orderItem);
+                newOrder.TotalPrice += orderItemPrice;
             }
 
             _context.Orders.Add(newOrder);
-
             await _context.SaveChangesAsync();
+
+            await _cartService.EmptyCart(request.CartId);
 
             return _mapper.Map<Order>(newOrder);
         }
     }
-
 
 }

@@ -3,5 +3,6 @@
     public class OrderCreationRequest
     {
         public int CartId { get; set; }
+        public int? UserId { get; set; }
     }
 }

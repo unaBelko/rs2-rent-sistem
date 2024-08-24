@@ -8,6 +8,8 @@ public partial class Order
 
     public DateTime? DatePlaced { get; set; }
 
+    public decimal? TotalPrice { get; set; }
+
     public bool IsActive { get; set; }
 
     public virtual ICollection<OrderItem> OrderItems { get; } = new List<OrderItem>();

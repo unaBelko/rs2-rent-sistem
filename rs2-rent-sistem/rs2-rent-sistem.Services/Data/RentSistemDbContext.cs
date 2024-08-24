@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using rs2_rent_sistem.Services.Database;
 
 namespace rs2_rent_sistem.Services.Data;
@@ -44,7 +42,7 @@ public partial class RentSistemDbContext : DbContext
     {
         modelBuilder.Entity<Cart>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Cart__3214EC27F5A5BBC0");
+            entity.HasKey(e => e.ID).HasName("PK__Cart__3214EC27E530335A");
 
             entity.ToTable("Cart");
 
@@ -57,7 +55,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<CartItem>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__CartItem__3214EC27BA8D4C79");
+            entity.HasKey(e => e.ID).HasName("PK__CartItem__3214EC277B613A20");
 
             entity.ToTable("CartItem");
 
@@ -75,7 +73,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<Equipment>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Equipmen__3214EC277167F78F");
+            entity.HasKey(e => e.ID).HasName("PK__Equipmen__3214EC27A9AE558D");
 
             entity.Property(e => e.CostPerUse).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.DateAdded).HasColumnType("datetime");
@@ -101,7 +99,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<EquipmentCategory>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Equipmen__3214EC279A108D1A");
+            entity.HasKey(e => e.ID).HasName("PK__Equipmen__3214EC273EB52989");
 
             entity.ToTable("EquipmentCategory");
 
@@ -111,7 +109,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<Manufacturer>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Manufact__3214EC27351E6CCA");
+            entity.HasKey(e => e.ID).HasName("PK__Manufact__3214EC27FD9A3042");
 
             entity.ToTable("Manufacturer");
 
@@ -121,11 +119,12 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Order__3214EC27AD30E497");
+            entity.HasKey(e => e.ID).HasName("PK__Order__3214EC271170F4B9");
 
             entity.ToTable("Order");
 
             entity.Property(e => e.DatePlaced).HasColumnType("datetime");
+            entity.Property(e => e.TotalPrice).HasColumnType("decimal(12, 2)");
 
             entity.HasOne(d => d.User).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.UserID)
@@ -134,12 +133,13 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<OrderItem>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__OrderIte__3214EC278C84634E");
+            entity.HasKey(e => e.ID).HasName("PK__OrderIte__3214EC27CFF6BE76");
 
             entity.ToTable("OrderItem");
 
             entity.Property(e => e.CostPerUse).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.EndDate).HasColumnType("datetime");
+            entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.StartDate).HasColumnType("datetime");
 
             entity.HasOne(d => d.Equipment).WithMany(p => p.OrderItems)
@@ -153,7 +153,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Review__3214EC270DF37F55");
+            entity.HasKey(e => e.ID).HasName("PK__Review__3214EC2757F33F6D");
 
             entity.ToTable("Review");
 
@@ -175,7 +175,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Role__3214EC27EC728A61");
+            entity.HasKey(e => e.ID).HasName("PK__Role__3214EC27AD29A22E");
 
             entity.ToTable("Role");
 
@@ -185,7 +185,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__User__3214EC27D8A65025");
+            entity.HasKey(e => e.ID).HasName("PK__User__3214EC2751BB24A6");
 
             entity.ToTable("User");
 
@@ -212,7 +212,7 @@ public partial class RentSistemDbContext : DbContext
                         .HasConstraintName("FK__UserRole__UserID__3C69FB99"),
                     j =>
                     {
-                        j.HasKey("UserID", "RoleID").HasName("PK__UserRole__AF27604F0FE3DFC3");
+                        j.HasKey("UserID", "RoleID").HasName("PK__UserRole__AF27604F02E4AED9");
                         j.ToTable("UserRole");
                     });
         });

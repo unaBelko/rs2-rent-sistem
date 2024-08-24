@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using rs2_rent_sistem.Model.Models;
 using rs2_rent_sistem.Model.Requests;
 using rs2_rent_sistem.Model.SearchObjects;
 using rs2_rent_sistem.Services.Interfaces;
+using System.Security.Claims;
 
 namespace rs2_rent_sistem_api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CartController : BaseController<Cart, CartSearchObject>
@@ -22,9 +25,17 @@ namespace rs2_rent_sistem_api.Controllers
         [HttpPost("AddItem")]
         public async Task<IActionResult> AddItemToCart([FromBody] CartItemUpsertObject cartItem)
         {
-            if (cartItem == null)
+            var userId = User.FindFirstValue(ClaimTypes.Name);
+
+
+            if (userId == null)
             {
-                return BadRequest("Invalid cart item.");
+                return Unauthorized();
+            }
+            else
+            {
+                var userIdInt = int.Parse(userId);
+                cartItem.UserID = userIdInt;
             }
 
             try
