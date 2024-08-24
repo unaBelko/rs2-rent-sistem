@@ -21,14 +21,12 @@ namespace rs2_rent_sistem_api.Controllers
             _logger = logger;
         }
 
-        //[Authorize(Roles = "")]
         [HttpPost()]
         public virtual async Task<T> Insert([FromBody] TInsert insert)
         {
             return await _service.Insert(insert);
         }
 
-        //[Authorize(Roles = "")]
         [HttpPut("{id}")]
         public virtual async Task<T> Update(int id, [FromBody] Tupdate update)
         {

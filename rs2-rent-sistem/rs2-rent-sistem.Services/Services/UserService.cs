@@ -26,7 +26,19 @@ namespace rs2_rent_sistem.Services.Services
         {
             entity.Salt = GenerateSalt();
             entity.PasswordHash = GenerateHash(entity.Salt, request.Password);
+
+            var endUserRole = await _context.Roles.FirstOrDefaultAsync(role => role.Name == "end-user");
+
+            if (endUserRole != null)
+            {
+                entity.Roles.Add(endUserRole);
+            }
+            else
+            {
+                throw new Exception("End-user role not found.");
+            }
         }
+
 
         public override async Task<User> Update(int id, UserUpsertObject update)
         {

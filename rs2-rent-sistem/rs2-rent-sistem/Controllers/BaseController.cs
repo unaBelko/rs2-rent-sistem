@@ -18,7 +18,7 @@ namespace rs2_rent_sistem_api.Controllers
         }
 
         [HttpGet()]
-        public async Task<PageResult<T>> Get([FromQuery] TSearch? search = null)
+        public virtual async Task<PageResult<T>> Get([FromQuery] TSearch? search = null)
         {
             return await _service.Get(search);
         }

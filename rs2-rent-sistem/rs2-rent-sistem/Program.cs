@@ -5,7 +5,6 @@ using Microsoft.OpenApi.Models;
 using rs2_rent_sistem.Services.Data;
 using rs2_rent_sistem.Services.Interfaces;
 using rs2_rent_sistem.Services.Services;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,16 +71,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Issuer"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+            IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         };
     });
 
 // Configure Authorization
-builder.Services.AddAuthorization(options =>
-{
-    // Define policies if needed
-    // options.AddPolicy("MyCustomPolicy", policy => policy.RequireClaim("MyClaimType"));
-});
+builder.Services.AddAuthorization(options => { });
 
 var app = builder.Build();
 
