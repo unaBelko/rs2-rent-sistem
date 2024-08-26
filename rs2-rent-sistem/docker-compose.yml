@@ -1,0 +1,35 @@
+networks:
+  erentnet2023:
+    driver: bridge      
+
+services:
+#mssql docker
+  erent-sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=QWElkj132!
+      - MSSQL_PID=Developer
+    ports:
+      - 1401:1433
+    expose:
+      - 1433
+    networks:
+      - erentnet2023    
+
+  erent-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=erent-sql,1433;Database=rentSistemDB;User=sa;Password=QWElkj132!;ConnectRetryCount=0;TrustServerCertificate=True;
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 5119:5119
+    networks:
+      - erentnet2023
+    links:
+      - erent-sql
+    depends_on:
+      - erent-sql
