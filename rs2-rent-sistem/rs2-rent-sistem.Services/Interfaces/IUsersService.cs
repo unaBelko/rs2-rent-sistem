@@ -5,6 +5,6 @@ namespace rs2_rent_sistem.Services.Interfaces
 {
     public interface IUsersService : ICRUDService<Model.Models.User, UserSearchObject, UserUpsertObject, UserUpsertObject>
     {
-        public Task<Model.Models.User> Login(string email, string password);
+        public Task<String> Login(string email, string password);
     }
 }

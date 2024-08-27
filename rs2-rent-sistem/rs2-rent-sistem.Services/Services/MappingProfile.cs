@@ -37,8 +37,8 @@ namespace rs2_rent_sistem.Services.Services
             CreateMap<Role, Database.Role>();
 
             CreateMap<Database.User, User>();
+            CreateMap<User, Database.User>();
             CreateMap<UserUpsertObject, Database.User>();
-
         }
     }
 }

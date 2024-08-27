@@ -26,5 +26,5 @@ public partial class User
 
     public virtual ICollection<Review> Reviews { get; } = new List<Review>();
 
-    public virtual ICollection<Role> Roles { get; } = new List<Role>();
+    public virtual ICollection<UserRole> UserRoles { get; } = new List<UserRole>();
 }

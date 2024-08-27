@@ -34,15 +34,18 @@ public partial class RentSistemDbContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<UserRole> UserRoles { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Cart>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Cart__3214EC27E530335A");
+            entity.HasKey(e => e.ID).HasName("PK__Cart__3214EC27F092848C");
 
             entity.ToTable("Cart");
 
             entity.Property(e => e.DateAdded).HasColumnType("datetime");
+            entity.Property(e => e.TotalPrice).HasColumnType("decimal(12, 2)");
 
             entity.HasOne(d => d.User).WithMany(p => p.Carts)
                 .HasForeignKey(d => d.UserID)
@@ -51,7 +54,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<CartItem>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__CartItem__3214EC277B613A20");
+            entity.HasKey(e => e.ID).HasName("PK__CartItem__3214EC270170661E");
 
             entity.ToTable("CartItem");
 
@@ -69,7 +72,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<Equipment>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Equipmen__3214EC27A9AE558D");
+            entity.HasKey(e => e.ID).HasName("PK__Equipmen__3214EC27E5E8D640");
 
             entity.Property(e => e.CostPerUse).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.DateAdded).HasColumnType("datetime");
@@ -95,7 +98,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<EquipmentCategory>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Equipmen__3214EC273EB52989");
+            entity.HasKey(e => e.ID).HasName("PK__Equipmen__3214EC2767D63CD6");
 
             entity.ToTable("EquipmentCategory");
 
@@ -105,7 +108,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<Manufacturer>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Manufact__3214EC27FD9A3042");
+            entity.HasKey(e => e.ID).HasName("PK__Manufact__3214EC279512E539");
 
             entity.ToTable("Manufacturer");
 
@@ -115,7 +118,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Order__3214EC271170F4B9");
+            entity.HasKey(e => e.ID).HasName("PK__Order__3214EC27E334F241");
 
             entity.ToTable("Order");
 
@@ -129,7 +132,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<OrderItem>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__OrderIte__3214EC27CFF6BE76");
+            entity.HasKey(e => e.ID).HasName("PK__OrderIte__3214EC27A60ECC1F");
 
             entity.ToTable("OrderItem");
 
@@ -149,7 +152,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Review__3214EC2757F33F6D");
+            entity.HasKey(e => e.ID).HasName("PK__Review__3214EC273729A687");
 
             entity.ToTable("Review");
 
@@ -171,7 +174,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__Role__3214EC27AD29A22E");
+            entity.HasKey(e => e.ID).HasName("PK__Role__3214EC2778B20863");
 
             entity.ToTable("Role");
 
@@ -181,7 +184,7 @@ public partial class RentSistemDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__User__3214EC2751BB24A6");
+            entity.HasKey(e => e.ID).HasName("PK__User__3214EC278C534519");
 
             entity.ToTable("User");
 
@@ -194,27 +197,28 @@ public partial class RentSistemDbContext : DbContext
             entity.Property(e => e.PasswordHash).HasMaxLength(300);
             entity.Property(e => e.Phone).HasMaxLength(20);
             entity.Property(e => e.Salt).HasMaxLength(300);
-
-            entity.HasMany(d => d.Roles).WithMany(p => p.Users)
-                .UsingEntity<Dictionary<string, object>>(
-                    "UserRole",
-                    r => r.HasOne<Role>().WithMany()
-                        .HasForeignKey("RoleID")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__UserRole__RoleID__3D5E1FD2"),
-                    l => l.HasOne<User>().WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__UserRole__UserID__3C69FB99"),
-                    j =>
-                    {
-                        j.HasKey("UserID", "RoleID").HasName("PK__UserRole__AF27604F02E4AED9");
-                        j.ToTable("UserRole");
-                    });
         });
 
-        OnModelCreatingPartial(modelBuilder);
+        modelBuilder.Entity<UserRole>(entity =>
+        {
+            entity.HasKey(e => new { e.UserID, e.RoleID }).HasName("PK__UserRole__AF27604F8443E939");
+
+            entity.ToTable("UserRole");
+
+            entity.Property(e => e.DateChanged).HasColumnType("datetime");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.UserRoles)
+                .HasForeignKey(d => d.RoleID)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__UserRole__RoleID__3D5E1FD2");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UserRoles)
+                .HasForeignKey(d => d.UserID)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__UserRole__UserID__3C69FB99");
+        });
+
+        DatabaseSeed.SeedData(modelBuilder);
     }
 
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

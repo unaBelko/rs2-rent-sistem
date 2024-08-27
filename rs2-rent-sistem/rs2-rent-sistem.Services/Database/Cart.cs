@@ -8,6 +8,8 @@ public partial class Cart
 
     public DateTime? DateAdded { get; set; }
 
+    public decimal? TotalPrice { get; set; }
+
     public virtual ICollection<CartItem> CartItems { get; } = new List<CartItem>();
 
     public virtual User? User { get; set; }

@@ -1,23 +1,28 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using rs2_rent_sistem.Model.Models;
+using Microsoft.Extensions.Configuration;
 using rs2_rent_sistem.Model.Requests;
 using rs2_rent_sistem.Model.SearchObjects;
 using rs2_rent_sistem.Services.Data;
+using rs2_rent_sistem.Services.Database;
 using rs2_rent_sistem.Services.Interfaces;
+using rs2_rent_sistem.Utilities;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace rs2_rent_sistem.Services.Services
 {
-    public class UserService : CRUDService<User, Database.User, UserSearchObject, UserUpsertObject, UserUpsertObject>, IUsersService
+    public class UserService : CRUDService<Model.Models.User, Database.User, UserSearchObject, UserUpsertObject, UserUpsertObject>, IUsersService
     {
-        public UserService(RentSistemDbContext context, IMapper mapper)
+        private readonly IConfiguration _configuration;
+
+        public UserService(RentSistemDbContext context, IMapper mapper, IConfiguration configuration)
             : base(context, mapper)
         {
+            _configuration = configuration;
         }
 
-        public override async Task<User> Insert(UserUpsertObject insert)
+        public override async Task<Model.Models.User> Insert(UserUpsertObject insert)
         {
             return await base.Insert(insert);
         }
@@ -31,7 +36,15 @@ namespace rs2_rent_sistem.Services.Services
 
             if (endUserRole != null)
             {
-                entity.Roles.Add(endUserRole);
+                var userRole = new UserRole
+                {
+                    UserID = entity.ID,
+                    RoleID = endUserRole.ID,
+                    DateChanged = DateTime.Now,
+                };
+
+
+                entity.UserRoles.Add(userRole);
             }
             else
             {
@@ -40,22 +53,22 @@ namespace rs2_rent_sistem.Services.Services
         }
 
 
-        public override async Task<User> Update(int id, UserUpsertObject update)
+        public override async Task<Model.Models.User> Update(int id, UserUpsertObject update)
         {
             return await base.Update(id, update);
         }
 
         public override IQueryable<Database.User> AddInclude(IQueryable<Database.User> query, UserSearchObject? search = null)
         {
-            query = query.Include(user => user.Roles);
+            query = query.Include(user => user.UserRoles);
 
             return base.AddInclude(query, search);
         }
 
-        public async Task<User> Login(string email, string password)
+        public async Task<string> Login(string email, string password)
         {
             var entity = await _context.Users
-                .Include(u => u.Roles)
+                .Include(u => u.UserRoles)
                 .FirstOrDefaultAsync(x => x.Email == email);
 
             if (entity == null)
@@ -68,7 +81,8 @@ namespace rs2_rent_sistem.Services.Services
                 return null;
             }
 
-            return _mapper.Map<User>(entity);
+            var token = UtilityFunctions.GenerateJwtToken(_mapper.Map<Model.Models.User>(entity), _configuration);
+            return token;
         }
 
 
