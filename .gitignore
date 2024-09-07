@@ -10,7 +10,7 @@
 *.userosscache
 *.sln.docstates
 
-eRestorante/docker_data/
+eRent/docker_data/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -1327,3 +1327,5 @@ Temporary Items
 # Archives         - https://github.com/github/gitignore/blob/main/Global/Archives.gitignore
 # Backup           - https://github.com/github/gitignore/blob/main/Global/Backup.gitignore
 # JEnv             - https://github.com/github/gitignore/blob/main/Global/JEnv.gitignore
+rs2-rent-sistem/rs2-ui/rs2_rent_sistem/macos/Podfile.lock
+rs2-rent-sistem/rs2-ui/rs2_rent_sistem/ios/Podfile.lock
