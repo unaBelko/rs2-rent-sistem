@@ -77,24 +77,24 @@ class EquipmentPage extends StatelessWidget {
           ),
           const EquipmentListItem(
             item: EquipmentItemModel.EquipmentListItem(
-              id: "1",
+              id: 1,
               imageUrl: Constants.imageUrl,
               itemName: "Loptaa",
               manufacturer: "Nikee",
               rating: 3.6,
               numberOfReviews: 19,
-              costPerDay: "20,00 KM",
+              costPerDay: 20.00,
             ),
           ),
           const EquipmentListItem(
             item: EquipmentItemModel.EquipmentListItem(
-              id: "1",
+              id: 1,
               imageUrl: Constants.imageUrl,
               itemName: "Loptaa",
               manufacturer: "Nikee",
               rating: 3.6,
               numberOfReviews: 19,
-              costPerDay: "20,00 KM",
+              costPerDay: 20.00,
             ),
           ),
         ],
@@ -132,7 +132,7 @@ class EquipmentListItem extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Text(
-                item.costPerDay,
+                item.costPerDay.toString(),
               ),
             ),
             Expanded(

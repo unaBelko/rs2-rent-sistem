@@ -30,6 +30,7 @@ class RentSystemButton extends StatelessWidget {
             vertical: 8,
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 label,

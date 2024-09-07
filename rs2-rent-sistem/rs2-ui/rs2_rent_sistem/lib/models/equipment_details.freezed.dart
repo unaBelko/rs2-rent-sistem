@@ -20,7 +20,7 @@ EquipmentDetails _$EquipmentDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$EquipmentDetails {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get itemName => throw _privateConstructorUsedError;
   String get manufacturer => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $EquipmentDetailsCopyWith<$Res> {
       _$EquipmentDetailsCopyWithImpl<$Res, EquipmentDetails>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String itemName,
       String manufacturer,
       String imageUrl,
@@ -85,7 +85,7 @@ class _$EquipmentDetailsCopyWithImpl<$Res, $Val extends EquipmentDetails>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       itemName: null == itemName
           ? _value.itemName
           : itemName // ignore: cast_nullable_to_non_nullable
@@ -135,7 +135,7 @@ abstract class _$$EquipmentDetailsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String itemName,
       String manufacturer,
       String imageUrl,
@@ -173,7 +173,7 @@ class __$$EquipmentDetailsImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       itemName: null == itemName
           ? _value.itemName
           : itemName // ignore: cast_nullable_to_non_nullable
@@ -218,7 +218,7 @@ class __$$EquipmentDetailsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$EquipmentDetailsImpl implements _EquipmentDetails {
   const _$EquipmentDetailsImpl(
-      {this.id = '',
+      {required this.id,
       this.itemName = '',
       this.manufacturer = '',
       this.imageUrl = '',
@@ -234,8 +234,7 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
       _$$EquipmentDetailsImplFromJson(json);
 
   @override
-  @JsonKey()
-  final String id;
+  final int id;
   @override
   @JsonKey()
   final String itemName;
@@ -334,7 +333,7 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
 
 abstract class _EquipmentDetails implements EquipmentDetails {
   const factory _EquipmentDetails(
-      {final String id,
+      {required final int id,
       final String itemName,
       final String manufacturer,
       final String imageUrl,
@@ -349,7 +348,7 @@ abstract class _EquipmentDetails implements EquipmentDetails {
       _$EquipmentDetailsImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get itemName;
   @override

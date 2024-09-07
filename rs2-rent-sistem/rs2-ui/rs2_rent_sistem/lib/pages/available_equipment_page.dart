@@ -2,68 +2,31 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/equipment_list_item.dart';
 import 'package:rs2_rent_sistem/pages/equipment_details_page.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:rs2_rent_sistem/shared/providers/equipment_providers.dart';
 
-class AvailableEquipmentPage extends StatelessWidget {
+class AvailableEquipmentPage extends ConsumerWidget {
   const AvailableEquipmentPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        EquipmentCard(
-          EquipmentListItem(
-            id: 'id',
-            imageUrl: Constants.imageUrl,
-            itemName: 'Lopta za odbojku',
-            manufacturer: 'Adidas',
-            rating: 3.5,
-            numberOfReviews: 10,
-            costPerDay: '10,00 KM',
-            isInCart: false,
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ref.watch(equipmentListProvider).when(
+          data: (items) => SingleChildScrollView(
+            child: Column(
+              children: items
+                  .map(
+                    (item) => EquipmentCard(item),
+                  )
+                  .toList(),
+            ),
           ),
-        ),
-        EquipmentCard(
-          EquipmentListItem(
-            id: 'id',
-            imageUrl: Constants.imageUrl,
-            itemName: 'Lopta za odbojku',
-            manufacturer: 'Adidas',
-            rating: 3.5,
-            numberOfReviews: 10,
-            costPerDay: '10,00 KM',
-            isInCart: false,
-          ),
-        ),
-        EquipmentCard(
-          EquipmentListItem(
-            id: 'id',
-            imageUrl: Constants.imageUrl,
-            itemName: 'Lopta za odbojku',
-            manufacturer: 'Adidas',
-            rating: 3.5,
-            numberOfReviews: 10,
-            costPerDay: '10,00 KM',
-            isInCart: false,
-          ),
-        ),
-        EquipmentCard(
-          EquipmentListItem(
-            id: 'id',
-            imageUrl: Constants.imageUrl,
-            itemName: 'Lopta za odbojku',
-            manufacturer: 'Adidas',
-            rating: 3.5,
-            numberOfReviews: 10,
-            costPerDay: '10,00 KM',
-            isInCart: true,
-          ),
-        ),
-      ],
-    );
+          error: (err, st) => Text('error je $err'),
+          loading: () => CircularProgressIndicator(),
+        );
   }
 }
 
@@ -94,7 +57,7 @@ class EquipmentCard extends StatelessWidget {
                     bottomLeft: Radius.circular(12),
                   ),
                   child: CachedNetworkImage(
-                    imageUrl: equipmentListItem.imageUrl,
+                    imageUrl: Constants.imageUrl,
                     height: 100,
                     width: 100,
                   ),
@@ -156,7 +119,7 @@ class EquipmentCard extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        equipmentListItem.costPerDay,
+                        equipmentListItem.costPerDay.toString(),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontStyle: FontStyle.italic,
                               fontWeight: FontWeight.w500,
@@ -169,22 +132,22 @@ class EquipmentCard extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
-          bottom: 0,
-          right: 12,
-          child: GestureDetector(
-            onTap: () {
-              log('pressed');
-            },
-            child: Container(
-              decoration: BoxDecoration(color: equipmentListItem.isInCart ? Colors.redAccent : Colors.grey, borderRadius: BorderRadius.circular(30)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(equipmentListItem.isInCart ? Icons.delete : Icons.add),
-              ),
-            ),
-          ),
-        ),
+        // Positioned(
+        //   bottom: 0,
+        //   right: 12,
+        //   child: GestureDetector(
+        //     onTap: () {
+        //       log('pressed');
+        //     },
+        //     child: Container(
+        //       decoration: BoxDecoration(color: equipmentListItem.isInCart ? Colors.redAccent : Colors.grey, borderRadius: BorderRadius.circular(30)),
+        //       child: Padding(
+        //         padding: const EdgeInsets.all(8.0),
+        //         child: Icon(equipmentListItem.isInCart ? Icons.delete : Icons.add),
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
