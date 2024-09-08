@@ -25,6 +25,12 @@ services:
     environment:
       - ConnectionStrings:DefaultConnection=Server=erent-sql,1433;Database=rentSistemDB;User=sa;Password=QWElkj132!;ConnectRetryCount=0;TrustServerCertificate=True;
       - ASPNETCORE_ENVIRONMENT=Development
+      - RABBITMQ_HOST=erent-rabbitmq
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_VIRTUALHOST=/
+      - RABBITMQ_QUEUENAME=notificationsQueue
+      - RABBITMQ_PORT=5672
     ports:
       - 5119:5119
     networks:
@@ -33,3 +39,53 @@ services:
       - erent-sql
     depends_on:
       - erent-sql
+      - erent-rabbitmq
+
+#rabbitMQ
+  erent-rabbitmq:
+    image: rabbitmq:3.13-management
+    hostname: erent-rabbitmq
+    restart: unless-stopped
+    ports:
+      - 5672:5672  
+      - 8080:15672
+      - 15692:15692
+    expose:
+      - 5672
+      - 8080
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest 
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - erentnet2023
+    volumes:
+      - ./docker_data/rabbitmq_data:/var/lib/rabbitmq
+      - ./docker_data/rabbitmq_logs:/var/log/rabbitmq
+
+#NotificationMailingService
+
+  erent-mailingservice:
+    restart: unless-stopped
+    container_name: erent-mailingservice
+    hostname: erent-mailingservice
+    image: notification-email-consumer:latest
+    build: 
+      context: .
+      dockerfile: NotificationEmailConsumerDockerfile
+    environment:
+      - RABBITMQ_HOST=erent-rabbitmq
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_VIRTUALHOST=/
+      - RABBITMQ_QUEUENAME=notificationsQueue
+      - RABBITMQ_PORT=5672
+      - FromEmail=erentrs2ube@gmail.com
+      - SmtpPass="zgdm xsge pkve eeus"
+      - SmtpServer=smtp.gmail.com 
+      - SmtpUser=erentrs2ube@gmail.com
+    depends_on:
+      - erent-rabbitmq
+      - erent-api
+      - erent-sql 
+    networks:
+      - erentnet2023

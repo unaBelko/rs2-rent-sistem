@@ -2,5 +2,6 @@
 {
     public class OrderSearchObject : BaseSearchObject
     {
+        public int UserId { get; set; }
     }
 }

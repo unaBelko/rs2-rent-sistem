@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using RabbitMQ.Client;
 using rs2_rent_sistem.Services.Data;
 using rs2_rent_sistem.Services.Interfaces;
 using rs2_rent_sistem.Services.Services;
@@ -77,6 +78,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 // Configure Authorization
 builder.Services.AddAuthorization(options => { });
+
+builder.Configuration.AddEnvironmentVariables();
+
+var rabbitMqFactory = new ConnectionFactory() { HostName = builder.Configuration["RabbitMQ:HostName"] };
+builder.Services.AddSingleton(rabbitMqFactory);
 
 var app = builder.Build();
 

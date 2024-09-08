@@ -27,6 +27,7 @@ public partial class Equipment
     public int? EquipmentCategoryId { get; set; }
 
     public bool? IsDeleted { get; set; }
+    public byte[]? Photo { get; set; }
 
     public virtual User? AddedByUser { get; set; }
 
@@ -37,4 +38,6 @@ public partial class Equipment
     public virtual Manufacturer? Manufacturer { get; set; }
 
     public virtual ICollection<OrderItem> OrderItems { get; } = new List<OrderItem>();
+
+
 }

@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public DateTime? DateAdded { get; set; }
         public ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
+        public double TotalPrice { get; set; }
 
     }
 }

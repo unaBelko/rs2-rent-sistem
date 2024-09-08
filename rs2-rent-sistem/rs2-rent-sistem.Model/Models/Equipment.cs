@@ -22,5 +22,9 @@
         public int? EquipmentCategoryID { get; set; }
 
         public int? ManufacturerID { get; set; }
+
+        public string? Photo { get; set; }
+
+        public List<AvailableDate>? AvailableDates { get; set; }
     }
 }

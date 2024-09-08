@@ -21,6 +21,86 @@ namespace rs2_rent_sistem.Services.Services
         {
         }
 
+        public override async Task<Equipment> Insert(EquipmentUpsertObject equipmentUpsertObject)
+        {
+            if (equipmentUpsertObject == null)
+                throw new ArgumentNullException(nameof(equipmentUpsertObject));
+
+            byte[]? photoBytes = null;
+            if (!string.IsNullOrEmpty(equipmentUpsertObject.PhotoBase64))
+            {
+                photoBytes = Convert.FromBase64String(equipmentUpsertObject.PhotoBase64);
+            }
+            //Zbog manjka vremena nije naisan mapper
+            var equipmentEntity = new Database.Equipment
+            {
+                ItemName = equipmentUpsertObject.ItemName,
+                ImageUrl = equipmentUpsertObject.ImageUrl,
+                StockQuantity = equipmentUpsertObject.StockQuantity,
+                MinQuantity = equipmentUpsertObject.MinQuantity,
+                MaxQuantity = equipmentUpsertObject.MaxQuantity,
+                Description = equipmentUpsertObject.Description,
+                CostPerUse = equipmentUpsertObject.CostPerUse,
+                DateAdded = equipmentUpsertObject.DateAdded ?? DateTime.UtcNow, // Use current date if DateAdded is null
+                ManufacturerID = equipmentUpsertObject.ManufacturerID,
+                EquipmentCategoryId = equipmentUpsertObject.EquipmentCategoryID,
+                Photo = photoBytes
+            };
+
+            try
+            {
+                _context.Equipment.Add(equipmentEntity);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding equipment: {ex.Message}");
+                throw;
+            }
+
+            return _mapper.Map<Equipment>(equipmentEntity);
+        }
+
+        public override async Task<Equipment> GetById(int id)
+        {
+            var equipmentEntity = await _context.Equipment
+                .Include(c => c.OrderItems)
+                .FirstOrDefaultAsync(c => c.ID == id);
+
+            if (equipmentEntity == null)
+            {
+                return null;
+            }
+
+            var today = DateTime.Today;
+            var equipment = _mapper.Map<Equipment>(equipmentEntity);
+            equipment.AvailableDates = new List<Model.Models.AvailableDate>();
+
+            // Generate the next 14 days including today
+            for (int i = 0; i < 28; i++)
+            {
+                var currentDate = today.AddDays(i);
+                var curentDateEnd = today.AddDays(i).AddHours(23).AddMinutes(50);
+
+                // Calculate the total quantity used on this day
+                var totalUsedOnDate = equipmentEntity.OrderItems
+                    .Where(orderItem => curentDateEnd >= orderItem.StartDate && currentDate <= orderItem.EndDate)
+                    .Sum(orderItem => orderItem.Quantity);
+
+                // Calculate available quantity
+                var availableQuantity = equipmentEntity.StockQuantity - totalUsedOnDate;
+
+                // Add the result to AvailableDates
+                equipment.AvailableDates.Add(new Model.Models.AvailableDate
+                {
+                    Date = currentDate,
+                    Quantity = availableQuantity
+                });
+            }
+
+            return equipment;
+        }
+
         public List<Equipment> GetRecommended(int id)
         {
             lock (isLocked)

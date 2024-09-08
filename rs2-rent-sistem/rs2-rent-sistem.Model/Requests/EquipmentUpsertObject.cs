@@ -19,5 +19,9 @@
         public DateTime? DateAdded { get; set; }
         public int? EquipmentCategoryID { get; set; }
         public int? ManufacturerID { get; set; }
+
+        public string? PhotoBase64 { get; set; }
+
+
     }
 }
