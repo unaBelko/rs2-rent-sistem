@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:rs2_rent_sistem/models/equipment_list_item.dart' as EquipmentItemModel;
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/add_equipment_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/equipment_details_admin_page.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
-import 'package:rs2_rent_sistem/shared/widgets/confirmation_modal.dart';
 import 'package:rs2_rent_sistem/shared/widgets/delete_equipment_button.dart';
 import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
 
@@ -83,7 +80,7 @@ class EquipmentPage extends StatelessWidget {
               manufacturer: "Nikee",
               rating: 3.6,
               numberOfReviews: 19,
-              costPerDay: 20.00,
+              costPerUse: 20.00,
             ),
           ),
           const EquipmentListItem(
@@ -94,7 +91,7 @@ class EquipmentPage extends StatelessWidget {
               manufacturer: "Nikee",
               rating: 3.6,
               numberOfReviews: 19,
-              costPerDay: 20.00,
+              costPerUse: 20.00,
             ),
           ),
         ],
@@ -132,7 +129,7 @@ class EquipmentListItem extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Text(
-                item.costPerDay.toString(),
+                item.costPerUse.toString(),
               ),
             ),
             Expanded(

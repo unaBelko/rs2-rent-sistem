@@ -23,7 +23,7 @@ mixin _$EquipmentListItem {
   int get id => throw _privateConstructorUsedError;
   String get itemName => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
-  double get costPerDay => throw _privateConstructorUsedError;
+  double get costPerUse => throw _privateConstructorUsedError;
   String get manufacturer => throw _privateConstructorUsedError;
   double get rating => throw _privateConstructorUsedError;
   int get numberOfReviews => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $EquipmentListItemCopyWith<$Res> {
       {int id,
       String itemName,
       String imageUrl,
-      double costPerDay,
+      double costPerUse,
       String manufacturer,
       double rating,
       int numberOfReviews});
@@ -66,7 +66,7 @@ class _$EquipmentListItemCopyWithImpl<$Res, $Val extends EquipmentListItem>
     Object? id = null,
     Object? itemName = null,
     Object? imageUrl = null,
-    Object? costPerDay = null,
+    Object? costPerUse = null,
     Object? manufacturer = null,
     Object? rating = null,
     Object? numberOfReviews = null,
@@ -84,9 +84,9 @@ class _$EquipmentListItemCopyWithImpl<$Res, $Val extends EquipmentListItem>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      costPerDay: null == costPerDay
-          ? _value.costPerDay
-          : costPerDay // ignore: cast_nullable_to_non_nullable
+      costPerUse: null == costPerUse
+          ? _value.costPerUse
+          : costPerUse // ignore: cast_nullable_to_non_nullable
               as double,
       manufacturer: null == manufacturer
           ? _value.manufacturer
@@ -116,7 +116,7 @@ abstract class _$$EquipmentListItemImplCopyWith<$Res>
       {int id,
       String itemName,
       String imageUrl,
-      double costPerDay,
+      double costPerUse,
       String manufacturer,
       double rating,
       int numberOfReviews});
@@ -136,7 +136,7 @@ class __$$EquipmentListItemImplCopyWithImpl<$Res>
     Object? id = null,
     Object? itemName = null,
     Object? imageUrl = null,
-    Object? costPerDay = null,
+    Object? costPerUse = null,
     Object? manufacturer = null,
     Object? rating = null,
     Object? numberOfReviews = null,
@@ -154,9 +154,9 @@ class __$$EquipmentListItemImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      costPerDay: null == costPerDay
-          ? _value.costPerDay
-          : costPerDay // ignore: cast_nullable_to_non_nullable
+      costPerUse: null == costPerUse
+          ? _value.costPerUse
+          : costPerUse // ignore: cast_nullable_to_non_nullable
               as double,
       manufacturer: null == manufacturer
           ? _value.manufacturer
@@ -181,7 +181,7 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
       {required this.id,
       this.itemName = '',
       this.imageUrl = '',
-      this.costPerDay = 0.0,
+      this.costPerUse = 0.0,
       this.manufacturer = '',
       this.rating = 0.0,
       this.numberOfReviews = 0});
@@ -199,7 +199,7 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
   final String imageUrl;
   @override
   @JsonKey()
-  final double costPerDay;
+  final double costPerUse;
   @override
   @JsonKey()
   final String manufacturer;
@@ -212,7 +212,7 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
 
   @override
   String toString() {
-    return 'EquipmentListItem(id: $id, itemName: $itemName, imageUrl: $imageUrl, costPerDay: $costPerDay, manufacturer: $manufacturer, rating: $rating, numberOfReviews: $numberOfReviews)';
+    return 'EquipmentListItem(id: $id, itemName: $itemName, imageUrl: $imageUrl, costPerUse: $costPerUse, manufacturer: $manufacturer, rating: $rating, numberOfReviews: $numberOfReviews)';
   }
 
   @override
@@ -225,8 +225,8 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
                 other.itemName == itemName) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
-            (identical(other.costPerDay, costPerDay) ||
-                other.costPerDay == costPerDay) &&
+            (identical(other.costPerUse, costPerUse) ||
+                other.costPerUse == costPerUse) &&
             (identical(other.manufacturer, manufacturer) ||
                 other.manufacturer == manufacturer) &&
             (identical(other.rating, rating) || other.rating == rating) &&
@@ -237,7 +237,7 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, itemName, imageUrl,
-      costPerDay, manufacturer, rating, numberOfReviews);
+      costPerUse, manufacturer, rating, numberOfReviews);
 
   @JsonKey(ignore: true)
   @override
@@ -259,7 +259,7 @@ abstract class _EquipmentListItem implements EquipmentListItem {
       {required final int id,
       final String itemName,
       final String imageUrl,
-      final double costPerDay,
+      final double costPerUse,
       final String manufacturer,
       final double rating,
       final int numberOfReviews}) = _$EquipmentListItemImpl;
@@ -274,7 +274,7 @@ abstract class _EquipmentListItem implements EquipmentListItem {
   @override
   String get imageUrl;
   @override
-  double get costPerDay;
+  double get costPerUse;
   @override
   String get manufacturer;
   @override

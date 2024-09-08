@@ -12,10 +12,12 @@ _$CartImpl _$$CartImplFromJson(Map<String, dynamic> json) => _$CartImpl(
               ?.map((e) => CartItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <CartItem>[],
+      totalPrice: json['totalPrice'] ?? 0,
     );
 
 Map<String, dynamic> _$$CartImplToJson(_$CartImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'cartItems': instance.cartItems,
+      'totalPrice': instance.totalPrice,
     };

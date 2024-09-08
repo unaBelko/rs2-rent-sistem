@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 import 'package:rs2_rent_sistem/shared/utilities/secure_storage_handler.dart';
@@ -74,7 +76,10 @@ class DioService {
         if (!_shouldSkipToken(options.path)) {
           String token = await _getToken();
           if (token.isNotEmpty) {
+            log("token ovde je $token");
             options.headers['Authorization'] = 'Bearer $token';
+            log("options ${options.headers.toString()}");
+            log("options ${options.headers}");
           }
         }
         return handler.next(options);

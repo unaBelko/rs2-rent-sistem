@@ -9,6 +9,7 @@ class Cart with _$Cart {
   const factory Cart({
     required int id,
     @Default(<CartItem>[]) List<CartItem> cartItems,
+    @Default(0) totalPrice,
   }) = _Cart;
 
   factory Cart.fromJson(Map<String, dynamic> json) => _$CartFromJson(json);

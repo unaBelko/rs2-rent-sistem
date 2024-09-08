@@ -12,7 +12,7 @@ class Endpoints {
   static const String addItemToCart = 'api/Cart/AddItem';
   static const String removeItemFromCart = 'api/Cart/RemoveItem';
   static const String emptyCart = 'api/Cart/Empty/{id}';
-  static const String getCarts = 'api/Cart';
+  static const String getCart = 'api/Cart/GetUsersCart';
   static const String getCartDetails = 'api/Cart/{1}';
   //equipment
   static const String getRecommendedEquipment = 'Equipment/{1}/recommend';

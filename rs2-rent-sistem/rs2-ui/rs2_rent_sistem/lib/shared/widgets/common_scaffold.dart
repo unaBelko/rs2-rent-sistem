@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 class CommonScaffold extends StatelessWidget {
   final String title;
   final Widget child;
+  final int numberOfPopsOnBack;
+
   const CommonScaffold({
     super.key,
     required this.title,
     required this.child,
+    this.numberOfPopsOnBack = 1,
   });
 
   @override
@@ -17,7 +20,9 @@ class CommonScaffold extends StatelessWidget {
         title: Text(title),
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            for (int i = 0; i < numberOfPopsOnBack; i++) {
+              Navigator.of(context).pop();
+            }
           },
           icon: const Icon(Icons.arrow_back),
         ),

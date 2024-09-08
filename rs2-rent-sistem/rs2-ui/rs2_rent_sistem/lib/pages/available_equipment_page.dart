@@ -1,9 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:rs2_rent_sistem/models/equipment_list_item.dart';
+import 'package:rs2_rent_sistem/pages/cart_page.dart';
 import 'package:rs2_rent_sistem/pages/equipment_details_page.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -15,27 +15,51 @@ class AvailableEquipmentPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(equipmentListProvider).when(
-          data: (items) => SingleChildScrollView(
-            child: Column(
-              children: items
-                  .map(
-                    (item) => EquipmentCard(item),
-                  )
-                  .toList(),
-            ),
+          data: (items) => Stack(
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                  children: items
+                      .map(
+                        (item) => EquipmentCard(item),
+                      )
+                      .toList(),
+                ),
+              ),
+              Positioned(
+                bottom: 20,
+                right: 20,
+                child: FloatingActionButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartPage()));
+                  },
+                  child: Icon(Icons.shopping_cart),
+                ),
+              ),
+            ],
           ),
-          error: (err, st) => Text('error je $err'),
-          loading: () => CircularProgressIndicator(),
+          error: (err, st) => Text('Error: $err'),
+          loading: () => const Center(
+            child: CircularProgressIndicator(),
+          ),
         );
   }
 }
 
 class EquipmentCard extends StatelessWidget {
   final EquipmentListItem equipmentListItem;
+  final bool isCartItem;
+  final int? quantity;
+  final DateTime? startDate;
+  final DateTime? endDate;
 
   const EquipmentCard(
     this.equipmentListItem, {
     super.key,
+    this.isCartItem = false,
+    this.quantity,
+    this.startDate,
+    this.endDate,
   });
 
   @override
@@ -71,7 +95,7 @@ class EquipmentCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        equipmentListItem.itemName,
+                        isCartItem ? '${equipmentListItem.itemName} ($quantity)' : equipmentListItem.itemName,
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                               fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.italic,
@@ -84,6 +108,8 @@ class EquipmentCard extends StatelessWidget {
                               color: Colors.grey,
                             ),
                       ),
+                      if (isCartItem) Text(DateFormat('dd.MM.yyyy').format(startDate!.toLocal())),
+                      if (isCartItem) Text(DateFormat('dd.MM.yyyy').format(endDate!.toLocal())),
                       Row(
                         children: [
                           RatingBar(
@@ -119,7 +145,7 @@ class EquipmentCard extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        equipmentListItem.costPerDay.toString(),
+                        equipmentListItem.costPerUse.toString(),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontStyle: FontStyle.italic,
                               fontWeight: FontWeight.w500,

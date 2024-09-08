@@ -16,7 +16,7 @@ final loginProvider = FutureProvider.family<bool, LoginData>((ref, loginData) as
   final response = await userService.logIn(loginData);
 
   if (response.isSuccess && response.data != null) {
-    await SecureStorageHandler().saveToken(response.data!);
+    // await SecureStorageHandler().saveToken(response.data!);
     return true;
   } else {
     return false;

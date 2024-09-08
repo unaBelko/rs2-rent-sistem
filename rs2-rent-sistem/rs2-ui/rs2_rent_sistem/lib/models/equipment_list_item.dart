@@ -9,7 +9,7 @@ class EquipmentListItem with _$EquipmentListItem {
     required int id,
     @Default('') String itemName,
     @Default('') String imageUrl,
-    @Default(0.0) double costPerDay,
+    @Default(0.0) double costPerUse,
     @Default('') String manufacturer,
     @Default(0.0) double rating,
     @Default(0) int numberOfReviews,
