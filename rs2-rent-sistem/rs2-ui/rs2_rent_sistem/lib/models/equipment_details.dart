@@ -6,7 +6,7 @@ part 'equipment_details.g.dart';
 @Freezed()
 class EquipmentDetails with _$EquipmentDetails {
   const factory EquipmentDetails({
-    @Default('') String id,
+    required int id,
     @Default('') String itemName,
     @Default('') String manufacturer,
     @Default('') String imageUrl,

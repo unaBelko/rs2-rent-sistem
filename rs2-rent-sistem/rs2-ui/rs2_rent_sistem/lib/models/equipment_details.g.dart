@@ -9,7 +9,7 @@ part of 'equipment_details.dart';
 _$EquipmentDetailsImpl _$$EquipmentDetailsImplFromJson(
         Map<String, dynamic> json) =>
     _$EquipmentDetailsImpl(
-      id: json['id'] as String? ?? '',
+      id: (json['id'] as num).toInt(),
       itemName: json['itemName'] as String? ?? '',
       manufacturer: json['manufacturer'] as String? ?? '',
       imageUrl: json['imageUrl'] as String? ?? '',

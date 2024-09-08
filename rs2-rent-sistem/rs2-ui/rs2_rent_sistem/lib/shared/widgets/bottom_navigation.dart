@@ -14,17 +14,26 @@ class BottomNavigationWidget extends ConsumerWidget {
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          activeIcon: Icon(Icons.home, color: Colors.redAccent,),
+          activeIcon: Icon(
+            Icons.home,
+            color: Colors.redAccent,
+          ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.shopping_bag),
-          activeIcon: Icon(Icons.shopping_bag, color: Colors.redAccent,),
-          label: 'Cart',
+          activeIcon: Icon(
+            Icons.shopping_bag,
+            color: Colors.redAccent,
+          ),
+          label: 'Equipment',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
-          activeIcon: Icon(Icons.settings, color: Colors.redAccent,),
+          activeIcon: Icon(
+            Icons.settings,
+            color: Colors.redAccent,
+          ),
           label: 'Settings',
         ),
       ],

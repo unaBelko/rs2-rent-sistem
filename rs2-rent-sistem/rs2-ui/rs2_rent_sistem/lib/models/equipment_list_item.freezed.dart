@@ -20,14 +20,13 @@ EquipmentListItem _$EquipmentListItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$EquipmentListItem {
-  String get id => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get itemName => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  double get costPerUse => throw _privateConstructorUsedError;
   String get manufacturer => throw _privateConstructorUsedError;
   double get rating => throw _privateConstructorUsedError;
   int get numberOfReviews => throw _privateConstructorUsedError;
-  String get costPerDay => throw _privateConstructorUsedError;
-  bool get isInCart => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,14 +41,13 @@ abstract class $EquipmentListItemCopyWith<$Res> {
       _$EquipmentListItemCopyWithImpl<$Res, EquipmentListItem>;
   @useResult
   $Res call(
-      {String id,
-      String imageUrl,
+      {int id,
       String itemName,
+      String imageUrl,
+      double costPerUse,
       String manufacturer,
       double rating,
-      int numberOfReviews,
-      String costPerDay,
-      bool isInCart});
+      int numberOfReviews});
 }
 
 /// @nodoc
@@ -66,27 +64,30 @@ class _$EquipmentListItemCopyWithImpl<$Res, $Val extends EquipmentListItem>
   @override
   $Res call({
     Object? id = null,
-    Object? imageUrl = null,
     Object? itemName = null,
+    Object? imageUrl = null,
+    Object? costPerUse = null,
     Object? manufacturer = null,
     Object? rating = null,
     Object? numberOfReviews = null,
-    Object? costPerDay = null,
-    Object? isInCart = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      itemName: null == itemName
+          ? _value.itemName
+          : itemName // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      itemName: null == itemName
-          ? _value.itemName
-          : itemName // ignore: cast_nullable_to_non_nullable
-              as String,
+      costPerUse: null == costPerUse
+          ? _value.costPerUse
+          : costPerUse // ignore: cast_nullable_to_non_nullable
+              as double,
       manufacturer: null == manufacturer
           ? _value.manufacturer
           : manufacturer // ignore: cast_nullable_to_non_nullable
@@ -99,14 +100,6 @@ class _$EquipmentListItemCopyWithImpl<$Res, $Val extends EquipmentListItem>
           ? _value.numberOfReviews
           : numberOfReviews // ignore: cast_nullable_to_non_nullable
               as int,
-      costPerDay: null == costPerDay
-          ? _value.costPerDay
-          : costPerDay // ignore: cast_nullable_to_non_nullable
-              as String,
-      isInCart: null == isInCart
-          ? _value.isInCart
-          : isInCart // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -120,14 +113,13 @@ abstract class _$$EquipmentListItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String imageUrl,
+      {int id,
       String itemName,
+      String imageUrl,
+      double costPerUse,
       String manufacturer,
       double rating,
-      int numberOfReviews,
-      String costPerDay,
-      bool isInCart});
+      int numberOfReviews});
 }
 
 /// @nodoc
@@ -142,27 +134,30 @@ class __$$EquipmentListItemImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? imageUrl = null,
     Object? itemName = null,
+    Object? imageUrl = null,
+    Object? costPerUse = null,
     Object? manufacturer = null,
     Object? rating = null,
     Object? numberOfReviews = null,
-    Object? costPerDay = null,
-    Object? isInCart = null,
   }) {
     return _then(_$EquipmentListItemImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      itemName: null == itemName
+          ? _value.itemName
+          : itemName // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      itemName: null == itemName
-          ? _value.itemName
-          : itemName // ignore: cast_nullable_to_non_nullable
-              as String,
+      costPerUse: null == costPerUse
+          ? _value.costPerUse
+          : costPerUse // ignore: cast_nullable_to_non_nullable
+              as double,
       manufacturer: null == manufacturer
           ? _value.manufacturer
           : manufacturer // ignore: cast_nullable_to_non_nullable
@@ -175,14 +170,6 @@ class __$$EquipmentListItemImplCopyWithImpl<$Res>
           ? _value.numberOfReviews
           : numberOfReviews // ignore: cast_nullable_to_non_nullable
               as int,
-      costPerDay: null == costPerDay
-          ? _value.costPerDay
-          : costPerDay // ignore: cast_nullable_to_non_nullable
-              as String,
-      isInCart: null == isInCart
-          ? _value.isInCart
-          : isInCart // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -191,27 +178,28 @@ class __$$EquipmentListItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$EquipmentListItemImpl implements _EquipmentListItem {
   const _$EquipmentListItemImpl(
-      {this.id = '',
-      this.imageUrl = '',
+      {required this.id,
       this.itemName = '',
+      this.imageUrl = '',
+      this.costPerUse = 0.0,
       this.manufacturer = '',
       this.rating = 0.0,
-      this.numberOfReviews = 0,
-      this.costPerDay = '',
-      this.isInCart = false});
+      this.numberOfReviews = 0});
 
   factory _$EquipmentListItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$EquipmentListItemImplFromJson(json);
 
   @override
+  final int id;
+  @override
   @JsonKey()
-  final String id;
+  final String itemName;
   @override
   @JsonKey()
   final String imageUrl;
   @override
   @JsonKey()
-  final String itemName;
+  final double costPerUse;
   @override
   @JsonKey()
   final String manufacturer;
@@ -221,16 +209,10 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
   @override
   @JsonKey()
   final int numberOfReviews;
-  @override
-  @JsonKey()
-  final String costPerDay;
-  @override
-  @JsonKey()
-  final bool isInCart;
 
   @override
   String toString() {
-    return 'EquipmentListItem(id: $id, imageUrl: $imageUrl, itemName: $itemName, manufacturer: $manufacturer, rating: $rating, numberOfReviews: $numberOfReviews, costPerDay: $costPerDay, isInCart: $isInCart)';
+    return 'EquipmentListItem(id: $id, itemName: $itemName, imageUrl: $imageUrl, costPerUse: $costPerUse, manufacturer: $manufacturer, rating: $rating, numberOfReviews: $numberOfReviews)';
   }
 
   @override
@@ -239,25 +221,23 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
         (other.runtimeType == runtimeType &&
             other is _$EquipmentListItemImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
             (identical(other.itemName, itemName) ||
                 other.itemName == itemName) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.costPerUse, costPerUse) ||
+                other.costPerUse == costPerUse) &&
             (identical(other.manufacturer, manufacturer) ||
                 other.manufacturer == manufacturer) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.numberOfReviews, numberOfReviews) ||
-                other.numberOfReviews == numberOfReviews) &&
-            (identical(other.costPerDay, costPerDay) ||
-                other.costPerDay == costPerDay) &&
-            (identical(other.isInCart, isInCart) ||
-                other.isInCart == isInCart));
+                other.numberOfReviews == numberOfReviews));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, imageUrl, itemName,
-      manufacturer, rating, numberOfReviews, costPerDay, isInCart);
+  int get hashCode => Object.hash(runtimeType, id, itemName, imageUrl,
+      costPerUse, manufacturer, rating, numberOfReviews);
 
   @JsonKey(ignore: true)
   @override
@@ -276,34 +256,31 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
 
 abstract class _EquipmentListItem implements EquipmentListItem {
   const factory _EquipmentListItem(
-      {final String id,
-      final String imageUrl,
+      {required final int id,
       final String itemName,
+      final String imageUrl,
+      final double costPerUse,
       final String manufacturer,
       final double rating,
-      final int numberOfReviews,
-      final String costPerDay,
-      final bool isInCart}) = _$EquipmentListItemImpl;
+      final int numberOfReviews}) = _$EquipmentListItemImpl;
 
   factory _EquipmentListItem.fromJson(Map<String, dynamic> json) =
       _$EquipmentListItemImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
+  @override
+  String get itemName;
   @override
   String get imageUrl;
   @override
-  String get itemName;
+  double get costPerUse;
   @override
   String get manufacturer;
   @override
   double get rating;
   @override
   int get numberOfReviews;
-  @override
-  String get costPerDay;
-  @override
-  bool get isInCart;
   @override
   @JsonKey(ignore: true)
   _$$EquipmentListItemImplCopyWith<_$EquipmentListItemImpl> get copyWith =>

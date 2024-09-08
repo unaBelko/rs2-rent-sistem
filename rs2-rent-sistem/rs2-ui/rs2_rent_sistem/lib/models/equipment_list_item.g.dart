@@ -9,25 +9,23 @@ part of 'equipment_list_item.dart';
 _$EquipmentListItemImpl _$$EquipmentListItemImplFromJson(
         Map<String, dynamic> json) =>
     _$EquipmentListItemImpl(
-      id: json['id'] as String? ?? '',
-      imageUrl: json['imageUrl'] as String? ?? '',
+      id: (json['id'] as num).toInt(),
       itemName: json['itemName'] as String? ?? '',
+      imageUrl: json['imageUrl'] as String? ?? '',
+      costPerUse: (json['costPerUse'] as num?)?.toDouble() ?? 0.0,
       manufacturer: json['manufacturer'] as String? ?? '',
       rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
       numberOfReviews: (json['numberOfReviews'] as num?)?.toInt() ?? 0,
-      costPerDay: json['costPerDay'] as String? ?? '',
-      isInCart: json['isInCart'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$EquipmentListItemImplToJson(
         _$EquipmentListItemImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'imageUrl': instance.imageUrl,
       'itemName': instance.itemName,
+      'imageUrl': instance.imageUrl,
+      'costPerUse': instance.costPerUse,
       'manufacturer': instance.manufacturer,
       'rating': instance.rating,
       'numberOfReviews': instance.numberOfReviews,
-      'costPerDay': instance.costPerDay,
-      'isInCart': instance.isInCart,
     };

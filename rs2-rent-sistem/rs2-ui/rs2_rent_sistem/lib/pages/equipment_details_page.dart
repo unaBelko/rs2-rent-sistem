@@ -17,7 +17,7 @@ class EquipmentDetailsPage extends ConsumerStatefulWidget {
 class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
   TextEditingController quantityTextController = TextEditingController();
   var equipmentDetails = const EquipmentDetails(
-    id: '',
+    id: 0,
     itemName: 'Lopta za odbojku',
     manufacturer: 'Adidas',
     imageUrl: Constants.imageUrl,
