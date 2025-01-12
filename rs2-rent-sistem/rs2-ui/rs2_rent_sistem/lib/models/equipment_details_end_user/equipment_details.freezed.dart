@@ -22,7 +22,8 @@ EquipmentDetails _$EquipmentDetailsFromJson(Map<String, dynamic> json) {
 mixin _$EquipmentDetails {
   int get id => throw _privateConstructorUsedError;
   String get itemName => throw _privateConstructorUsedError;
-  String get manufacturer => throw _privateConstructorUsedError;
+  String get manufacturerID => throw _privateConstructorUsedError;
+  String get equipmentCategoryID => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   int get minQuantity => throw _privateConstructorUsedError;
   int get maxQuantity => throw _privateConstructorUsedError;
@@ -32,8 +33,12 @@ mixin _$EquipmentDetails {
   double get costPerUse => throw _privateConstructorUsedError;
   bool get isInCart => throw _privateConstructorUsedError;
 
+  /// Serializes this EquipmentDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EquipmentDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EquipmentDetailsCopyWith<EquipmentDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,7 +52,8 @@ abstract class $EquipmentDetailsCopyWith<$Res> {
   $Res call(
       {int id,
       String itemName,
-      String manufacturer,
+      String manufacturerID,
+      String equipmentCategoryID,
       String imageUrl,
       int minQuantity,
       int maxQuantity,
@@ -67,12 +73,15 @@ class _$EquipmentDetailsCopyWithImpl<$Res, $Val extends EquipmentDetails>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EquipmentDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
     Object? itemName = null,
-    Object? manufacturer = null,
+    Object? manufacturerID = null,
+    Object? equipmentCategoryID = null,
     Object? imageUrl = null,
     Object? minQuantity = null,
     Object? maxQuantity = null,
@@ -90,9 +99,13 @@ class _$EquipmentDetailsCopyWithImpl<$Res, $Val extends EquipmentDetails>
           ? _value.itemName
           : itemName // ignore: cast_nullable_to_non_nullable
               as String,
-      manufacturer: null == manufacturer
-          ? _value.manufacturer
-          : manufacturer // ignore: cast_nullable_to_non_nullable
+      manufacturerID: null == manufacturerID
+          ? _value.manufacturerID
+          : manufacturerID // ignore: cast_nullable_to_non_nullable
+              as String,
+      equipmentCategoryID: null == equipmentCategoryID
+          ? _value.equipmentCategoryID
+          : equipmentCategoryID // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
@@ -137,7 +150,8 @@ abstract class _$$EquipmentDetailsImplCopyWith<$Res>
   $Res call(
       {int id,
       String itemName,
-      String manufacturer,
+      String manufacturerID,
+      String equipmentCategoryID,
       String imageUrl,
       int minQuantity,
       int maxQuantity,
@@ -155,12 +169,15 @@ class __$$EquipmentDetailsImplCopyWithImpl<$Res>
       $Res Function(_$EquipmentDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EquipmentDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
     Object? itemName = null,
-    Object? manufacturer = null,
+    Object? manufacturerID = null,
+    Object? equipmentCategoryID = null,
     Object? imageUrl = null,
     Object? minQuantity = null,
     Object? maxQuantity = null,
@@ -178,9 +195,13 @@ class __$$EquipmentDetailsImplCopyWithImpl<$Res>
           ? _value.itemName
           : itemName // ignore: cast_nullable_to_non_nullable
               as String,
-      manufacturer: null == manufacturer
-          ? _value.manufacturer
-          : manufacturer // ignore: cast_nullable_to_non_nullable
+      manufacturerID: null == manufacturerID
+          ? _value.manufacturerID
+          : manufacturerID // ignore: cast_nullable_to_non_nullable
+              as String,
+      equipmentCategoryID: null == equipmentCategoryID
+          ? _value.equipmentCategoryID
+          : equipmentCategoryID // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
@@ -220,7 +241,8 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
   const _$EquipmentDetailsImpl(
       {required this.id,
       this.itemName = '',
-      this.manufacturer = '',
+      this.manufacturerID = '',
+      this.equipmentCategoryID = '',
       this.imageUrl = '',
       this.minQuantity = 1,
       this.maxQuantity = 1,
@@ -240,7 +262,10 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
   final String itemName;
   @override
   @JsonKey()
-  final String manufacturer;
+  final String manufacturerID;
+  @override
+  @JsonKey()
+  final String equipmentCategoryID;
   @override
   @JsonKey()
   final String imageUrl;
@@ -272,7 +297,7 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
 
   @override
   String toString() {
-    return 'EquipmentDetails(id: $id, itemName: $itemName, manufacturer: $manufacturer, imageUrl: $imageUrl, minQuantity: $minQuantity, maxQuantity: $maxQuantity, availableDatesForRent: $availableDatesForRent, description: $description, costPerUse: $costPerUse, isInCart: $isInCart)';
+    return 'EquipmentDetails(id: $id, itemName: $itemName, manufacturerID: $manufacturerID, equipmentCategoryID: $equipmentCategoryID, imageUrl: $imageUrl, minQuantity: $minQuantity, maxQuantity: $maxQuantity, availableDatesForRent: $availableDatesForRent, description: $description, costPerUse: $costPerUse, isInCart: $isInCart)';
   }
 
   @override
@@ -283,8 +308,10 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.itemName, itemName) ||
                 other.itemName == itemName) &&
-            (identical(other.manufacturer, manufacturer) ||
-                other.manufacturer == manufacturer) &&
+            (identical(other.manufacturerID, manufacturerID) ||
+                other.manufacturerID == manufacturerID) &&
+            (identical(other.equipmentCategoryID, equipmentCategoryID) ||
+                other.equipmentCategoryID == equipmentCategoryID) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.minQuantity, minQuantity) ||
@@ -301,13 +328,14 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
                 other.isInCart == isInCart));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       id,
       itemName,
-      manufacturer,
+      manufacturerID,
+      equipmentCategoryID,
       imageUrl,
       minQuantity,
       maxQuantity,
@@ -316,7 +344,9 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
       costPerUse,
       isInCart);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EquipmentDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EquipmentDetailsImplCopyWith<_$EquipmentDetailsImpl> get copyWith =>
@@ -335,7 +365,8 @@ abstract class _EquipmentDetails implements EquipmentDetails {
   const factory _EquipmentDetails(
       {required final int id,
       final String itemName,
-      final String manufacturer,
+      final String manufacturerID,
+      final String equipmentCategoryID,
       final String imageUrl,
       final int minQuantity,
       final int maxQuantity,
@@ -352,7 +383,9 @@ abstract class _EquipmentDetails implements EquipmentDetails {
   @override
   String get itemName;
   @override
-  String get manufacturer;
+  String get manufacturerID;
+  @override
+  String get equipmentCategoryID;
   @override
   String get imageUrl;
   @override
@@ -367,8 +400,11 @@ abstract class _EquipmentDetails implements EquipmentDetails {
   double get costPerUse;
   @override
   bool get isInCart;
+
+  /// Create a copy of EquipmentDetails
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EquipmentDetailsImplCopyWith<_$EquipmentDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,42 +1,41 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'equipment_details.dart';
+part of 'equipment_details_admin.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$EquipmentDetailsImpl _$$EquipmentDetailsImplFromJson(
+_$EquipmentDetailsAdminImpl _$$EquipmentDetailsAdminImplFromJson(
         Map<String, dynamic> json) =>
-    _$EquipmentDetailsImpl(
+    _$EquipmentDetailsAdminImpl(
       id: (json['id'] as num).toInt(),
       itemName: json['itemName'] as String? ?? '',
-      manufacturer: json['manufacturer'] as String? ?? '',
+      manufacturerID: json['manufacturerID'] as String? ?? '',
+      equipmentCategoryID: json['equipmentCategoryID'] as String? ?? '',
       imageUrl: json['imageUrl'] as String? ?? '',
       minQuantity: (json['minQuantity'] as num?)?.toInt() ?? 1,
       maxQuantity: (json['maxQuantity'] as num?)?.toInt() ?? 1,
-      availableDatesForRent: (json['availableDatesForRent'] as List<dynamic>?)
-              ?.map((e) => DateTime.parse(e as String))
-              .toList() ??
-          const [],
+      stockQuantity: (json['stockQuantity'] as num?)?.toInt() ?? 1,
       description: json['description'] as String? ?? '',
       costPerUse: (json['costPerUse'] as num?)?.toDouble() ?? 0.0,
-      isInCart: json['isInCart'] as bool? ?? false,
+      dateAdded: DateTime.parse(json['dateAdded'] as String),
+      photoBase64: json['photoBase64'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$EquipmentDetailsImplToJson(
-        _$EquipmentDetailsImpl instance) =>
+Map<String, dynamic> _$$EquipmentDetailsAdminImplToJson(
+        _$EquipmentDetailsAdminImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'itemName': instance.itemName,
-      'manufacturer': instance.manufacturer,
+      'manufacturerID': instance.manufacturerID,
+      'equipmentCategoryID': instance.equipmentCategoryID,
       'imageUrl': instance.imageUrl,
       'minQuantity': instance.minQuantity,
       'maxQuantity': instance.maxQuantity,
-      'availableDatesForRent': instance.availableDatesForRent
-          .map((e) => e.toIso8601String())
-          .toList(),
+      'stockQuantity': instance.stockQuantity,
       'description': instance.description,
       'costPerUse': instance.costPerUse,
-      'isInCart': instance.isInCart,
+      'dateAdded': instance.dateAdded.toIso8601String(),
+      'photoBase64': instance.photoBase64,
     };

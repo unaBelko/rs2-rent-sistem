@@ -1,5 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rs2_rent_sistem/models/equipment_list_item.dart';
+import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart';
 import 'package:rs2_rent_sistem/shared/api_services/equipment_service.dart';
 
 final equipmentListProvider = FutureProvider<List<EquipmentListItem>>((ref) async {

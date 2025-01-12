@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rs2_rent_sistem/models/equipment_list_item.dart';
+import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart';
 
 part 'cart_item.freezed.dart';
 part 'cart_item.g.dart';

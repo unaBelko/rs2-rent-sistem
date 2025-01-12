@@ -22,8 +22,12 @@ UserAuthResponse _$UserAuthResponseFromJson(Map<String, dynamic> json) {
 mixin _$UserAuthResponse {
   String get token => throw _privateConstructorUsedError;
 
+  /// Serializes this UserAuthResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserAuthResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserAuthResponseCopyWith<UserAuthResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$UserAuthResponseCopyWithImpl<$Res, $Val extends UserAuthResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserAuthResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$UserAuthResponseImplCopyWithImpl<$Res>
       $Res Function(_$UserAuthResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserAuthResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -119,11 +127,13 @@ class _$UserAuthResponseImpl implements _UserAuthResponse {
             (identical(other.token, token) || other.token == token));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, token);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserAuthResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserAuthResponseImplCopyWith<_$UserAuthResponseImpl> get copyWith =>
@@ -147,8 +157,11 @@ abstract class _UserAuthResponse implements UserAuthResponse {
 
   @override
   String get token;
+
+  /// Create a copy of UserAuthResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserAuthResponseImplCopyWith<_$UserAuthResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

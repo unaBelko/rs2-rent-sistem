@@ -24,8 +24,12 @@ mixin _$Manufacturer {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
 
+  /// Serializes this Manufacturer to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Manufacturer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ManufacturerCopyWith<Manufacturer> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$ManufacturerCopyWithImpl<$Res, $Val extends Manufacturer>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Manufacturer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$ManufacturerImplCopyWithImpl<$Res>
       _$ManufacturerImpl _value, $Res Function(_$ManufacturerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Manufacturer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -151,11 +159,13 @@ class _$ManufacturerImpl implements _Manufacturer {
                 other.description == description));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, description);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Manufacturer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ManufacturerImplCopyWith<_$ManufacturerImpl> get copyWith =>
@@ -184,8 +194,11 @@ abstract class _Manufacturer implements Manufacturer {
   String get name;
   @override
   String get description;
+
+  /// Create a copy of Manufacturer
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ManufacturerImplCopyWith<_$ManufacturerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

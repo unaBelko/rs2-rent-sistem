@@ -1,4 +1,4 @@
-import 'package:rs2_rent_sistem/models/cart.dart';
+import 'package:rs2_rent_sistem/models/cart/cart.dart';
 import 'package:rs2_rent_sistem/shared/api_services/dio_service.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 

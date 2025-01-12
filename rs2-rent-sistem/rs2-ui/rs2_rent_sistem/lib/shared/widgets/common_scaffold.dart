@@ -4,12 +4,14 @@ class CommonScaffold extends StatelessWidget {
   final String title;
   final Widget child;
   final int numberOfPopsOnBack;
+  final bool showX;
 
   const CommonScaffold({
     super.key,
     required this.title,
     required this.child,
     this.numberOfPopsOnBack = 1,
+    this.showX = false,
   });
 
   @override

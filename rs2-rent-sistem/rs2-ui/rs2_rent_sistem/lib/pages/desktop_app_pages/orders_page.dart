@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rs2_rent_sistem/models/order_for_admin_list_item.dart';
+import 'package:rs2_rent_sistem/models/order_admin/order_for_admin_list_item.dart';
 
 class OrdersPage extends StatelessWidget {
   const OrdersPage({super.key});

@@ -28,8 +28,12 @@ mixin _$EquipmentListItem {
   double get rating => throw _privateConstructorUsedError;
   int get numberOfReviews => throw _privateConstructorUsedError;
 
+  /// Serializes this EquipmentListItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EquipmentListItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EquipmentListItemCopyWith<EquipmentListItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +64,8 @@ class _$EquipmentListItemCopyWithImpl<$Res, $Val extends EquipmentListItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EquipmentListItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,6 +136,8 @@ class __$$EquipmentListItemImplCopyWithImpl<$Res>
       $Res Function(_$EquipmentListItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EquipmentListItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -234,12 +242,14 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
                 other.numberOfReviews == numberOfReviews));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, itemName, imageUrl,
       costPerUse, manufacturer, rating, numberOfReviews);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EquipmentListItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EquipmentListItemImplCopyWith<_$EquipmentListItemImpl> get copyWith =>
@@ -281,8 +291,11 @@ abstract class _EquipmentListItem implements EquipmentListItem {
   double get rating;
   @override
   int get numberOfReviews;
+
+  /// Create a copy of EquipmentListItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EquipmentListItemImplCopyWith<_$EquipmentListItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

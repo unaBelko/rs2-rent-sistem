@@ -8,7 +8,8 @@ class EquipmentDetails with _$EquipmentDetails {
   const factory EquipmentDetails({
     required int id,
     @Default('') String itemName,
-    @Default('') String manufacturer,
+    @Default('') String manufacturerID,
+    @Default('') String equipmentCategoryID,
     @Default('') String imageUrl,
     @Default(1) int minQuantity,
     @Default(1) int maxQuantity,

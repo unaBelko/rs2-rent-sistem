@@ -25,7 +25,7 @@ class ConfirmationModal extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: const Text('Otkazi'),
+          child: const Text('Otkaži'),
         ),
         TextButton(
           onPressed: () {

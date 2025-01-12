@@ -24,8 +24,12 @@ mixin _$OrderDetails {
   DateTime get datePlaced => throw _privateConstructorUsedError;
   double get totalPrice => throw _privateConstructorUsedError;
 
+  /// Serializes this OrderDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OrderDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OrderDetailsCopyWith<OrderDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$OrderDetailsCopyWithImpl<$Res, $Val extends OrderDetails>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OrderDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$OrderDetailsImplCopyWithImpl<$Res>
       _$OrderDetailsImpl _value, $Res Function(_$OrderDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OrderDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -150,11 +158,13 @@ class _$OrderDetailsImpl implements _OrderDetails {
                 other.totalPrice == totalPrice));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, datePlaced, totalPrice);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OrderDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OrderDetailsImplCopyWith<_$OrderDetailsImpl> get copyWith =>
@@ -183,8 +193,11 @@ abstract class _OrderDetails implements OrderDetails {
   DateTime get datePlaced;
   @override
   double get totalPrice;
+
+  /// Create a copy of OrderDetails
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OrderDetailsImplCopyWith<_$OrderDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rs2_rent_sistem/models/equipment_details.dart';
+import 'package:rs2_rent_sistem/models/equipment_details_end_user/equipment_details.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
 
@@ -19,7 +19,7 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
   var equipmentDetails = const EquipmentDetails(
     id: 0,
     itemName: 'Lopta za odbojku',
-    manufacturer: 'Adidas',
+    // manufacturer: 'Adidas',
     imageUrl: Constants.imageUrl,
     minQuantity: 1,
     maxQuantity: 10,
@@ -51,13 +51,13 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
                               fontSize: 18,
                             ),
                       ),
-                      Text(
-                        equipmentDetails.manufacturer,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
+                      // Text(
+                      //   equipmentDetails.manufacturer,
+                      //   style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      //         fontStyle: FontStyle.italic,
+                      //         fontWeight: FontWeight.w500,
+                      //       ),
+                      // ),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: CachedNetworkImage(imageUrl: equipmentDetails.imageUrl),

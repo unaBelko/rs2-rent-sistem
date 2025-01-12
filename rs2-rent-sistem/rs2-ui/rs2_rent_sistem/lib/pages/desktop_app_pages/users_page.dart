@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rs2_rent_sistem/models/user.dart';
+import 'package:rs2_rent_sistem/models/user/user.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/user_details.page.dart';
 import 'package:rs2_rent_sistem/shared/widgets/confirmation_modal.dart';
 

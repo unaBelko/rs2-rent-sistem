@@ -27,8 +27,12 @@ mixin _$OrderItem {
   double get costPerUse => throw _privateConstructorUsedError;
   EquipmentListItem get equipment => throw _privateConstructorUsedError;
 
+  /// Serializes this OrderItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OrderItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OrderItemCopyWith<OrderItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -59,6 +63,8 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OrderItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -97,6 +103,8 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
     ) as $Val);
   }
 
+  /// Create a copy of OrderItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $EquipmentListItemCopyWith<$Res> get equipment {
@@ -134,6 +142,8 @@ class __$$OrderItemImplCopyWithImpl<$Res>
       _$OrderItemImpl _value, $Res Function(_$OrderItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OrderItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -224,12 +234,14 @@ class _$OrderItemImpl implements _OrderItem {
                 other.equipment == equipment));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, startDate, endDate, quantity, costPerUse, equipment);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OrderItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OrderItemImplCopyWith<_$OrderItemImpl> get copyWith =>
@@ -267,8 +279,11 @@ abstract class _OrderItem implements OrderItem {
   double get costPerUse;
   @override
   EquipmentListItem get equipment;
+
+  /// Create a copy of OrderItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OrderItemImplCopyWith<_$OrderItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

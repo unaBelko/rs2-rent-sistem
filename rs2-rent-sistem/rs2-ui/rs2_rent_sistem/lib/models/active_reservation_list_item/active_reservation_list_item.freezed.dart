@@ -30,8 +30,12 @@ mixin _$ActiveReservationListItem {
   String get formattedPrice => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
 
+  /// Serializes this ActiveReservationListItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ActiveReservationListItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ActiveReservationListItemCopyWith<ActiveReservationListItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -64,6 +68,8 @@ class _$ActiveReservationListItemCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ActiveReservationListItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -143,6 +149,8 @@ class __$$ActiveReservationListItemImplCopyWithImpl<$Res>
       $Res Function(_$ActiveReservationListItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ActiveReservationListItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -258,12 +266,14 @@ class _$ActiveReservationListItemImpl implements _ActiveReservationListItem {
                 other.imageUrl == imageUrl));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, size, quantity,
       formattedReservationDate, status, formattedPrice, imageUrl);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ActiveReservationListItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ActiveReservationListItemImplCopyWith<_$ActiveReservationListItemImpl>
@@ -308,8 +318,11 @@ abstract class _ActiveReservationListItem implements ActiveReservationListItem {
   String get formattedPrice;
   @override
   String get imageUrl;
+
+  /// Create a copy of ActiveReservationListItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ActiveReservationListItemImplCopyWith<_$ActiveReservationListItemImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

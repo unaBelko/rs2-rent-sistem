@@ -25,8 +25,12 @@ mixin _$ReviewForAdmin {
   String get content => throw _privateConstructorUsedError;
   DateTime? get dateOfCreation => throw _privateConstructorUsedError;
 
+  /// Serializes this ReviewForAdmin to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ReviewForAdmin
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ReviewForAdminCopyWith<ReviewForAdmin> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$ReviewForAdminCopyWithImpl<$Res, $Val extends ReviewForAdmin>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ReviewForAdmin
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,6 +112,8 @@ class __$$ReviewForAdminImplCopyWithImpl<$Res>
       _$ReviewForAdminImpl _value, $Res Function(_$ReviewForAdminImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ReviewForAdmin
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -176,12 +184,14 @@ class _$ReviewForAdminImpl implements _ReviewForAdmin {
                 other.dateOfCreation == dateOfCreation));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, equipmentName, content, dateOfCreation);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ReviewForAdmin
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReviewForAdminImplCopyWith<_$ReviewForAdminImpl> get copyWith =>
@@ -214,8 +224,11 @@ abstract class _ReviewForAdmin implements ReviewForAdmin {
   String get content;
   @override
   DateTime? get dateOfCreation;
+
+  /// Create a copy of ReviewForAdmin
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReviewForAdminImplCopyWith<_$ReviewForAdminImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

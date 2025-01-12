@@ -28,8 +28,12 @@ mixin _$OrderForAdminListItem {
   double get price => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
 
+  /// Serializes this OrderForAdminListItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OrderForAdminListItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OrderForAdminListItemCopyWith<OrderForAdminListItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +64,8 @@ class _$OrderForAdminListItemCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OrderForAdminListItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -126,6 +132,8 @@ class __$$OrderForAdminListItemImplCopyWithImpl<$Res>
       $Res Function(_$OrderForAdminListItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OrderForAdminListItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -218,12 +226,14 @@ class _$OrderForAdminListItemImpl implements _OrderForAdminListItem {
             (identical(other.status, status) || other.status == status));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, userName, userSurname, dateCreated, price, status);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OrderForAdminListItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OrderForAdminListItemImplCopyWith<_$OrderForAdminListItemImpl>
@@ -262,8 +272,11 @@ abstract class _OrderForAdminListItem implements OrderForAdminListItem {
   double get price;
   @override
   String get status;
+
+  /// Create a copy of OrderForAdminListItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OrderForAdminListItemImplCopyWith<_$OrderForAdminListItemImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

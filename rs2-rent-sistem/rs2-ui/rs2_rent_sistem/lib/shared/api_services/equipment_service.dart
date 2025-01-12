@@ -1,4 +1,4 @@
-import 'package:rs2_rent_sistem/models/equipment_list_item.dart';
+import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart';
 import 'package:rs2_rent_sistem/shared/api_services/dio_service.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 

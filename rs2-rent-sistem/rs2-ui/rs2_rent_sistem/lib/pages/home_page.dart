@@ -22,7 +22,7 @@ class HomePage extends ConsumerWidget {
     } else {
       var token = ref.read(authTokenProvider);
       // Platform is either Android or iOS
-      if (token.hasValue && token.value != '') {
+      // if (token.hasValue && token.value != '') {
         return Scaffold(
           bottomNavigationBar: const BottomNavigationWidget(),
           body: SafeArea(
@@ -33,9 +33,9 @@ class HomePage extends ConsumerWidget {
                     : const SettingsPage(),
           ),
         );
-      } else {
-        return const LoginPage();
-      }
+      // } else {
+      //   return const LoginPage();
+      // }
     }
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:rs2_rent_sistem/models/equipment_list_item.dart';
+import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart';
 import 'package:rs2_rent_sistem/pages/cart_page.dart';
 import 'package:rs2_rent_sistem/pages/equipment_details_page.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
