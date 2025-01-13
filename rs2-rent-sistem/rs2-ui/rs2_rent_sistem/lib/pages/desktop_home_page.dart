@@ -3,11 +3,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/equipment_page.dart';
-import 'package:rs2_rent_sistem/pages/desktop_app_pages/manufacturers_page.dart';
+import 'package:rs2_rent_sistem/pages/desktop_app_pages/simple_list_management_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/orders_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/reports_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/users_page.dart';
 import 'package:rs2_rent_sistem/shared/providers/simple_state_providers.dart';
+import 'package:rs2_rent_sistem/shared/utilities/enumerations.dart';
 
 class DesktopHomePage extends ConsumerWidget {
   const DesktopHomePage({super.key});
@@ -18,7 +19,7 @@ class DesktopHomePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Desktop App'),
+        title: Text(_getTitle(currentIndex)),
         backgroundColor: Colors.blueGrey,
         leading: Builder(
           builder: (BuildContext context) {
@@ -72,7 +73,7 @@ class DesktopHomePage extends ConsumerWidget {
                         }),
                     _buildDrawerItem(
                       icon: Icons.warning,
-                      text: 'Narudzbe',
+                      text: 'Narudžbe',
                       index: 2,
                       currentIndex: currentIndex,
                       onTap: (val) {
@@ -82,7 +83,7 @@ class DesktopHomePage extends ConsumerWidget {
                     ),
                     _buildDrawerItem(
                         icon: Icons.list,
-                        text: 'Izvjestaji',
+                        text: 'Izvještaji',
                         index: 3,
                         currentIndex: currentIndex,
                         onTap: (val) {
@@ -113,7 +114,7 @@ class DesktopHomePage extends ConsumerWidget {
               const Divider(color: Colors.white),
               ListTile(
                 leading: const Icon(Icons.logout, color: Colors.white),
-                title: const Text('Log Out', style: TextStyle(color: Colors.white)),
+                title: const Text('Odjava', style: TextStyle(color: Colors.white)),
                 onTap: () {
                   Navigator.pop(context);
                 },
@@ -137,9 +138,9 @@ class DesktopHomePage extends ConsumerWidget {
                 case 3:
                   return const ReportsPage();
                 case 4:
-                  return const ManufacturersPage();
+                  return const SimpleListManagementPage(SimpleListType.manufacturer);
                 case 5:
-                  return const ManufacturersPage();
+                  return const SimpleListManagementPage(SimpleListType.equipmentCategory);
                 default:
                   return const EquipmentPage(); // Default case for safety
               }
@@ -168,5 +169,24 @@ class DesktopHomePage extends ConsumerWidget {
       selectedTileColor: Colors.white,
       onTap: () => onTap(index),
     );
+  }
+
+  String _getTitle(int currentIndex) {
+    var title = '';
+    switch (currentIndex) {
+      case 0:
+        title = 'Oprema';
+      case 1:
+        title = 'Korisnici';
+      case 2:
+        title = 'Narudžbe';
+      case 3:
+        title = 'Izvještaji';
+      case 4:
+        title = 'Proizvođači';
+      case 5:
+        title = 'Kategorije opreme';
+    }
+    return title;
   }
 }

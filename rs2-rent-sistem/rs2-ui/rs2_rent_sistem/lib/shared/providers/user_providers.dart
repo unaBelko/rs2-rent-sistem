@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:rs2_rent_sistem/models/user/user.dart';
 import 'package:rs2_rent_sistem/shared/utilities/secure_storage_handler.dart';
 import 'package:rs2_rent_sistem/shared/api_services/user_service.dart';
 
@@ -20,5 +21,14 @@ final loginProvider = FutureProvider.family<bool, LoginData>((ref, loginData) as
     return true;
   } else {
     return false;
+  }
+});
+
+final usersListProvider = FutureProvider<List<User>>((ref) async {
+  final response = await UserService().getUsersList();
+  if (response.isSuccess && response.data != null) {
+    return response.data!;
+  } else {
+    throw Exception(response.error);
   }
 });

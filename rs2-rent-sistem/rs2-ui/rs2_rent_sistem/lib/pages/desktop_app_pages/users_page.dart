@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/user/user.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/user_details.page.dart';
+import 'package:rs2_rent_sistem/shared/providers/user_providers.dart';
 import 'package:rs2_rent_sistem/shared/widgets/confirmation_modal.dart';
 
 class UsersPage extends ConsumerStatefulWidget {
   const UsersPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _UsersPageState();
+  ConsumerState<UsersPage> createState() => _UsersPageState();
 }
 
 class _UsersPageState extends ConsumerState<UsersPage> {
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           Padding(
@@ -34,36 +35,15 @@ class _UsersPageState extends ConsumerState<UsersPage> {
               ],
             ),
           ),
-          UserListItem(
-            user: User(
-              id: '1',
-              name: 'Una',
-              surname: 'Belko',
-              email: 'ube@fty.com',
-              numberOfOrders: 12,
-              numberOfReviews: 21,
-            ),
-          ),
-          UserListItem(
-            user: User(
-              id: '1',
-              name: 'Una',
-              surname: 'Belko',
-              email: 'ube@fty.com',
-              numberOfOrders: 12,
-              numberOfReviews: 21,
-            ),
-          ),
-          UserListItem(
-            user: User(
-              id: '1',
-              name: 'Una',
-              surname: 'Belko',
-              email: 'ube@fty.com',
-              numberOfOrders: 12,
-              numberOfReviews: 21,
-            ),
-          )
+          ref.watch(usersListProvider).when(
+                data: (items) => Column(
+                  children: items.map((item) => UserListItem(user: item)).toList(),
+                ),
+                error: (err, st) => Text('Error: $err'),
+                loading: () => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
         ],
       ),
     );
@@ -72,6 +52,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
 
 class UserListItem extends StatelessWidget {
   final User user;
+
   const UserListItem({
     super.key,
     required this.user,

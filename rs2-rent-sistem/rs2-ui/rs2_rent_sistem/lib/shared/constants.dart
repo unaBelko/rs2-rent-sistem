@@ -1,6 +1,6 @@
 class Constants {
   static const String imageUrl = 'https://m.media-amazon.com/images/I/51YUGRwZUCL._AC_SL1500_.jpg';
-  static const String apiUrl = 'http://192.168.1.24:5119/';
+  static const String apiUrl = 'https://73e2-46-36-161-80.ngrok-free.app/';
 }
 
 class Endpoints {

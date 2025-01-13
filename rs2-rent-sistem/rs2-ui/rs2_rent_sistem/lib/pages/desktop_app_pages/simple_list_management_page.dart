@@ -1,19 +1,25 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/simple_dropdown_item/simple_dropdown_item.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/add_edit_manufacturer_page.dart';
+import 'package:rs2_rent_sistem/shared/providers/equipment_categories_providers.dart';
+import 'package:rs2_rent_sistem/shared/providers/manufacturers_providers.dart';
+import 'package:rs2_rent_sistem/shared/utilities/enumerations.dart';
 import 'package:rs2_rent_sistem/shared/widgets/confirmation_modal.dart';
 import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
 
-class ManufacturersPage extends StatefulWidget {
-  const ManufacturersPage({super.key});
+class SimpleListManagementPage extends ConsumerStatefulWidget {
+  final SimpleListType listType;
+
+  const SimpleListManagementPage(this.listType, {super.key});
 
   @override
-  State<ManufacturersPage> createState() => _ManufacturersPageState();
+  ConsumerState<SimpleListManagementPage> createState() => _SimpleListManagementPageState();
 }
 
-class _ManufacturersPageState extends State<ManufacturersPage> {
+class _SimpleListManagementPageState extends ConsumerState<SimpleListManagementPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -69,18 +75,26 @@ class _ManufacturersPageState extends State<ManufacturersPage> {
               ],
             ),
           ),
-          ManufacturerListItem(
-              item: SimpleDropdownItem(
-            id: 1,
-            name: 'test',
-            description: 'testiranjeeee',
-          )),
-          ManufacturerListItem(
-              item: SimpleDropdownItem(
-            id: 2,
-            name: 'nike',
-            description: 'najbolje patike igdje ikad najbolje patike igdje ikad najbolje patike igdje ikad',
-          ))
+          if (widget.listType == SimpleListType.manufacturer)
+            ref.watch(manufacturersListProvider).when(
+                  data: (items) => Column(
+                    children: items.map((item) => ManufacturerListItem(item: item)).toList(),
+                  ),
+                  error: (err, st) => Text('Error: $err'),
+                  loading: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+          if (widget.listType == SimpleListType.equipmentCategory)
+            ref.watch(equipmentCategoryListProvider).when(
+                  data: (items) => Column(
+                    children: items.map((item) => ManufacturerListItem(item: item)).toList(),
+                  ),
+                  error: (err, st) => Text('Error: $err'),
+                  loading: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
         ],
       ),
     );

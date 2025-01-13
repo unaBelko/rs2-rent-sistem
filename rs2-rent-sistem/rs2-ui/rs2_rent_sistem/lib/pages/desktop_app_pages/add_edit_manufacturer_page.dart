@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/simple_dropdown_item/simple_dropdown_item.dart';
+import 'package:rs2_rent_sistem/shared/providers/manufacturers_providers.dart';
 import 'package:rs2_rent_sistem/shared/widgets/common_scaffold.dart';
 import 'package:rs2_rent_sistem/shared/widgets/generic_text_input_field.dart';
 import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
 
-class AddOrEditManufacturerPage extends StatefulWidget {
+class AddOrEditManufacturerPage extends ConsumerStatefulWidget {
   final SimpleDropdownItem? item;
 
   const AddOrEditManufacturerPage({super.key, this.item});
 
   @override
-  State<AddOrEditManufacturerPage> createState() => _AddOrEditManufacturerPageState();
+  ConsumerState<AddOrEditManufacturerPage> createState() => _AddOrEditManufacturerPageState();
 }
 
-class _AddOrEditManufacturerPageState extends State<AddOrEditManufacturerPage> {
+class _AddOrEditManufacturerPageState extends ConsumerState<AddOrEditManufacturerPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
@@ -31,8 +32,36 @@ class _AddOrEditManufacturerPageState extends State<AddOrEditManufacturerPage> {
 
   void _saveForm() {
     if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      Navigator.of(context).pop();
+      final id = widget.item?.id;
+      final name = _nameController.text;
+      final description = _descriptionController.text;
+
+      if (id != null) {
+        ref.read(updateManufacturerProvider({'id': id, 'name': name, 'description': description}).future).then((_) {
+          ref.invalidate(manufacturersListProvider);
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Proizvođač je uspješno ažuriran.')),
+          );
+        }).catchError((error) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Greška: ${error.toString()}')),
+          );
+        });
+      } else {
+        ref.read(addManufacturerProvider({'name': name, 'description': description}).future).then((_) {
+          ref.invalidate(manufacturersListProvider);
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Proizvođač je uspješno dodan.')),
+          );
+        }).catchError((error) {
+          // Show an error message in the Snackbar
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Greška: ${error.toString()}')),
+          );
+        });
+      }
     }
   }
 

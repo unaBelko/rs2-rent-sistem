@@ -1,0 +1,1 @@
+enum SimpleListType { manufacturer, equipmentCategory }
