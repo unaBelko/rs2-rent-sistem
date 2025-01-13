@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/equipment_page.dart';
+import 'package:rs2_rent_sistem/pages/desktop_app_pages/manufacturers_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/orders_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/reports_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/users_page.dart';
@@ -88,6 +89,24 @@ class DesktopHomePage extends ConsumerWidget {
                           ref.read(desktopAppNavigationIndexProvider.notifier).state = val;
                           Navigator.of(context).pop();
                         }),
+                    _buildDrawerItem(
+                        icon: Icons.factory,
+                        text: 'Proizvođači',
+                        index: 4,
+                        currentIndex: currentIndex,
+                        onTap: (val) {
+                          ref.read(desktopAppNavigationIndexProvider.notifier).state = val;
+                          Navigator.of(context).pop();
+                        }),
+                    _buildDrawerItem(
+                        icon: Icons.account_tree,
+                        text: 'Kategorije opreme',
+                        index: 5,
+                        currentIndex: currentIndex,
+                        onTap: (val) {
+                          ref.read(desktopAppNavigationIndexProvider.notifier).state = val;
+                          Navigator.of(context).pop();
+                        }),
                   ],
                 ),
               ),
@@ -106,13 +125,26 @@ class DesktopHomePage extends ConsumerWidget {
       ),
       body: SafeArea(
         child: Scaffold(
-          body: currentIndex == 0
-              ? const EquipmentPage()
-              : currentIndex == 1
-                  ? const UsersPage()
-                  : currentIndex == 2
-                      ? const OrdersPage()
-                      : const ReportsPage(),
+          body: Builder(
+            builder: (context) {
+              switch (currentIndex) {
+                case 0:
+                  return const EquipmentPage();
+                case 1:
+                  return const UsersPage();
+                case 2:
+                  return const OrdersPage();
+                case 3:
+                  return const ReportsPage();
+                case 4:
+                  return const ManufacturersPage();
+                case 5:
+                  return const ManufacturersPage();
+                default:
+                  return const EquipmentPage(); // Default case for safety
+              }
+            },
+          ),
         ),
       ),
     );
