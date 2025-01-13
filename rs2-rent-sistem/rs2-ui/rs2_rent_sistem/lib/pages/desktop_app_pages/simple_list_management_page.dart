@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/simple_dropdown_item/simple_dropdown_item.dart';
-import 'package:rs2_rent_sistem/pages/desktop_app_pages/add_edit_manufacturer_page.dart';
-import 'package:rs2_rent_sistem/shared/providers/equipment_categories_providers.dart';
-import 'package:rs2_rent_sistem/shared/providers/manufacturers_providers.dart';
+import 'package:rs2_rent_sistem/pages/desktop_app_pages/add_edit_simple_list_item_page.dart';
+import 'package:rs2_rent_sistem/shared/providers/simple_list_management_providers.dart';
 import 'package:rs2_rent_sistem/shared/utilities/enumerations.dart';
 import 'package:rs2_rent_sistem/shared/widgets/confirmation_modal.dart';
 import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
@@ -35,7 +32,9 @@ class _SimpleListManagementPageState extends ConsumerState<SimpleListManagementP
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const AddOrEditManufacturerPage(),
+                        builder: (context) => AddOrEditSimpleListItemPage(
+                          type: widget.listType,
+                        ),
                       ),
                     );
                   },
@@ -75,39 +74,34 @@ class _SimpleListManagementPageState extends ConsumerState<SimpleListManagementP
               ],
             ),
           ),
-          if (widget.listType == SimpleListType.manufacturer)
-            ref.watch(manufacturersListProvider).when(
-                  data: (items) => Column(
-                    children: items.map((item) => ManufacturerListItem(item: item)).toList(),
-                  ),
-                  error: (err, st) => Text('Error: $err'),
-                  loading: () => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+          ref.watch(simpleListProvider(widget.listType)).when(
+                data: (items) => Column(
+                  children: items
+                      .map((item) => SimpleListItem(
+                            item: item,
+                            type: widget.listType,
+                          ))
+                      .toList(),
                 ),
-          if (widget.listType == SimpleListType.equipmentCategory)
-            ref.watch(equipmentCategoryListProvider).when(
-                  data: (items) => Column(
-                    children: items.map((item) => ManufacturerListItem(item: item)).toList(),
-                  ),
-                  error: (err, st) => Text('Error: $err'),
-                  loading: () => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                error: (err, st) => Text('Error: $err'),
+                loading: () => const Center(
+                  child: CircularProgressIndicator(),
                 ),
+              ),
         ],
       ),
     );
   }
 }
 
-class ManufacturerListItem extends StatelessWidget {
+class SimpleListItem extends ConsumerWidget {
   final SimpleDropdownItem item;
+  final SimpleListType type;
 
-  const ManufacturerListItem({super.key, required this.item});
+  const SimpleListItem({super.key, required this.item, required this.type});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
@@ -136,12 +130,35 @@ class ManufacturerListItem extends StatelessWidget {
                       showDialog(
                           context: context,
                           builder: (context) => ConfirmationModal(
-                                title: 'Deaktivacija proizvođača',
-                                content:
-                                    "Da li ste sigurni da zelite deaktivirati ovog proizvođača? Brisanjem ćete ukloniti ovog proizvođača kao opciju kod kreiranja novog proizvoda.",
+                                title: type == SimpleListType.manufacturer
+                                    ? 'Deaktivacija proizvođača'
+                                    : 'Deaktivacija kategorije',
+                                content: type == SimpleListType.manufacturer
+                                    ? "Da li ste sigurni da zelite deaktivirati ovog proizvođača? Brisanjem ćete ukloniti ovog proizvođača kao opciju kod kreiranja novog proizvoda."
+                                    : "Da li ste sigurni da zelite deaktivirati ovu kategoriju?",
                                 buttonText: "Deaktiviraj",
                                 onConfirm: () {
-                                  log("izbrisan");
+                                  ref
+                                      .read(deleteSimpleListItemProvider({'type': type, 'id': item.id}).future)
+                                      .then((_) {
+                                    ref.invalidate(simpleListProvider(type));
+                                    Navigator.of(context).pop();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          type == SimpleListType.manufacturer
+                                              ? 'Proizvođač je uspješno deaktiviran.'
+                                              : 'Kategorija je uspješno deaktivirana.',
+                                        ),
+                                      ),
+                                    );
+                                  }).catchError((error) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Greška: ${error.toString()}'),
+                                      ),
+                                    );
+                                  });
                                 },
                                 isDestructiveAction: true,
                               ));
@@ -155,11 +172,11 @@ class ManufacturerListItem extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => AddOrEditManufacturerPage(item: item),
+                          builder: (context) => AddOrEditSimpleListItemPage(item: item, type: type),
                         ),
                       );
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.edit,
                     ),
                   ),
