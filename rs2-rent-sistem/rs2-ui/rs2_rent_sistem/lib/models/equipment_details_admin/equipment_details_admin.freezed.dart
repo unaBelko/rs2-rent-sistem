@@ -23,8 +23,8 @@ EquipmentDetailsAdmin _$EquipmentDetailsAdminFromJson(
 mixin _$EquipmentDetailsAdmin {
   int get id => throw _privateConstructorUsedError;
   String get itemName => throw _privateConstructorUsedError;
-  String get manufacturerID => throw _privateConstructorUsedError;
-  String get equipmentCategoryID => throw _privateConstructorUsedError;
+  int get manufacturerID => throw _privateConstructorUsedError;
+  int get equipmentCategoryID => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   int get minQuantity => throw _privateConstructorUsedError;
   int get maxQuantity => throw _privateConstructorUsedError;
@@ -53,8 +53,8 @@ abstract class $EquipmentDetailsAdminCopyWith<$Res> {
   $Res call(
       {int id,
       String itemName,
-      String manufacturerID,
-      String equipmentCategoryID,
+      int manufacturerID,
+      int equipmentCategoryID,
       String imageUrl,
       int minQuantity,
       int maxQuantity,
@@ -106,11 +106,11 @@ class _$EquipmentDetailsAdminCopyWithImpl<$Res,
       manufacturerID: null == manufacturerID
           ? _value.manufacturerID
           : manufacturerID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       equipmentCategoryID: null == equipmentCategoryID
           ? _value.equipmentCategoryID
           : equipmentCategoryID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -159,8 +159,8 @@ abstract class _$$EquipmentDetailsAdminImplCopyWith<$Res>
   $Res call(
       {int id,
       String itemName,
-      String manufacturerID,
-      String equipmentCategoryID,
+      int manufacturerID,
+      int equipmentCategoryID,
       String imageUrl,
       int minQuantity,
       int maxQuantity,
@@ -210,11 +210,11 @@ class __$$EquipmentDetailsAdminImplCopyWithImpl<$Res>
       manufacturerID: null == manufacturerID
           ? _value.manufacturerID
           : manufacturerID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       equipmentCategoryID: null == equipmentCategoryID
           ? _value.equipmentCategoryID
           : equipmentCategoryID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -257,8 +257,8 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
   const _$EquipmentDetailsAdminImpl(
       {required this.id,
       this.itemName = '',
-      this.manufacturerID = '',
-      this.equipmentCategoryID = '',
+      this.manufacturerID = 0,
+      this.equipmentCategoryID = 0,
       this.imageUrl = '',
       this.minQuantity = 1,
       this.maxQuantity = 1,
@@ -278,10 +278,10 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
   final String itemName;
   @override
   @JsonKey()
-  final String manufacturerID;
+  final int manufacturerID;
   @override
   @JsonKey()
-  final String equipmentCategoryID;
+  final int equipmentCategoryID;
   @override
   @JsonKey()
   final String imageUrl;
@@ -379,8 +379,8 @@ abstract class _EquipmentDetailsAdmin implements EquipmentDetailsAdmin {
   const factory _EquipmentDetailsAdmin(
       {required final int id,
       final String itemName,
-      final String manufacturerID,
-      final String equipmentCategoryID,
+      final int manufacturerID,
+      final int equipmentCategoryID,
       final String imageUrl,
       final int minQuantity,
       final int maxQuantity,
@@ -398,9 +398,9 @@ abstract class _EquipmentDetailsAdmin implements EquipmentDetailsAdmin {
   @override
   String get itemName;
   @override
-  String get manufacturerID;
+  int get manufacturerID;
   @override
-  String get equipmentCategoryID;
+  int get equipmentCategoryID;
   @override
   String get imageUrl;
   @override

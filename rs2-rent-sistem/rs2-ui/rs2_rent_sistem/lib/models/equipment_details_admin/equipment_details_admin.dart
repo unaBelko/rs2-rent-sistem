@@ -9,8 +9,8 @@ class EquipmentDetailsAdmin with _$EquipmentDetailsAdmin {
   const factory EquipmentDetailsAdmin({
     required int id,
     @Default('') String itemName,
-    @Default('') String manufacturerID,
-    @Default('') String equipmentCategoryID,
+    @Default(0) int manufacturerID,
+    @Default(0) int equipmentCategoryID,
     @Default('') String imageUrl,
     @Default(1) int minQuantity,
     @Default(1) int maxQuantity,

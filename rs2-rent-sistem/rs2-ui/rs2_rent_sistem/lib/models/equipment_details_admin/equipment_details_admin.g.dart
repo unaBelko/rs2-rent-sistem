@@ -11,8 +11,8 @@ _$EquipmentDetailsAdminImpl _$$EquipmentDetailsAdminImplFromJson(
     _$EquipmentDetailsAdminImpl(
       id: (json['id'] as num).toInt(),
       itemName: json['itemName'] as String? ?? '',
-      manufacturerID: json['manufacturerID'] as String? ?? '',
-      equipmentCategoryID: json['equipmentCategoryID'] as String? ?? '',
+      manufacturerID: (json['manufacturerID'] as num?)?.toInt() ?? 0,
+      equipmentCategoryID: (json['equipmentCategoryID'] as num?)?.toInt() ?? 0,
       imageUrl: json['imageUrl'] as String? ?? '',
       minQuantity: (json['minQuantity'] as num?)?.toInt() ?? 1,
       maxQuantity: (json['maxQuantity'] as num?)?.toInt() ?? 1,

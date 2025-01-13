@@ -16,6 +16,7 @@ _$EquipmentListItemImpl _$$EquipmentListItemImplFromJson(
       manufacturer: json['manufacturer'] as String? ?? '',
       rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
       numberOfReviews: (json['numberOfReviews'] as num?)?.toInt() ?? 0,
+      stockQuantity: (json['stockQuantity'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$EquipmentListItemImplToJson(
@@ -28,4 +29,5 @@ Map<String, dynamic> _$$EquipmentListItemImplToJson(
       'manufacturer': instance.manufacturer,
       'rating': instance.rating,
       'numberOfReviews': instance.numberOfReviews,
+      'stockQuantity': instance.stockQuantity,
     };

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart' as EquipmentItemModel;
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/add_equipment_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/equipment_details_admin_page.dart';
-import 'package:rs2_rent_sistem/shared/constants.dart';
+import 'package:rs2_rent_sistem/shared/providers/equipment_providers.dart';
 import 'package:rs2_rent_sistem/shared/widgets/delete_equipment_button.dart';
 import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
 
-class EquipmentPage extends StatelessWidget {
+class EquipmentPage extends ConsumerWidget {
   const EquipmentPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -75,28 +76,15 @@ class EquipmentPage extends StatelessWidget {
             const SizedBox(
               height: 12.0,
             ),
-            const EquipmentListItem(
-              item: EquipmentItemModel.EquipmentListItem(
-                id: 1,
-                imageUrl: Constants.imageUrl,
-                itemName: "Loptaa",
-                manufacturer: "Nikee",
-                rating: 3.6,
-                numberOfReviews: 19,
-                costPerUse: 20.00,
-              ),
-            ),
-            const EquipmentListItem(
-              item: EquipmentItemModel.EquipmentListItem(
-                id: 1,
-                imageUrl: Constants.imageUrl,
-                itemName: "Loptaa",
-                manufacturer: "Nikee",
-                rating: 3.6,
-                numberOfReviews: 19,
-                costPerUse: 20.00,
-              ),
-            ),
+            ref.watch(equipmentListProvider).when(
+                  data: (data) => Column(
+                    children: data.map((item) => EquipmentListItem(item: item)).toList(),
+                  ),
+                  error: (err, st) => Text(err.toString()),
+                  loading: () => Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
           ],
         ),
       ),
@@ -125,10 +113,10 @@ class EquipmentListItem extends StatelessWidget {
                 item.itemName,
               ),
             ),
-            const Expanded(
+            Expanded(
               flex: 1,
               child: Text(
-                'temp 20',
+                item.stockQuantity.toString(),
               ),
             ),
             Expanded(
@@ -158,7 +146,7 @@ class EquipmentListItem extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => const EquipmentDetailsAdminPage(),
+                          builder: (context) => EquipmentDetailsAdminPage(item.id),
                         ),
                       );
                     },
