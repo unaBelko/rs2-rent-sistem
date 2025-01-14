@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:rs2_rent_sistem/models/registration_data/registration_data.dart';
 import 'package:rs2_rent_sistem/models/user/user.dart';
 import 'package:rs2_rent_sistem/shared/utilities/secure_storage_handler.dart';
 import 'package:rs2_rent_sistem/shared/api_services/user_service.dart';
@@ -43,5 +44,18 @@ final userDetailsProvider = FutureProvider.family<User, int>((ref, id) async {
     return response.data!;
   } else {
     throw Exception(response.error);
+  }
+});
+
+final registrationProvider = FutureProvider.family<bool, RegistrationData>((ref, registrationData) async {
+  final userService = ref.watch(userServiceProvider);
+
+  final response = await userService.register(registrationData);
+
+  if (response.isSuccess && response.data != null) {
+    // Optionally save token or handle registration success
+    return true;
+  } else {
+    throw Exception(response.error); // Handle registration failure
   }
 });

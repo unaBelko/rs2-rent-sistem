@@ -64,8 +64,7 @@ class _AddOrEditSimpleListItemPageState extends ConsumerState<AddOrEditSimpleLis
         });
       } else {
         // Add Item
-        ref
-            .read(addSimpleListItemProvider({
+        ref.read(addSimpleListItemProvider({
           'type': widget.type,
           'name': name,
           'description': description,

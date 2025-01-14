@@ -1,3 +1,4 @@
+import 'package:rs2_rent_sistem/models/registration_data/registration_data.dart';
 import 'package:rs2_rent_sistem/models/user/user.dart';
 import 'package:rs2_rent_sistem/models/user_auth_response.dart';
 import 'package:rs2_rent_sistem/shared/api_services/dio_service.dart';
@@ -45,9 +46,13 @@ class UserService {
     return response;
   }
 
-// Future<ApiResponse> register() {
-
-// }
+  Future<ApiResponse<User>> register(RegistrationData user) {
+    return dioService.post(
+      Endpoints.user,
+      data: user.toJson(),
+      fromJson: User.fromJson,
+    );
+  }
 }
 
 class LoginData {

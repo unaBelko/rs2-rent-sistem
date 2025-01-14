@@ -17,7 +17,7 @@ class AddOrEditEquipmentPage extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AddOrEditEquipmentPageState();
+  ConsumerState<AddOrEditEquipmentPage> createState() => _AddOrEditEquipmentPageState();
 }
 
 class _AddOrEditEquipmentPageState extends ConsumerState<AddOrEditEquipmentPage> {
