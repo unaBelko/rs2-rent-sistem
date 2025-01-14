@@ -1,9 +1,12 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/pages/home_page.dart';
 import 'package:rs2_rent_sistem/shared/api_services/user_service.dart';
+import 'package:rs2_rent_sistem/shared/providers/user_providers.dart';
 import 'package:rs2_rent_sistem/shared/utilities/secure_storage_handler.dart';
+import 'package:rs2_rent_sistem/shared/widgets/generic_text_input_field.dart';
 import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -14,85 +17,113 @@ class LoginPage extends ConsumerStatefulWidget {
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  void _submitForm(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      var loginRes = await UserService().logIn(
+        LoginData(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        ),
+      );
+
+      if (loginRes.isSuccess && loginRes.data != null) {
+        var token = loginRes.data!.token;
+        log('Token: $token');
+        if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+          ref.read(authTokenProviderDesktop.notifier).state = token;
+        } else {
+          await SecureStorageHandler().saveToken(token);
+        }
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      } else {
+        log('Login failed: ${loginRes.error}');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Prijava nije uspjela: ${loginRes.error}')),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Prijava',
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF84C2E3), // Light greyish blue
+                Color(0xFFB6BABB), // Lighter greyish tone
+              ],
             ),
-            const SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20.0,
-                vertical: 8.0,
-              ),
-              child: TextField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'email',
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20.0,
-                vertical: 8.0,
-              ),
-              child: TextField(
-                obscureText: true,
-                controller: passwordController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'password',
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20.0,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: RentSystemButton(
-                      label: 'Prijava',
-                      onTap: () async {
-                        var loginRes = await UserService().logIn(
-                          LoginData(
-                            password: passwordController.text.trim(),
-                            email: emailController.text.trim(),
+          ),
+          child: Center(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final isDesktop = constraints.maxWidth > 600; // Consider >600px as desktop
+                final formWidth = isDesktop ? constraints.maxWidth / 2 : double.infinity;
+
+                return ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: formWidth),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Prijava',
+                            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                           ),
-                        );
-                        if (loginRes.isSuccess && loginRes.data != null) {
-                          var token = loginRes.data!.token;
-                          log('Token: $token');
-                          await SecureStorageHandler().saveToken(token);
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => HomePage()),
-                          );
-                        } else {
-                          log('Login failed: ${loginRes.error}');
-                        }
-                      },
+                          const SizedBox(height: 30),
+                          GenericTextInputField(
+                            controller: _emailController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Unesite email';
+                              }
+                              final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                              if (!emailRegex.hasMatch(value)) {
+                                return 'Unesite validan email';
+                              }
+                              return null;
+                            },
+                            label: 'Email',
+                          ),
+                          const SizedBox(height: 16),
+                          GenericTextInputField(
+                            controller: _passwordController,
+                            obscureText: true,
+                            label: 'Lozinka',
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Unesite lozinku';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 50),
+                          RentSystemButton(
+                            label: 'Prijava',
+                            onTap: () => _submitForm(context),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ],
-              ),
+                );
+              },
             ),
-          ],
+          ),
         ),
       ),
     );

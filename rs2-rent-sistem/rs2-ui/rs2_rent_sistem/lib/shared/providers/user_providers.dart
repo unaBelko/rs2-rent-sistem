@@ -32,3 +32,7 @@ final usersListProvider = FutureProvider<List<User>>((ref) async {
     throw Exception(response.error);
   }
 });
+
+final authTokenProviderDesktop = StateProvider<String?>((ref) {
+  return null;
+});

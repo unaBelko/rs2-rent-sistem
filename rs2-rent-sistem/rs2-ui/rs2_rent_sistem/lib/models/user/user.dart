@@ -6,9 +6,9 @@ part 'user.g.dart';
 @Freezed()
 class User with _$User {
   const factory User({
-    @Default('') String id,
-    @Default('') String name,
-    @Default('') String surname,
+    required int id,
+    @Default('') String firstName,
+    @Default('') String lastName,
     @Default('') String email,
     @Default(0) int numberOfOrders,
     @Default(0) int numberOfReviews,

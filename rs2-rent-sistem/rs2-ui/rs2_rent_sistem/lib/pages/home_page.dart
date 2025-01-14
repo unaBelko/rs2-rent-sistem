@@ -18,11 +18,15 @@ class HomePage extends ConsumerWidget {
     var currentNavigationIndex = ref.watch(navigationIndexProvider);
     // Check if the platform is desktop
     if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-      return const DesktopHomePage();
+      if (ref.watch(authTokenProviderDesktop) == null) {
+        return LoginPage();
+      } else {
+        return const DesktopHomePage();
+      }
     } else {
       var token = ref.read(authTokenProvider);
       // Platform is either Android or iOS
-      // if (token.hasValue && token.value != '') {
+      if (token.hasValue && token.value != '') {
         return Scaffold(
           bottomNavigationBar: const BottomNavigationWidget(),
           body: SafeArea(
@@ -33,9 +37,9 @@ class HomePage extends ConsumerWidget {
                     : const SettingsPage(),
           ),
         );
-      // } else {
-      //   return const LoginPage();
-      // }
+      } else {
+        return const LoginPage();
+      }
     }
   }
 }

@@ -8,6 +8,7 @@ import 'package:rs2_rent_sistem/pages/desktop_app_pages/orders_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/reports_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/users_page.dart';
 import 'package:rs2_rent_sistem/shared/providers/simple_state_providers.dart';
+import 'package:rs2_rent_sistem/shared/providers/user_providers.dart';
 import 'package:rs2_rent_sistem/shared/utilities/enumerations.dart';
 
 class DesktopHomePage extends ConsumerWidget {
@@ -116,6 +117,7 @@ class DesktopHomePage extends ConsumerWidget {
                 leading: const Icon(Icons.logout, color: Colors.white),
                 title: const Text('Odjava', style: TextStyle(color: Colors.white)),
                 onTap: () {
+                  ref.read(authTokenProviderDesktop.notifier).state = null;
                   Navigator.pop(context);
                 },
               ),

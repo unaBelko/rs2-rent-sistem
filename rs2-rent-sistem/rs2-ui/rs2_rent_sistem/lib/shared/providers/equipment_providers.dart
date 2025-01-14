@@ -7,9 +7,9 @@ final equipmentListProvider = FutureProvider<List<EquipmentListItem>>((ref) asyn
   final response = await EquipmentService().getEquipmentList();
 
   if (response.isSuccess && response.data != null) {
-    return response.data!;
+    return response.data!.result;
   } else {
-    throw Exception(response.error); // Throw an exception if there is an error
+    throw Exception(response.error);
   }
 });
 

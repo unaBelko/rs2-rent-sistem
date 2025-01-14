@@ -27,8 +27,8 @@ class _UsersPageState extends ConsumerState<UsersPage> {
             ),
             child: Row(
               children: [
-                Expanded(flex: 7, child: Text('Ime i prezime')),
-                Expanded(flex: 2, child: Text('Email')),
+                Expanded(flex: 5, child: Text('Ime i prezime')),
+                Expanded(flex: 4, child: Text('Email')),
                 Expanded(flex: 1, child: Text('Narudzbe')),
                 Expanded(flex: 1, child: Text('Reviews')),
                 Expanded(flex: 1, child: Text('Akcije')),
@@ -66,17 +66,17 @@ class UserListItem extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              flex: 7,
+              flex: 5,
               child: Wrap(
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   const Icon(Icons.person),
-                  Text('${user.name} ${user.surname}'),
+                  Text('${user.firstName} ${user.lastName}'),
                 ],
               ),
             ),
             Expanded(
-              flex: 2,
+              flex: 4,
               child: Text(user.email),
             ),
             Expanded(

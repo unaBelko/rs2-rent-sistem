@@ -100,7 +100,7 @@ class DioService {
   }
 
   Future<String> _getToken() async {
-    var token = await SecureStorageHandler().getToken() ?? '';
+    var token = await SecureStorageHandler().getToken() ?? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJlbWFpbCI6InVuYS5iZWxrbytyYWRuaWtAZWR1LmZpdC5iYSIsInJvbGUiOiJlbXBsb3llZSIsIm5iZiI6MTczNjg4ODUyOSwiZXhwIjoxNzM2OTA2NTI5LCJpYXQiOjE3MzY4ODg1MjksImlzcyI6InVuYSIsImF1ZCI6InVuYSJ9.k-__UcluPkp4mK7-CwaOvF-JWrBlmdWEXkYhNxUCh-I';
     return token;
   }
 
