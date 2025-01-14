@@ -40,6 +40,11 @@ class UserService {
     }
   }
 
+  Future<ApiResponse<User>> getUserDetails(int id) async {
+    final response = await dioService.get<User>('${Endpoints.user}/$id', fromJson: User.fromJson);
+    return response;
+  }
+
 // Future<ApiResponse> register() {
 
 // }

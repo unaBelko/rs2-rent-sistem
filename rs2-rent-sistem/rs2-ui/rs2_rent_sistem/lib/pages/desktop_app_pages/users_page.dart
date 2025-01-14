@@ -97,7 +97,7 @@ class UserListItem extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UserDetailsPage()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserDetailsPage(user.id)));
                     },
                     icon: Icon(
                       Icons.info,
