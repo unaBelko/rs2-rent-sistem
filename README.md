@@ -19,5 +19,11 @@ Screenshots:
 ### Prikaz opreme u mobilnoj aplikaciji
 ![Prikaz opreme u mobilnoj aplikaciji](screenshots/equipment_mobile.png)
 
+### Dodavanje opreme u korpu
+![Dodavanje opreme u korpu](screenshots/add_equipment.png)
+
+### Uspjesna rezervacija
+![Uspjesna rezervacija](screenshots/reservation_success.png)
+
 
 
