@@ -5,9 +5,19 @@ Prijava za desktop app: una.belko+radnik@edu.fit.ba test123
 Prijava za mobile app: una.belko+shopping@edu.fit.ba test123  
 Screenshots:
 
-[Desktop i mobile aplikacija](screenshots/desktop_mobile_login.png] )  
-[Desktop meni](screenshots/desktop_menu.png] )  
-! [Registracija - validacija](screenshots/registration_validations.png)   
-! [Prikaz opreme u moblnoj aplikaciji](screenshots/equipment_mobile.png)  
+## Screenshots
+
+### Desktop i mobile aplikacija
+![Desktop i mobile aplikacija](screenshots/desktop_mobile_login.png)
+
+### Desktop meni
+![Desktop meni](screenshots/desktop_menu.png)
+
+### Registracija - validacija
+![Registracija - validacija](screenshots/registration_validations.png)
+
+### Prikaz opreme u mobilnoj aplikaciji
+![Prikaz opreme u mobilnoj aplikaciji](screenshots/equipment_mobile.png)
+
 
 
