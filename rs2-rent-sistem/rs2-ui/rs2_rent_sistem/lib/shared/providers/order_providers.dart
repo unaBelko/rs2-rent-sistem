@@ -5,6 +5,9 @@ import 'package:rs2_rent_sistem/shared/api_services/order_service.dart';
 
 final orderCreationProvider = FutureProvider<ApiResponse>((ref) async {
   final response = await OrderService().createOrder();
+  if (!response.isSuccess) {
+    throw Exception(response.error);
+  }
   return response;
 });
 

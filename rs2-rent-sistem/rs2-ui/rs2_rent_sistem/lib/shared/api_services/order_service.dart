@@ -6,22 +6,7 @@ class OrderService {
   var dioService = DioService();
 
   Future<ApiResponse> createOrder() async {
-    final response = await dioService.get(Endpoints.getCart);
-
-    if (response.isSuccess && response.response?.data != null) {
-      return ApiResponse(
-        response: response.response,
-        httpStatus: response.httpStatus,
-        httpMessage: response.httpMessage,
-      );
-    } else {
-      return ApiResponse(
-        response: response.response,
-        httpStatus: response.httpStatus,
-        httpMessage: response.httpMessage,
-        exception: response.exception,
-      );
-    }
+    return await dioService.post(Endpoints.createOrder, data: {});
   }
 
   Future<ApiResponse<List<OrderListItem>>> getOrdersForUser() async {

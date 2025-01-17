@@ -115,7 +115,8 @@ class EquipmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (ct) => EquipmentDetailsPage(equipmentListItem.id)));
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (ct) => EquipmentDetailsPage(equipmentListItem.id, equipmentListItem.itemName)));
       },
       child: Card(
         margin: const EdgeInsets.all(12),

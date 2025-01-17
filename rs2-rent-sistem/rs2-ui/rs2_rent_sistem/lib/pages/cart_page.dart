@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/pages/available_equipment_page.dart';
 import 'package:rs2_rent_sistem/pages/order_creation_info_page.dart';
 import 'package:rs2_rent_sistem/shared/providers/cart_providers.dart';
+import 'package:rs2_rent_sistem/shared/providers/order_providers.dart';
 import 'package:rs2_rent_sistem/shared/widgets/common_scaffold.dart';
 
 class CartPage extends ConsumerWidget {
@@ -73,9 +74,19 @@ class CartPage extends ConsumerWidget {
                 onPressed: () {
                   ref.watch(cartProvider).whenData((cartData) {
                     if (cartData.cartItems.isNotEmpty) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => OrderCreationInfoPage()),
-                      );
+                      // Trigger order creation
+                      ref.read(orderCreationProvider.future).then((_) {
+                        //todo:change
+                        ref.invalidate(ordersListProvider);
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => const OrderCreationInfoPage()),
+                        );
+                      }).catchError((error) {
+                        // Show error message
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Failed to create order: $error')),
+                        );
+                      });
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(

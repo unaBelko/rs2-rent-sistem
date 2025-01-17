@@ -9,7 +9,7 @@ class OrderCreationInfoPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return CommonScaffold(
-      numberOfPopsOnBack: 2,
+      numberOfPopsOnBack: 1,
       title: 'Order creation',
       child: ref.watch(orderCreationProvider).when(
             data: (_) => Center(
