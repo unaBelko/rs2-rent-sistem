@@ -48,7 +48,7 @@ class UserService {
 
   Future<ApiResponse<User>> register(RegistrationData user) {
     return dioService.post(
-      Endpoints.user,
+      Endpoints.userRegistration,
       data: user.toJson(),
       fromJson: User.fromJson,
     );

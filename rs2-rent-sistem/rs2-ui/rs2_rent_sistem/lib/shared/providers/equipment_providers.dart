@@ -3,8 +3,8 @@ import 'package:rs2_rent_sistem/models/equipment_details_admin/equipment_details
 import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart';
 import 'package:rs2_rent_sistem/shared/api_services/equipment_service.dart';
 
-final equipmentListProvider = FutureProvider<List<EquipmentListItem>>((ref) async {
-  final response = await EquipmentService().getEquipmentList();
+final equipmentListProvider = FutureProvider.family<List<EquipmentListItem>, String?>((ref, name) async {
+  final response = await EquipmentService().getEquipmentList(name: name);
 
   if (response.isSuccess && response.data != null) {
     return response.data!.result;
@@ -19,6 +19,6 @@ final equipmentDetailsProvider = FutureProvider.family<EquipmentDetailsAdmin, in
   if (response.isSuccess && response.data != null) {
     return response.data!;
   } else {
-    throw Exception(response.error); // Throw an exception if there is an error
+    throw Exception(response.error);
   }
 });

@@ -23,7 +23,9 @@ mixin _$EquipmentDetails {
   int get id => throw _privateConstructorUsedError;
   String get itemName => throw _privateConstructorUsedError;
   String get manufacturerID => throw _privateConstructorUsedError;
+  String get manufacturer => throw _privateConstructorUsedError;
   String get equipmentCategoryID => throw _privateConstructorUsedError;
+  String get equipmentCategory => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   int get minQuantity => throw _privateConstructorUsedError;
   int get maxQuantity => throw _privateConstructorUsedError;
@@ -53,7 +55,9 @@ abstract class $EquipmentDetailsCopyWith<$Res> {
       {int id,
       String itemName,
       String manufacturerID,
+      String manufacturer,
       String equipmentCategoryID,
+      String equipmentCategory,
       String imageUrl,
       int minQuantity,
       int maxQuantity,
@@ -81,7 +85,9 @@ class _$EquipmentDetailsCopyWithImpl<$Res, $Val extends EquipmentDetails>
     Object? id = null,
     Object? itemName = null,
     Object? manufacturerID = null,
+    Object? manufacturer = null,
     Object? equipmentCategoryID = null,
+    Object? equipmentCategory = null,
     Object? imageUrl = null,
     Object? minQuantity = null,
     Object? maxQuantity = null,
@@ -103,9 +109,17 @@ class _$EquipmentDetailsCopyWithImpl<$Res, $Val extends EquipmentDetails>
           ? _value.manufacturerID
           : manufacturerID // ignore: cast_nullable_to_non_nullable
               as String,
+      manufacturer: null == manufacturer
+          ? _value.manufacturer
+          : manufacturer // ignore: cast_nullable_to_non_nullable
+              as String,
       equipmentCategoryID: null == equipmentCategoryID
           ? _value.equipmentCategoryID
           : equipmentCategoryID // ignore: cast_nullable_to_non_nullable
+              as String,
+      equipmentCategory: null == equipmentCategory
+          ? _value.equipmentCategory
+          : equipmentCategory // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
@@ -151,7 +165,9 @@ abstract class _$$EquipmentDetailsImplCopyWith<$Res>
       {int id,
       String itemName,
       String manufacturerID,
+      String manufacturer,
       String equipmentCategoryID,
+      String equipmentCategory,
       String imageUrl,
       int minQuantity,
       int maxQuantity,
@@ -177,7 +193,9 @@ class __$$EquipmentDetailsImplCopyWithImpl<$Res>
     Object? id = null,
     Object? itemName = null,
     Object? manufacturerID = null,
+    Object? manufacturer = null,
     Object? equipmentCategoryID = null,
+    Object? equipmentCategory = null,
     Object? imageUrl = null,
     Object? minQuantity = null,
     Object? maxQuantity = null,
@@ -199,9 +217,17 @@ class __$$EquipmentDetailsImplCopyWithImpl<$Res>
           ? _value.manufacturerID
           : manufacturerID // ignore: cast_nullable_to_non_nullable
               as String,
+      manufacturer: null == manufacturer
+          ? _value.manufacturer
+          : manufacturer // ignore: cast_nullable_to_non_nullable
+              as String,
       equipmentCategoryID: null == equipmentCategoryID
           ? _value.equipmentCategoryID
           : equipmentCategoryID // ignore: cast_nullable_to_non_nullable
+              as String,
+      equipmentCategory: null == equipmentCategory
+          ? _value.equipmentCategory
+          : equipmentCategory // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
@@ -242,7 +268,9 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
       {required this.id,
       this.itemName = '',
       this.manufacturerID = '',
+      this.manufacturer = '',
       this.equipmentCategoryID = '',
+      this.equipmentCategory = '',
       this.imageUrl = '',
       this.minQuantity = 1,
       this.maxQuantity = 1,
@@ -265,7 +293,13 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
   final String manufacturerID;
   @override
   @JsonKey()
+  final String manufacturer;
+  @override
+  @JsonKey()
   final String equipmentCategoryID;
+  @override
+  @JsonKey()
+  final String equipmentCategory;
   @override
   @JsonKey()
   final String imageUrl;
@@ -297,7 +331,7 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
 
   @override
   String toString() {
-    return 'EquipmentDetails(id: $id, itemName: $itemName, manufacturerID: $manufacturerID, equipmentCategoryID: $equipmentCategoryID, imageUrl: $imageUrl, minQuantity: $minQuantity, maxQuantity: $maxQuantity, availableDatesForRent: $availableDatesForRent, description: $description, costPerUse: $costPerUse, isInCart: $isInCart)';
+    return 'EquipmentDetails(id: $id, itemName: $itemName, manufacturerID: $manufacturerID, manufacturer: $manufacturer, equipmentCategoryID: $equipmentCategoryID, equipmentCategory: $equipmentCategory, imageUrl: $imageUrl, minQuantity: $minQuantity, maxQuantity: $maxQuantity, availableDatesForRent: $availableDatesForRent, description: $description, costPerUse: $costPerUse, isInCart: $isInCart)';
   }
 
   @override
@@ -310,8 +344,12 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
                 other.itemName == itemName) &&
             (identical(other.manufacturerID, manufacturerID) ||
                 other.manufacturerID == manufacturerID) &&
+            (identical(other.manufacturer, manufacturer) ||
+                other.manufacturer == manufacturer) &&
             (identical(other.equipmentCategoryID, equipmentCategoryID) ||
                 other.equipmentCategoryID == equipmentCategoryID) &&
+            (identical(other.equipmentCategory, equipmentCategory) ||
+                other.equipmentCategory == equipmentCategory) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.minQuantity, minQuantity) ||
@@ -335,7 +373,9 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
       id,
       itemName,
       manufacturerID,
+      manufacturer,
       equipmentCategoryID,
+      equipmentCategory,
       imageUrl,
       minQuantity,
       maxQuantity,
@@ -366,7 +406,9 @@ abstract class _EquipmentDetails implements EquipmentDetails {
       {required final int id,
       final String itemName,
       final String manufacturerID,
+      final String manufacturer,
       final String equipmentCategoryID,
+      final String equipmentCategory,
       final String imageUrl,
       final int minQuantity,
       final int maxQuantity,
@@ -385,7 +427,11 @@ abstract class _EquipmentDetails implements EquipmentDetails {
   @override
   String get manufacturerID;
   @override
+  String get manufacturer;
+  @override
   String get equipmentCategoryID;
+  @override
+  String get equipmentCategory;
   @override
   String get imageUrl;
   @override

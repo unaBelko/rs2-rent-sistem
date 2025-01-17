@@ -24,10 +24,16 @@ class HomePage extends ConsumerWidget {
         return const DesktopHomePage();
       }
     } else {
-      var token = ref.read(authTokenProvider);
+      var token = ref.watch(authTokenProvider);
       // Platform is either Android or iOS
-      if (token.hasValue && token.value != '') {
+      if (token == null) {
+        return const LoginPage();
+      } else {
         return Scaffold(
+          appBar: AppBar(
+            title: Text(_getTitle(currentNavigationIndex)),
+            centerTitle: false,
+          ),
           bottomNavigationBar: const BottomNavigationWidget(),
           body: SafeArea(
             child: currentNavigationIndex == 0
@@ -37,9 +43,19 @@ class HomePage extends ConsumerWidget {
                     : const SettingsPage(),
           ),
         );
-      } else {
-        return const LoginPage();
       }
     }
+  }
+
+  String _getTitle(int currentNavigationIndex) {
+    var title = '';
+    if (currentNavigationIndex == 0) {
+      title = 'RENT APP';
+    } else if (currentNavigationIndex == 1) {
+      title = 'Oprema';
+    } else {
+      title = 'Postavke';
+    }
+    return title;
   }
 }

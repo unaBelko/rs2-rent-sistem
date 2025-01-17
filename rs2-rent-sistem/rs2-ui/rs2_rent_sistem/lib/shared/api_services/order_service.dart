@@ -25,7 +25,7 @@ class OrderService {
   }
 
   Future<ApiResponse<List<OrderListItem>>> getOrdersForUser() async {
-    final response = await dioService.get(Endpoints.equipment);
+    final response = await dioService.get(Endpoints.order);
 
     if (response.isSuccess && response.response?.data != null) {
       final resultData = response.response?.data['result'] as List<dynamic>;

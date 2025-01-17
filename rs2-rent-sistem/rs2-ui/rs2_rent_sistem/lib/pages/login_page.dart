@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rs2_rent_sistem/pages/home_page.dart';
 import 'package:rs2_rent_sistem/pages/registration_page.dart';
 import 'package:rs2_rent_sistem/shared/api_services/user_service.dart';
 import 'package:rs2_rent_sistem/shared/providers/user_providers.dart';
@@ -37,11 +36,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
           ref.read(authTokenProviderDesktop.notifier).state = token;
         } else {
+          log("token prije ${ref.read(authTokenProvider)}");
           await SecureStorageHandler().saveToken(token);
+          ref.read(authTokenProvider.notifier).state = token;
+          log("token poslije ${ref.read(authTokenProvider)}");
+          // await SecureStorageHandler().saveToken(token);
         }
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => HomePage()),
-        );
       } else {
         log('Login failed: ${loginRes.error}');
         ScaffoldMessenger.of(context).showSnackBar(

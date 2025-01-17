@@ -1,16 +1,18 @@
 import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/pages/orders_history_page.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
+import 'package:rs2_rent_sistem/shared/providers/user_providers.dart';
+import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
         child: SingleChildScrollView(
       child: Column(
@@ -92,7 +94,23 @@ class SettingsPage extends StatelessWidget {
             onPressed: () {
               log('pressed');
             },
-            isLastItem: true,
+            isLastItem: false,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20.0,
+              vertical: 30.0,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                    child: RentSystemButton(
+                        label: 'ODJAVA',
+                        onTap: () {
+                          ref.read(authTokenProvider.notifier).state = '';
+                        })),
+              ],
+            ),
           ),
         ],
       ),
@@ -144,7 +162,6 @@ class SettingsMenuItemWidget extends StatelessWidget {
                   title,
                   style: const TextStyle(
                     fontSize: 16,
-                    fontStyle: FontStyle.italic,
                   ),
                 ),
                 Text(

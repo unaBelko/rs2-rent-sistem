@@ -6,10 +6,17 @@ import 'package:rs2_rent_sistem/shared/constants.dart';
 class EquipmentService {
   var dioService = DioService();
 
-  Future<ApiResponse<EquipmentList>> getEquipmentList() async {
+  Future<ApiResponse<EquipmentList>> getEquipmentList({String? name}) async {
+    final queryParameters = <String, dynamic>{};
+
+    if (name != null && name.isNotEmpty) {
+      queryParameters['name'] = name;
+    }
+
     final response = await dioService.get<EquipmentList>(
       Endpoints.equipment,
       fromJson: EquipmentList.fromJson,
+      queryParameters: queryParameters,
     );
     return response;
   }

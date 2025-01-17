@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rs2_rent_sistem/models/equipment_details_end_user/equipment_details.dart';
+import 'package:intl/intl.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
+import 'package:rs2_rent_sistem/shared/providers/equipment_providers.dart';
 import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
 
 class EquipmentDetailsPage extends ConsumerStatefulWidget {
-  final String equipmentId;
+  final int equipmentId;
 
   const EquipmentDetailsPage(this.equipmentId, {super.key});
 
@@ -15,114 +16,170 @@ class EquipmentDetailsPage extends ConsumerStatefulWidget {
 }
 
 class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
-  TextEditingController quantityTextController = TextEditingController();
-  var equipmentDetails = const EquipmentDetails(
-    id: 0,
-    itemName: 'Lopta za odbojku',
-    // manufacturer: 'Adidas',
-    imageUrl: Constants.imageUrl,
-    minQuantity: 1,
-    maxQuantity: 10,
-    availableDatesForRent: [],
-    description: 'A good ball for playing volleybal with the boys. A good ball for playing volleybal with the boys.',
-    costPerUse: 20.0,
-    isInCart: false,
-  );
+  final TextEditingController quantityTextController = TextEditingController(text: '1');
+  DateTime? startDate;
+  DateTime? endDate;
+
+  Future<void> _selectStartDate(BuildContext context) async {
+    final selectedDate = await showDatePicker(
+      context: context,
+      initialDate: startDate ?? DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
+    );
+    if (selectedDate != null) {
+      setState(() {
+        startDate = selectedDate;
+        if (endDate != null && selectedDate.isAfter(endDate!)) {
+          endDate = null; // Reset end date if it's before the new start date
+        }
+      });
+    }
+  }
+
+  Future<void> _selectEndDate(BuildContext context) async {
+    final selectedDate = await showDatePicker(
+      context: context,
+      initialDate: endDate ?? (startDate ?? DateTime.now()),
+      firstDate: startDate ?? DateTime.now(),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
+    );
+    if (selectedDate != null) {
+      setState(() {
+        endDate = selectedDate;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+          child: Column(
+            children: [
+              ref.watch(equipmentDetailsProvider(widget.equipmentId)).when(
+                    data: (data) {
+                      return Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Text(
+                                data.itemName,
+                                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18,
+                                    ),
+                              ),
+                              const SizedBox(height: 20),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: CachedNetworkImage(imageUrl: Constants.imageUrl),
+                              ),
+                              const SizedBox(height: 20),
+                              const Row(
+                                children: [
+                                  Expanded(child: Text('Kolicina')),
+                                  SizedBox(width: 20),
+                                  Expanded(child: Text('Ukupna cijena')),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextField(
+                                      controller: quantityTextController,
+                                      keyboardType: TextInputType.number,
+                                      onChanged: (_) => setState(() {}),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Expanded(
+                                    child: Text(_calculateTotalPrice(
+                                      quantityTextController.text.trim(),
+                                      data.costPerUse,
+                                    )),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              const Text('Datum iznajmljivanja'),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        const Text('Početni datum'),
+                                        SizedBox(
+                                          width: double.infinity,
+                                          child: ElevatedButton(
+                                            onPressed: () => _selectStartDate(context),
+                                            child: Text(
+                                              startDate != null
+                                                  ? DateFormat('dd.MM.yyyy').format(startDate!)
+                                                  : 'Odaberite datum',
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        const Text('Završni datum'),
+                                        SizedBox(
+                                          width: double.infinity,
+                                          child: ElevatedButton(
+                                            onPressed: startDate == null ? null : () => _selectEndDate(context),
+                                            child: Text(
+                                              endDate != null
+                                                  ? DateFormat('dd.MM.yyyy').format(endDate!)
+                                                  : 'Odaberite datum',
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Text(data.description),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    error: (e, st) => const Text('Detalji opreme se nisu mogli ucitati.'),
+                    loading: () => const Center(child: CircularProgressIndicator()),
+                  ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0,
-                    vertical: 12.0,
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        equipmentDetails.itemName,
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 18,
-                            ),
-                      ),
-                      // Text(
-                      //   equipmentDetails.manufacturer,
-                      //   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      //         fontStyle: FontStyle.italic,
-                      //         fontWeight: FontWeight.w500,
-                      //       ),
-                      // ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: CachedNetworkImage(imageUrl: equipmentDetails.imageUrl),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Kolicina',
-                            ),
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                            child: Text(
-                              'Ukupna cijena',
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              controller: quantityTextController,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                            child: Text(_calculateTotalPrice(
-                              quantityTextController.text.trim(),
-                              equipmentDetails.costPerUse,
-                            )),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        'Datum iznajmljivanja',
-                      ),
-                      // TODO: date picker
-                      Text(
-                        equipmentDetails.description,
-                      ),
-                    ],
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+                  child: RentSystemButton(
+                    label: 'Rezervisi',
+                    onTap: () {
+                      if (startDate == null || endDate == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Molimo odaberite period iznajmljivanja.')),
+                        );
+                        return;
+                      }
+
+                      // Perform reservation logic here
+                    },
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-                child: RentSystemButton(
-                  label: 'Rezervisi',
-                  onTap: () {},
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -130,11 +187,10 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
 
   String _calculateTotalPrice(String ctrlText, double costPerUse) {
     var price = 0.0;
-    int? quantity = 0;
-    quantity = int.tryParse(ctrlText);
+    final quantity = int.tryParse(ctrlText);
     if (quantity != null) {
       price = quantity * costPerUse;
     }
-    return price.toString();
+    return price.toStringAsFixed(2);
   }
 }

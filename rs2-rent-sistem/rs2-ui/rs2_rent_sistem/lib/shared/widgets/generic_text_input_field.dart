@@ -24,6 +24,7 @@ class GenericTextInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      textCapitalization: TextCapitalization.none,
       decoration: InputDecoration(
         labelText: label,
         border: OutlineInputBorder(

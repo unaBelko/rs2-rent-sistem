@@ -1,3 +1,4 @@
+import 'package:rs2_rent_sistem/models/add_to_cart_model/add_to_cart_model.dart';
 import 'package:rs2_rent_sistem/models/cart/cart.dart';
 import 'package:rs2_rent_sistem/shared/api_services/dio_service.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
@@ -27,5 +28,13 @@ class CartService {
         exception: response.exception,
       );
     }
+  }
+
+  Future<ApiResponse> addItemToCart(AddToCartModel addObj) {
+    return DioService().post(Endpoints.addItemToCart, data: addObj.toJson());
+  }
+
+  Future<ApiResponse> removeItemFromCart(int id) {
+    return DioService().delete('${Endpoints.removeItemFromCart}?cartItemId=$id');
   }
 }
