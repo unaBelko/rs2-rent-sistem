@@ -37,8 +37,8 @@ namespace rs2_rent_sistem.Services.Services
             CreateMap<Database.Role, Role>();
             CreateMap<Role, Database.Role>();
 
-            CreateMap<Database.User, User>();
-            CreateMap<User, Database.User>();
+            CreateMap<Database.User, User>().ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.UserRoles.Select(ur => ur.Role)));
+            CreateMap<User, Database.User>().ForMember(dest => dest.UserRoles, opt => opt.Ignore());
             CreateMap<UserUpsertObject, Database.User>();
         }
     }

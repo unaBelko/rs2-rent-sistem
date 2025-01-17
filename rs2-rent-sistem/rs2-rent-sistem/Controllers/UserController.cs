@@ -11,7 +11,7 @@ namespace rs2_rent_sistem.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UserController : BaseCRUDController<User, UserSearchObject, UserUpsertObject, UserUpsertObject>
+    public class UserController : BaseController<User, UserSearchObject>
     {
         private readonly IUsersService _userService;
         private readonly IConfiguration _configuration;
@@ -30,14 +30,12 @@ namespace rs2_rent_sistem.Controllers
 
             if (token == null)
             {
-                return Unauthorized("Invalid email or password.");
+                return Unauthorized(new { Message = "Invalid email or password." });
             }
 
             return Ok(new
             {
                 Token = token,
-                //Roles = new List<Role>()
-                ////Roles = user.Roles
             });
         }
 
@@ -48,9 +46,26 @@ namespace rs2_rent_sistem.Controllers
             return await base.Get(search);
         }
 
-        public override Task<User> Insert([FromBody] UserUpsertObject insert)
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register([FromBody] UserUpsertObject insert)
         {
-            return base.Insert(insert);
+            try
+            {
+                // Call the service Insert method
+                var user = await _userService.Insert(insert);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                // Handle email already exists error
+                if (ex.Message.Contains("email address already exists"))
+                {
+                    return BadRequest(new { Message = "A user with this email address already exists." });
+                }
+
+                // Handle unexpected errors
+                return StatusCode(500, new { Message = "An error occurred while processing the request.", Details = ex.Message });
+            }
         }
     }
 }

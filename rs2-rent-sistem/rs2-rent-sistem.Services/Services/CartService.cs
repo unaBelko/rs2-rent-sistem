@@ -36,6 +36,16 @@ namespace rs2_rent_sistem.Services.Services
 
         public async Task<Cart> AddToCart(CartItemUpsertObject cartItem)
         {
+            // Validation to ensure StartDate is not after EndDate
+            if (cartItem.StartDate > cartItem.EndDate)
+            {
+                throw new ArgumentException("StartDate cannot be after EndDate.");
+            }
+
+            if (cartItem.EndDate < cartItem.StartDate)
+            {
+                throw new ArgumentException("EndDate cannot be before StartDate.");
+            }
             var existingCart = await _context.Carts
                 .Include(c => c.CartItems)
                 .FirstOrDefaultAsync(c => c.UserID == cartItem.UserID);
