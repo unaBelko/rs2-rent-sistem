@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.Trainers;
+using rs2_rent_sistem.Model;
 using rs2_rent_sistem.Model.Requests;
 using rs2_rent_sistem.Model.SearchObjects;
 using rs2_rent_sistem.Services.Data;
@@ -64,8 +65,10 @@ namespace rs2_rent_sistem.Services.Services
         public override async Task<Equipment> GetById(int id)
         {
             var equipmentEntity = await _context.Equipment
-                .Include(c => c.OrderItems)
-                .FirstOrDefaultAsync(c => c.ID == id);
+                .Include(e => e.OrderItems)
+                .Include(e => e.EquipmentCategory)
+                .Include(e => e.Manufacturer)
+                .FirstOrDefaultAsync(e => e.ID == id);
 
             if (equipmentEntity == null)
             {
@@ -73,18 +76,22 @@ namespace rs2_rent_sistem.Services.Services
             }
 
             var today = DateTime.Today;
+
             var equipment = _mapper.Map<Equipment>(equipmentEntity);
+
+            equipment.Manufacturer = equipmentEntity.Manufacturer?.Name;
+            equipment.EquipmentCategory = equipmentEntity.EquipmentCategory?.Name;
+
             equipment.AvailableDates = new List<Model.Models.AvailableDate>();
 
-            // Generate the next 14 days including today
             for (int i = 0; i < 28; i++)
             {
                 var currentDate = today.AddDays(i);
-                var curentDateEnd = today.AddDays(i).AddHours(23).AddMinutes(50);
+                var currentDateEnd = currentDate.AddHours(23).AddMinutes(59);
 
                 // Calculate the total quantity used on this day
                 var totalUsedOnDate = equipmentEntity.OrderItems
-                    .Where(orderItem => curentDateEnd >= orderItem.StartDate && currentDate <= orderItem.EndDate)
+                    .Where(orderItem => currentDateEnd >= orderItem.StartDate && currentDate <= orderItem.EndDate)
                     .Sum(orderItem => orderItem.Quantity);
 
                 // Calculate available quantity
@@ -100,6 +107,36 @@ namespace rs2_rent_sistem.Services.Services
 
             return equipment;
         }
+
+        public override async Task<PageResult<Equipment>> Get(EquipmentSearchObject? search = null)
+        {
+            var query = _context.Equipment.AsQueryable();
+
+            // Apply filters
+            if (!string.IsNullOrWhiteSpace(search?.Name))
+            {
+                query = query.Where(e => EF.Functions.Like(e.ItemName.ToLower(), $"%{search.Name.ToLower()}%"));
+
+            }
+
+            // Pagination
+            var result = new PageResult<Equipment>
+            {
+                Count = await query.CountAsync()
+            };
+
+            if (search?.Page.HasValue == true && search.PageSize.HasValue)
+            {
+                query = query.Skip(search.Page.Value * search.PageSize.Value).Take(search.PageSize.Value);
+            }
+
+            // Execute query and map results
+            var list = await query.ToListAsync();
+            result.Result = _mapper.Map<List<Equipment>>(list);
+
+            return result;
+        }
+
 
         public List<Equipment> GetRecommended(int id)
         {

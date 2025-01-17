@@ -8,5 +8,6 @@ public partial class Manufacturer
 
     public string? Description { get; set; }
 
+    public bool IsDeleted { get; set; } = false;
     public virtual ICollection<Equipment> Equipment { get; } = new List<Equipment>();
 }

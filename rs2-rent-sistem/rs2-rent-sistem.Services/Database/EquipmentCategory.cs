@@ -7,6 +7,6 @@ public partial class EquipmentCategory
     public string Name { get; set; } = null!;
 
     public string? Description { get; set; }
-
+    public bool IsDeleted { get; set; } = false;
     public virtual ICollection<Equipment> Equipment { get; } = new List<Equipment>();
 }

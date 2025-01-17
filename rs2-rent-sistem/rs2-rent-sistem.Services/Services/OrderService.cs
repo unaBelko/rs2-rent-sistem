@@ -83,6 +83,11 @@ namespace rs2_rent_sistem.Services.Services
                 throw new Exception("Cart not found.");
             }
 
+            if (cart.CartItems.Count == 0)
+            {
+                throw new Exception("Cart can't be empty");
+            }
+
             var newOrder = new Database.Order
             {
                 UserID = cart.UserID,

@@ -20,9 +20,10 @@
 
         public DateTime? DateAdded { get; set; }
         public int? EquipmentCategoryID { get; set; }
+        public String? EquipmentCategory { get; set; }
 
         public int? ManufacturerID { get; set; }
-
+        public String? Manufacturer { get; set; }
         public string? Photo { get; set; }
 
         public List<AvailableDate>? AvailableDates { get; set; }

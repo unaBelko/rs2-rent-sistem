@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace rs2_rent_sistem_api.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "end-user")]
     [ApiController]
     [Route("api/[controller]")]
     public class CartController : BaseController<rs2_rent_sistem.Model.Models.Cart, CartSearchObject>
@@ -59,8 +59,7 @@ namespace rs2_rent_sistem_api.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error adding item to cart");
-                return StatusCode(500, "An error occurred while adding the item to the cart.");
+                return StatusCode(400, ex.Message);
             }
         }
 

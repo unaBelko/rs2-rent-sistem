@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using rs2_rent_sistem.Model.SearchObjects;
 using rs2_rent_sistem.Services.Data;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace rs2_rent_sistem.Services.Services
 {
@@ -48,33 +46,6 @@ namespace rs2_rent_sistem.Services.Services
 
             await _context.SaveChangesAsync();
             return _mapper.Map<T>(entity);
-        }
-        public static string GenerateSalt()
-        {
-            int saltSize = 16;
-
-            byte[] saltBytes = new byte[saltSize];
-
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                rng.GetBytes(saltBytes);
-            }
-
-            return Convert.ToBase64String(saltBytes);
-        }
-
-        public static string GenerateHash(string salt, string password)
-        {
-            string saltedPassword = salt + password;
-
-            using (var sha256 = SHA256.Create())
-            {
-                byte[] saltedPasswordBytes = Encoding.UTF8.GetBytes(saltedPassword);
-                byte[] hashBytes = sha256.ComputeHash(saltedPasswordBytes);
-
-                // Convert the hash byte array to a base64 string
-                return Convert.ToBase64String(hashBytes);
-            }
         }
     }
 }

@@ -27,8 +27,14 @@ namespace rs2_rent_sistem.Services.Services
             return await base.Insert(insert);
         }
 
-        public override async Task BeforeInsert(Database.User entity, UserUpsertObject request)
+        public override async Task BeforeInsert(User entity, UserUpsertObject request)
         {
+            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            if (existingUser != null)
+            {
+                throw new Exception("A user with this email address already exists.");
+            }
+
             entity.Salt = GenerateSalt();
             entity.PasswordHash = GenerateHash(entity.Salt, request.Password);
 
@@ -58,7 +64,7 @@ namespace rs2_rent_sistem.Services.Services
             return await base.Update(id, update);
         }
 
-        public override IQueryable<Database.User> AddInclude(IQueryable<Database.User> query, UserSearchObject? search = null)
+        public override IQueryable<User> AddInclude(IQueryable<Database.User> query, UserSearchObject? search = null)
         {
             query = query.Include(user => user.UserRoles);
 
@@ -69,6 +75,7 @@ namespace rs2_rent_sistem.Services.Services
         {
             var entity = await _context.Users
                 .Include(u => u.UserRoles)
+                .ThenInclude(ur => ur.Role)
                 .FirstOrDefaultAsync(x => x.Email == email);
 
             if (entity == null)

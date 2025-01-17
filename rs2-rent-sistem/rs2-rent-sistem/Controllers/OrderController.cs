@@ -46,25 +46,33 @@ namespace rs2_rent_sistem.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.Name);
 
-
             if (userId == null)
             {
                 return Unauthorized();
             }
-            else
+
+            try
             {
-                try
-                {
-                    var order = await _orderService.CreateOrder(int.Parse(userId));
-                    return Ok(order);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Error creating order");
-                    return StatusCode(500, "An error occurred while creating the order.");
-                }
+                var order = await _orderService.CreateOrder(int.Parse(userId));
+                return Ok(order);
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning(ex, "Invalid input while creating order");
+                return BadRequest(new { Message = ex.Message });
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.LogWarning(ex, "Invalid operation during order creation");
+                return NotFound(new { Message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating order");
+                return StatusCode(400, ex.Message);
             }
         }
+
 
     }
 }
