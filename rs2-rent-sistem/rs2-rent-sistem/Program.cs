@@ -1,3 +1,5 @@
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -8,7 +10,7 @@ using rs2_rent_sistem.Services.Interfaces;
 using rs2_rent_sistem.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
+QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 // Add AutoMapper configuration
 builder.Services.AddAutoMapper(typeof(Program), typeof(MappingProfile));
 
@@ -19,7 +21,7 @@ builder.Services.AddTransient<IEquipmentService, EquipmentService>();
 builder.Services.AddTransient<ICartService, CartService>();
 builder.Services.AddTransient<IUsersService, UserService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
-
+builder.Services.AddSingleton<IConverter, SynchronizedConverter>(provider => new SynchronizedConverter(new PdfTools()));
 // Add Controllers
 builder.Services.AddControllers();
 

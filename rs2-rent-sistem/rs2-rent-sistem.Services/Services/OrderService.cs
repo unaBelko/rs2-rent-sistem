@@ -27,6 +27,14 @@ namespace rs2_rent_sistem.Services.Services
             _cartService = cartService;
         }
 
+        public async Task<List<Order>> GetAll()
+        {
+            var query = _context.Orders
+                .Include(o => o.OrderItems)
+                .AsNoTracking();
+            var orders = await query.ToListAsync();
+            return _mapper.Map<List<Order>>(orders);
+        }
         public override async Task<PageResult<Order>> Get(OrderSearchObject? search = null)
         {
             var user = await _context.Users
