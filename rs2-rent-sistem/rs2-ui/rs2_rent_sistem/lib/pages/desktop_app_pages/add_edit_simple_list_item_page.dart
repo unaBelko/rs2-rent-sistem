@@ -18,10 +18,12 @@ class AddOrEditSimpleListItemPage extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<AddOrEditSimpleListItemPage> createState() => _AddOrEditSimpleListItemPageState();
+  ConsumerState<AddOrEditSimpleListItemPage> createState() =>
+      _AddOrEditSimpleListItemPageState();
 }
 
-class _AddOrEditSimpleListItemPageState extends ConsumerState<AddOrEditSimpleListItemPage> {
+class _AddOrEditSimpleListItemPageState
+    extends ConsumerState<AddOrEditSimpleListItemPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
@@ -55,7 +57,9 @@ class _AddOrEditSimpleListItemPageState extends ConsumerState<AddOrEditSimpleLis
           ref.invalidate(simpleListProvider(widget.type));
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('${_getTypeLabel(widget.type)} je uspješno ažuriran.')),
+            SnackBar(
+                content: Text(
+                    '${_getTypeLabel(widget.type)} je uspješno ažuriran.')),
           );
         }).catchError((error) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -64,7 +68,8 @@ class _AddOrEditSimpleListItemPageState extends ConsumerState<AddOrEditSimpleLis
         });
       } else {
         // Add Item
-        ref.read(addSimpleListItemProvider({
+        ref
+            .read(addSimpleListItemProvider({
           'type': widget.type,
           'name': name,
           'description': description,
@@ -73,7 +78,9 @@ class _AddOrEditSimpleListItemPageState extends ConsumerState<AddOrEditSimpleLis
           ref.invalidate(simpleListProvider(widget.type));
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('${_getTypeLabel(widget.type)} je uspješno dodan.')),
+            SnackBar(
+                content:
+                    Text('${_getTypeLabel(widget.type)} je uspješno dodan.')),
           );
         }).catchError((error) {
           ScaffoldMessenger.of(context).showSnackBar(
