@@ -11,6 +11,8 @@ _$OrderListItemImpl _$$OrderListItemImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       datePlaced: DateTime.parse(json['datePlaced'] as String),
       totalPrice: (json['totalPrice'] as num?)?.toDouble() ?? 0.0,
+      status: json['status'] as String? ?? '',
+      userNameSurname: json['userNameSurname'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$OrderListItemImplToJson(_$OrderListItemImpl instance) =>
@@ -18,4 +20,6 @@ Map<String, dynamic> _$$OrderListItemImplToJson(_$OrderListItemImpl instance) =>
       'id': instance.id,
       'datePlaced': instance.datePlaced.toIso8601String(),
       'totalPrice': instance.totalPrice,
+      'status': instance.status,
+      'userNameSurname': instance.userNameSurname,
     };

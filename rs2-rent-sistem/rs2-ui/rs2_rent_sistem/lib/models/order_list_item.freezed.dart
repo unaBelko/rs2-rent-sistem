@@ -23,6 +23,8 @@ mixin _$OrderListItem {
   int get id => throw _privateConstructorUsedError;
   DateTime get datePlaced => throw _privateConstructorUsedError;
   double get totalPrice => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  String get userNameSurname => throw _privateConstructorUsedError;
 
   /// Serializes this OrderListItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +42,12 @@ abstract class $OrderListItemCopyWith<$Res> {
           OrderListItem value, $Res Function(OrderListItem) then) =
       _$OrderListItemCopyWithImpl<$Res, OrderListItem>;
   @useResult
-  $Res call({int id, DateTime datePlaced, double totalPrice});
+  $Res call(
+      {int id,
+      DateTime datePlaced,
+      double totalPrice,
+      String status,
+      String userNameSurname});
 }
 
 /// @nodoc
@@ -61,6 +68,8 @@ class _$OrderListItemCopyWithImpl<$Res, $Val extends OrderListItem>
     Object? id = null,
     Object? datePlaced = null,
     Object? totalPrice = null,
+    Object? status = null,
+    Object? userNameSurname = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -75,6 +84,14 @@ class _$OrderListItemCopyWithImpl<$Res, $Val extends OrderListItem>
           ? _value.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
               as double,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      userNameSurname: null == userNameSurname
+          ? _value.userNameSurname
+          : userNameSurname // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -87,7 +104,12 @@ abstract class _$$OrderListItemImplCopyWith<$Res>
       __$$OrderListItemImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, DateTime datePlaced, double totalPrice});
+  $Res call(
+      {int id,
+      DateTime datePlaced,
+      double totalPrice,
+      String status,
+      String userNameSurname});
 }
 
 /// @nodoc
@@ -106,6 +128,8 @@ class __$$OrderListItemImplCopyWithImpl<$Res>
     Object? id = null,
     Object? datePlaced = null,
     Object? totalPrice = null,
+    Object? status = null,
+    Object? userNameSurname = null,
   }) {
     return _then(_$OrderListItemImpl(
       id: null == id
@@ -120,6 +144,14 @@ class __$$OrderListItemImplCopyWithImpl<$Res>
           ? _value.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
               as double,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      userNameSurname: null == userNameSurname
+          ? _value.userNameSurname
+          : userNameSurname // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -128,7 +160,11 @@ class __$$OrderListItemImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OrderListItemImpl implements _OrderListItem {
   const _$OrderListItemImpl(
-      {required this.id, required this.datePlaced, this.totalPrice = 0.0});
+      {required this.id,
+      required this.datePlaced,
+      this.totalPrice = 0.0,
+      this.status = '',
+      this.userNameSurname = ''});
 
   factory _$OrderListItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderListItemImplFromJson(json);
@@ -140,10 +176,16 @@ class _$OrderListItemImpl implements _OrderListItem {
   @override
   @JsonKey()
   final double totalPrice;
+  @override
+  @JsonKey()
+  final String status;
+  @override
+  @JsonKey()
+  final String userNameSurname;
 
   @override
   String toString() {
-    return 'OrderListItem(id: $id, datePlaced: $datePlaced, totalPrice: $totalPrice)';
+    return 'OrderListItem(id: $id, datePlaced: $datePlaced, totalPrice: $totalPrice, status: $status, userNameSurname: $userNameSurname)';
   }
 
   @override
@@ -155,12 +197,16 @@ class _$OrderListItemImpl implements _OrderListItem {
             (identical(other.datePlaced, datePlaced) ||
                 other.datePlaced == datePlaced) &&
             (identical(other.totalPrice, totalPrice) ||
-                other.totalPrice == totalPrice));
+                other.totalPrice == totalPrice) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.userNameSurname, userNameSurname) ||
+                other.userNameSurname == userNameSurname));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, datePlaced, totalPrice);
+  int get hashCode => Object.hash(
+      runtimeType, id, datePlaced, totalPrice, status, userNameSurname);
 
   /// Create a copy of OrderListItem
   /// with the given fields replaced by the non-null parameter values.
@@ -182,7 +228,9 @@ abstract class _OrderListItem implements OrderListItem {
   const factory _OrderListItem(
       {required final int id,
       required final DateTime datePlaced,
-      final double totalPrice}) = _$OrderListItemImpl;
+      final double totalPrice,
+      final String status,
+      final String userNameSurname}) = _$OrderListItemImpl;
 
   factory _OrderListItem.fromJson(Map<String, dynamic> json) =
       _$OrderListItemImpl.fromJson;
@@ -193,6 +241,10 @@ abstract class _OrderListItem implements OrderListItem {
   DateTime get datePlaced;
   @override
   double get totalPrice;
+  @override
+  String get status;
+  @override
+  String get userNameSurname;
 
   /// Create a copy of OrderListItem
   /// with the given fields replaced by the non-null parameter values.

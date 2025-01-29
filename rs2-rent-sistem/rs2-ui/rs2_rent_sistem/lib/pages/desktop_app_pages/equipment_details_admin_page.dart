@@ -24,8 +24,8 @@ class EquipmentDetailsAdminPage extends ConsumerWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    DeleteEquipmentButton(),
+                  children: [
+                    DeleteEquipmentButton(equipmentId),
                   ],
                 ),
                 TextWithLabel(

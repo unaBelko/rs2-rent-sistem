@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart' as EquipmentItemModel;
+import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart'
+    as EquipmentItemModel;
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/add_equipment_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/equipment_details_admin_page.dart';
 import 'package:rs2_rent_sistem/shared/providers/equipment_providers.dart';
@@ -28,8 +29,9 @@ class EquipmentPage extends ConsumerWidget {
                   RentSystemButton(
                     label: 'Dodaj',
                     onTap: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) => const AddOrEditEquipmentPage()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              const AddOrEditEquipmentPage()));
                     },
                     icon: const Icon(
                       Icons.add,
@@ -76,9 +78,11 @@ class EquipmentPage extends ConsumerWidget {
             const SizedBox(
               height: 12.0,
             ),
-            ref.watch(equipmentListProvider('')).when(
+            ref.read(equipmentListProvider('')).when(
                   data: (data) => Column(
-                    children: data.map((item) => EquipmentListItem(item: item)).toList(),
+                    children: data
+                        .map((item) => EquipmentListItem(item: item))
+                        .toList(),
                   ),
                   error: (err, st) => Text(err.toString()),
                   loading: () => Center(
@@ -146,7 +150,8 @@ class EquipmentListItem extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => EquipmentDetailsAdminPage(item.id),
+                          builder: (context) =>
+                              EquipmentDetailsAdminPage(item.id),
                         ),
                       );
                     },
@@ -155,7 +160,7 @@ class EquipmentListItem extends StatelessWidget {
                       color: Colors.lightBlue.withOpacity(0.5),
                     ),
                   ),
-                  const DeleteEquipmentButton(),
+                  DeleteEquipmentButton(item.id),
                 ],
               ),
             ),

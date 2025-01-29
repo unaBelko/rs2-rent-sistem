@@ -9,27 +9,13 @@ class OrderService {
     return await dioService.post(Endpoints.createOrder, data: {});
   }
 
-  Future<ApiResponse<List<OrderListItem>>> getOrdersForUser() async {
-    final response = await dioService.get(Endpoints.order);
-
-    if (response.isSuccess && response.response?.data != null) {
-      final resultData = response.response?.data['result'] as List<dynamic>;
-
-      final ordersList = resultData.map((item) => OrderListItem.fromJson(item)).toList();
-
-      return ApiResponse<List<OrderListItem>>(
-        response: response.response,
-        httpStatus: response.httpStatus,
-        httpMessage: response.httpMessage,
-        data: ordersList,
-      );
-    } else {
-      return ApiResponse<List<OrderListItem>>(
-        response: response.response,
-        httpStatus: response.httpStatus,
-        httpMessage: response.httpMessage,
-        exception: response.exception,
-      );
-    }
+  Future<ApiResponse<List<OrderListItem>>> getOrders() async {
+    final response = await dioService.get(
+      Endpoints.order,
+      fromJson: (data) => (data['result'] as List)
+          .map((item) => OrderListItem.fromJson(item))
+          .toList(),
+    );
+    return response;
   }
 }

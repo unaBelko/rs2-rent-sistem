@@ -74,20 +74,23 @@ class _SimpleListManagementPageState extends ConsumerState<SimpleListManagementP
               ],
             ),
           ),
-          ref.watch(simpleListProvider(widget.listType)).when(
-                data: (items) => Column(
-                  children: items
-                      .map((item) => SimpleListItem(
-                            item: item,
-                            type: widget.listType,
-                          ))
-                      .toList(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 20.0),
+            child: ref.watch(simpleListProvider(widget.listType)).when(
+                  data: (items) => Column(
+                    children: items
+                        .map((item) => SimpleListItem(
+                              item: item,
+                              type: widget.listType,
+                            ))
+                        .toList(),
+                  ),
+                  error: (err, st) => Text('Error: $err'),
+                  loading: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 ),
-                error: (err, st) => Text('Error: $err'),
-                loading: () => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
+          ),
         ],
       ),
     );
@@ -138,11 +141,9 @@ class SimpleListItem extends ConsumerWidget {
                                     : "Da li ste sigurni da zelite deaktivirati ovu kategoriju?",
                                 buttonText: "Deaktiviraj",
                                 onConfirm: () {
-                                  ref
-                                      .read(deleteSimpleListItemProvider({'type': type, 'id': item.id}).future)
+                                  ref.read(deleteSimpleListItemProvider({'type': type, 'id': item.id}).future)
                                       .then((_) {
                                     ref.invalidate(simpleListProvider(type));
-                                    Navigator.of(context).pop();
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(

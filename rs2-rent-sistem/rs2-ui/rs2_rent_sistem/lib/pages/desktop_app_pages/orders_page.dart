@@ -1,92 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:rs2_rent_sistem/models/order_admin/order_for_admin_list_item.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:rs2_rent_sistem/models/order_list_item.dart';
+import 'package:rs2_rent_sistem/shared/providers/order_providers.dart';
 
-class OrdersPage extends StatelessWidget {
+class OrdersPage extends ConsumerWidget {
   const OrdersPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 12.0,
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Text('Id'),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Text('Korisnik'),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text('Datum kreiranja'),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Text('Cijena'),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Text('Status'),
-                ),
-              ],
-            ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 12.0,
           ),
-          AdminOrderItemWidget(
-            item: OrderForAdminListItem(
-              id: '1',
-              dateCreated: DateTime.now().toLocal(),
-              userName: 'Mujo',
-              userSurname: 'Hadzic',
-              price: 123.5,
-              status: 'placeno',
-            ),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Text('Id'),
+              ),
+              Expanded(
+                flex: 1,
+                child: Text('Korisnik'),
+              ),
+              Expanded(
+                flex: 2,
+                child: Text('Datum kreiranja'),
+              ),
+              Expanded(
+                flex: 1,
+                child: Text('Cijena'),
+              ),
+              Expanded(
+                flex: 1,
+                child: Text('Status'),
+              ),
+            ],
           ),
-          AdminOrderItemWidget(
-            item: OrderForAdminListItem(
-              id: '1',
-              dateCreated: DateTime.now().toLocal(),
-              userName: 'Mujo',
-              userSurname: 'Hadzic',
-              price: 123.5,
-              status: 'placeno',
+        ),
+        ref.watch(ordersListProvider).when(
+              data: (data) => SingleChildScrollView(
+                child: Column(
+                  children: data
+                      .map((item) => AdminOrderItemWidget(item: item))
+                      .toList(),
+                ),
+              ),
+              error: (e, st) => Text('Narudzbe se trenutno ne mogu ucitati.'),
+              loading: () => Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
-          ),
-          AdminOrderItemWidget(
-            item: OrderForAdminListItem(
-              id: '1',
-              dateCreated: DateTime.now().toLocal(),
-              userName: 'Mujo',
-              userSurname: 'Hadzic',
-              price: 123.5,
-              status: 'placeno',
-            ),
-          ),
-          AdminOrderItemWidget(
-            item: OrderForAdminListItem(
-              id: '1',
-              dateCreated: DateTime.now().toLocal(),
-              userName: 'Mujo',
-              userSurname: 'Hadzic',
-              price: 123.5,
-              status: 'placeno',
-            ),
-          ),
-        ],
-      ),
+      ],
     );
   }
 }
 
 class AdminOrderItemWidget extends StatelessWidget {
-  final OrderForAdminListItem item;
+  final OrderListItem item;
+
   const AdminOrderItemWidget({
     super.key,
     required this.item,
@@ -104,19 +78,19 @@ class AdminOrderItemWidget extends StatelessWidget {
           children: [
             Expanded(
               flex: 1,
-              child: Text(item.id),
+              child: Text(item.id.toString()),
             ),
             Expanded(
               flex: 1,
-              child: Text('${item.userName} ${item.userSurname}'),
+              child: Text(item.userNameSurname),
             ),
             Expanded(
               flex: 2,
-              child: Text(item.dateCreated.toString()),
+              child: Text(item.datePlaced.toString()),
             ),
             Expanded(
               flex: 1,
-              child: Text(item.price.toString()),
+              child: Text(item.totalPrice.toString()),
             ),
             Expanded(
               flex: 1,

@@ -62,7 +62,7 @@ class SimpleListManagementService {
   }) async {
     final endpoint = _getEndpoint(type);
     return DioService().delete(
-      '$endpoint/$id',
+      '$endpoint/Delete/$id',
     );
   }
 }

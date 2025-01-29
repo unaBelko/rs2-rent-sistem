@@ -33,9 +33,17 @@ final recommendedEquipmentListProvider =
   final response = await EquipmentService().getRecommendedEquipment(id);
 
   log('response data ${response.data}');
-  if (response.isSuccess&& response.data != null) {
+  if (response.isSuccess && response.data != null) {
     return response.data!.result;
   } else {
+    throw Exception(response.error);
+  }
+});
+
+final deleteEquipmentItem = FutureProvider.family<void, int>((ref, id) async {
+  final response = await EquipmentService.deleteItem(id: id);
+
+  if (!response.isSuccess) {
     throw Exception(response.error);
   }
 });

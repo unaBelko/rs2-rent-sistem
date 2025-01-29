@@ -9,6 +9,8 @@ class OrderListItem with _$OrderListItem {
     required int id,
     required DateTime datePlaced,
     @Default(0.0) double totalPrice,
+    @Default('') String status,
+    @Default('') String userNameSurname,
   }) = _OrderListItem;
 
   factory OrderListItem.fromJson(Map<String, dynamic> json) => _$OrderListItemFromJson(json);

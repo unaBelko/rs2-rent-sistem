@@ -12,7 +12,7 @@ final orderCreationProvider = FutureProvider<ApiResponse>((ref) async {
 });
 
 final ordersListProvider = FutureProvider<List<OrderListItem>>((ref) async {
-  final response = await OrderService().getOrdersForUser();
+  final response = await OrderService().getOrders();
 
   if (response.isSuccess && response.data != null) {
     return response.data!;
