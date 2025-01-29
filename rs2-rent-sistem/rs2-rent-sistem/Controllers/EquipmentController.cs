@@ -11,9 +11,10 @@ namespace rs2_rent_sistem_api.Controllers
         public EquipmentController(ILogger<BaseController<Equipment, EquipmentSearchObject>> logger, IEquipmentService service) : base(logger, service) { }
 
         [HttpGet("{id}/recommend")]
-        public virtual List<Equipment> Recommend(int id)
+        public async Task<ActionResult<rs2_rent_sistem.Model.PageResult<Equipment>>> Recommend(int id)
         {
-            return (_service as IEquipmentService).GetRecommended(id);
+            var result = await (_service as IEquipmentService).GetRecommended(id);
+            return Ok(result);
         }
     }
 }

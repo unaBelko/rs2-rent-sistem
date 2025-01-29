@@ -31,10 +31,6 @@ final usersListProvider = FutureProvider<List<User>>((ref) async {
   }
 });
 
-final authTokenProviderDesktop = StateProvider<String?>((ref) {
-  return null;
-});
-
 final userDetailsProvider = FutureProvider.family<User, int>((ref, id) async {
   final response = await UserService().getUserDetails(id);
   if (response.isSuccess && response.data != null) {

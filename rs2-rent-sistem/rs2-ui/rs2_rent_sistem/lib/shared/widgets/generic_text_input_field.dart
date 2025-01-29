@@ -8,6 +8,7 @@ class GenericTextInputField extends StatelessWidget {
   final TextInputType keyboardType;
   final bool obscureText;
   final int? minLength;
+  final bool isMandatory;
 
   const GenericTextInputField({
     super.key,
@@ -18,6 +19,7 @@ class GenericTextInputField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
     this.minLength = 3,
+    this.isMandatory = false,
   });
 
   @override
@@ -26,7 +28,7 @@ class GenericTextInputField extends StatelessWidget {
       controller: controller,
       textCapitalization: TextCapitalization.none,
       decoration: InputDecoration(
-        labelText: label,
+        labelText: isMandatory?'$label*':label,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
           borderSide: const BorderSide(

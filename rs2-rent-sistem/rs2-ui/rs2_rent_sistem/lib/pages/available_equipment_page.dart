@@ -153,27 +153,27 @@ class EquipmentCard extends StatelessWidget {
                   ),
                   if (isCartItem) Text(DateFormat('dd.MM.yyyy').format(startDate!.toLocal())),
                   if (isCartItem) Text(DateFormat('dd.MM.yyyy').format(endDate!.toLocal())),
-                  Row(
-                    children: [
-                      RatingBar(
-                        ignoreGestures: true,
-                        itemSize: 20,
-                        allowHalfRating: true,
-                        initialRating: equipmentListItem.rating,
-                        ratingWidget: RatingWidget(
-                          full: const Icon(Icons.star, color: Colors.grey),
-                          empty: const Icon(Icons.star_border_outlined, color: Colors.grey),
-                          half: const Icon(Icons.star_half, color: Colors.grey),
-                        ),
-                        onRatingUpdate: (_) {},
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '(${equipmentListItem.numberOfReviews})',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     RatingBar(
+                  //       ignoreGestures: true,
+                  //       itemSize: 20,
+                  //       allowHalfRating: true,
+                  //       initialRating: equipmentListItem.rating,
+                  //       ratingWidget: RatingWidget(
+                  //         full: const Icon(Icons.star, color: Colors.grey),
+                  //         empty: const Icon(Icons.star_border_outlined, color: Colors.grey),
+                  //         half: const Icon(Icons.star_half, color: Colors.grey),
+                  //       ),
+                  //       onRatingUpdate: (_) {},
+                  //     ),
+                  //     const SizedBox(width: 4),
+                  //     Text(
+                  //       '(${equipmentListItem.numberOfReviews})',
+                  //       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
+                  //     ),
+                  //   ],
+                  // ),
                   Text(
                     equipmentListItem.costPerUse.toString(),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(

@@ -10,6 +10,17 @@ using rs2_rent_sistem.Services.Interfaces;
 using rs2_rent_sistem.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFlutter", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 // Add AutoMapper configuration
 builder.Services.AddAutoMapper(typeof(Program), typeof(MappingProfile));
@@ -96,6 +107,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowFlutter");
 
 // Use Authentication and Authorization middleware
 app.UseAuthentication();
@@ -106,10 +118,9 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var dataContext = scope.ServiceProvider.GetRequiredService<RentSistemDbContext>();
-    if (dataContext.Database.EnsureCreated())
-    {
-        dataContext.Database.Migrate();
-    }
+
+    dataContext.Database.EnsureCreated();
+
 }
 
 app.Run();

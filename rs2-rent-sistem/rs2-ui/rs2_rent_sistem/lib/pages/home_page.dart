@@ -16,15 +16,16 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var currentNavigationIndex = ref.watch(navigationIndexProvider);
+    var token = ref.watch(authTokenProvider);
+
     // Check if the platform is desktop
     if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-      if (ref.watch(authTokenProviderDesktop) == null) {
+      if (token == null || token == '') {
         return LoginPage();
       } else {
         return const DesktopHomePage();
       }
     } else {
-      var token = ref.watch(authTokenProvider);
       // Platform is either Android or iOS
       if (token == null) {
         return const LoginPage();

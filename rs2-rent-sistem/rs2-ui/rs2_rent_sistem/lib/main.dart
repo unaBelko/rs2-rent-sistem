@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/pages/home_page.dart';
+import 'package:rs2_rent_sistem/shared/utilities/secure_storage_handler.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SecureStorageHandler.init();
   runApp(const ProviderScope(
     child: MyApp(),
   ));
@@ -11,7 +13,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+//todo: load token into provider
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

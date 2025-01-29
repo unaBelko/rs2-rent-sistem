@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:rs2_rent_sistem/models/add_to_cart_model/add_to_cart_model.dart';
+import 'package:rs2_rent_sistem/pages/recommended_equipment_widget.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 import 'package:rs2_rent_sistem/shared/providers/cart_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/equipment_providers.dart';
@@ -155,6 +156,7 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
                             ),
                             const SizedBox(height: 20),
                             Text(data.description),
+                            RecommendedEquipmentWidget(equipmentId: widget.equipmentId),
                           ],
                         ),
                       ),

@@ -138,7 +138,7 @@ namespace rs2_rent_sistem.Services.Services
         }
 
 
-        public List<Equipment> GetRecommended(int id)
+        public Task<PageResult<Equipment>> GetRecommended(int id)
         {
             lock (isLocked)
             {
@@ -215,7 +215,14 @@ namespace rs2_rent_sistem.Services.Services
             //        .ToList();
             //}
 
-            return _mapper.Map<List<Equipment>>(finalResult);
+            var result = new PageResult<Equipment>
+            {
+                Count = 3
+            };
+            
+            result.Result = _mapper.Map<List<Equipment>>(finalResult);
+
+            return Task.FromResult(result);
         }
     }
 

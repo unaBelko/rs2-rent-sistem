@@ -117,7 +117,7 @@ class DesktopHomePage extends ConsumerWidget {
                 leading: const Icon(Icons.logout, color: Colors.white),
                 title: const Text('Odjava', style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  ref.read(authTokenProviderDesktop.notifier).state = null;
+                  ref.read(authTokenProvider.notifier).state = null;
                   Navigator.pop(context);
                 },
               ),

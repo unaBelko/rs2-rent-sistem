@@ -27,7 +27,9 @@ class ApiResponse<T> {
 
   bool get hasNoData => !hasData;
 
-  String get error => exception?.toString() ?? ((httpMessage.isNotEmpty) ? httpMessage : "Unknown error");
+  String get error =>
+      exception?.toString() ??
+      ((httpMessage.isNotEmpty) ? httpMessage : "Unknown error");
 
   StackTrace? get stackTrace {
     try {
@@ -99,12 +101,12 @@ class DioService {
   }
 
   Future<String> _getToken() async {
-    var token = await SecureStorageHandler().getToken() ??
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJlbWFpbCI6InVuYS5iZWxrbytyYWRuaWtAZWR1LmZpdC5iYSIsInJvbGUiOiJlbXBsb3llZSIsIm5iZiI6MTczNjg4ODUyOSwiZXhwIjoxNzM2OTA2NTI5LCJpYXQiOjE3MzY4ODg1MjksImlzcyI6InVuYSIsImF1ZCI6InVuYSJ9.k-__UcluPkp4mK7-CwaOvF-JWrBlmdWEXkYhNxUCh-I';
+    var token = SecureStorageHandler.token;
     return token;
   }
 
-  Future<ApiResponse<T>> _handleRequest<T>(Future<Response<dynamic>> Function() request) async {
+  Future<ApiResponse<T>> _handleRequest<T>(
+      Future<Response<dynamic>> Function() request) async {
     try {
       final response = await request();
       return ApiResponse<T>(
@@ -130,8 +132,10 @@ class DioService {
   }
 
   Future<ApiResponse<T>> get<T>(String path,
-      {Map<String, dynamic>? queryParameters, T Function(Map<String, dynamic>)? fromJson}) async {
-    final response = await _handleRequest<T>(() => _dio.get(path, queryParameters: queryParameters));
+      {Map<String, dynamic>? queryParameters,
+      T Function(Map<String, dynamic>)? fromJson}) async {
+    final response = await _handleRequest<T>(
+        () => _dio.get(path, queryParameters: queryParameters));
     if (fromJson != null && response.isSuccess) {
       return response.fromJson(fromJson);
     }
@@ -139,8 +143,11 @@ class DioService {
   }
 
   Future<ApiResponse<T>> post<T>(String path,
-      {dynamic data, Map<String, dynamic>? queryParameters, T Function(Map<String, dynamic>)? fromJson}) async {
-    final response = await _handleRequest<T>(() => _dio.post(path, data: data, queryParameters: queryParameters));
+      {dynamic data,
+      Map<String, dynamic>? queryParameters,
+      T Function(Map<String, dynamic>)? fromJson}) async {
+    final response = await _handleRequest<T>(
+        () => _dio.post(path, data: data, queryParameters: queryParameters));
     if (fromJson != null && response.isSuccess) {
       return response.fromJson(fromJson);
     }
@@ -148,8 +155,11 @@ class DioService {
   }
 
   Future<ApiResponse<T>> put<T>(String path,
-      {dynamic data, Map<String, dynamic>? queryParameters, T Function(Map<String, dynamic>)? fromJson}) async {
-    final response = await _handleRequest<T>(() => _dio.put(path, data: data, queryParameters: queryParameters));
+      {dynamic data,
+      Map<String, dynamic>? queryParameters,
+      T Function(Map<String, dynamic>)? fromJson}) async {
+    final response = await _handleRequest<T>(
+        () => _dio.put(path, data: data, queryParameters: queryParameters));
     if (fromJson != null && response.isSuccess) {
       return response.fromJson(fromJson);
     }
@@ -157,8 +167,11 @@ class DioService {
   }
 
   Future<ApiResponse<T>> delete<T>(String path,
-      {dynamic data, Map<String, dynamic>? queryParameters, T Function(Map<String, dynamic>)? fromJson}) async {
-    final response = await _handleRequest<T>(() => _dio.delete(path, data: data, queryParameters: queryParameters));
+      {dynamic data,
+      Map<String, dynamic>? queryParameters,
+      T Function(Map<String, dynamic>)? fromJson}) async {
+    final response = await _handleRequest<T>(
+        () => _dio.delete(path, data: data, queryParameters: queryParameters));
     if (fromJson != null && response.isSuccess) {
       return response.fromJson(fromJson);
     }

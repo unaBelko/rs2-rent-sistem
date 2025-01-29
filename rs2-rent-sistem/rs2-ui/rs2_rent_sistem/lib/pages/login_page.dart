@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/pages/registration_page.dart';
@@ -33,15 +34,19 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       if (loginRes.isSuccess && loginRes.data != null) {
         var token = loginRes.data!.token;
         log('Token: $token');
-        if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-          ref.read(authTokenProviderDesktop.notifier).state = token;
-        } else {
-          log("token prije ${ref.read(authTokenProvider)}");
-          await SecureStorageHandler().saveToken(token);
-          ref.read(authTokenProvider.notifier).state = token;
-          log("token poslije ${ref.read(authTokenProvider)}");
-          // await SecureStorageHandler().saveToken(token);
-        }
+        log("token prije ${SecureStorageHandler.token}");
+        SecureStorageHandler.token = token;
+        ref.read(authTokenProvider.notifier).state = token;
+        log("token poslije ${SecureStorageHandler.token}");
+        // if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+        //   ref.read(authTokenProviderDesktop.notifier).state = token;
+        // } else {
+        //   log("token prije ${ref.read(authTokenProvider)}");
+        //   SecureStorageHandler.token = token;
+        //   ref.read(authTokenProvider.notifier).state = token;
+        //   log("token poslije ${ref.read(authTokenProvider)}");
+        //   // await SecureStorageHandler().saveToken(token);
+        // }
       } else {
         log('Login failed: ${loginRes.error}');
         ScaffoldMessenger.of(context).showSnackBar(

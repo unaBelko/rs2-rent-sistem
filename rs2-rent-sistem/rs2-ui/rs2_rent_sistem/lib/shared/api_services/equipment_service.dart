@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:rs2_rent_sistem/models/equipment_details_admin/equipment_details_admin.dart';
 import 'package:rs2_rent_sistem/models/equipment_list.dart';
+import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart';
 import 'package:rs2_rent_sistem/shared/api_services/dio_service.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
+import 'package:rs2_rent_sistem/shared/utilities/extensions/string_extensions.dart';
 
 class EquipmentService {
   var dioService = DioService();
@@ -21,11 +25,22 @@ class EquipmentService {
     return response;
   }
 
+  Future<ApiResponse<EquipmentList>> getRecommendedEquipment(
+      int id) async {
+    final response = await dioService.get<EquipmentList>(
+      Endpoints.getRecommendedEquipment.replaceString('{1}', id.toString()),
+      fromJson:EquipmentList.fromJson,
+    );
+    log('response je $response');
+    return response;
+  }
+
   Future<ApiResponse<EquipmentDetailsAdmin>> getEquipmentDetails(int id) async {
     final response = await dioService.get('${Endpoints.equipment}/$id');
 
     if (response.isSuccess && response.response?.data != null) {
-      final equipmentDetails = EquipmentDetailsAdmin.fromJson(response.response?.data);
+      final equipmentDetails =
+          EquipmentDetailsAdmin.fromJson(response.response?.data);
 
       return ApiResponse<EquipmentDetailsAdmin>(
         response: response.response,
