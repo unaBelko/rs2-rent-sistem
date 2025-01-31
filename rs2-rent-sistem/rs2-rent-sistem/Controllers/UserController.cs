@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using rs2_rent_sistem.Model;
 using rs2_rent_sistem.Model.Models;
@@ -46,24 +47,36 @@ namespace rs2_rent_sistem.Controllers
             return await base.Get(search);
         }
 
+        [Authorize]
+        [HttpGet("GetCurrentUser")]
+        public async Task<User?> GetCurrentUser()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.Name);
+            if (userId != null) {
+                return await _userService.GetById(int.Parse(userId));
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] UserUpsertObject insert)
         {
             try
             {
-                // Call the service Insert method
                 var user = await _userService.Insert(insert);
                 return Ok(user);
             }
             catch (Exception ex)
             {
-                // Handle email already exists error
                 if (ex.Message.Contains("email address already exists"))
                 {
                     return BadRequest(new { Message = "A user with this email address already exists." });
                 }
 
-                // Handle unexpected errors
                 return StatusCode(500, new { Message = "An error occurred while processing the request.", Details = ex.Message });
             }
         }

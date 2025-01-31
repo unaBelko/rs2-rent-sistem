@@ -143,7 +143,7 @@ class SimpleListItem extends ConsumerWidget {
                                 onConfirm: () {
                                   ref.read(deleteSimpleListItemProvider({'type': type, 'id': item.id}).future)
                                       .then((_) {
-                                    ref.invalidate(simpleListProvider(type));
+                                    ref.invalidate(simpleListProvider);
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(

@@ -75,7 +75,7 @@ class _AddOrEditSimpleListItemPageState
           'description': description,
         }).future)
             .then((_) {
-          ref.invalidate(simpleListProvider(widget.type));
+          ref.invalidate(simpleListProvider);
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

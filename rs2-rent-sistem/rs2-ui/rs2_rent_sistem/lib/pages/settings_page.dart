@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/pages/orders_history_page.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
+import 'package:rs2_rent_sistem/shared/providers/cart_providers.dart';
+import 'package:rs2_rent_sistem/shared/providers/order_providers.dart';
+import 'package:rs2_rent_sistem/shared/providers/simple_state_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/user_providers.dart';
+import 'package:rs2_rent_sistem/shared/utilities/secure_storage_handler.dart';
 import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
 
 class SettingsPage extends ConsumerWidget {
@@ -85,7 +89,8 @@ class SettingsPage extends ConsumerWidget {
             title: 'Historija rezervacija',
             description: '3 rezervacije',
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (ct) => OrdersHistoryPage()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (ct) => OrdersHistoryPage()));
             },
           ),
           SettingsMenuItemWidget(
@@ -107,7 +112,11 @@ class SettingsPage extends ConsumerWidget {
                     child: RentSystemButton(
                         label: 'ODJAVA',
                         onTap: () {
-                          ref.read(authTokenProvider.notifier).state = '';
+                          ref.read(navigationIndexProvider.notifier).state = 0;
+                          ref.invalidate(ordersListProvider);
+                          ref.invalidate(cartProvider);
+                          SecureStorageHandler.token = '';
+                          ref.read(authTokenProvider.notifier).state = null;
                         })),
               ],
             ),

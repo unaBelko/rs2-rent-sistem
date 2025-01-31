@@ -31,7 +31,8 @@ final updateSimpleListItemProvider = FutureProvider.family<void, Map<String, dyn
   }
 });
 
-final addSimpleListItemProvider = FutureProvider.family<void, Map<String, dynamic>>((ref, params) async {
+final addSimpleListItemProvider =
+    FutureProvider.family<void, Map<String, dynamic>>((ref, params) async {
   final SimpleListType type = params['type'] as SimpleListType;
   final String name = params['name'] as String;
   final String description = params['description'] as String;
@@ -47,7 +48,8 @@ final addSimpleListItemProvider = FutureProvider.family<void, Map<String, dynami
   }
 });
 
-final deleteSimpleListItemProvider = FutureProvider.family<void, Map<String, dynamic>>((ref, params) async {
+final deleteSimpleListItemProvider =
+    FutureProvider.family<void, Map<String, dynamic>>((ref, params) async {
   final SimpleListType type = params['type'] as SimpleListType;
   final int id = params['id'] as int;
 

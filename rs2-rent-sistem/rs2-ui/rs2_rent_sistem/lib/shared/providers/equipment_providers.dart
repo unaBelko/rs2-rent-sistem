@@ -1,14 +1,14 @@
 import 'dart:developer';
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/equipment_details_admin/equipment_details_admin.dart';
-import 'package:rs2_rent_sistem/models/equipment_list.dart';
 import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart';
+import 'package:rs2_rent_sistem/models/equipment_search_model/equipment_search_model.dart';
 import 'package:rs2_rent_sistem/shared/api_services/equipment_service.dart';
 
 final equipmentListProvider =
-    FutureProvider.family<List<EquipmentListItem>, String?>((ref, name) async {
-  final response = await EquipmentService().getEquipmentList(name: name);
+    FutureProvider<List<EquipmentListItem>>((ref) async {
+  var search = ref.watch(equipmentFilterProvider);
+  final response = await EquipmentService().getEquipmentList(search);
 
   if (response.isSuccess && response.data != null) {
     return response.data!.result;
@@ -47,3 +47,9 @@ final deleteEquipmentItem = FutureProvider.family<void, int>((ref, id) async {
     throw Exception(response.error);
   }
 });
+
+final equipmentFilterProvider =
+    StateProvider<EquipmentSearchModel>((ref) => EquipmentSearchModel(
+          name: '',
+          sortDescending: true,
+        ));

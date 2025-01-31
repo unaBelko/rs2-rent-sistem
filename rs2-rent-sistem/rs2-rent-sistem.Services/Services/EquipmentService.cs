@@ -112,11 +112,33 @@ namespace rs2_rent_sistem.Services.Services
         {
             var query = _context.Equipment.AsQueryable();
 
-            // Apply filters
+            // filter by name
             if (!string.IsNullOrWhiteSpace(search?.Name))
             {
                 query = query.Where(e => EF.Functions.Like(e.ItemName.ToLower(), $"%{search.Name.ToLower()}%"));
 
+            }
+
+            //filter by manufacturer
+            if (search?.manufacturerID.HasValue == true)
+            {
+                query = query.Where(e => e.ManufacturerID == search.manufacturerID.Value);
+            }
+
+            //filter by equipment category
+            if (search?.equipmentCategoryID.HasValue == true)
+            {
+                query = query.Where(e => e.EquipmentCategoryId == search.equipmentCategoryID.Value);
+            }
+
+            // Order by costPerUse
+            if (search?.sortDescending == true)
+            {
+                query = query.OrderByDescending(e => e.CostPerUse);
+            }
+            else
+            {
+                query = query.OrderBy(e => e.CostPerUse); 
             }
 
             // Pagination

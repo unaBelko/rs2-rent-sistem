@@ -1,5 +1,6 @@
 import 'package:rs2_rent_sistem/models/equipment_details_admin/equipment_details_admin.dart';
 import 'package:rs2_rent_sistem/models/equipment_list.dart';
+import 'package:rs2_rent_sistem/models/equipment_search_model/equipment_search_model.dart';
 import 'package:rs2_rent_sistem/shared/api_services/dio_service.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 import 'package:rs2_rent_sistem/shared/utilities/extensions/string_extensions.dart';
@@ -7,17 +8,11 @@ import 'package:rs2_rent_sistem/shared/utilities/extensions/string_extensions.da
 class EquipmentService {
   var dioService = DioService();
 
-  Future<ApiResponse<EquipmentList>> getEquipmentList({String? name}) async {
-    final queryParameters = <String, dynamic>{};
-
-    if (name != null && name.isNotEmpty) {
-      queryParameters['name'] = name;
-    }
-
+  Future<ApiResponse<EquipmentList>> getEquipmentList(EquipmentSearchModel esm) async {
     final response = await dioService.get<EquipmentList>(
       Endpoints.equipment,
       fromJson: EquipmentList.fromJson,
-      queryParameters: queryParameters,
+      queryParameters: esm.toJson(),
     );
     return response;
   }

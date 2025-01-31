@@ -15,7 +15,7 @@ namespace rs2_rent_sistem.Services.Services
 
         public override IQueryable<Database.EquipmentCategory> AddFilter(IQueryable<Database.EquipmentCategory> query, Model.SearchObjects.EquipmentCategorySearchObject? search = null)
         {
-            query = query.Where(ec => !ec.IsDeleted).OrderByDescending((it) =>it.ID);
+            query = query.Where(ec => !ec.IsDeleted).OrderBy(ec => ec.Name);
 
             if (!string.IsNullOrWhiteSpace(search?.CategoryName))
             {
