@@ -13,6 +13,7 @@ _$OrderItemImpl _$$OrderItemImplFromJson(Map<String, dynamic> json) =>
       endDate: DateTime.parse(json['endDate'] as String),
       quantity: (json['quantity'] as num?)?.toInt() ?? 0,
       costPerUse: (json['costPerUse'] as num?)?.toDouble() ?? 0,
+      price: (json['price'] as num?)?.toDouble() ?? 0,
       equipment:
           EquipmentListItem.fromJson(json['equipment'] as Map<String, dynamic>),
     );
@@ -24,5 +25,6 @@ Map<String, dynamic> _$$OrderItemImplToJson(_$OrderItemImpl instance) =>
       'endDate': instance.endDate.toIso8601String(),
       'quantity': instance.quantity,
       'costPerUse': instance.costPerUse,
+      'price': instance.price,
       'equipment': instance.equipment,
     };

@@ -19,110 +19,91 @@ class SettingsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
         child: SingleChildScrollView(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 24.0,
-            ),
-            child: Row(
-              children: [
-                Text(
-                  'Moj profil',
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
-              vertical: 8.0,
-            ),
-            color: Colors.grey.withOpacity(0.1),
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: CircleAvatar(
-                    radius: 50,
-                    child: CachedNetworkImage(
-                      imageUrl: Constants.imageUrl,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Alem B',
-                    ),
-                    Text(
-                      'alem@email.com',
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        decoration: TextDecoration.underline,
+      child: ref.watch(userDetailsProvider(null)).when(
+            data: (data) {
+              return Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                            vertical: 8.0,
+                          ),
+                          color: Colors.grey.withOpacity(0.1),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${data.firstName} ${data.lastName}',
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                data.email,
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  SettingsMenuItemWidget(
+                    title: 'Historija rezervacija',
+                    description: 'Pregled rezervisane opreme',
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ct) => OrdersHistoryPage()));
+                    },
+                  ),
+                  SettingsMenuItemWidget(
+                    title: 'Postavke',
+                    description: 'Lozinka',
+                    onPressed: () {
+                      log('pressed');
+                    },
+                    isLastItem: false,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0,
+                      vertical: 30.0,
                     ),
-                    Text(
-                      'Registrovan 17.10.2022.',
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                      ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: RentSystemButton(
+                                label: 'ODJAVA',
+                                onTap: () {
+                                  ref
+                                      .read(navigationIndexProvider.notifier)
+                                      .state = 0;
+                                  ref.invalidate(ordersListProvider);
+                                  ref.invalidate(cartProvider);
+                                  SecureStorageHandler.token = '';
+                                  ref.read(authTokenProvider.notifier).state =
+                                      null;
+                                })),
+                      ],
                     ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          SettingsMenuItemWidget(
-            title: 'Historija rezervacija',
-            description: '3 rezervacije',
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (ct) => OrdersHistoryPage()));
+                  ),
+                ],
+              );
             },
-          ),
-          SettingsMenuItemWidget(
-            title: 'Postavke',
-            description: 'Lozinka',
-            onPressed: () {
-              log('pressed');
-            },
-            isLastItem: false,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 30.0,
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                    child: RentSystemButton(
-                        label: 'ODJAVA',
-                        onTap: () {
-                          ref.read(navigationIndexProvider.notifier).state = 0;
-                          ref.invalidate(ordersListProvider);
-                          ref.invalidate(cartProvider);
-                          SecureStorageHandler.token = '';
-                          ref.read(authTokenProvider.notifier).state = null;
-                        })),
-              ],
+            error: (e, st) => Text('Korisnik nije ucitan.'),
+            loading: () => Center(
+              child: CircularProgressIndicator(),
             ),
           ),
-        ],
-      ),
     ));
   }
 }

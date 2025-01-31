@@ -25,6 +25,7 @@ mixin _$OrderItem {
   DateTime get endDate => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   double get costPerUse => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
   EquipmentListItem get equipment => throw _privateConstructorUsedError;
 
   /// Serializes this OrderItem to a JSON map.
@@ -48,6 +49,7 @@ abstract class $OrderItemCopyWith<$Res> {
       DateTime endDate,
       int quantity,
       double costPerUse,
+      double price,
       EquipmentListItem equipment});
 
   $EquipmentListItemCopyWith<$Res> get equipment;
@@ -73,6 +75,7 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
     Object? endDate = null,
     Object? quantity = null,
     Object? costPerUse = null,
+    Object? price = null,
     Object? equipment = null,
   }) {
     return _then(_value.copyWith(
@@ -95,6 +98,10 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
       costPerUse: null == costPerUse
           ? _value.costPerUse
           : costPerUse // ignore: cast_nullable_to_non_nullable
+              as double,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
               as double,
       equipment: null == equipment
           ? _value.equipment
@@ -128,6 +135,7 @@ abstract class _$$OrderItemImplCopyWith<$Res>
       DateTime endDate,
       int quantity,
       double costPerUse,
+      double price,
       EquipmentListItem equipment});
 
   @override
@@ -152,6 +160,7 @@ class __$$OrderItemImplCopyWithImpl<$Res>
     Object? endDate = null,
     Object? quantity = null,
     Object? costPerUse = null,
+    Object? price = null,
     Object? equipment = null,
   }) {
     return _then(_$OrderItemImpl(
@@ -175,6 +184,10 @@ class __$$OrderItemImplCopyWithImpl<$Res>
           ? _value.costPerUse
           : costPerUse // ignore: cast_nullable_to_non_nullable
               as double,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
       equipment: null == equipment
           ? _value.equipment
           : equipment // ignore: cast_nullable_to_non_nullable
@@ -192,6 +205,7 @@ class _$OrderItemImpl implements _OrderItem {
       required this.endDate,
       this.quantity = 0,
       this.costPerUse = 0,
+      this.price = 0,
       required this.equipment});
 
   factory _$OrderItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -210,11 +224,14 @@ class _$OrderItemImpl implements _OrderItem {
   @JsonKey()
   final double costPerUse;
   @override
+  @JsonKey()
+  final double price;
+  @override
   final EquipmentListItem equipment;
 
   @override
   String toString() {
-    return 'OrderItem(id: $id, startDate: $startDate, endDate: $endDate, quantity: $quantity, costPerUse: $costPerUse, equipment: $equipment)';
+    return 'OrderItem(id: $id, startDate: $startDate, endDate: $endDate, quantity: $quantity, costPerUse: $costPerUse, price: $price, equipment: $equipment)';
   }
 
   @override
@@ -230,14 +247,15 @@ class _$OrderItemImpl implements _OrderItem {
                 other.quantity == quantity) &&
             (identical(other.costPerUse, costPerUse) ||
                 other.costPerUse == costPerUse) &&
+            (identical(other.price, price) || other.price == price) &&
             (identical(other.equipment, equipment) ||
                 other.equipment == equipment));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, startDate, endDate, quantity, costPerUse, equipment);
+  int get hashCode => Object.hash(runtimeType, id, startDate, endDate, quantity,
+      costPerUse, price, equipment);
 
   /// Create a copy of OrderItem
   /// with the given fields replaced by the non-null parameter values.
@@ -262,6 +280,7 @@ abstract class _OrderItem implements OrderItem {
       required final DateTime endDate,
       final int quantity,
       final double costPerUse,
+      final double price,
       required final EquipmentListItem equipment}) = _$OrderItemImpl;
 
   factory _OrderItem.fromJson(Map<String, dynamic> json) =
@@ -277,6 +296,8 @@ abstract class _OrderItem implements OrderItem {
   int get quantity;
   @override
   double get costPerUse;
+  @override
+  double get price;
   @override
   EquipmentListItem get equipment;
 

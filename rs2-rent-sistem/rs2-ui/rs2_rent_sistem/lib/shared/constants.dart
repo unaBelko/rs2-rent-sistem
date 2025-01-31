@@ -35,4 +35,7 @@ class Endpoints {
   static const String createOrder = 'api/Order/CreateOrder';
   static const String order = 'api/Order';
   static const String orderWithParams = 'Order/{1}';
+
+  //order items
+  static const String orderItems = 'api/OrderItems';
 }

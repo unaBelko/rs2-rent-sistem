@@ -12,6 +12,7 @@ class OrderItem with _$OrderItem {
     required DateTime endDate,
     @Default(0) int quantity,
     @Default(0) double costPerUse,
+    @Default(0) double price,
     required EquipmentListItem equipment,
   }) = _OrderItem;
 

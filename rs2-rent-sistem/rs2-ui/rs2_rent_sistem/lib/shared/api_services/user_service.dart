@@ -41,8 +41,15 @@ class UserService {
     }
   }
 
-  Future<ApiResponse<User>> getUserDetails(int id) async {
-    final response = await dioService.get<User>('${Endpoints.user}/$id', fromJson: User.fromJson);
+  Future<ApiResponse<User>> getUserDetails(int? id) async {
+    var request = Endpoints.user;
+    if (id != null) {
+      request += '/$id';
+    } else {
+      request += '/GetCurrentUser';
+    }
+    final response = await dioService.get<User>(request,
+        fromJson: User.fromJson);
     return response;
   }
 

@@ -9,7 +9,8 @@ final userServiceProvider = Provider<UserService>((ref) {
   return UserService();
 });
 
-final loginProvider = FutureProvider.family<bool, LoginData>((ref, loginData) async {
+final loginProvider =
+    FutureProvider.family<bool, LoginData>((ref, loginData) async {
   final userService = ref.watch(userServiceProvider);
 
   final response = await userService.logIn(loginData);
@@ -31,7 +32,7 @@ final usersListProvider = FutureProvider<List<User>>((ref) async {
   }
 });
 
-final userDetailsProvider = FutureProvider.family<User, int>((ref, id) async {
+final userDetailsProvider = FutureProvider.family<User, int?>((ref, id) async {
   final response = await UserService().getUserDetails(id);
   if (response.isSuccess && response.data != null) {
     return response.data!;
@@ -40,7 +41,8 @@ final userDetailsProvider = FutureProvider.family<User, int>((ref, id) async {
   }
 });
 
-final registrationProvider = FutureProvider.family<bool, RegistrationData>((ref, registrationData) async {
+final registrationProvider = FutureProvider.family<bool, RegistrationData>(
+    (ref, registrationData) async {
   final userService = ref.watch(userServiceProvider);
 
   final response = await userService.register(registrationData);
