@@ -35,6 +35,19 @@ namespace rs2_rent_sistem.Services.Services
             var orders = await query.ToListAsync();
             return _mapper.Map<List<Order>>(orders);
         }
+
+        public override async Task<Order> GetById(int id)
+        {
+            var query = _context.Orders
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Equipment) 
+                .AsQueryable();
+
+            var order = await query.FirstOrDefaultAsync(o => o.ID == id);
+
+            return _mapper.Map<Order>(order);
+        }
+
         public override async Task<PageResult<Order>> Get(OrderSearchObject? search = null)
         {
             var user = await _context.Users

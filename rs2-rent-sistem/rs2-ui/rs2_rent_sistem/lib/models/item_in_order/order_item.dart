@@ -5,8 +5,8 @@ part 'order_item.freezed.dart';
 part 'order_item.g.dart';
 
 @Freezed()
-class OrderItem with _$OrderItem {
-  const factory OrderItem({
+class ItemInOrder with _$ItemInOrder {
+  const factory ItemInOrder({
     required int id,
     required DateTime startDate,
     required DateTime endDate,
@@ -16,5 +16,5 @@ class OrderItem with _$OrderItem {
     required EquipmentListItem equipment,
   }) = _OrderItem;
 
-  factory OrderItem.fromJson(Map<String, dynamic> json) => _$OrderItemFromJson(json);
+  factory ItemInOrder.fromJson(Map<String, dynamic> json) => _$ItemInOrderFromJson(json);
 }

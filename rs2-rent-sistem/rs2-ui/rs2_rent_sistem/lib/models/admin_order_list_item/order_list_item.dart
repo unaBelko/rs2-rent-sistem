@@ -4,8 +4,8 @@ part 'order_list_item.freezed.dart';
 part 'order_list_item.g.dart';
 
 @Freezed()
-class OrderListItem with _$OrderListItem {
-  const factory OrderListItem({
+class AdminOrderListItemModel with _$AdminOrderListItemModel {
+  const factory AdminOrderListItemModel({
     required int id,
     required DateTime datePlaced,
     @Default(0.0) double totalPrice,
@@ -13,5 +13,5 @@ class OrderListItem with _$OrderListItem {
     @Default('') String userNameSurname,
   }) = _OrderListItem;
 
-  factory OrderListItem.fromJson(Map<String, dynamic> json) => _$OrderListItemFromJson(json);
+  factory AdminOrderListItemModel.fromJson(Map<String, dynamic> json) => _$AdminOrderListItemModelFromJson(json);
 }

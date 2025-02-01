@@ -65,14 +65,14 @@ class SettingsPage extends ConsumerWidget {
                           builder: (ct) => OrdersHistoryPage()));
                     },
                   ),
-                  SettingsMenuItemWidget(
-                    title: 'Postavke',
-                    description: 'Lozinka',
-                    onPressed: () {
-                      log('pressed');
-                    },
-                    isLastItem: false,
-                  ),
+                  // SettingsMenuItemWidget(
+                  //   title: 'Postavke',
+                  //   description: 'Lozinka',
+                  //   onPressed: () {
+                  //     log('pressed');
+                  //   },
+                  //   isLastItem: false,
+                  // ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 20.0,

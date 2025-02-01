@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using rs2_rent_sistem.Model;
 using rs2_rent_sistem.Model.Models;
 using rs2_rent_sistem.Model.SearchObjects;
 using rs2_rent_sistem.Services.Data;
@@ -21,6 +20,8 @@ namespace rs2_rent_sistem.Services.Services
 
             query = query.Include(oi => oi.Order)
                 .Include(oi => oi.Equipment);
+
+            //todo: return only not completed reservations
 
             if (search?.UserId != null)
             {

@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/review_for_admin.dart';
-import 'package:rs2_rent_sistem/models/user_order_list_item.dart';
+import 'package:rs2_rent_sistem/models/user_order_list_item/user_order_list_item.dart';
 import 'package:rs2_rent_sistem/shared/providers/user_providers.dart';
 import 'package:rs2_rent_sistem/shared/widgets/common_scaffold.dart';
 import 'package:rs2_rent_sistem/shared/widgets/confirmation_modal.dart';

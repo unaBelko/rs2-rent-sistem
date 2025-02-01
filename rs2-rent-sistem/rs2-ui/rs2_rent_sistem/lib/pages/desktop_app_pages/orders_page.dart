@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rs2_rent_sistem/models/order_list_item.dart';
+import 'package:rs2_rent_sistem/models/admin_order_list_item/order_list_item.dart';
 import 'package:rs2_rent_sistem/shared/providers/order_providers.dart';
 
 class OrdersPage extends ConsumerWidget {
@@ -59,7 +59,7 @@ class OrdersPage extends ConsumerWidget {
 }
 
 class AdminOrderItemWidget extends StatelessWidget {
-  final OrderListItem item;
+  final AdminOrderListItemModel item;
 
   const AdminOrderItemWidget({
     super.key,

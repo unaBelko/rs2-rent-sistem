@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-OrderItem _$OrderItemFromJson(Map<String, dynamic> json) {
+ItemInOrder _$ItemInOrderFromJson(Map<String, dynamic> json) {
   return _OrderItem.fromJson(json);
 }
 
 /// @nodoc
-mixin _$OrderItem {
+mixin _$ItemInOrder {
   int get id => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
   DateTime get endDate => throw _privateConstructorUsedError;
@@ -28,20 +28,21 @@ mixin _$OrderItem {
   double get price => throw _privateConstructorUsedError;
   EquipmentListItem get equipment => throw _privateConstructorUsedError;
 
-  /// Serializes this OrderItem to a JSON map.
+  /// Serializes this ItemInOrder to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of OrderItem
+  /// Create a copy of ItemInOrder
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrderItemCopyWith<OrderItem> get copyWith =>
+  $ItemInOrderCopyWith<ItemInOrder> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderItemCopyWith<$Res> {
-  factory $OrderItemCopyWith(OrderItem value, $Res Function(OrderItem) then) =
-      _$OrderItemCopyWithImpl<$Res, OrderItem>;
+abstract class $ItemInOrderCopyWith<$Res> {
+  factory $ItemInOrderCopyWith(
+          ItemInOrder value, $Res Function(ItemInOrder) then) =
+      _$ItemInOrderCopyWithImpl<$Res, ItemInOrder>;
   @useResult
   $Res call(
       {int id,
@@ -56,16 +57,16 @@ abstract class $OrderItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
-    implements $OrderItemCopyWith<$Res> {
-  _$OrderItemCopyWithImpl(this._value, this._then);
+class _$ItemInOrderCopyWithImpl<$Res, $Val extends ItemInOrder>
+    implements $ItemInOrderCopyWith<$Res> {
+  _$ItemInOrderCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrderItem
+  /// Create a copy of ItemInOrder
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -110,7 +111,7 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
     ) as $Val);
   }
 
-  /// Create a copy of OrderItem
+  /// Create a copy of ItemInOrder
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -123,7 +124,7 @@ class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
 
 /// @nodoc
 abstract class _$$OrderItemImplCopyWith<$Res>
-    implements $OrderItemCopyWith<$Res> {
+    implements $ItemInOrderCopyWith<$Res> {
   factory _$$OrderItemImplCopyWith(
           _$OrderItemImpl value, $Res Function(_$OrderItemImpl) then) =
       __$$OrderItemImplCopyWithImpl<$Res>;
@@ -144,13 +145,13 @@ abstract class _$$OrderItemImplCopyWith<$Res>
 
 /// @nodoc
 class __$$OrderItemImplCopyWithImpl<$Res>
-    extends _$OrderItemCopyWithImpl<$Res, _$OrderItemImpl>
+    extends _$ItemInOrderCopyWithImpl<$Res, _$OrderItemImpl>
     implements _$$OrderItemImplCopyWith<$Res> {
   __$$OrderItemImplCopyWithImpl(
       _$OrderItemImpl _value, $Res Function(_$OrderItemImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrderItem
+  /// Create a copy of ItemInOrder
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -231,7 +232,7 @@ class _$OrderItemImpl implements _OrderItem {
 
   @override
   String toString() {
-    return 'OrderItem(id: $id, startDate: $startDate, endDate: $endDate, quantity: $quantity, costPerUse: $costPerUse, price: $price, equipment: $equipment)';
+    return 'ItemInOrder(id: $id, startDate: $startDate, endDate: $endDate, quantity: $quantity, costPerUse: $costPerUse, price: $price, equipment: $equipment)';
   }
 
   @override
@@ -257,7 +258,7 @@ class _$OrderItemImpl implements _OrderItem {
   int get hashCode => Object.hash(runtimeType, id, startDate, endDate, quantity,
       costPerUse, price, equipment);
 
-  /// Create a copy of OrderItem
+  /// Create a copy of ItemInOrder
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -273,7 +274,7 @@ class _$OrderItemImpl implements _OrderItem {
   }
 }
 
-abstract class _OrderItem implements OrderItem {
+abstract class _OrderItem implements ItemInOrder {
   const factory _OrderItem(
       {required final int id,
       required final DateTime startDate,
@@ -301,7 +302,7 @@ abstract class _OrderItem implements OrderItem {
   @override
   EquipmentListItem get equipment;
 
-  /// Create a copy of OrderItem
+  /// Create a copy of ItemInOrder
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

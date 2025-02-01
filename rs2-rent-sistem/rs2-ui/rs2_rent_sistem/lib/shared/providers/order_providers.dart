@@ -1,5 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rs2_rent_sistem/models/order_list_item.dart';
+import 'package:rs2_rent_sistem/models/admin_order_list_item/order_list_item.dart';
 import 'package:rs2_rent_sistem/shared/api_services/dio_service.dart';
 import 'package:rs2_rent_sistem/shared/api_services/order_service.dart';
 
@@ -11,7 +11,7 @@ final orderCreationProvider = FutureProvider<ApiResponse>((ref) async {
   return response;
 });
 
-final ordersListProvider = FutureProvider<List<OrderListItem>>((ref) async {
+final ordersListProvider = FutureProvider<List<AdminOrderListItemModel>>((ref) async {
   final response = await OrderService().getOrders();
 
   if (response.isSuccess && response.data != null) {
