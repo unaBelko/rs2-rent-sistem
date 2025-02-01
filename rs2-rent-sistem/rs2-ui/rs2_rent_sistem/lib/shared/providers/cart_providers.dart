@@ -13,7 +13,8 @@ final cartProvider = FutureProvider<Cart>((ref) async {
   }
 });
 
-final addToCartProvider = FutureProvider.family<void, AddToCartModel>((ref, AddToCartModel params) async {
+final addToCartProvider = FutureProvider.family<void, AddToCartModel>(
+    (ref, AddToCartModel params) async {
   final response = await CartService().addItemToCart(params);
 
   if (!response.isSuccess) {
@@ -21,10 +22,23 @@ final addToCartProvider = FutureProvider.family<void, AddToCartModel>((ref, AddT
   }
 });
 
-final removeFromCartProvider = FutureProvider.family<void, int>((ref, int params) async {
-  final response = await CartService().removeItemFromCart(params);
+final removeFromCartProvider =
+    StateNotifierProvider<RemoveFromCartNotifier, AsyncValue<void>>(
+  (ref) => RemoveFromCartNotifier(),
+);
 
-  if (!response.isSuccess) {
-    throw Exception(response.error);
+class RemoveFromCartNotifier extends StateNotifier<AsyncValue<void>> {
+  RemoveFromCartNotifier() : super(const AsyncValue.data(null));
+
+  Future<void> removeItem(int itemId) async {
+    state = const AsyncValue.loading();
+
+    final response = await CartService().removeItemFromCart(itemId);
+
+    if (response.isSuccess) {
+      state = const AsyncValue.data(null);
+    } else {
+      state = AsyncValue.error(response.error, StackTrace.current);
+    }
   }
-});
+}

@@ -12,37 +12,56 @@ class CartPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return CommonScaffold(
-      title: 'Cart',
+      title: 'Korpa',
       child: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.only(bottom: 80.0), // Add padding to avoid overlap with the button
+            padding: const EdgeInsets.only(bottom: 80.0),
+            // Add padding to avoid overlap with the button
             child: ref.watch(cartProvider).when(
                   data: (cartInfo) => Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                          vertical: 12.0,
+                      if (cartInfo.cartItems.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20.0,
+                            vertical: 12.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Ukupna cijena:',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                              ),
+                              Text(
+                                cartInfo.totalPrice.toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                              ),
+                            ],
+                          ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Total price:',
-                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                      if (cartInfo.cartItems.isEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20.0, vertical: 30.0),
+                          child: Center(
+                            child: Text(
+                              'Vasa korpa je prazna. Dodajte opremu za iznajmljivanje da bi kreirali narudzbu!',
+                              textAlign: TextAlign.center,
                             ),
-                            Text(
-                              cartInfo.totalPrice.toString(),
-                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
                       Column(
                         children: cartInfo.cartItems
                             .map(
@@ -52,6 +71,7 @@ class CartPage extends ConsumerWidget {
                                 startDate: ci.startDate,
                                 endDate: ci.endDate,
                                 quantity: ci.quantity,
+                                cartItemId: ci.id,
                               ),
                             )
                             .toList(),
@@ -76,21 +96,25 @@ class CartPage extends ConsumerWidget {
                     if (cartData.cartItems.isNotEmpty) {
                       // Trigger order creation
                       ref.read(orderCreationProvider.future).then((_) {
-                        //todo:change
                         ref.invalidate(ordersListProvider);
+                        ref.invalidate(cartProvider);
                         Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => const OrderCreationInfoPage()),
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const OrderCreationInfoPage()),
                         );
                       }).catchError((error) {
                         // Show error message
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Failed to create order: $error')),
+                          SnackBar(
+                              content: Text(
+                                  'Narudzba ne moze biti kreirana: $error')),
                         );
                       });
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Add some items to cart first!'),
+                          content: Text('Dodajte opremu u korpu!'),
                         ),
                       );
                     }
@@ -99,7 +123,7 @@ class CartPage extends ConsumerWidget {
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                 ),
-                child: const Text('Rent Now'),
+                child: const Text('Kreiraj rezervaciju'),
               ),
             ),
           ),

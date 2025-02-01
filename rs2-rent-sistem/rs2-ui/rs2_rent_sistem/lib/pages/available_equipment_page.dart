@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -10,6 +11,7 @@ import 'package:rs2_rent_sistem/pages/equipment_details_page.dart';
 import 'package:rs2_rent_sistem/pages/equipment_filters_page.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:rs2_rent_sistem/shared/providers/cart_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/equipment_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/simple_list_management_providers.dart';
 import 'package:rs2_rent_sistem/shared/utilities/enumerations.dart';
@@ -132,6 +134,7 @@ class _AvailableEquipmentPageState
                       right: 20,
                       child: FloatingActionButton(
                         onPressed: () {
+                          ref.invalidate(cartProvider);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => const CartPage()));
                         },
@@ -149,12 +152,13 @@ class _AvailableEquipmentPageState
   }
 }
 
-class EquipmentCard extends StatelessWidget {
+class EquipmentCard extends ConsumerWidget {
   final EquipmentListItem equipmentListItem;
   final bool isCartItem;
   final int? quantity;
   final DateTime? startDate;
   final DateTime? endDate;
+  final int? cartItemId;
 
   const EquipmentCard(
     this.equipmentListItem, {
@@ -163,93 +167,113 @@ class EquipmentCard extends StatelessWidget {
     this.quantity,
     this.startDate,
     this.endDate,
+    this.cartItemId,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (ct) => EquipmentDetailsPage(
-                equipmentListItem.id, equipmentListItem.itemName)));
-      },
-      child: Card(
-        margin: const EdgeInsets.all(12),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(12),
-                bottomLeft: Radius.circular(12),
-              ),
-              child: CachedNetworkImage(
-                imageUrl: Constants.imageUrl,
-                height: 100,
-                width: 100,
-              ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final removeItemState = ref.watch(removeFromCartProvider);
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (ct) => EquipmentDetailsPage(
+                  equipmentListItem.id, equipmentListItem.itemName),
+            ));
+          },
+          child: Card(
+            margin: const EdgeInsets.all(12),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(12),
+                    bottomLeft: Radius.circular(12),
+                  ),
+                  child: CachedNetworkImage(
+                    imageUrl: Constants.imageUrl,
+                    height: 100,
+                    width: 100,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        isCartItem
+                            ? '${equipmentListItem.itemName} ($quantity)'
+                            : equipmentListItem.itemName,
+                        style:
+                            Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 18,
+                                ),
+                      ),
+                      Text(
+                        equipmentListItem.manufacturer,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: Colors.grey),
+                      ),
+                      if (isCartItem)
+                        Text(DateFormat('dd.MM.yyyy')
+                            .format(startDate!.toLocal())),
+                      if (isCartItem)
+                        Text(DateFormat('dd.MM.yyyy')
+                            .format(endDate!.toLocal())),
+                      Text(
+                        equipmentListItem.costPerUse.toString(),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    isCartItem
-                        ? '${equipmentListItem.itemName} ($quantity)'
-                        : equipmentListItem.itemName,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 18,
-                        ),
-                  ),
-                  Text(
-                    equipmentListItem.manufacturer,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: Colors.grey),
-                  ),
-                  if (isCartItem)
-                    Text(DateFormat('dd.MM.yyyy').format(startDate!.toLocal())),
-                  if (isCartItem)
-                    Text(DateFormat('dd.MM.yyyy').format(endDate!.toLocal())),
-                  // Row(
-                  //   children: [
-                  //     RatingBar(
-                  //       ignoreGestures: true,
-                  //       itemSize: 20,
-                  //       allowHalfRating: true,
-                  //       initialRating: equipmentListItem.rating,
-                  //       ratingWidget: RatingWidget(
-                  //         full: const Icon(Icons.star, color: Colors.grey),
-                  //         empty: const Icon(Icons.star_border_outlined, color: Colors.grey),
-                  //         half: const Icon(Icons.star_half, color: Colors.grey),
-                  //       ),
-                  //       onRatingUpdate: (_) {},
-                  //     ),
-                  //     const SizedBox(width: 4),
-                  //     Text(
-                  //       '(${equipmentListItem.numberOfReviews})',
-                  //       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
-                  //     ),
-                  //   ],
-                  // ),
-                  Text(
-                    equipmentListItem.costPerUse.toString(),
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
+
+        // Remove from Cart Button (Visible only when `isCartItem` is true)
+        if (isCartItem)
+          Positioned(
+            bottom: 4,
+            right: 10,
+            child: removeItemState.when(
+              data: (_) => IconButton(
+                onPressed: () async {
+                  await ref
+                      .read(removeFromCartProvider.notifier)
+                      .removeItem(cartItemId!);
+                  log('ovde sam');
+                  ref.invalidate(cartProvider);
+                },
+                icon: const Icon(Icons.remove_shopping_cart_outlined),
+                color: Colors.redAccent,
+                tooltip: "Remove from Cart",
+              ),
+              loading: () => const CircularProgressIndicator(),
+              error: (err, _) => IconButton(
+                onPressed: () async {
+                  await ref
+                      .read(removeFromCartProvider.notifier)
+                      .removeItem(equipmentListItem.id);
+                },
+                icon: const Icon(Icons.error, color: Colors.red),
+                tooltip: "Retry",
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
