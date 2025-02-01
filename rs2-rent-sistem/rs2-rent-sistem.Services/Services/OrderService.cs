@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using RabbitMQ.Client;
 using rs2_rent_sistem.Model;
 using rs2_rent_sistem.Model.Models;
+using rs2_rent_sistem.Model.Models.rs2_rent_sistem.Model.Reports;
 using rs2_rent_sistem.Model.SearchObjects;
 using rs2_rent_sistem.Services.Data;
 using rs2_rent_sistem.Services.Interfaces;
@@ -27,13 +28,79 @@ namespace rs2_rent_sistem.Services.Services
             _cartService = cartService;
         }
 
-        public async Task<List<Order>> GetAll()
+        public async Task<List<object>> GetAll(DateTime? startDate, DateTime? endDate, string reportType)
         {
             var query = _context.Orders
                 .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Equipment)
+                .Include(o => o.User)
                 .AsNoTracking();
+
+            if (startDate.HasValue && endDate.HasValue)
+            {
+                query = query.Where(o => o.DatePlaced >= startDate.Value && o.DatePlaced <= endDate.Value);
+            }
+
             var orders = await query.ToListAsync();
-            return _mapper.Map<List<Order>>(orders);
+
+            return reportType switch
+            {
+                "most_rented_equipment" => GetMostRentedEquipment(orders),
+                "most_active_users" => GetMostActiveUsers(orders),
+                "top_revenue_equipment" => GetTopRevenueEquipment(orders),
+                _ => throw new ArgumentException("Invalid report type")
+            };
+        }
+
+
+        private List<object> GetMostRentedEquipment(List<Database.Order> orders)
+        {
+            return orders
+                .SelectMany(o => o.OrderItems)
+                .GroupBy(oi => oi.Equipment.ID)
+                .Select(group => new MostRentedEquipmentReportModel
+                {
+                    Name = group.First().Equipment.ItemName,
+                    TotalQuantity = (int)group.Sum(oi => oi.Quantity),
+                    TotalRentalDays = group.Sum(oi => (oi.EndDate - oi.StartDate)?.Days ?? 0)
+                })
+                .OrderByDescending(e => e.TotalQuantity)
+                .Cast<object>() 
+                .ToList();
+        }
+
+
+
+        private List<object> GetMostActiveUsers(List<Database.Order> orders)
+        {
+            return orders
+                .GroupBy(o => o.UserID)
+                .Select(group => new MostActiveUsersReportModel
+                {
+                    UserNameSurname = $"{group.First().User.FirstName} {group.First().User.LastName}",
+                    TotalOrderItems = group.Sum(o => o.OrderItems.Count),
+                    TotalOrders = group.Count()
+                })
+                .OrderByDescending(u => u.TotalOrderItems)
+                .Cast<object>()
+                .ToList();
+        }
+
+
+
+        private List<object> GetTopRevenueEquipment(List<Database.Order> orders)
+        {
+            return orders
+                .SelectMany(o => o.OrderItems)
+                .GroupBy(oi => oi.Equipment.ID)
+                .Select(group => new TopRevenueEquipmentReportModel
+                {
+                    Name = group.First().Equipment.ItemName,
+                    TotalRevenue = (decimal)group.Sum(oi => oi.Quantity * oi.CostPerUse)
+                })
+                .OrderByDescending(e => e.TotalRevenue)
+                .Cast<object>()
+                .ToList();
         }
 
         public override async Task<Order> GetById(int id)

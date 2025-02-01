@@ -6,6 +6,6 @@ namespace rs2_rent_sistem.Services.Interfaces
     public interface IOrderService : IService<Order, OrderSearchObject>
     {
         Task<Order> CreateOrder(int userId);
-        Task<List<Order>> GetAll();
+        Task<List<object>> GetAll(DateTime? startDate, DateTime? endDate, string reportType);
     }
 }

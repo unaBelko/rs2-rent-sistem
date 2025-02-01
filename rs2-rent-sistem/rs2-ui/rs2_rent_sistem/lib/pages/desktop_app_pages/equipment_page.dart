@@ -78,7 +78,7 @@ class EquipmentPage extends ConsumerWidget {
             const SizedBox(
               height: 12.0,
             ),
-            ref.read(equipmentListProvider).when(
+            ref.watch(equipmentListProvider).when(
                   data: (data) => Column(
                     children: data
                         .map((item) => EquipmentListItem(item: item))
