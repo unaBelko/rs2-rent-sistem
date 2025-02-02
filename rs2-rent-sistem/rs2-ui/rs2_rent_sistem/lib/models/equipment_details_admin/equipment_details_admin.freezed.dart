@@ -33,6 +33,10 @@ mixin _$EquipmentDetailsAdmin {
   double get costPerUse => throw _privateConstructorUsedError;
   DateTime get dateAdded => throw _privateConstructorUsedError;
   String get photoBase64 => throw _privateConstructorUsedError;
+  String get manufacturer => throw _privateConstructorUsedError;
+  String get equipmentCategory => throw _privateConstructorUsedError;
+  List<AvailableDate> get availableDates => throw _privateConstructorUsedError;
+  bool get isInCart => throw _privateConstructorUsedError;
 
   /// Serializes this EquipmentDetailsAdmin to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -62,7 +66,11 @@ abstract class $EquipmentDetailsAdminCopyWith<$Res> {
       String description,
       double costPerUse,
       DateTime dateAdded,
-      String photoBase64});
+      String photoBase64,
+      String manufacturer,
+      String equipmentCategory,
+      List<AvailableDate> availableDates,
+      bool isInCart});
 }
 
 /// @nodoc
@@ -93,6 +101,10 @@ class _$EquipmentDetailsAdminCopyWithImpl<$Res,
     Object? costPerUse = null,
     Object? dateAdded = null,
     Object? photoBase64 = null,
+    Object? manufacturer = null,
+    Object? equipmentCategory = null,
+    Object? availableDates = null,
+    Object? isInCart = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -143,6 +155,22 @@ class _$EquipmentDetailsAdminCopyWithImpl<$Res,
           ? _value.photoBase64
           : photoBase64 // ignore: cast_nullable_to_non_nullable
               as String,
+      manufacturer: null == manufacturer
+          ? _value.manufacturer
+          : manufacturer // ignore: cast_nullable_to_non_nullable
+              as String,
+      equipmentCategory: null == equipmentCategory
+          ? _value.equipmentCategory
+          : equipmentCategory // ignore: cast_nullable_to_non_nullable
+              as String,
+      availableDates: null == availableDates
+          ? _value.availableDates
+          : availableDates // ignore: cast_nullable_to_non_nullable
+              as List<AvailableDate>,
+      isInCart: null == isInCart
+          ? _value.isInCart
+          : isInCart // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -168,7 +196,11 @@ abstract class _$$EquipmentDetailsAdminImplCopyWith<$Res>
       String description,
       double costPerUse,
       DateTime dateAdded,
-      String photoBase64});
+      String photoBase64,
+      String manufacturer,
+      String equipmentCategory,
+      List<AvailableDate> availableDates,
+      bool isInCart});
 }
 
 /// @nodoc
@@ -197,6 +229,10 @@ class __$$EquipmentDetailsAdminImplCopyWithImpl<$Res>
     Object? costPerUse = null,
     Object? dateAdded = null,
     Object? photoBase64 = null,
+    Object? manufacturer = null,
+    Object? equipmentCategory = null,
+    Object? availableDates = null,
+    Object? isInCart = null,
   }) {
     return _then(_$EquipmentDetailsAdminImpl(
       id: null == id
@@ -247,6 +283,22 @@ class __$$EquipmentDetailsAdminImplCopyWithImpl<$Res>
           ? _value.photoBase64
           : photoBase64 // ignore: cast_nullable_to_non_nullable
               as String,
+      manufacturer: null == manufacturer
+          ? _value.manufacturer
+          : manufacturer // ignore: cast_nullable_to_non_nullable
+              as String,
+      equipmentCategory: null == equipmentCategory
+          ? _value.equipmentCategory
+          : equipmentCategory // ignore: cast_nullable_to_non_nullable
+              as String,
+      availableDates: null == availableDates
+          ? _value._availableDates
+          : availableDates // ignore: cast_nullable_to_non_nullable
+              as List<AvailableDate>,
+      isInCart: null == isInCart
+          ? _value.isInCart
+          : isInCart // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -266,7 +318,12 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
       this.description = '',
       this.costPerUse = 0.0,
       required this.dateAdded,
-      this.photoBase64 = ''});
+      this.photoBase64 = '',
+      this.manufacturer = '',
+      this.equipmentCategory = '',
+      final List<AvailableDate> availableDates = const [],
+      this.isInCart = false})
+      : _availableDates = availableDates;
 
   factory _$EquipmentDetailsAdminImpl.fromJson(Map<String, dynamic> json) =>
       _$$EquipmentDetailsAdminImplFromJson(json);
@@ -305,10 +362,28 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
   @override
   @JsonKey()
   final String photoBase64;
+  @override
+  @JsonKey()
+  final String manufacturer;
+  @override
+  @JsonKey()
+  final String equipmentCategory;
+  final List<AvailableDate> _availableDates;
+  @override
+  @JsonKey()
+  List<AvailableDate> get availableDates {
+    if (_availableDates is EqualUnmodifiableListView) return _availableDates;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_availableDates);
+  }
+
+  @override
+  @JsonKey()
+  final bool isInCart;
 
   @override
   String toString() {
-    return 'EquipmentDetailsAdmin(id: $id, itemName: $itemName, manufacturerID: $manufacturerID, equipmentCategoryID: $equipmentCategoryID, imageUrl: $imageUrl, minQuantity: $minQuantity, maxQuantity: $maxQuantity, stockQuantity: $stockQuantity, description: $description, costPerUse: $costPerUse, dateAdded: $dateAdded, photoBase64: $photoBase64)';
+    return 'EquipmentDetailsAdmin(id: $id, itemName: $itemName, manufacturerID: $manufacturerID, equipmentCategoryID: $equipmentCategoryID, imageUrl: $imageUrl, minQuantity: $minQuantity, maxQuantity: $maxQuantity, stockQuantity: $stockQuantity, description: $description, costPerUse: $costPerUse, dateAdded: $dateAdded, photoBase64: $photoBase64, manufacturer: $manufacturer, equipmentCategory: $equipmentCategory, availableDates: $availableDates, isInCart: $isInCart)';
   }
 
   @override
@@ -338,7 +413,15 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
             (identical(other.dateAdded, dateAdded) ||
                 other.dateAdded == dateAdded) &&
             (identical(other.photoBase64, photoBase64) ||
-                other.photoBase64 == photoBase64));
+                other.photoBase64 == photoBase64) &&
+            (identical(other.manufacturer, manufacturer) ||
+                other.manufacturer == manufacturer) &&
+            (identical(other.equipmentCategory, equipmentCategory) ||
+                other.equipmentCategory == equipmentCategory) &&
+            const DeepCollectionEquality()
+                .equals(other._availableDates, _availableDates) &&
+            (identical(other.isInCart, isInCart) ||
+                other.isInCart == isInCart));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -356,7 +439,11 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
       description,
       costPerUse,
       dateAdded,
-      photoBase64);
+      photoBase64,
+      manufacturer,
+      equipmentCategory,
+      const DeepCollectionEquality().hash(_availableDates),
+      isInCart);
 
   /// Create a copy of EquipmentDetailsAdmin
   /// with the given fields replaced by the non-null parameter values.
@@ -388,7 +475,11 @@ abstract class _EquipmentDetailsAdmin implements EquipmentDetailsAdmin {
       final String description,
       final double costPerUse,
       required final DateTime dateAdded,
-      final String photoBase64}) = _$EquipmentDetailsAdminImpl;
+      final String photoBase64,
+      final String manufacturer,
+      final String equipmentCategory,
+      final List<AvailableDate> availableDates,
+      final bool isInCart}) = _$EquipmentDetailsAdminImpl;
 
   factory _EquipmentDetailsAdmin.fromJson(Map<String, dynamic> json) =
       _$EquipmentDetailsAdminImpl.fromJson;
@@ -417,6 +508,14 @@ abstract class _EquipmentDetailsAdmin implements EquipmentDetailsAdmin {
   DateTime get dateAdded;
   @override
   String get photoBase64;
+  @override
+  String get manufacturer;
+  @override
+  String get equipmentCategory;
+  @override
+  List<AvailableDate> get availableDates;
+  @override
+  bool get isInCart;
 
   /// Create a copy of EquipmentDetailsAdmin
   /// with the given fields replaced by the non-null parameter values.

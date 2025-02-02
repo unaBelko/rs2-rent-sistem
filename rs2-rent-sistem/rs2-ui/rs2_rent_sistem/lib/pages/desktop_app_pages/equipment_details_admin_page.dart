@@ -12,7 +12,7 @@ class EquipmentDetailsAdminPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final equipmentDetails = ref.watch(equipmentDetailsProvider(equipmentId));
+    final equipmentDetails = ref.watch(equipmentDetailsForAdminProvider(equipmentId));
 
     return CommonScaffold(
       title: "Detalji opreme",

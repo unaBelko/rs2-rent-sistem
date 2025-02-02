@@ -23,16 +23,16 @@ mixin _$EquipmentDetails {
   int get id => throw _privateConstructorUsedError;
   String get itemName => throw _privateConstructorUsedError;
   String get manufacturerID => throw _privateConstructorUsedError;
-  String get manufacturer => throw _privateConstructorUsedError;
   String get equipmentCategoryID => throw _privateConstructorUsedError;
-  String get equipmentCategory => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   int get minQuantity => throw _privateConstructorUsedError;
   int get maxQuantity => throw _privateConstructorUsedError;
-  List<DateTime> get availableDatesForRent =>
-      throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   double get costPerUse => throw _privateConstructorUsedError;
+  String get manufacturer => throw _privateConstructorUsedError;
+  String get equipmentCategory => throw _privateConstructorUsedError;
+  List<DateTime> get availableDatesForRent =>
+      throw _privateConstructorUsedError;
   bool get isInCart => throw _privateConstructorUsedError;
 
   /// Serializes this EquipmentDetails to a JSON map.
@@ -55,15 +55,15 @@ abstract class $EquipmentDetailsCopyWith<$Res> {
       {int id,
       String itemName,
       String manufacturerID,
-      String manufacturer,
       String equipmentCategoryID,
-      String equipmentCategory,
       String imageUrl,
       int minQuantity,
       int maxQuantity,
-      List<DateTime> availableDatesForRent,
       String description,
       double costPerUse,
+      String manufacturer,
+      String equipmentCategory,
+      List<DateTime> availableDatesForRent,
       bool isInCart});
 }
 
@@ -85,15 +85,15 @@ class _$EquipmentDetailsCopyWithImpl<$Res, $Val extends EquipmentDetails>
     Object? id = null,
     Object? itemName = null,
     Object? manufacturerID = null,
-    Object? manufacturer = null,
     Object? equipmentCategoryID = null,
-    Object? equipmentCategory = null,
     Object? imageUrl = null,
     Object? minQuantity = null,
     Object? maxQuantity = null,
-    Object? availableDatesForRent = null,
     Object? description = null,
     Object? costPerUse = null,
+    Object? manufacturer = null,
+    Object? equipmentCategory = null,
+    Object? availableDatesForRent = null,
     Object? isInCart = null,
   }) {
     return _then(_value.copyWith(
@@ -109,17 +109,9 @@ class _$EquipmentDetailsCopyWithImpl<$Res, $Val extends EquipmentDetails>
           ? _value.manufacturerID
           : manufacturerID // ignore: cast_nullable_to_non_nullable
               as String,
-      manufacturer: null == manufacturer
-          ? _value.manufacturer
-          : manufacturer // ignore: cast_nullable_to_non_nullable
-              as String,
       equipmentCategoryID: null == equipmentCategoryID
           ? _value.equipmentCategoryID
           : equipmentCategoryID // ignore: cast_nullable_to_non_nullable
-              as String,
-      equipmentCategory: null == equipmentCategory
-          ? _value.equipmentCategory
-          : equipmentCategory // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
@@ -133,10 +125,6 @@ class _$EquipmentDetailsCopyWithImpl<$Res, $Val extends EquipmentDetails>
           ? _value.maxQuantity
           : maxQuantity // ignore: cast_nullable_to_non_nullable
               as int,
-      availableDatesForRent: null == availableDatesForRent
-          ? _value.availableDatesForRent
-          : availableDatesForRent // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -145,6 +133,18 @@ class _$EquipmentDetailsCopyWithImpl<$Res, $Val extends EquipmentDetails>
           ? _value.costPerUse
           : costPerUse // ignore: cast_nullable_to_non_nullable
               as double,
+      manufacturer: null == manufacturer
+          ? _value.manufacturer
+          : manufacturer // ignore: cast_nullable_to_non_nullable
+              as String,
+      equipmentCategory: null == equipmentCategory
+          ? _value.equipmentCategory
+          : equipmentCategory // ignore: cast_nullable_to_non_nullable
+              as String,
+      availableDatesForRent: null == availableDatesForRent
+          ? _value.availableDatesForRent
+          : availableDatesForRent // ignore: cast_nullable_to_non_nullable
+              as List<DateTime>,
       isInCart: null == isInCart
           ? _value.isInCart
           : isInCart // ignore: cast_nullable_to_non_nullable
@@ -165,15 +165,15 @@ abstract class _$$EquipmentDetailsImplCopyWith<$Res>
       {int id,
       String itemName,
       String manufacturerID,
-      String manufacturer,
       String equipmentCategoryID,
-      String equipmentCategory,
       String imageUrl,
       int minQuantity,
       int maxQuantity,
-      List<DateTime> availableDatesForRent,
       String description,
       double costPerUse,
+      String manufacturer,
+      String equipmentCategory,
+      List<DateTime> availableDatesForRent,
       bool isInCart});
 }
 
@@ -193,15 +193,15 @@ class __$$EquipmentDetailsImplCopyWithImpl<$Res>
     Object? id = null,
     Object? itemName = null,
     Object? manufacturerID = null,
-    Object? manufacturer = null,
     Object? equipmentCategoryID = null,
-    Object? equipmentCategory = null,
     Object? imageUrl = null,
     Object? minQuantity = null,
     Object? maxQuantity = null,
-    Object? availableDatesForRent = null,
     Object? description = null,
     Object? costPerUse = null,
+    Object? manufacturer = null,
+    Object? equipmentCategory = null,
+    Object? availableDatesForRent = null,
     Object? isInCart = null,
   }) {
     return _then(_$EquipmentDetailsImpl(
@@ -217,17 +217,9 @@ class __$$EquipmentDetailsImplCopyWithImpl<$Res>
           ? _value.manufacturerID
           : manufacturerID // ignore: cast_nullable_to_non_nullable
               as String,
-      manufacturer: null == manufacturer
-          ? _value.manufacturer
-          : manufacturer // ignore: cast_nullable_to_non_nullable
-              as String,
       equipmentCategoryID: null == equipmentCategoryID
           ? _value.equipmentCategoryID
           : equipmentCategoryID // ignore: cast_nullable_to_non_nullable
-              as String,
-      equipmentCategory: null == equipmentCategory
-          ? _value.equipmentCategory
-          : equipmentCategory // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
@@ -241,10 +233,6 @@ class __$$EquipmentDetailsImplCopyWithImpl<$Res>
           ? _value.maxQuantity
           : maxQuantity // ignore: cast_nullable_to_non_nullable
               as int,
-      availableDatesForRent: null == availableDatesForRent
-          ? _value._availableDatesForRent
-          : availableDatesForRent // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -253,6 +241,18 @@ class __$$EquipmentDetailsImplCopyWithImpl<$Res>
           ? _value.costPerUse
           : costPerUse // ignore: cast_nullable_to_non_nullable
               as double,
+      manufacturer: null == manufacturer
+          ? _value.manufacturer
+          : manufacturer // ignore: cast_nullable_to_non_nullable
+              as String,
+      equipmentCategory: null == equipmentCategory
+          ? _value.equipmentCategory
+          : equipmentCategory // ignore: cast_nullable_to_non_nullable
+              as String,
+      availableDatesForRent: null == availableDatesForRent
+          ? _value._availableDatesForRent
+          : availableDatesForRent // ignore: cast_nullable_to_non_nullable
+              as List<DateTime>,
       isInCart: null == isInCart
           ? _value.isInCart
           : isInCart // ignore: cast_nullable_to_non_nullable
@@ -268,15 +268,15 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
       {required this.id,
       this.itemName = '',
       this.manufacturerID = '',
-      this.manufacturer = '',
       this.equipmentCategoryID = '',
-      this.equipmentCategory = '',
       this.imageUrl = '',
       this.minQuantity = 1,
       this.maxQuantity = 1,
-      final List<DateTime> availableDatesForRent = const [],
       this.description = '',
       this.costPerUse = 0.0,
+      this.manufacturer = '',
+      this.equipmentCategory = '',
+      final List<DateTime> availableDatesForRent = const [],
       this.isInCart = false})
       : _availableDatesForRent = availableDatesForRent;
 
@@ -293,13 +293,7 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
   final String manufacturerID;
   @override
   @JsonKey()
-  final String manufacturer;
-  @override
-  @JsonKey()
   final String equipmentCategoryID;
-  @override
-  @JsonKey()
-  final String equipmentCategory;
   @override
   @JsonKey()
   final String imageUrl;
@@ -309,6 +303,18 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
   @override
   @JsonKey()
   final int maxQuantity;
+  @override
+  @JsonKey()
+  final String description;
+  @override
+  @JsonKey()
+  final double costPerUse;
+  @override
+  @JsonKey()
+  final String manufacturer;
+  @override
+  @JsonKey()
+  final String equipmentCategory;
   final List<DateTime> _availableDatesForRent;
   @override
   @JsonKey()
@@ -321,17 +327,11 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
 
   @override
   @JsonKey()
-  final String description;
-  @override
-  @JsonKey()
-  final double costPerUse;
-  @override
-  @JsonKey()
   final bool isInCart;
 
   @override
   String toString() {
-    return 'EquipmentDetails(id: $id, itemName: $itemName, manufacturerID: $manufacturerID, manufacturer: $manufacturer, equipmentCategoryID: $equipmentCategoryID, equipmentCategory: $equipmentCategory, imageUrl: $imageUrl, minQuantity: $minQuantity, maxQuantity: $maxQuantity, availableDatesForRent: $availableDatesForRent, description: $description, costPerUse: $costPerUse, isInCart: $isInCart)';
+    return 'EquipmentDetails(id: $id, itemName: $itemName, manufacturerID: $manufacturerID, equipmentCategoryID: $equipmentCategoryID, imageUrl: $imageUrl, minQuantity: $minQuantity, maxQuantity: $maxQuantity, description: $description, costPerUse: $costPerUse, manufacturer: $manufacturer, equipmentCategory: $equipmentCategory, availableDatesForRent: $availableDatesForRent, isInCart: $isInCart)';
   }
 
   @override
@@ -344,24 +344,24 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
                 other.itemName == itemName) &&
             (identical(other.manufacturerID, manufacturerID) ||
                 other.manufacturerID == manufacturerID) &&
-            (identical(other.manufacturer, manufacturer) ||
-                other.manufacturer == manufacturer) &&
             (identical(other.equipmentCategoryID, equipmentCategoryID) ||
                 other.equipmentCategoryID == equipmentCategoryID) &&
-            (identical(other.equipmentCategory, equipmentCategory) ||
-                other.equipmentCategory == equipmentCategory) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.minQuantity, minQuantity) ||
                 other.minQuantity == minQuantity) &&
             (identical(other.maxQuantity, maxQuantity) ||
                 other.maxQuantity == maxQuantity) &&
-            const DeepCollectionEquality()
-                .equals(other._availableDatesForRent, _availableDatesForRent) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.costPerUse, costPerUse) ||
                 other.costPerUse == costPerUse) &&
+            (identical(other.manufacturer, manufacturer) ||
+                other.manufacturer == manufacturer) &&
+            (identical(other.equipmentCategory, equipmentCategory) ||
+                other.equipmentCategory == equipmentCategory) &&
+            const DeepCollectionEquality()
+                .equals(other._availableDatesForRent, _availableDatesForRent) &&
             (identical(other.isInCart, isInCart) ||
                 other.isInCart == isInCart));
   }
@@ -373,15 +373,15 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
       id,
       itemName,
       manufacturerID,
-      manufacturer,
       equipmentCategoryID,
-      equipmentCategory,
       imageUrl,
       minQuantity,
       maxQuantity,
-      const DeepCollectionEquality().hash(_availableDatesForRent),
       description,
       costPerUse,
+      manufacturer,
+      equipmentCategory,
+      const DeepCollectionEquality().hash(_availableDatesForRent),
       isInCart);
 
   /// Create a copy of EquipmentDetails
@@ -406,15 +406,15 @@ abstract class _EquipmentDetails implements EquipmentDetails {
       {required final int id,
       final String itemName,
       final String manufacturerID,
-      final String manufacturer,
       final String equipmentCategoryID,
-      final String equipmentCategory,
       final String imageUrl,
       final int minQuantity,
       final int maxQuantity,
-      final List<DateTime> availableDatesForRent,
       final String description,
       final double costPerUse,
+      final String manufacturer,
+      final String equipmentCategory,
+      final List<DateTime> availableDatesForRent,
       final bool isInCart}) = _$EquipmentDetailsImpl;
 
   factory _EquipmentDetails.fromJson(Map<String, dynamic> json) =
@@ -427,11 +427,7 @@ abstract class _EquipmentDetails implements EquipmentDetails {
   @override
   String get manufacturerID;
   @override
-  String get manufacturer;
-  @override
   String get equipmentCategoryID;
-  @override
-  String get equipmentCategory;
   @override
   String get imageUrl;
   @override
@@ -439,11 +435,15 @@ abstract class _EquipmentDetails implements EquipmentDetails {
   @override
   int get maxQuantity;
   @override
-  List<DateTime> get availableDatesForRent;
-  @override
   String get description;
   @override
   double get costPerUse;
+  @override
+  String get manufacturer;
+  @override
+  String get equipmentCategory;
+  @override
+  List<DateTime> get availableDatesForRent;
   @override
   bool get isInCart;
 

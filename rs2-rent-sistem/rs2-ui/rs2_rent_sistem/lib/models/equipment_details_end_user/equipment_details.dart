@@ -9,15 +9,15 @@ class EquipmentDetails with _$EquipmentDetails {
     required int id,
     @Default('') String itemName,
     @Default('') String manufacturerID,
-    @Default('') String manufacturer,
     @Default('') String equipmentCategoryID,
-    @Default('') String equipmentCategory,
     @Default('') String imageUrl,
     @Default(1) int minQuantity,
     @Default(1) int maxQuantity,
-    @Default([]) List<DateTime> availableDatesForRent,
     @Default('') String description,
     @Default(0.0) double costPerUse,
+    @Default('') String manufacturer,
+    @Default('') String equipmentCategory,
+    @Default([]) List<DateTime> availableDatesForRent,
     @Default(false) bool isInCart,
   }) = _EquipmentDetails;
 

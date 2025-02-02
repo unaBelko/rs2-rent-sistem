@@ -7,6 +7,7 @@ import 'package:rs2_rent_sistem/pages/desktop_app_pages/simple_list_management_p
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/orders_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/reports_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/users_page.dart';
+import 'package:rs2_rent_sistem/shared/providers/order_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/simple_state_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/user_providers.dart';
 import 'package:rs2_rent_sistem/shared/utilities/enumerations.dart';
@@ -59,7 +60,9 @@ class DesktopHomePage extends ConsumerWidget {
                       index: 0,
                       currentIndex: currentIndex,
                       onTap: (val) {
-                        ref.read(desktopAppNavigationIndexProvider.notifier).state = val;
+                        ref
+                            .read(desktopAppNavigationIndexProvider.notifier)
+                            .state = val;
                         Navigator.of(context).pop();
                       },
                     ),
@@ -69,7 +72,9 @@ class DesktopHomePage extends ConsumerWidget {
                         index: 1,
                         currentIndex: currentIndex,
                         onTap: (val) {
-                          ref.read(desktopAppNavigationIndexProvider.notifier).state = val;
+                          ref
+                              .read(desktopAppNavigationIndexProvider.notifier)
+                              .state = val;
                           Navigator.of(context).pop();
                         }),
                     _buildDrawerItem(
@@ -78,7 +83,9 @@ class DesktopHomePage extends ConsumerWidget {
                       index: 2,
                       currentIndex: currentIndex,
                       onTap: (val) {
-                        ref.read(desktopAppNavigationIndexProvider.notifier).state = val;
+                        ref
+                            .read(desktopAppNavigationIndexProvider.notifier)
+                            .state = val;
                         Navigator.of(context).pop();
                       },
                     ),
@@ -88,7 +95,9 @@ class DesktopHomePage extends ConsumerWidget {
                         index: 3,
                         currentIndex: currentIndex,
                         onTap: (val) {
-                          ref.read(desktopAppNavigationIndexProvider.notifier).state = val;
+                          ref
+                              .read(desktopAppNavigationIndexProvider.notifier)
+                              .state = val;
                           Navigator.of(context).pop();
                         }),
                     _buildDrawerItem(
@@ -97,7 +106,9 @@ class DesktopHomePage extends ConsumerWidget {
                         index: 4,
                         currentIndex: currentIndex,
                         onTap: (val) {
-                          ref.read(desktopAppNavigationIndexProvider.notifier).state = val;
+                          ref
+                              .read(desktopAppNavigationIndexProvider.notifier)
+                              .state = val;
                           Navigator.of(context).pop();
                         }),
                     _buildDrawerItem(
@@ -106,7 +117,9 @@ class DesktopHomePage extends ConsumerWidget {
                         index: 5,
                         currentIndex: currentIndex,
                         onTap: (val) {
-                          ref.read(desktopAppNavigationIndexProvider.notifier).state = val;
+                          ref
+                              .read(desktopAppNavigationIndexProvider.notifier)
+                              .state = val;
                           Navigator.of(context).pop();
                         }),
                   ],
@@ -115,9 +128,12 @@ class DesktopHomePage extends ConsumerWidget {
               const Divider(color: Colors.white),
               ListTile(
                 leading: const Icon(Icons.logout, color: Colors.white),
-                title: const Text('Odjava', style: TextStyle(color: Colors.white)),
+                title:
+                    const Text('Odjava', style: TextStyle(color: Colors.white)),
                 onTap: () {
                   ref.read(authTokenProvider.notifier).state = null;
+                  ref.invalidate(ordersListProvider);
+                  ref.invalidate(userDetailsProvider);
                   Navigator.pop(context);
                 },
               ),
@@ -140,9 +156,11 @@ class DesktopHomePage extends ConsumerWidget {
                 case 3:
                   return const ReportsPage();
                 case 4:
-                  return const SimpleListManagementPage(SimpleListType.manufacturer);
+                  return const SimpleListManagementPage(
+                      SimpleListType.manufacturer);
                 case 5:
-                  return const SimpleListManagementPage(SimpleListType.equipmentCategory);
+                  return const SimpleListManagementPage(
+                      SimpleListType.equipmentCategory);
                 default:
                   return const EquipmentPage(); // Default case for safety
               }
@@ -162,10 +180,12 @@ class DesktopHomePage extends ConsumerWidget {
   }) {
     log("current index $currentIndex");
     return ListTile(
-      trailing: Icon(icon, color: currentIndex == index ? Colors.red : Colors.white),
+      trailing:
+          Icon(icon, color: currentIndex == index ? Colors.red : Colors.white),
       title: Text(
         text,
-        style: TextStyle(color: currentIndex == index ? Colors.red : Colors.white),
+        style:
+            TextStyle(color: currentIndex == index ? Colors.red : Colors.white),
       ),
       selected: currentIndex == index,
       selectedTileColor: Colors.white,

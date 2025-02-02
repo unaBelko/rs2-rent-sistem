@@ -9,6 +9,7 @@ import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.d
 import 'package:rs2_rent_sistem/pages/cart_page.dart';
 import 'package:rs2_rent_sistem/pages/equipment_details_page.dart';
 import 'package:rs2_rent_sistem/pages/equipment_filters_page.dart';
+import 'package:rs2_rent_sistem/pages/paypal_payment_page.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:rs2_rent_sistem/shared/providers/cart_providers.dart';

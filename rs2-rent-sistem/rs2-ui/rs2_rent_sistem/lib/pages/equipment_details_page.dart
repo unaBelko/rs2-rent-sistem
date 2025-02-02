@@ -17,21 +17,53 @@ class EquipmentDetailsPage extends ConsumerStatefulWidget {
   const EquipmentDetailsPage(this.equipmentId, this.equipmentName, {super.key});
 
   @override
-  ConsumerState<EquipmentDetailsPage> createState() => _EquipmentDetailsPageState();
+  ConsumerState<EquipmentDetailsPage> createState() =>
+      _EquipmentDetailsPageState();
 }
 
 class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
-  final TextEditingController quantityTextController = TextEditingController(text: '1');
+  final TextEditingController quantityTextController =
+      TextEditingController(text: '1');
   DateTime? startDate;
   DateTime? endDate;
+  List<DateTime> availableDates = [];
+
+  @override
+  void initState() {
+    startDate = DateTime.now();
+    endDate = DateTime.now();
+    super.initState();
+  }
 
   Future<void> _selectStartDate(BuildContext context) async {
     final selectedDate = await showDatePicker(
-      context: context,
-      initialDate: startDate ?? DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(const Duration(days: 365)),
-    );
+        context: context,
+        initialDate: startDate,
+        firstDate: DateTime.now(),
+        lastDate: DateTime.now().add(const Duration(days: 90)),
+        selectableDayPredicate: (date) {
+          return availableDates.any((d) =>
+              d.year == date.year &&
+              d.month == date.month &&
+              d.day == date.day);
+        },
+        builder: (context, child) {
+          return Theme(
+            data: Theme.of(context).copyWith(
+              datePickerTheme: DatePickerThemeData(
+                dayBackgroundColor:
+                    WidgetStateProperty.resolveWith<Color>((states) {
+                  if (states.contains(WidgetState.disabled)) {
+                    return Colors.red;
+                  } else {
+                    return Colors.green;
+                  }
+                }),
+              ),
+            ),
+            child: child!,
+          );
+        });
     if (selectedDate != null) {
       setState(() {
         startDate = selectedDate;
@@ -48,6 +80,27 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
       initialDate: endDate ?? (startDate ?? DateTime.now()),
       firstDate: startDate ?? DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
+      selectableDayPredicate: (date) {
+        return availableDates.any((d) =>
+            d.year == date.year && d.month == date.month && d.day == date.day);
+      },
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            datePickerTheme: DatePickerThemeData(
+              dayBackgroundColor:
+                  WidgetStateProperty.resolveWith<Color>((states) {
+                if (states.contains(WidgetState.disabled)) {
+                  return Colors.red;
+                } else {
+                  return Colors.green;
+                }
+              }),
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
     if (selectedDate != null) {
       setState(() {
@@ -64,23 +117,25 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
         child: Column(
           children: [
-            ref.watch(equipmentDetailsProvider(widget.equipmentId)).when(
+            ref
+                .watch(equipmentDetailsForAdminProvider(widget.equipmentId))
+                .when(
                   data: (data) {
+                    setState(() {
+                      availableDates =
+                          data.availableDates.map((el) => el.date).toList();
+                    });
                     return Expanded(
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            // Text(
-                            //   data.itemName,
-                            //   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                            //         fontWeight: FontWeight.w500,
-                            //         fontSize: 18,
-                            //       ),
-                            // ),
-                            // const SizedBox(height: 20),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: CachedNetworkImage(imageUrl: Constants.imageUrl),
+                            SizedBox(
+                              height: 200,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: CachedNetworkImage(
+                                    imageUrl: Constants.imageUrl),
+                              ),
                             ),
                             const SizedBox(height: 20),
                             const Row(
@@ -109,22 +164,49 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
                               ],
                             ),
                             const SizedBox(height: 20),
-                            const Text('Datum iznajmljivanja'),
+                            Container(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 12.0),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  top: BorderSide(
+                                      color: Colors.blueGrey.withOpacity(0.3),
+                                      width: 1),
+                                  bottom: BorderSide(
+                                      color: Colors.blueGrey.withOpacity(0.3),
+                                      width: 1),
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Text(data.description),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            Row(
+                              children: [
+                                const Text('Datum iznajmljivanja'),
+                              ],
+                            ),
                             const SizedBox(height: 10),
                             Row(
                               children: [
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       const Text('Početni datum'),
                                       SizedBox(
                                         width: double.infinity,
                                         child: ElevatedButton(
-                                          onPressed: () => _selectStartDate(context),
+                                          onPressed: () =>
+                                              _selectStartDate(context),
                                           child: Text(
                                             startDate != null
-                                                ? DateFormat('dd.MM.yyyy').format(startDate!)
+                                                ? DateFormat('dd.MM.yyyy')
+                                                    .format(startDate!)
                                                 : 'Odaberite datum',
                                           ),
                                         ),
@@ -135,16 +217,20 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
                                 const SizedBox(width: 20),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       const Text('Završni datum'),
                                       SizedBox(
                                         width: double.infinity,
                                         child: ElevatedButton(
-                                          onPressed: startDate == null ? null : () => _selectEndDate(context),
+                                          onPressed: startDate == null
+                                              ? null
+                                              : () => _selectEndDate(context),
                                           child: Text(
                                             endDate != null
-                                                ? DateFormat('dd.MM.yyyy').format(endDate!)
+                                                ? DateFormat('dd.MM.yyyy')
+                                                    .format(endDate!)
                                                 : 'Odaberite datum',
                                           ),
                                         ),
@@ -155,35 +241,42 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
                               ],
                             ),
                             const SizedBox(height: 20),
-                            Text(data.description),
-                            RecommendedEquipmentWidget(equipmentId: widget.equipmentId),
+                            RecommendedEquipmentWidget(
+                                equipmentId: widget.equipmentId),
                           ],
                         ),
                       ),
                     );
                   },
-                  error: (e, st) => const Text('Detalji opreme se nisu mogli ucitati.'),
-                  loading: () => const Center(child: CircularProgressIndicator()),
+                  error: (e, st) =>
+                      const Text('Detalji opreme se nisu mogli ucitati.'),
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()),
                 ),
             SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12.0, vertical: 12.0),
                 child: RentSystemButton(
                   label: 'Dodaj u korpu',
                   onTap: () {
                     if (startDate == null || endDate == null) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Molimo odaberite period iznajmljivanja.')),
+                        const SnackBar(
+                            content: Text(
+                                'Molimo odaberite period iznajmljivanja.')),
                       );
                       return;
                     }
 
                     // Check if quantity is valid
-                    final quantity = int.tryParse(quantityTextController.text.trim());
+                    final quantity =
+                        int.tryParse(quantityTextController.text.trim());
                     if (quantity == null || quantity <= 0) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Molimo unesite validnu količinu.')),
+                        const SnackBar(
+                            content: Text('Molimo unesite validnu količinu.')),
                       );
                       return;
                     }
@@ -196,16 +289,22 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
                       endDate: endDate!,
                     );
 
-                    ref.read(addToCartProvider(addToCartModel).future).then((_) {
+                    ref
+                        .read(addToCartProvider(addToCartModel).future)
+                        .then((_) {
                       // Show success message
                       ref.invalidate(cartProvider);
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Proizvod je uspješno dodan u korpu.')),
+                        const SnackBar(
+                            content:
+                                Text('Proizvod je uspješno dodan u korpu.')),
                       );
                     }).catchError((error) {
                       // Show error message
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Greška pri dodavanju u korpu: ${error.toString()}')),
+                        SnackBar(
+                            content: Text(
+                                'Greška pri dodavanju u korpu: ${error.toString()}')),
                       );
                     });
                   },

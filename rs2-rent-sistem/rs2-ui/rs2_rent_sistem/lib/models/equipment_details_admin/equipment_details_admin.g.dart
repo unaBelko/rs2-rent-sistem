@@ -21,6 +21,13 @@ _$EquipmentDetailsAdminImpl _$$EquipmentDetailsAdminImplFromJson(
       costPerUse: (json['costPerUse'] as num?)?.toDouble() ?? 0.0,
       dateAdded: DateTime.parse(json['dateAdded'] as String),
       photoBase64: json['photoBase64'] as String? ?? '',
+      manufacturer: json['manufacturer'] as String? ?? '',
+      equipmentCategory: json['equipmentCategory'] as String? ?? '',
+      availableDates: (json['availableDates'] as List<dynamic>?)
+              ?.map((e) => AvailableDate.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      isInCart: json['isInCart'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$EquipmentDetailsAdminImplToJson(
@@ -38,4 +45,8 @@ Map<String, dynamic> _$$EquipmentDetailsAdminImplToJson(
       'costPerUse': instance.costPerUse,
       'dateAdded': instance.dateAdded.toIso8601String(),
       'photoBase64': instance.photoBase64,
+      'manufacturer': instance.manufacturer,
+      'equipmentCategory': instance.equipmentCategory,
+      'availableDates': instance.availableDates,
+      'isInCart': instance.isInCart,
     };

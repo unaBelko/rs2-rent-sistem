@@ -9,8 +9,11 @@ class BottomNavigationWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var currentIndex = ref.watch(navigationIndexProvider);
     return BottomNavigationBar(
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
       currentIndex: currentIndex,
-      onTap: (val) => ref.read(navigationIndexProvider.notifier).update((state) => val),
+      onTap: (val) =>
+          ref.read(navigationIndexProvider.notifier).update((state) => val),
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
@@ -18,7 +21,7 @@ class BottomNavigationWidget extends ConsumerWidget {
             Icons.home,
             color: Colors.redAccent,
           ),
-          label: 'Home',
+          label: '',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.shopping_bag),
@@ -26,7 +29,7 @@ class BottomNavigationWidget extends ConsumerWidget {
             Icons.shopping_bag,
             color: Colors.redAccent,
           ),
-          label: 'Equipment',
+          label: '',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
@@ -34,7 +37,7 @@ class BottomNavigationWidget extends ConsumerWidget {
             Icons.settings,
             color: Colors.redAccent,
           ),
-          label: 'Settings',
+          label: '',
         ),
       ],
     );

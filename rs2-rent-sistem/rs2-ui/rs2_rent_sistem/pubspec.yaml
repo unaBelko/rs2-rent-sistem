@@ -22,10 +22,8 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^24.1.41
   file_picker: ^8.0.0
   printing: ^5.12.0
-#  flutter_paypal_payment:
-#    git:
-#     url: https://github.com/AbdullahSh-25/flutter_paypal_payment_checkout.git
-#     ref: main
+  flutter_paypal: ^0.2.1
+  flutter_date_pickers: ^0.3.0
   cupertino_icons: ^1.0.6
 
 dev_dependencies:

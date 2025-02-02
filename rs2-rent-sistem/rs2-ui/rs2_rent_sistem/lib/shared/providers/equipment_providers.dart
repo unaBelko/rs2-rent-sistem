@@ -17,7 +17,7 @@ final equipmentListProvider =
   }
 });
 
-final equipmentDetailsProvider =
+final equipmentDetailsForAdminProvider =
     FutureProvider.family<EquipmentDetailsAdmin, int>((ref, id) async {
   final response = await EquipmentService().getEquipmentDetails(id);
 
