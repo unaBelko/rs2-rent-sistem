@@ -1,3 +1,4 @@
+import 'package:rs2_rent_sistem/models/equipment_creation_model/equipment_creation_model.dart';
 import 'package:rs2_rent_sistem/models/equipment_details_admin/equipment_details_admin.dart';
 import 'package:rs2_rent_sistem/models/equipment_list.dart';
 import 'package:rs2_rent_sistem/models/equipment_search_model/equipment_search_model.dart';
@@ -8,7 +9,8 @@ import 'package:rs2_rent_sistem/shared/utilities/extensions/string_extensions.da
 class EquipmentService {
   var dioService = DioService();
 
-  Future<ApiResponse<EquipmentList>> getEquipmentList(EquipmentSearchModel esm) async {
+  Future<ApiResponse<EquipmentList>> getEquipmentList(
+      EquipmentSearchModel esm) async {
     final response = await dioService.get<EquipmentList>(
       Endpoints.equipment,
       fromJson: EquipmentList.fromJson,
@@ -17,17 +19,17 @@ class EquipmentService {
     return response;
   }
 
-  Future<ApiResponse<EquipmentList>> getRecommendedEquipment(
-      int id) async {
+  Future<ApiResponse<EquipmentList>> getRecommendedEquipment(int id) async {
     final response = await dioService.get<EquipmentList>(
       Endpoints.getRecommendedEquipment.replaceString('{1}', id.toString()),
-      fromJson:EquipmentList.fromJson,
+      fromJson: EquipmentList.fromJson,
     );
     return response;
   }
 
   Future<ApiResponse<EquipmentDetailsAdmin>> getEquipmentDetails(int id) async {
-    final response = await dioService.get('${Endpoints.equipment}/$id', fromJson: EquipmentDetailsAdmin.fromJson);
+    final response = await dioService.get('${Endpoints.equipment}/$id',
+        fromJson: EquipmentDetailsAdmin.fromJson);
 
     return response;
   }
@@ -38,6 +40,22 @@ class EquipmentService {
     final endpoint = Endpoints.equipment;
     return DioService().delete(
       '$endpoint/Delete/$id',
+    );
+  }
+
+  static Future<ApiResponse> addEquipment(
+      {required EquipmentCreationModel ecm}) async {
+    return DioService().post(
+      Endpoints.equipment,
+      data: ecm.toJson(),
+    );
+  }
+
+  static Future<ApiResponse> editEquipment(
+      {required EquipmentCreationModel ecm}) async {
+    return DioService().put(
+      Endpoints.equipment,
+      data: ecm.toJson(),
     );
   }
 }

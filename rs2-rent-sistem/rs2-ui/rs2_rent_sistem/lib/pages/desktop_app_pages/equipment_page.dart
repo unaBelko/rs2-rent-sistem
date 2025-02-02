@@ -96,7 +96,7 @@ class EquipmentPage extends ConsumerWidget {
   }
 }
 
-class EquipmentListItem extends StatelessWidget {
+class EquipmentListItem extends ConsumerWidget {
   final EquipmentItemModel.EquipmentListItem item;
 
   const EquipmentListItem({
@@ -105,7 +105,7 @@ class EquipmentListItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -135,11 +135,24 @@ class EquipmentListItem extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const AddOrEditEquipmentPage(),
-                        ),
-                      );
+                      ref
+                          .read(
+                              equipmentDetailsForAdminProvider(item.id).future)
+                          .then((equipmentDetails) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => AddOrEditEquipmentPage(
+                              equipment: equipmentDetails,
+                            ),
+                          ),
+                        );
+                      }).catchError((error) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content:
+                                  Text('Greška pri učitavanju opreme: $error')),
+                        );
+                      });
                     },
                     icon: Icon(
                       Icons.edit,

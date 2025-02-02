@@ -34,7 +34,11 @@ class EquipmentDetailsAdminPage extends ConsumerWidget {
                 ),
                 TextWithLabel(
                   label: 'Proizvodjac',
-                  text: details.manufacturerID.toString(),
+                  text: details.manufacturer,
+                ),
+                TextWithLabel(
+                  label: 'Kategorija',
+                  text: details.equipmentCategory,
                 ),
                 TextWithLabel(
                   label: 'Minimalna kolicina',

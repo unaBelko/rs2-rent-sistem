@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:rs2_rent_sistem/models/equipment_creation_model/equipment_creation_model.dart';
 import 'package:rs2_rent_sistem/models/equipment_details_admin/equipment_details_admin.dart';
 import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart';
 import 'package:rs2_rent_sistem/models/equipment_search_model/equipment_search_model.dart';
@@ -53,3 +54,25 @@ final equipmentFilterProvider =
           name: '',
           sortDescending: true,
         ));
+
+final addEquipmentProvider =
+    FutureProvider.autoDispose.family<void, EquipmentCreationModel>(
+  (ref, ecm) async {
+    final response = await EquipmentService.addEquipment(ecm: ecm);
+
+    if (!response.isSuccess) {
+      throw Exception(response.error);
+    }
+  },
+);
+
+final editEquipmentProvider =
+    FutureProvider.autoDispose.family<void, EquipmentCreationModel>(
+  (ref, ecm) async {
+    final response = await EquipmentService.editEquipment(ecm: ecm);
+
+    if (!response.isSuccess) {
+      throw Exception(response.error);
+    }
+  },
+);
