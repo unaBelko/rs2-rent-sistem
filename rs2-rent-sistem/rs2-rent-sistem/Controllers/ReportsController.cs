@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
@@ -7,6 +8,7 @@ using rs2_rent_sistem.Services.Interfaces;
 
 namespace rs2_rent_sistem.Controllers
 {
+    [Authorize(Roles = "employee")]
     [ApiController]
     [Route("api/[controller]")]
     public class ReportsController : Controller
@@ -26,13 +28,25 @@ namespace rs2_rent_sistem.Controllers
                 return BadRequest(new { Message = "Report type is required." });
             }
 
-            var reportData = await _orderService.GetAll(startDate, endDate, reportType);
+            DateTime defaultStartDate = DateTime.Today.AddMonths(-12);
+            DateTime defaultEndDate = DateTime.Today;
 
-            var pdfDocument = GeneratePdfReport(reportType, reportData, startDate, endDate);
+            DateTime finalStartDate = startDate ?? defaultStartDate;
+            DateTime finalEndDate = endDate ?? defaultEndDate;
+
+            if (finalEndDate < finalStartDate)
+            {
+                return BadRequest(new { Message = "End date cannot be before start date." });
+            }
+
+            var reportData = await _orderService.GetAll(finalStartDate, finalEndDate, reportType);
+
+            var pdfDocument = GeneratePdfReport(reportType, reportData, finalStartDate, finalEndDate);
 
             var pdfBytes = pdfDocument.GeneratePdf();
             return File(pdfBytes, "application/pdf", $"{reportType}_Report.pdf");
         }
+
 
         private Document GeneratePdfReport(string reportType, List<object> reportData, DateTime? startDate, DateTime? endDate)
         {

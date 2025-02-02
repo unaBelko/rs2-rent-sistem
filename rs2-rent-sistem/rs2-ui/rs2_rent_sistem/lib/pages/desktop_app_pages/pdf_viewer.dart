@@ -1,5 +1,7 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:rs2_rent_sistem/shared/utilities/secure_storage_handler.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:printing/printing.dart';
@@ -10,7 +12,8 @@ class PdfViewerWidget extends StatefulWidget {
   final String pdfPathOrUrl;
   final bool isUrl;
 
-  const PdfViewerWidget({super.key, required this.pdfPathOrUrl, this.isUrl = false});
+  const PdfViewerWidget(
+      {super.key, required this.pdfPathOrUrl, this.isUrl = false});
 
   @override
   State<PdfViewerWidget> createState() => _PdfViewerWidgetState();
@@ -29,9 +32,14 @@ class _PdfViewerWidgetState extends State<PdfViewerWidget> {
   }
 
   Future<void> _preparePdf() async {
+    log('token je ${SecureStorageHandler.token}');
+    log('path je ${widget.pdfPathOrUrl}');
     if (widget.isUrl) {
       try {
-        final response = await http.get(Uri.parse(widget.pdfPathOrUrl));
+        final response =
+            await http.get(Uri.parse(widget.pdfPathOrUrl), headers: {
+          "Authorization": "Bearer ${SecureStorageHandler.token}",
+        });
         if (response.statusCode == 200) {
           final tempDir = await getTemporaryDirectory();
           final tempFile = File('${tempDir.path}/temp.pdf');
@@ -117,9 +125,9 @@ class _PdfViewerWidgetState extends State<PdfViewerWidget> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : SfPdfViewer.file(
-        File(_downloadedFilePath!),
-        controller: _pdfViewerController,
-      ),
+              File(_downloadedFilePath!),
+              controller: _pdfViewerController,
+            ),
     );
   }
 }
