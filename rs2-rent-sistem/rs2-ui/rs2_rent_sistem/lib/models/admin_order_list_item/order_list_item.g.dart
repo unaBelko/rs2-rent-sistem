@@ -6,20 +6,29 @@ part of 'order_list_item.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$OrderListItemImpl _$$OrderListItemImplFromJson(Map<String, dynamic> json) =>
-    _$OrderListItemImpl(
+_$AdminOrderListItemModelImpl _$$AdminOrderListItemModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AdminOrderListItemModelImpl(
       id: (json['id'] as num).toInt(),
       datePlaced: DateTime.parse(json['datePlaced'] as String),
       totalPrice: (json['totalPrice'] as num?)?.toDouble() ?? 0.0,
       status: json['status'] as String? ?? '',
-      userNameSurname: json['userNameSurname'] as String? ?? '',
+      firstName: json['firstName'] as String? ?? '',
+      lastName: json['lastName'] as String? ?? '',
+      orderItems: (json['orderItems'] as List<dynamic>?)
+              ?.map((e) => ItemInOrder.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
-Map<String, dynamic> _$$OrderListItemImplToJson(_$OrderListItemImpl instance) =>
+Map<String, dynamic> _$$AdminOrderListItemModelImplToJson(
+        _$AdminOrderListItemModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'datePlaced': instance.datePlaced.toIso8601String(),
       'totalPrice': instance.totalPrice,
       'status': instance.status,
-      'userNameSurname': instance.userNameSurname,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'orderItems': instance.orderItems,
     };

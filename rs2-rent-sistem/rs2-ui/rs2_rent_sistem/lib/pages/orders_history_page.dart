@@ -12,7 +12,7 @@ class OrdersHistoryPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return CommonScaffold(
       title: 'Historija narudzbi',
-      child: ref.watch(ordersListProvider).when(
+      child: ref.watch(ordersListProvider(null)).when(
             data: (items) => Stack(
               children: [
                 SingleChildScrollView(
@@ -63,7 +63,8 @@ class OrderMobileCard extends StatelessWidget {
                         fontSize: 18,
                       ),
                 ),
-                Text('Datum kreiranja: ${orderListItem.datePlaced.formatLocal()}'),
+                Text(
+                    'Datum kreiranja: ${orderListItem.datePlaced.formatLocal()}'),
                 Text(
                   'Ukupna cijena: ${orderListItem.totalPrice}',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(

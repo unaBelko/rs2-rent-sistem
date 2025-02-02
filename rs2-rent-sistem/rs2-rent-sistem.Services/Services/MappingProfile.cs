@@ -26,8 +26,11 @@ namespace rs2_rent_sistem.Services.Services
             CreateMap<Database.Manufacturer, Manufacturer>();
             CreateMap<ManufacturerUpsertObject, Database.Manufacturer>();
 
-            CreateMap<Database.Order, Order>();
+            CreateMap<Database.Order, Order>()
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.User.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.User.LastName));
             CreateMap<Order, Database.Order>();
+
 
             CreateMap<Database.OrderItem, OrderItem>();
             CreateMap<OrderItem, Database.OrderItem>();

@@ -11,12 +11,14 @@ final orderCreationProvider = FutureProvider<ApiResponse>((ref) async {
   return response;
 });
 
-final ordersListProvider = FutureProvider<List<AdminOrderListItemModel>>((ref) async {
-  final response = await OrderService().getOrders();
+final ordersListProvider =
+    FutureProvider.family.autoDispose<List<AdminOrderListItemModel>, int?>(
+        (ref, userId) async {
+  final response = await OrderService().getOrders(userId: userId);
 
   if (response.isSuccess && response.data != null) {
     return response.data!;
   } else {
-    throw Exception(response.error); // Throw an exception if there is an error
+    throw Exception(response.error);
   }
 });

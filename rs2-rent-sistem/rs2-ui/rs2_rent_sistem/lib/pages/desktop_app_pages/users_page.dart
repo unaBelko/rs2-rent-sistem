@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/user/user.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/user_details.page.dart';
+import 'package:rs2_rent_sistem/shared/providers/order_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/user_providers.dart';
 import 'package:rs2_rent_sistem/shared/widgets/confirmation_modal.dart';
 
@@ -37,7 +38,8 @@ class _UsersPageState extends ConsumerState<UsersPage> {
           ),
           ref.watch(usersListProvider).when(
                 data: (items) => Column(
-                  children: items.map((item) => UserListItem(user: item)).toList(),
+                  children:
+                      items.map((item) => UserListItem(user: item)).toList(),
                 ),
                 error: (err, st) => Text('Error: $err'),
                 loading: () => const Center(
@@ -50,7 +52,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
   }
 }
 
-class UserListItem extends StatelessWidget {
+class UserListItem extends ConsumerWidget {
   final User user;
 
   const UserListItem({
@@ -59,7 +61,7 @@ class UserListItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -97,7 +99,9 @@ class UserListItem extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => UserDetailsPage(user.id)));
+                      ref.invalidate(ordersListProvider);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => UserDetailsPage(user.id)));
                     },
                     icon: Icon(
                       Icons.info,
@@ -110,7 +114,8 @@ class UserListItem extends StatelessWidget {
                           context: context,
                           builder: (context) => ConfirmationModal(
                                 title: 'Deaktivacija korisnika',
-                                content: "Da li ste sigurni da zelite deaktivirati ovog korisnika?",
+                                content:
+                                    "Da li ste sigurni da zelite deaktivirati ovog korisnika?",
                                 buttonText: "Deaktiviraj",
                                 onConfirm: () {
                                   log("deaktiviran");

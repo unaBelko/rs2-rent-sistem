@@ -64,7 +64,7 @@ class OrderHistoryItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      orderItem.equipment.itemName,
+                      orderItem.equipment!.itemName,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 15,
@@ -84,7 +84,7 @@ class OrderHistoryItemWidget extends StatelessWidget {
                 CachedNetworkImage(
                   height: 70,
                   width: 70,
-                  imageUrl: orderItem.equipment.imageUrl,
+                  imageUrl: orderItem.equipment!.imageUrl,
                   errorWidget: (_, __, ___) => Icon(Icons.warning_rounded),
                 ),
               ],

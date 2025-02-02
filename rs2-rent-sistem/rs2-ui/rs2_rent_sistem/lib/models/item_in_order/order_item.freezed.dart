@@ -26,7 +26,7 @@ mixin _$ItemInOrder {
   int get quantity => throw _privateConstructorUsedError;
   double get costPerUse => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
-  EquipmentListItem get equipment => throw _privateConstructorUsedError;
+  EquipmentListItem? get equipment => throw _privateConstructorUsedError;
 
   /// Serializes this ItemInOrder to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,9 +51,9 @@ abstract class $ItemInOrderCopyWith<$Res> {
       int quantity,
       double costPerUse,
       double price,
-      EquipmentListItem equipment});
+      EquipmentListItem? equipment});
 
-  $EquipmentListItemCopyWith<$Res> get equipment;
+  $EquipmentListItemCopyWith<$Res>? get equipment;
 }
 
 /// @nodoc
@@ -77,7 +77,7 @@ class _$ItemInOrderCopyWithImpl<$Res, $Val extends ItemInOrder>
     Object? quantity = null,
     Object? costPerUse = null,
     Object? price = null,
-    Object? equipment = null,
+    Object? equipment = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -104,10 +104,10 @@ class _$ItemInOrderCopyWithImpl<$Res, $Val extends ItemInOrder>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      equipment: null == equipment
+      equipment: freezed == equipment
           ? _value.equipment
           : equipment // ignore: cast_nullable_to_non_nullable
-              as EquipmentListItem,
+              as EquipmentListItem?,
     ) as $Val);
   }
 
@@ -115,8 +115,12 @@ class _$ItemInOrderCopyWithImpl<$Res, $Val extends ItemInOrder>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $EquipmentListItemCopyWith<$Res> get equipment {
-    return $EquipmentListItemCopyWith<$Res>(_value.equipment, (value) {
+  $EquipmentListItemCopyWith<$Res>? get equipment {
+    if (_value.equipment == null) {
+      return null;
+    }
+
+    return $EquipmentListItemCopyWith<$Res>(_value.equipment!, (value) {
       return _then(_value.copyWith(equipment: value) as $Val);
     });
   }
@@ -137,10 +141,10 @@ abstract class _$$OrderItemImplCopyWith<$Res>
       int quantity,
       double costPerUse,
       double price,
-      EquipmentListItem equipment});
+      EquipmentListItem? equipment});
 
   @override
-  $EquipmentListItemCopyWith<$Res> get equipment;
+  $EquipmentListItemCopyWith<$Res>? get equipment;
 }
 
 /// @nodoc
@@ -162,7 +166,7 @@ class __$$OrderItemImplCopyWithImpl<$Res>
     Object? quantity = null,
     Object? costPerUse = null,
     Object? price = null,
-    Object? equipment = null,
+    Object? equipment = freezed,
   }) {
     return _then(_$OrderItemImpl(
       id: null == id
@@ -189,10 +193,10 @@ class __$$OrderItemImplCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      equipment: null == equipment
+      equipment: freezed == equipment
           ? _value.equipment
           : equipment // ignore: cast_nullable_to_non_nullable
-              as EquipmentListItem,
+              as EquipmentListItem?,
     ));
   }
 }
@@ -207,7 +211,7 @@ class _$OrderItemImpl implements _OrderItem {
       this.quantity = 0,
       this.costPerUse = 0,
       this.price = 0,
-      required this.equipment});
+      this.equipment});
 
   factory _$OrderItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderItemImplFromJson(json);
@@ -228,7 +232,7 @@ class _$OrderItemImpl implements _OrderItem {
   @JsonKey()
   final double price;
   @override
-  final EquipmentListItem equipment;
+  final EquipmentListItem? equipment;
 
   @override
   String toString() {
@@ -282,7 +286,7 @@ abstract class _OrderItem implements ItemInOrder {
       final int quantity,
       final double costPerUse,
       final double price,
-      required final EquipmentListItem equipment}) = _$OrderItemImpl;
+      final EquipmentListItem? equipment}) = _$OrderItemImpl;
 
   factory _OrderItem.fromJson(Map<String, dynamic> json) =
       _$OrderItemImpl.fromJson;
@@ -300,7 +304,7 @@ abstract class _OrderItem implements ItemInOrder {
   @override
   double get price;
   @override
-  EquipmentListItem get equipment;
+  EquipmentListItem? get equipment;
 
   /// Create a copy of ItemInOrder
   /// with the given fields replaced by the non-null parameter values.

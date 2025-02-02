@@ -14,8 +14,10 @@ _$OrderItemImpl _$$OrderItemImplFromJson(Map<String, dynamic> json) =>
       quantity: (json['quantity'] as num?)?.toInt() ?? 0,
       costPerUse: (json['costPerUse'] as num?)?.toDouble() ?? 0,
       price: (json['price'] as num?)?.toDouble() ?? 0,
-      equipment:
-          EquipmentListItem.fromJson(json['equipment'] as Map<String, dynamic>),
+      equipment: json['equipment'] == null
+          ? null
+          : EquipmentListItem.fromJson(
+              json['equipment'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$OrderItemImplToJson(_$OrderItemImpl instance) =>

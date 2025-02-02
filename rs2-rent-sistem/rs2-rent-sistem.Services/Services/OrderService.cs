@@ -117,6 +117,11 @@ namespace rs2_rent_sistem.Services.Services
 
         public override async Task<PageResult<Order>> Get(OrderSearchObject? search = null)
         {
+            if (search == null)
+            {
+                return new PageResult<Order>();
+            }
+
             var user = await _context.Users
                 .Include(u => u.UserRoles)
                 .ThenInclude(r => r.Role)
@@ -126,37 +131,44 @@ namespace rs2_rent_sistem.Services.Services
             {
                 return new PageResult<Order>();
             }
+
+            var query = _context.Set<Database.Order>()
+                .Include(o => o.User)
+                .Include(o => o.OrderItems)
+                .AsQueryable();
+
+            var userIsEmployee = user.UserRoles.Any(ur => ur.Role.Name == "employee");
+
+            if (userIsEmployee)
+            {
+                if (search.SearchForUserId.HasValue && search.SearchForUserId != 0)
+                {
+                    query = query.Where(o => o.UserID == search.SearchForUserId);
+                }
+            }
             else
             {
-                var query = _context.Set<Database.Order>().AsQueryable();
-
-                var userIsEmployee = user.UserRoles.Any(ur => ur.Role.Name == "employee");
-                if (!userIsEmployee)
-                {
-                    query = query.Where(o => o.UserID == search.UserId);
-                }
-
-                PageResult<Order> result = new PageResult<Order>();
-
-                query = AddFilter(query, search);
-
-                query = AddInclude(query, search);
-
-                result.Count = await query.CountAsync();
-
-                if (search?.Page.HasValue == true && search?.PageSize.HasValue == true)
-                {
-                    query = query.Skip(search.Page.Value * search.PageSize.Value)
-                                 .Take(search.PageSize.Value);
-                }
-
-                var list = await query.ToListAsync();
-
-                var tmp = _mapper.Map<List<Order>>(list);
-                result.Result = tmp;
-
-                return result;
+                query = query.Where(o => o.UserID == search.UserId);
             }
+
+            PageResult<Order> result = new();
+
+            query = AddFilter(query, search);
+            query = AddInclude(query, search);
+
+            result.Count = await query.CountAsync();
+
+            if (search.Page.HasValue && search.PageSize.HasValue)
+            {
+                query = query.Skip(search.Page.Value * search.PageSize.Value)
+                             .Take(search.PageSize.Value);
+            }
+
+            var list = await query.ToListAsync();
+            var tmp = _mapper.Map<List<Order>>(list);
+            result.Result = tmp;
+
+            return result;
         }
 
         public async Task<Order> CreateOrder(int userId)

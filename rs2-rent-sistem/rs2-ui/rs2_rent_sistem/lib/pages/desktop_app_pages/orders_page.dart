@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/admin_order_list_item/order_list_item.dart';
 import 'package:rs2_rent_sistem/shared/providers/order_providers.dart';
+import 'package:rs2_rent_sistem/shared/utilities/extensions/date_extensions.dart';
 
 class OrdersPage extends ConsumerWidget {
   const OrdersPage({super.key});
@@ -40,7 +41,7 @@ class OrdersPage extends ConsumerWidget {
             ],
           ),
         ),
-        ref.watch(ordersListProvider).when(
+        ref.watch(ordersListProvider(null)).when(
               data: (data) => SingleChildScrollView(
                 child: Column(
                   children: data
@@ -82,11 +83,11 @@ class AdminOrderItemWidget extends StatelessWidget {
             ),
             Expanded(
               flex: 1,
-              child: Text(item.userNameSurname),
+              child: Text('${item.firstName} ${item.lastName}'),
             ),
             Expanded(
               flex: 2,
-              child: Text(item.datePlaced.toString()),
+              child: Text(item.datePlaced.formatLocal()),
             ),
             Expanded(
               flex: 1,

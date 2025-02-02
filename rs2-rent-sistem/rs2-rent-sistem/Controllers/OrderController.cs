@@ -29,10 +29,8 @@ namespace rs2_rent_sistem.Controllers
             var userId = User.FindFirstValue(ClaimTypes.Name);
             if (userId != null)
             {
-                var orders = await _orderService.Get(new OrderSearchObject()
-                {
-                    UserId = int.Parse(userId),
-                });
+                search.UserId = int.Parse(userId);
+                var orders = await _orderService.Get(search);
                 return orders;
             }
             else

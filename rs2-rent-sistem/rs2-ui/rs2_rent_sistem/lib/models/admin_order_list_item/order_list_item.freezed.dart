@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 AdminOrderListItemModel _$AdminOrderListItemModelFromJson(
     Map<String, dynamic> json) {
-  return _OrderListItem.fromJson(json);
+  return _AdminOrderListItemModel.fromJson(json);
 }
 
 /// @nodoc
@@ -25,7 +25,9 @@ mixin _$AdminOrderListItemModel {
   DateTime get datePlaced => throw _privateConstructorUsedError;
   double get totalPrice => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
-  String get userNameSurname => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
+  List<ItemInOrder> get orderItems => throw _privateConstructorUsedError;
 
   /// Serializes this AdminOrderListItemModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +50,9 @@ abstract class $AdminOrderListItemModelCopyWith<$Res> {
       DateTime datePlaced,
       double totalPrice,
       String status,
-      String userNameSurname});
+      String firstName,
+      String lastName,
+      List<ItemInOrder> orderItems});
 }
 
 /// @nodoc
@@ -71,7 +75,9 @@ class _$AdminOrderListItemModelCopyWithImpl<$Res,
     Object? datePlaced = null,
     Object? totalPrice = null,
     Object? status = null,
-    Object? userNameSurname = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? orderItems = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -90,20 +96,29 @@ class _$AdminOrderListItemModelCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      userNameSurname: null == userNameSurname
-          ? _value.userNameSurname
-          : userNameSurname // ignore: cast_nullable_to_non_nullable
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderItems: null == orderItems
+          ? _value.orderItems
+          : orderItems // ignore: cast_nullable_to_non_nullable
+              as List<ItemInOrder>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$OrderListItemImplCopyWith<$Res>
+abstract class _$$AdminOrderListItemModelImplCopyWith<$Res>
     implements $AdminOrderListItemModelCopyWith<$Res> {
-  factory _$$OrderListItemImplCopyWith(
-          _$OrderListItemImpl value, $Res Function(_$OrderListItemImpl) then) =
-      __$$OrderListItemImplCopyWithImpl<$Res>;
+  factory _$$AdminOrderListItemModelImplCopyWith(
+          _$AdminOrderListItemModelImpl value,
+          $Res Function(_$AdminOrderListItemModelImpl) then) =
+      __$$AdminOrderListItemModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -111,15 +126,19 @@ abstract class _$$OrderListItemImplCopyWith<$Res>
       DateTime datePlaced,
       double totalPrice,
       String status,
-      String userNameSurname});
+      String firstName,
+      String lastName,
+      List<ItemInOrder> orderItems});
 }
 
 /// @nodoc
-class __$$OrderListItemImplCopyWithImpl<$Res>
-    extends _$AdminOrderListItemModelCopyWithImpl<$Res, _$OrderListItemImpl>
-    implements _$$OrderListItemImplCopyWith<$Res> {
-  __$$OrderListItemImplCopyWithImpl(
-      _$OrderListItemImpl _value, $Res Function(_$OrderListItemImpl) _then)
+class __$$AdminOrderListItemModelImplCopyWithImpl<$Res>
+    extends _$AdminOrderListItemModelCopyWithImpl<$Res,
+        _$AdminOrderListItemModelImpl>
+    implements _$$AdminOrderListItemModelImplCopyWith<$Res> {
+  __$$AdminOrderListItemModelImplCopyWithImpl(
+      _$AdminOrderListItemModelImpl _value,
+      $Res Function(_$AdminOrderListItemModelImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AdminOrderListItemModel
@@ -131,9 +150,11 @@ class __$$OrderListItemImplCopyWithImpl<$Res>
     Object? datePlaced = null,
     Object? totalPrice = null,
     Object? status = null,
-    Object? userNameSurname = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? orderItems = null,
   }) {
-    return _then(_$OrderListItemImpl(
+    return _then(_$AdminOrderListItemModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -150,26 +171,37 @@ class __$$OrderListItemImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      userNameSurname: null == userNameSurname
-          ? _value.userNameSurname
-          : userNameSurname // ignore: cast_nullable_to_non_nullable
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderItems: null == orderItems
+          ? _value._orderItems
+          : orderItems // ignore: cast_nullable_to_non_nullable
+              as List<ItemInOrder>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$OrderListItemImpl implements _OrderListItem {
-  const _$OrderListItemImpl(
+class _$AdminOrderListItemModelImpl implements _AdminOrderListItemModel {
+  const _$AdminOrderListItemModelImpl(
       {required this.id,
       required this.datePlaced,
       this.totalPrice = 0.0,
       this.status = '',
-      this.userNameSurname = ''});
+      this.firstName = '',
+      this.lastName = '',
+      final List<ItemInOrder> orderItems = const []})
+      : _orderItems = orderItems;
 
-  factory _$OrderListItemImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OrderListItemImplFromJson(json);
+  factory _$AdminOrderListItemModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AdminOrderListItemModelImplFromJson(json);
 
   @override
   final int id;
@@ -183,59 +215,84 @@ class _$OrderListItemImpl implements _OrderListItem {
   final String status;
   @override
   @JsonKey()
-  final String userNameSurname;
+  final String firstName;
+  @override
+  @JsonKey()
+  final String lastName;
+  final List<ItemInOrder> _orderItems;
+  @override
+  @JsonKey()
+  List<ItemInOrder> get orderItems {
+    if (_orderItems is EqualUnmodifiableListView) return _orderItems;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_orderItems);
+  }
 
   @override
   String toString() {
-    return 'AdminOrderListItemModel(id: $id, datePlaced: $datePlaced, totalPrice: $totalPrice, status: $status, userNameSurname: $userNameSurname)';
+    return 'AdminOrderListItemModel(id: $id, datePlaced: $datePlaced, totalPrice: $totalPrice, status: $status, firstName: $firstName, lastName: $lastName, orderItems: $orderItems)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OrderListItemImpl &&
+            other is _$AdminOrderListItemModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.datePlaced, datePlaced) ||
                 other.datePlaced == datePlaced) &&
             (identical(other.totalPrice, totalPrice) ||
                 other.totalPrice == totalPrice) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.userNameSurname, userNameSurname) ||
-                other.userNameSurname == userNameSurname));
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            const DeepCollectionEquality()
+                .equals(other._orderItems, _orderItems));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, datePlaced, totalPrice, status, userNameSurname);
+      runtimeType,
+      id,
+      datePlaced,
+      totalPrice,
+      status,
+      firstName,
+      lastName,
+      const DeepCollectionEquality().hash(_orderItems));
 
   /// Create a copy of AdminOrderListItemModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$OrderListItemImplCopyWith<_$OrderListItemImpl> get copyWith =>
-      __$$OrderListItemImplCopyWithImpl<_$OrderListItemImpl>(this, _$identity);
+  _$$AdminOrderListItemModelImplCopyWith<_$AdminOrderListItemModelImpl>
+      get copyWith => __$$AdminOrderListItemModelImplCopyWithImpl<
+          _$AdminOrderListItemModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$OrderListItemImplToJson(
+    return _$$AdminOrderListItemModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _OrderListItem implements AdminOrderListItemModel {
-  const factory _OrderListItem(
+abstract class _AdminOrderListItemModel implements AdminOrderListItemModel {
+  const factory _AdminOrderListItemModel(
       {required final int id,
       required final DateTime datePlaced,
       final double totalPrice,
       final String status,
-      final String userNameSurname}) = _$OrderListItemImpl;
+      final String firstName,
+      final String lastName,
+      final List<ItemInOrder> orderItems}) = _$AdminOrderListItemModelImpl;
 
-  factory _OrderListItem.fromJson(Map<String, dynamic> json) =
-      _$OrderListItemImpl.fromJson;
+  factory _AdminOrderListItemModel.fromJson(Map<String, dynamic> json) =
+      _$AdminOrderListItemModelImpl.fromJson;
 
   @override
   int get id;
@@ -246,12 +303,16 @@ abstract class _OrderListItem implements AdminOrderListItemModel {
   @override
   String get status;
   @override
-  String get userNameSurname;
+  String get firstName;
+  @override
+  String get lastName;
+  @override
+  List<ItemInOrder> get orderItems;
 
   /// Create a copy of AdminOrderListItemModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OrderListItemImplCopyWith<_$OrderListItemImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AdminOrderListItemModelImplCopyWith<_$AdminOrderListItemModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

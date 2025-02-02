@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:rs2_rent_sistem/models/admin_order_list_item/order_list_item.dart';
 import 'package:rs2_rent_sistem/models/review_for_admin.dart';
-import 'package:rs2_rent_sistem/models/user_order_list_item/user_order_list_item.dart';
+import 'package:rs2_rent_sistem/shared/providers/order_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/user_providers.dart';
+import 'package:rs2_rent_sistem/shared/utilities/extensions/date_extensions.dart';
 import 'package:rs2_rent_sistem/shared/widgets/common_scaffold.dart';
 import 'package:rs2_rent_sistem/shared/widgets/confirmation_modal.dart';
 
@@ -14,7 +16,8 @@ class UserDetailsPage extends ConsumerStatefulWidget {
   const UserDetailsPage(this.userId, {super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _UserDetailsPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _UserDetailsPageState();
 }
 
 class _UserDetailsPageState extends ConsumerState<UserDetailsPage> {
@@ -55,7 +58,8 @@ class _UserDetailsPageState extends ConsumerState<UserDetailsPage> {
                                       context: context,
                                       builder: (context) => ConfirmationModal(
                                             title: 'Deaktivacija korisnika',
-                                            content: "Da li ste sigurni da zelite deaktivirati ovog korisnika?",
+                                            content:
+                                                "Da li ste sigurni da zelite deaktivirati ovog korisnika?",
                                             buttonText: "Deaktiviraj",
                                             onConfirm: () {
                                               log("deaktiviran");
@@ -161,15 +165,21 @@ class _UserDetailsPageState extends ConsumerState<UserDetailsPage> {
                                     ],
                                   ),
                                 ),
-                                UserOrderListItemWidget(
-                                  item: UserOrderListItem(
-                                    id: '0',
-                                    dateOfCreation: DateTime.now().toString(),
-                                    price: 200,
-                                    numberOfItems: 10,
-                                    status: "placeno",
-                                  ),
-                                ),
+                                ref.watch(ordersListProvider(widget.userId))
+                                    .when(
+                                      data: (data) => Column(
+                                        children: data
+                                            .map((el) =>
+                                                UserOrderListItemWidget(
+                                                    item: el))
+                                            .toList(),
+                                      ),
+                                      error: (e, st) =>
+                                          Text('Narudzbe nisu ucitane'),
+                                      loading: () => Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    ),
                               ],
                             )
                           : Column(
@@ -287,7 +297,7 @@ class UserTabButton extends StatelessWidget {
 }
 
 class UserOrderListItemWidget extends StatelessWidget {
-  final UserOrderListItem item;
+  final AdminOrderListItemModel item;
 
   const UserOrderListItemWidget({super.key, required this.item});
 
@@ -304,24 +314,24 @@ class UserOrderListItemWidget extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Text(
-                item.id,
+                item.id.toString(),
               ),
             ),
             Expanded(
                 flex: 3,
                 child: Text(
-                  item.dateOfCreation,
+                  item.datePlaced.formatLocal(),
                 )),
             Expanded(
               flex: 1,
               child: Text(
-                item.numberOfItems.toString(),
+                item.orderItems.length.toString(),
               ),
             ),
             Expanded(
               flex: 1,
               child: Text(
-                item.price.toString(),
+                item.totalPrice.toString(),
               ),
             ),
             Expanded(

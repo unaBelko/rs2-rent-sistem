@@ -13,7 +13,7 @@ class ItemInOrder with _$ItemInOrder {
     @Default(0) int quantity,
     @Default(0) double costPerUse,
     @Default(0) double price,
-    required EquipmentListItem equipment,
+    EquipmentListItem? equipment,
   }) = _OrderItem;
 
   factory ItemInOrder.fromJson(Map<String, dynamic> json) => _$ItemInOrderFromJson(json);
