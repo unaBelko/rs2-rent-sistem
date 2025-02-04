@@ -16,7 +16,7 @@ namespace rs2_rent_sistem.Services.Data
             SeedEquipment(modelBuilder);
             SeedOrders(modelBuilder);
             SeedOrderItems(modelBuilder);
-            //SeedReviews(modelBuilder);
+            SeedReviews(modelBuilder);
             SeedCarts(modelBuilder);
             SeedCartItems(modelBuilder);
         }
@@ -199,32 +199,32 @@ namespace rs2_rent_sistem.Services.Data
         private static void SeedEquipmentCategory(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EquipmentCategory>().HasData(
-                new EquipmentCategory { ID = 1, Name = "Football", Description = "Equipment for football and soccer" },
-                new EquipmentCategory { ID = 2, Name = "Basketball", Description = "Basketball equipment and accessories" },
-                new EquipmentCategory { ID = 3, Name = "Tennis", Description = "Tennis rackets and gear" },
-                new EquipmentCategory { ID = 4, Name = "Baseball", Description = "Baseball bats, gloves, and equipment" },
-                new EquipmentCategory { ID = 5, Name = "Cycling", Description = "Bikes and cycling gear" },
-                new EquipmentCategory { ID = 6, Name = "Running", Description = "Running shoes and accessories" },
-                new EquipmentCategory { ID = 7, Name = "Swimming", Description = "Swimming gear and equipment" },
-                new EquipmentCategory { ID = 8, Name = "Golf", Description = "Golf clubs and accessories" },
-                new EquipmentCategory { ID = 9, Name = "Boxing", Description = "Boxing gloves and equipment" },
-                new EquipmentCategory { ID = 10, Name = "Fitness", Description = "Fitness and gym equipment" }
+                new EquipmentCategory { ID = 1, Name = "Football", Description = "Equipment for football and soccer" , IsDeleted = false},
+                new EquipmentCategory { ID = 2, Name = "Basketball", Description = "Basketball equipment and accessories", IsDeleted = false },
+                new EquipmentCategory { ID = 3, Name = "Tennis", Description = "Tennis rackets and gear", IsDeleted = false },
+                new EquipmentCategory { ID = 4, Name = "Baseball", Description = "Baseball bats, gloves, and equipment", IsDeleted = false },
+                new EquipmentCategory { ID = 5, Name = "Cycling", Description = "Bikes and cycling gear", IsDeleted = false },
+                new EquipmentCategory { ID = 6, Name = "Running", Description = "Running shoes and accessories", IsDeleted = false },
+                new EquipmentCategory { ID = 7, Name = "Swimming", Description = "Swimming gear and equipment", IsDeleted = false },
+                new EquipmentCategory { ID = 8, Name = "Golf", Description = "Golf clubs and accessories", IsDeleted = false },
+                new EquipmentCategory { ID = 9, Name = "Boxing", Description = "Boxing gloves and equipment", IsDeleted = false },
+                new EquipmentCategory { ID = 10, Name = "Fitness", Description = "Fitness and gym equipment", IsDeleted = false }
             );
         }
 
         private static void SeedManufacturer(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Manufacturer>().HasData(
-                new Manufacturer { ID = 1, Name = "Nike", Description = "Sportswear and equipment manufacturer" },
-                new Manufacturer { ID = 2, Name = "Adidas", Description = "Global sports equipment manufacturer" },
-                new Manufacturer { ID = 3, Name = "Puma", Description = "Sporting goods and apparel manufacturer" },
-                new Manufacturer { ID = 4, Name = "Under Armour", Description = "Performance apparel and gear" },
-                new Manufacturer { ID = 5, Name = "Reebok", Description = "Footwear and sports equipment" },
-                new Manufacturer { ID = 6, Name = "Wilson", Description = "Sports equipment, especially in tennis" },
-                new Manufacturer { ID = 7, Name = "Spalding", Description = "Basketball and sporting goods manufacturer" },
-                new Manufacturer { ID = 8, Name = "Yonex", Description = "Badminton and tennis equipment manufacturer" },
-                new Manufacturer { ID = 9, Name = "Callaway", Description = "Golf equipment and accessories" },
-                new Manufacturer { ID = 10, Name = "Everlast", Description = "Boxing equipment and apparel manufacturer" }
+                new Manufacturer { ID = 1, Name = "Nike", Description = "Sportswear and equipment manufacturer", IsDeleted = false },
+                new Manufacturer { ID = 2, Name = "Adidas", Description = "Global sports equipment manufacturer", IsDeleted = false },
+                new Manufacturer { ID = 3, Name = "Puma", Description = "Sporting goods and apparel manufacturer", IsDeleted = false },
+                new Manufacturer { ID = 4, Name = "Under Armour", Description = "Performance apparel and gear", IsDeleted = false },
+                new Manufacturer { ID = 5, Name = "Reebok", Description = "Footwear and sports equipment", IsDeleted = false },
+                new Manufacturer { ID = 6, Name = "Wilson", Description = "Sports equipment, especially in tennis", IsDeleted = false },
+                new Manufacturer { ID = 7, Name = "Spalding", Description = "Basketball and sporting goods manufacturer", IsDeleted = false },
+                new Manufacturer { ID = 8, Name = "Yonex", Description = "Badminton and tennis equipment manufacturer", IsDeleted = false },
+                new Manufacturer { ID = 9, Name = "Callaway", Description = "Golf equipment and accessories", IsDeleted = false },
+                new Manufacturer { ID = 10, Name = "Everlast", Description = "Boxing equipment and apparel manufacturer", IsDeleted = false }
             );
         }
 
@@ -263,16 +263,16 @@ namespace rs2_rent_sistem.Services.Data
         private static void SeedOrders(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Order>().HasData(
-                new Order { ID = 1, UserID = 3, DatePlaced = DateTime.Now.AddDays(-10), TotalPrice = 59.94m, IsActive = true },
-                new Order { ID = 2, UserID = 4, DatePlaced = DateTime.Now.AddDays(-8), TotalPrice = 89.85m, IsActive = true },
-                new Order { ID = 3, UserID = 4, DatePlaced = DateTime.Now.AddDays(-5), TotalPrice = 29.97m, IsActive = true },
-                new Order { ID = 4, UserID = 5, DatePlaced = DateTime.Now.AddDays(-7), TotalPrice = 19.98m, IsActive = true },
-                new Order { ID = 5, UserID = 5, DatePlaced = DateTime.Now.AddDays(-4), TotalPrice = 99.90m, IsActive = true },
-                new Order { ID = 6, UserID = 6, DatePlaced = DateTime.Now.AddDays(-3), TotalPrice = 49.95m, IsActive = true },
-                new Order { ID = 7, UserID = 7, DatePlaced = DateTime.Now.AddDays(-2), TotalPrice = 69.93m, IsActive = true },
-                new Order { ID = 8, UserID = 8, DatePlaced = DateTime.Now.AddDays(-1), TotalPrice = 39.96m, IsActive = true },
-                new Order { ID = 9, UserID = 9, DatePlaced = DateTime.Now.AddDays(-6), TotalPrice = 149.85m, IsActive = true },
-                new Order { ID = 10, UserID = 10, DatePlaced = DateTime.Now.AddDays(-9), TotalPrice = 29.97m, IsActive = true }
+                new Order { ID = 1, UserID = 3, DatePlaced = DateTime.Now.AddDays(-10), TotalPrice = 59.94m, IsActive = true, Status = "returned" },
+                new Order { ID = 2, UserID = 4, DatePlaced = DateTime.Now.AddDays(-8), TotalPrice = 89.85m, IsActive = true, Status = "paid" },
+                new Order { ID = 3, UserID = 4, DatePlaced = DateTime.Now.AddDays(-5), TotalPrice = 29.97m, IsActive = true, Status = "rented" },
+                new Order { ID = 4, UserID = 5, DatePlaced = DateTime.Now.AddDays(-7), TotalPrice = 19.98m, IsActive = true , Status = "rented" },
+                new Order { ID = 5, UserID = 5, DatePlaced = DateTime.Now.AddDays(-4), TotalPrice = 99.90m, IsActive = true , Status = "returned" },
+                new Order { ID = 6, UserID = 6, DatePlaced = DateTime.Now.AddDays(-3), TotalPrice = 49.95m, IsActive = true , Status = "rented" },
+                new Order { ID = 7, UserID = 7, DatePlaced = DateTime.Now.AddDays(-2), TotalPrice = 69.93m, IsActive = true , Status = "returned" },
+                new Order { ID = 8, UserID = 8, DatePlaced = DateTime.Now.AddDays(-1), TotalPrice = 39.96m, IsActive = true , Status = "paid" },
+                new Order { ID = 9, UserID = 9, DatePlaced = DateTime.Now.AddDays(-6), TotalPrice = 149.85m, IsActive = true , Status = "returned" },
+                new Order { ID = 10, UserID = 10, DatePlaced = DateTime.Now.AddDays(-9), TotalPrice = 29.97m, IsActive = true , Status = "returned" }
             );
         }
 
@@ -301,16 +301,16 @@ namespace rs2_rent_sistem.Services.Data
         {
             var reviews = new List<Review>
             {
-                new Review { ID = 1, DateAdded = DateTime.Now.AddDays(-9), Description = "Great quality and very durable!", NumberOfStars = 4.5m, AddedByUserID = 3, OrderItemID = 1, IsDeleted = false },
-                new Review { ID = 2, DateAdded = DateTime.Now.AddDays(-8), Description = "Not as expected, could be better.", NumberOfStars = 2.0m, AddedByUserID = 4, OrderItemID = 2, IsDeleted = false },
-                new Review { ID = 3, DateAdded = DateTime.Now.AddDays(-7), Description = "Perfect for my needs, highly recommended!", NumberOfStars = 5.0m, AddedByUserID = 5, OrderItemID = 3, IsDeleted = false },
-                new Review { ID = 4, DateAdded = DateTime.Now.AddDays(-6), Description = "Good value for the price.", NumberOfStars = 4.0m, AddedByUserID = 6, OrderItemID = 4, IsDeleted = false },
-                new Review { ID = 5, DateAdded = DateTime.Now.AddDays(-5), Description = "Satisfactory but delivery was delayed.", NumberOfStars = 3.0m, AddedByUserID = 7, OrderItemID = 5, IsDeleted = false },
-                new Review { ID = 6, DateAdded = DateTime.Now.AddDays(-4), Description = "Excellent performance and quality.", NumberOfStars = 5.0m, AddedByUserID = 8, OrderItemID = 6, IsDeleted = false },
-                new Review { ID = 7, DateAdded = DateTime.Now.AddDays(-3), Description = "Decent product but could use some improvements.", NumberOfStars = 3.5m, AddedByUserID = 9, OrderItemID = 7, IsDeleted = false },
-                new Review { ID = 8, DateAdded = DateTime.Now.AddDays(-2), Description = "Very satisfied with the purchase.", NumberOfStars = 4.5m, AddedByUserID = 10, OrderItemID = 8, IsDeleted = false },
-                new Review { ID = 9, DateAdded = DateTime.Now.AddDays(-1), Description = "The item was okay, nothing special.", NumberOfStars = 3.0m, AddedByUserID = 3, OrderItemID = 9, IsDeleted = false },
-                new Review { ID = 10, DateAdded = DateTime.Now, Description = "Amazing product! Will buy again.", NumberOfStars = 5.0m, AddedByUserID = 4, OrderItemID = 10, IsDeleted = false }
+                new Review { ID = 1, DateAdded = DateTime.Now.AddDays(-9), Description = "Great quality and very durable!", NumberOfStars = 4.5m, OrderItemID = 1, IsDeleted = false },
+                new Review { ID = 2, DateAdded = DateTime.Now.AddDays(-8), Description = "Not as expected, could be better.", NumberOfStars = 2.0m, OrderItemID = 2, IsDeleted = false },
+                new Review { ID = 3, DateAdded = DateTime.Now.AddDays(-7), Description = "Perfect for my needs, highly recommended!", NumberOfStars = 5.0m, OrderItemID = 3, IsDeleted = false },
+                new Review { ID = 4, DateAdded = DateTime.Now.AddDays(-6), Description = "Good value for the price.", NumberOfStars = 4.0m, OrderItemID = 4, IsDeleted = false },
+                new Review { ID = 5, DateAdded = DateTime.Now.AddDays(-5), Description = "Satisfactory but delivery was delayed.", NumberOfStars = 3.0m, OrderItemID = 5, IsDeleted = false },
+                new Review { ID = 6, DateAdded = DateTime.Now.AddDays(-4), Description = "Excellent performance and quality.", NumberOfStars = 5.0m, OrderItemID = 6, IsDeleted = false },
+                new Review { ID = 7, DateAdded = DateTime.Now.AddDays(-3), Description = "Decent product but could use some improvements.", NumberOfStars = 3.5m, OrderItemID = 7, IsDeleted = false },
+                new Review { ID = 8, DateAdded = DateTime.Now.AddDays(-2), Description = "Very satisfied with the purchase.", NumberOfStars = 4.5m, OrderItemID = 8, IsDeleted = false },
+                new Review { ID = 9, DateAdded = DateTime.Now.AddDays(-1), Description = "The item was okay, nothing special.", NumberOfStars = 3.0m, OrderItemID = 9, IsDeleted = false },
+                new Review { ID = 10, DateAdded = DateTime.Now, Description = "Amazing product! Will buy again.", NumberOfStars = 5.0m, OrderItemID = 10, IsDeleted = false }
             };
             modelBuilder.Entity<Review>().HasData(reviews);
         }

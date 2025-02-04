@@ -84,7 +84,7 @@ namespace rs2_rent_sistem_api.Controllers
             try
             {
                 await _cartService.EmptyCart(id);
-                return Ok("Cart has been emptied successfully.");
+                return Ok("Carts has been emptied successfully.");
             }
             catch (Exception ex)
             {

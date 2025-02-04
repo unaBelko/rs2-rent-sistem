@@ -1,4 +1,7 @@
-﻿namespace rs2_rent_sistem.Services.Database;
+﻿using System;
+using System.Collections.Generic;
+
+namespace rs2_rent_sistem.Services.Database;
 
 public partial class Role
 {

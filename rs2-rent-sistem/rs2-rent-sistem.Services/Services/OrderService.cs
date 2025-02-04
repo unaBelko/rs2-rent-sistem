@@ -180,12 +180,12 @@ namespace rs2_rent_sistem.Services.Services
 
             if (cart == null)
             {
-                throw new Exception("Cart not found.");
+                throw new Exception("Carts not found.");
             }
 
             if (cart.CartItems.Count == 0)
             {
-                throw new Exception("Cart can't be empty");
+                throw new Exception("Carts can't be empty");
             }
 
             var newOrder = new Database.Order
@@ -205,7 +205,7 @@ namespace rs2_rent_sistem.Services.Services
 
                 var numberOfDays = (cartItem.EndDate - cartItem.StartDate).TotalDays;
 
-                var quantity = cartItem.Quantity ?? 1;
+                var quantity = cartItem.Quantity;
                 var costPerUse = cartItem.Equipment.CostPerUse ?? 0m;
 
                 var orderItemPrice = costPerUse * quantity * (decimal)numberOfDays;

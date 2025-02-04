@@ -1,10 +1,13 @@
-﻿namespace rs2_rent_sistem.Services.Database;
+﻿using System;
+using System.Collections.Generic;
+
+namespace rs2_rent_sistem.Services.Database;
 
 public partial class Cart
 {
     public int ID { get; set; }
 
-    public int? UserID { get; set; }
+    public int UserID { get; set; }
 
     public DateTime? DateAdded { get; set; }
 

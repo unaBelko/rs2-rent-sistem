@@ -56,7 +56,7 @@ namespace rs2_rent_sistem.Services.Services
             {
                 cartEntity = new Database.Cart
                 {
-                    UserID = cartItem.UserID,
+                    UserID = (int)cartItem.UserID,
                     DateAdded = DateTime.UtcNow,
                     TotalPrice = 0
                 };
@@ -74,7 +74,7 @@ namespace rs2_rent_sistem.Services.Services
 
             if (existingCartItem != null)
             {
-                existingCartItem.Quantity += cartItem.Quantity;
+                existingCartItem.Quantity += (int)cartItem.Quantity;
                 _context.CartItems.Update(existingCartItem);
             }
             else
@@ -150,7 +150,7 @@ namespace rs2_rent_sistem.Services.Services
 
             if (cartEntity == null)
             {
-                throw new Exception("Cart not found.");
+                throw new Exception("Carts not found.");
             }
 
             _context.CartItems.RemoveRange(cartEntity.CartItems);

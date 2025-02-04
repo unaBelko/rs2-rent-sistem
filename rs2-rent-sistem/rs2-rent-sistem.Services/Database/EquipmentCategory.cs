@@ -1,4 +1,7 @@
-﻿namespace rs2_rent_sistem.Services.Database;
+﻿using System;
+using System.Collections.Generic;
+
+namespace rs2_rent_sistem.Services.Database;
 
 public partial class EquipmentCategory
 {
@@ -7,6 +10,8 @@ public partial class EquipmentCategory
     public string Name { get; set; } = null!;
 
     public string? Description { get; set; }
-    public bool IsDeleted { get; set; } = false;
+
+    public bool IsDeleted { get; set; }
+
     public virtual ICollection<Equipment> Equipment { get; } = new List<Equipment>();
 }

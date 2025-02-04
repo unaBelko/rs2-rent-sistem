@@ -1,18 +1,23 @@
-﻿namespace rs2_rent_sistem.Services.Database;
+﻿using System;
+using System.Collections.Generic;
+
+namespace rs2_rent_sistem.Services.Database;
 
 public partial class Order
 {
     public int ID { get; set; }
 
-    public int? UserID { get; set; }
+    public int UserID { get; set; }
 
-    public DateTime? DatePlaced { get; set; }
+    public DateTime DatePlaced { get; set; }
 
     public decimal? TotalPrice { get; set; }
 
     public bool IsActive { get; set; }
 
+    public string? Status { get; set; }
+
     public virtual ICollection<OrderItem> OrderItems { get; } = new List<OrderItem>();
 
-    public virtual User? User { get; set; }
+    public virtual User User { get; set; }
 }

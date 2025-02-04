@@ -118,10 +118,9 @@ app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
 {
-    var dataContext = scope.ServiceProvider.GetRequiredService<RentSistemDbContext>();
+   var dataContext = scope.ServiceProvider.GetRequiredService<RentSistemDbContext>();
 
-    dataContext.Database.EnsureCreated();
-
+   dataContext.Database.Migrate();
 }
 
 app.Run();
