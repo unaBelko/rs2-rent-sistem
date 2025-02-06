@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:rs2_rent_sistem/models/review_for_admin.dart';
 import 'package:rs2_rent_sistem/shared/api_services/review_service.dart';
 
 final addReviewProvider =
@@ -12,6 +13,31 @@ final addReviewProvider =
     orderItemID: orderItemID,
     numberOfStars: numberOfStars,
   );
+
+  if (!response.isSuccess) {
+    throw Exception(response.error);
+  }
+});
+
+final reviewsProvider = FutureProvider.family<List<ReviewForAdmin>,
+    ({int? equipmentId, int? userId})>(
+  (ref, params) async {
+    final response = await ReviewService().getReviews(
+      equipmentId: params.equipmentId,
+      userId: params.userId,
+    );
+
+    if (response.isSuccess && response.data != null) {
+      return response.data!;
+    } else {
+      throw Exception(response.error); // Handle errors properly
+    }
+  },
+);
+
+final deleteReviewProvider =
+    FutureProvider.family<void, int>((ref, reviewId) async {
+  final response = await ReviewService.deleteReview(id: reviewId);
 
   if (!response.isSuccess) {
     throw Exception(response.error);

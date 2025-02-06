@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/user/user.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/user_details.page.dart';
 import 'package:rs2_rent_sistem/shared/providers/order_providers.dart';
+import 'package:rs2_rent_sistem/shared/providers/review_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/user_providers.dart';
 import 'package:rs2_rent_sistem/shared/widgets/confirmation_modal.dart';
 
@@ -100,6 +101,7 @@ class UserListItem extends ConsumerWidget {
                   IconButton(
                     onPressed: () {
                       ref.invalidate(ordersListProvider);
+                      ref.invalidate(reviewsProvider);
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => UserDetailsPage(user.id)));
                     },

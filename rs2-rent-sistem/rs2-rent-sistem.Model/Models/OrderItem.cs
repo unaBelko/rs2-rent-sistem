@@ -8,6 +8,7 @@
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public double Price { get; set; }
+        public bool IsReviewedByUser { get; set; }
         public virtual Equipment? Equipment { get; set; }
         public virtual ICollection<Review> Reviews { get; } = new List<Review>();
 

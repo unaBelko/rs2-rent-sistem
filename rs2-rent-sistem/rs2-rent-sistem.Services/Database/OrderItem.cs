@@ -11,10 +11,10 @@ public partial class OrderItem
 
     public int EquipmentID { get; set; }
 
-    public int? Quantity { get; set; }
-
     public decimal? CostPerUse { get; set; }
+    public bool IsReviewedByUser { get; set; } = false;
 
+    public int? Quantity { get; set; }
     public decimal? Price { get; set; }
 
     public DateTime? StartDate { get; set; }

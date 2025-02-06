@@ -20,10 +20,11 @@ ReviewForAdmin _$ReviewForAdminFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ReviewForAdmin {
-  String get id => throw _privateConstructorUsedError;
-  String? get equipmentName => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
-  DateTime? get dateOfCreation => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  ItemInOrder get orderItem => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  DateTime? get dateAdded => throw _privateConstructorUsedError;
+  double get numberOfStars => throw _privateConstructorUsedError;
 
   /// Serializes this ReviewForAdmin to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +43,13 @@ abstract class $ReviewForAdminCopyWith<$Res> {
       _$ReviewForAdminCopyWithImpl<$Res, ReviewForAdmin>;
   @useResult
   $Res call(
-      {String id,
-      String? equipmentName,
-      String content,
-      DateTime? dateOfCreation});
+      {int id,
+      ItemInOrder orderItem,
+      String description,
+      DateTime? dateAdded,
+      double numberOfStars});
+
+  $ItemInOrderCopyWith<$Res> get orderItem;
 }
 
 /// @nodoc
@@ -64,28 +68,43 @@ class _$ReviewForAdminCopyWithImpl<$Res, $Val extends ReviewForAdmin>
   @override
   $Res call({
     Object? id = null,
-    Object? equipmentName = freezed,
-    Object? content = null,
-    Object? dateOfCreation = freezed,
+    Object? orderItem = null,
+    Object? description = null,
+    Object? dateAdded = freezed,
+    Object? numberOfStars = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      orderItem: null == orderItem
+          ? _value.orderItem
+          : orderItem // ignore: cast_nullable_to_non_nullable
+              as ItemInOrder,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
-      equipmentName: freezed == equipmentName
-          ? _value.equipmentName
-          : equipmentName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateOfCreation: freezed == dateOfCreation
-          ? _value.dateOfCreation
-          : dateOfCreation // ignore: cast_nullable_to_non_nullable
+      dateAdded: freezed == dateAdded
+          ? _value.dateAdded
+          : dateAdded // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      numberOfStars: null == numberOfStars
+          ? _value.numberOfStars
+          : numberOfStars // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
+  }
+
+  /// Create a copy of ReviewForAdmin
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ItemInOrderCopyWith<$Res> get orderItem {
+    return $ItemInOrderCopyWith<$Res>(_value.orderItem, (value) {
+      return _then(_value.copyWith(orderItem: value) as $Val);
+    });
   }
 }
 
@@ -98,10 +117,14 @@ abstract class _$$ReviewForAdminImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String? equipmentName,
-      String content,
-      DateTime? dateOfCreation});
+      {int id,
+      ItemInOrder orderItem,
+      String description,
+      DateTime? dateAdded,
+      double numberOfStars});
+
+  @override
+  $ItemInOrderCopyWith<$Res> get orderItem;
 }
 
 /// @nodoc
@@ -118,27 +141,32 @@ class __$$ReviewForAdminImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? equipmentName = freezed,
-    Object? content = null,
-    Object? dateOfCreation = freezed,
+    Object? orderItem = null,
+    Object? description = null,
+    Object? dateAdded = freezed,
+    Object? numberOfStars = null,
   }) {
     return _then(_$ReviewForAdminImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      orderItem: null == orderItem
+          ? _value.orderItem
+          : orderItem // ignore: cast_nullable_to_non_nullable
+              as ItemInOrder,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
-      equipmentName: freezed == equipmentName
-          ? _value.equipmentName
-          : equipmentName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateOfCreation: freezed == dateOfCreation
-          ? _value.dateOfCreation
-          : dateOfCreation // ignore: cast_nullable_to_non_nullable
+      dateAdded: freezed == dateAdded
+          ? _value.dateAdded
+          : dateAdded // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      numberOfStars: null == numberOfStars
+          ? _value.numberOfStars
+          : numberOfStars // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -147,28 +175,30 @@ class __$$ReviewForAdminImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ReviewForAdminImpl implements _ReviewForAdmin {
   const _$ReviewForAdminImpl(
-      {this.id = '',
-      this.equipmentName,
-      this.content = '',
-      this.dateOfCreation});
+      {required this.id,
+      required this.orderItem,
+      this.description = '',
+      this.dateAdded,
+      required this.numberOfStars});
 
   factory _$ReviewForAdminImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReviewForAdminImplFromJson(json);
 
   @override
+  final int id;
+  @override
+  final ItemInOrder orderItem;
+  @override
   @JsonKey()
-  final String id;
+  final String description;
   @override
-  final String? equipmentName;
+  final DateTime? dateAdded;
   @override
-  @JsonKey()
-  final String content;
-  @override
-  final DateTime? dateOfCreation;
+  final double numberOfStars;
 
   @override
   String toString() {
-    return 'ReviewForAdmin(id: $id, equipmentName: $equipmentName, content: $content, dateOfCreation: $dateOfCreation)';
+    return 'ReviewForAdmin(id: $id, orderItem: $orderItem, description: $description, dateAdded: $dateAdded, numberOfStars: $numberOfStars)';
   }
 
   @override
@@ -177,17 +207,20 @@ class _$ReviewForAdminImpl implements _ReviewForAdmin {
         (other.runtimeType == runtimeType &&
             other is _$ReviewForAdminImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.equipmentName, equipmentName) ||
-                other.equipmentName == equipmentName) &&
-            (identical(other.content, content) || other.content == content) &&
-            (identical(other.dateOfCreation, dateOfCreation) ||
-                other.dateOfCreation == dateOfCreation));
+            (identical(other.orderItem, orderItem) ||
+                other.orderItem == orderItem) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.dateAdded, dateAdded) ||
+                other.dateAdded == dateAdded) &&
+            (identical(other.numberOfStars, numberOfStars) ||
+                other.numberOfStars == numberOfStars));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, equipmentName, content, dateOfCreation);
+  int get hashCode => Object.hash(
+      runtimeType, id, orderItem, description, dateAdded, numberOfStars);
 
   /// Create a copy of ReviewForAdmin
   /// with the given fields replaced by the non-null parameter values.
@@ -208,22 +241,25 @@ class _$ReviewForAdminImpl implements _ReviewForAdmin {
 
 abstract class _ReviewForAdmin implements ReviewForAdmin {
   const factory _ReviewForAdmin(
-      {final String id,
-      final String? equipmentName,
-      final String content,
-      final DateTime? dateOfCreation}) = _$ReviewForAdminImpl;
+      {required final int id,
+      required final ItemInOrder orderItem,
+      final String description,
+      final DateTime? dateAdded,
+      required final double numberOfStars}) = _$ReviewForAdminImpl;
 
   factory _ReviewForAdmin.fromJson(Map<String, dynamic> json) =
       _$ReviewForAdminImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
-  String? get equipmentName;
+  ItemInOrder get orderItem;
   @override
-  String get content;
+  String get description;
   @override
-  DateTime? get dateOfCreation;
+  DateTime? get dateAdded;
+  @override
+  double get numberOfStars;
 
   /// Create a copy of ReviewForAdmin
   /// with the given fields replaced by the non-null parameter values.

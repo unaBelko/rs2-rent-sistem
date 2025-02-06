@@ -270,9 +270,9 @@ namespace rs2_rent_sistem.Services.Data
                 new Order { ID = 5, UserID = 5, DatePlaced = DateTime.Now.AddDays(-4), TotalPrice = 99.90m, IsActive = true , Status = "returned" },
                 new Order { ID = 6, UserID = 6, DatePlaced = DateTime.Now.AddDays(-3), TotalPrice = 49.95m, IsActive = true , Status = "rented" },
                 new Order { ID = 7, UserID = 7, DatePlaced = DateTime.Now.AddDays(-2), TotalPrice = 69.93m, IsActive = true , Status = "returned" },
-                new Order { ID = 8, UserID = 8, DatePlaced = DateTime.Now.AddDays(-1), TotalPrice = 39.96m, IsActive = true , Status = "paid" },
-                new Order { ID = 9, UserID = 9, DatePlaced = DateTime.Now.AddDays(-6), TotalPrice = 149.85m, IsActive = true , Status = "returned" },
-                new Order { ID = 10, UserID = 10, DatePlaced = DateTime.Now.AddDays(-9), TotalPrice = 29.97m, IsActive = true , Status = "returned" }
+                new Order { ID = 8, UserID = 2, DatePlaced = DateTime.Now.AddDays(-1), TotalPrice = 39.96m, IsActive = true , Status = "paid" },
+                new Order { ID = 9, UserID = 2, DatePlaced = DateTime.Now.AddDays(-6), TotalPrice = 149.85m, IsActive = true , Status = "rented" },
+                new Order { ID = 10, UserID = 2, DatePlaced = DateTime.Now.AddDays(-9), TotalPrice = 29.97m, IsActive = true , Status = "returned" }
             );
         }
 
@@ -280,19 +280,20 @@ namespace rs2_rent_sistem.Services.Data
         {
             var orderItems = new List<OrderItem>
             {
-                new OrderItem { ID = 1, OrderID = 1, EquipmentID = 1, Quantity = 2, CostPerUse = 2.99m, Price = 5.98m, StartDate = DateTime.Now.AddDays(-10), EndDate = DateTime.Now.AddDays(-9) },
-                new OrderItem { ID = 2, OrderID = 1, EquipmentID = 3, Quantity = 1, CostPerUse = 4.99m, Price = 4.99m, StartDate = DateTime.Now.AddDays(-10), EndDate = DateTime.Now.AddDays(-8) },
-                new OrderItem { ID = 3, OrderID = 2, EquipmentID = 2, Quantity = 3, CostPerUse = 3.49m, Price = 10.47m, StartDate = DateTime.Now.AddDays(-8), EndDate = DateTime.Now.AddDays(-7) },
-                new OrderItem { ID = 4, OrderID = 2, EquipmentID = 1, Quantity = 4, CostPerUse = 2.99m, Price = 11.96m, StartDate = DateTime.Now.AddDays(-8), EndDate = DateTime.Now.AddDays(-6) },
-                new OrderItem { ID = 5, OrderID = 3, EquipmentID = 3, Quantity = 2, CostPerUse = 4.99m, Price = 9.98m, StartDate = DateTime.Now.AddDays(-5), EndDate = DateTime.Now.AddDays(-4) },
-                new OrderItem { ID = 6, OrderID = 4, EquipmentID = 1, Quantity = 1, CostPerUse = 2.99m, Price = 2.99m, StartDate = DateTime.Now.AddDays(-7), EndDate = DateTime.Now.AddDays(-6) },
-                new OrderItem { ID = 7, OrderID = 5, EquipmentID = 2, Quantity = 5, CostPerUse = 3.49m, Price = 17.45m, StartDate = DateTime.Now.AddDays(-4), EndDate = DateTime.Now.AddDays(-2) },
-                new OrderItem { ID = 8, OrderID = 6, EquipmentID = 3, Quantity = 3, CostPerUse = 4.99m, Price = 14.97m, StartDate = DateTime.Now.AddDays(-3), EndDate = DateTime.Now.AddDays(-1) },
-                new OrderItem { ID = 9, OrderID = 7, EquipmentID = 1, Quantity = 2, CostPerUse = 2.99m, Price = 5.98m, StartDate = DateTime.Now.AddDays(-2), EndDate = DateTime.Now.AddDays(1) },
-                new OrderItem { ID = 10, OrderID = 8, EquipmentID = 2, Quantity = 3, CostPerUse = 3.49m, Price = 10.47m, StartDate = DateTime.Now.AddDays(-1), EndDate = DateTime.Now },
-                new OrderItem { ID = 11, OrderID = 9, EquipmentID = 3, Quantity = 1, CostPerUse = 4.99m, Price = 4.99m, StartDate = DateTime.Now.AddDays(-6), EndDate = DateTime.Now.AddDays(-4) },
-                new OrderItem { ID = 12, OrderID = 9, EquipmentID = 1, Quantity = 5, CostPerUse = 2.99m, Price = 14.95m, StartDate = DateTime.Now.AddDays(-6), EndDate = DateTime.Now.AddDays(-5) },
-                new OrderItem { ID = 13, OrderID = 10, EquipmentID = 2, Quantity = 2, CostPerUse = 3.49m, Price = 6.98m, StartDate = DateTime.Now.AddDays(-9), EndDate = DateTime.Now.AddDays(-8) }
+                new OrderItem { ID = 1, OrderID = 1, EquipmentID = 1, Quantity = 2, CostPerUse = 2.99m, Price = 5.98m, StartDate = DateTime.Now.AddDays(-10), EndDate = DateTime.Now.AddDays(-9), IsReviewedByUser = false },
+                new OrderItem { ID = 2, OrderID = 1, EquipmentID = 3, Quantity = 1, CostPerUse = 4.99m, Price = 4.99m, StartDate = DateTime.Now.AddDays(-10), EndDate = DateTime.Now.AddDays(-8), IsReviewedByUser = false },
+                new OrderItem { ID = 3, OrderID = 2, EquipmentID = 2, Quantity = 3, CostPerUse = 3.49m, Price = 10.47m, StartDate = DateTime.Now.AddDays(-8), EndDate = DateTime.Now.AddDays(-7), IsReviewedByUser = false },
+                new OrderItem { ID = 4, OrderID = 2, EquipmentID = 1, Quantity = 4, CostPerUse = 2.99m, Price = 11.96m, StartDate = DateTime.Now.AddDays(-8), EndDate = DateTime.Now.AddDays(-6), IsReviewedByUser = false },
+                new OrderItem { ID = 5, OrderID = 3, EquipmentID = 3, Quantity = 2, CostPerUse = 4.99m, Price = 9.98m, StartDate = DateTime.Now.AddDays(-5), EndDate = DateTime.Now.AddDays(-4), IsReviewedByUser = false },
+                new OrderItem { ID = 6, OrderID = 4, EquipmentID = 1, Quantity = 1, CostPerUse = 2.99m, Price = 2.99m, StartDate = DateTime.Now.AddDays(-7), EndDate = DateTime.Now.AddDays(-6), IsReviewedByUser = false },
+                new OrderItem { ID = 7, OrderID = 5, EquipmentID = 2, Quantity = 5, CostPerUse = 3.49m, Price = 17.45m, StartDate = DateTime.Now.AddDays(-4), EndDate = DateTime.Now.AddDays(-2), IsReviewedByUser = false },
+                new OrderItem { ID = 8, OrderID = 6, EquipmentID = 3, Quantity = 3, CostPerUse = 4.99m, Price = 14.97m, StartDate = DateTime.Now.AddDays(-3), EndDate = DateTime.Now.AddDays(-1), IsReviewedByUser = false },
+                new OrderItem { ID = 9, OrderID = 7, EquipmentID = 1, Quantity = 2, CostPerUse = 2.99m, Price = 5.98m, StartDate = DateTime.Now.AddDays(-2), EndDate = DateTime.Now.AddDays(1), IsReviewedByUser = false },
+                new OrderItem { ID = 10, OrderID = 8, EquipmentID = 2, Quantity = 3, CostPerUse = 3.49m, Price = 10.47m, StartDate = DateTime.Now.AddDays(-1), EndDate = DateTime.Now, IsReviewedByUser = false },
+                new OrderItem { ID = 11, OrderID = 9, EquipmentID = 3, Quantity = 1, CostPerUse = 4.99m, Price = 4.99m, StartDate = DateTime.Now.AddDays(-6), EndDate = DateTime.Now.AddDays(-4), IsReviewedByUser = false },
+                new OrderItem { ID = 12, OrderID = 9, EquipmentID = 1, Quantity = 5, CostPerUse = 2.99m, Price = 14.95m, StartDate = DateTime.Now.AddDays(-6), EndDate = DateTime.Now.AddDays(-5), IsReviewedByUser = false },
+                new OrderItem { ID = 13, OrderID = 10, EquipmentID = 2, Quantity = 2, CostPerUse = 3.49m, Price = 6.98m, StartDate = DateTime.Now.AddDays(-9), EndDate = DateTime.Now.AddDays(-8), IsReviewedByUser = false },
+                new OrderItem { ID = 14, OrderID = 10, EquipmentID = 4, Quantity = 2, CostPerUse = 3.49m, Price = 6.98m, StartDate = DateTime.Now.AddDays(-9), EndDate = DateTime.Now.AddDays(-8), IsReviewedByUser = true }
             };
             modelBuilder.Entity<OrderItem>().HasData(orderItems);
         }
@@ -310,7 +311,7 @@ namespace rs2_rent_sistem.Services.Data
                 new Review { ID = 7, DateAdded = DateTime.Now.AddDays(-3), Description = "Decent product but could use some improvements.", NumberOfStars = 3.5m, OrderItemID = 7, IsDeleted = false },
                 new Review { ID = 8, DateAdded = DateTime.Now.AddDays(-2), Description = "Very satisfied with the purchase.", NumberOfStars = 4.5m, OrderItemID = 8, IsDeleted = false },
                 new Review { ID = 9, DateAdded = DateTime.Now.AddDays(-1), Description = "The item was okay, nothing special.", NumberOfStars = 3.0m, OrderItemID = 9, IsDeleted = false },
-                new Review { ID = 10, DateAdded = DateTime.Now, Description = "Amazing product! Will buy again.", NumberOfStars = 5.0m, OrderItemID = 10, IsDeleted = false }
+                new Review { ID = 10, DateAdded = DateTime.Now, Description = "Amazing product! Will buy again.", NumberOfStars = 5.0m, OrderItemID = 14, IsDeleted = false }
             };
             modelBuilder.Entity<Review>().HasData(reviews);
         }

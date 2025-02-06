@@ -2,11 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rs2_rent_sistem/models/admin_order_list_item/order_list_item.dart';
-import 'package:rs2_rent_sistem/models/review_for_admin.dart';
+import 'package:rs2_rent_sistem/pages/desktop_app_pages/tab_button.dart';
+import 'package:rs2_rent_sistem/pages/desktop_app_pages/user_order_list_item_widget.dart';
+import 'package:rs2_rent_sistem/pages/desktop_app_pages/user_review_widget.dart';
 import 'package:rs2_rent_sistem/shared/providers/order_providers.dart';
+import 'package:rs2_rent_sistem/shared/providers/review_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/user_providers.dart';
-import 'package:rs2_rent_sistem/shared/utilities/extensions/date_extensions.dart';
 import 'package:rs2_rent_sistem/shared/widgets/common_scaffold.dart';
 import 'package:rs2_rent_sistem/shared/widgets/confirmation_modal.dart';
 
@@ -25,7 +26,6 @@ class _UserDetailsPageState extends ConsumerState<UserDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    log('user je ${widget.userId}');
     return CommonScaffold(
       title: 'Detalji korisnika',
       child: Padding(
@@ -103,7 +103,7 @@ class _UserDetailsPageState extends ConsumerState<UserDetailsPage> {
                       ),
                       Row(
                         children: [
-                          UserTabButton(
+                          TabButton(
                             text: 'Narudzbe',
                             isSelected: currentTab == 0,
                             onTap: () {
@@ -115,7 +115,7 @@ class _UserDetailsPageState extends ConsumerState<UserDetailsPage> {
                           const SizedBox(
                             width: 8,
                           ),
-                          UserTabButton(
+                          TabButton(
                             text: 'Reviews',
                             isSelected: currentTab == 1,
                             onTap: () {
@@ -165,7 +165,8 @@ class _UserDetailsPageState extends ConsumerState<UserDetailsPage> {
                                     ],
                                   ),
                                 ),
-                                ref.watch(ordersListProvider(widget.userId))
+                                ref
+                                    .watch(ordersListProvider(widget.userId))
                                     .when(
                                       data: (data) => Column(
                                         children: data
@@ -189,13 +190,13 @@ class _UserDetailsPageState extends ConsumerState<UserDetailsPage> {
                                   child: Row(
                                     children: [
                                       Expanded(
-                                        flex: 1,
+                                        flex: 2,
                                         child: Text(
-                                          'id',
+                                          'Rating',
                                         ),
                                       ),
                                       Expanded(
-                                          flex: 2,
+                                          flex: 1,
                                           child: Text(
                                             'Datum kreiranja',
                                           )),
@@ -211,36 +212,33 @@ class _UserDetailsPageState extends ConsumerState<UserDetailsPage> {
                                           'Proizvod',
                                         ),
                                       ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          'Akcija',
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
-                                UserReviewWidget(
-                                  item: ReviewForAdmin(
-                                    id: '1',
-                                    content:
-                                        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. ",
-                                    equipmentName: 'lopticaaa',
-                                    dateOfCreation: DateTime.now().toLocal(),
-                                  ),
-                                ),
-                                UserReviewWidget(
-                                  item: ReviewForAdmin(
-                                    id: '1',
-                                    content:
-                                        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. ",
-                                    equipmentName: 'lopticaaa',
-                                    dateOfCreation: DateTime.now().toLocal(),
-                                  ),
-                                ),
-                                UserReviewWidget(
-                                  item: ReviewForAdmin(
-                                    id: '1',
-                                    content:
-                                        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. ",
-                                    equipmentName: 'lopticaaa',
-                                    dateOfCreation: DateTime.now().toLocal(),
-                                  ),
-                                ),
+                                ref
+                                    .watch(reviewsProvider((
+                                      equipmentId: null,
+                                      userId: widget.userId
+                                    )))
+                                    .when(
+                                      data: (data) => Column(
+                                        children: data
+                                            .map((el) =>
+                                                UserReviewWidget(item: el))
+                                            .toList(),
+                                      ),
+                                      error: (e, st) =>
+                                          Text('Reviews nisu ucitani'),
+                                      loading: () => Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    ),
                               ],
                             ),
                     ],
@@ -253,146 +251,6 @@ class _UserDetailsPageState extends ConsumerState<UserDetailsPage> {
                   child: CircularProgressIndicator(),
                 ),
               ),
-        ),
-      ),
-    );
-  }
-}
-
-class UserTabButton extends StatelessWidget {
-  final String text;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  const UserTabButton({
-    super.key,
-    required this.text,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-        decoration: BoxDecoration(
-          color: isSelected ? Colors.blueGrey : Colors.white,
-          borderRadius: BorderRadius.circular(30.0),
-          border: Border.all(
-            color: Colors.blueGrey,
-          ),
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            color: isSelected ? Colors.white : Colors.blueGrey,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class UserOrderListItemWidget extends StatelessWidget {
-  final AdminOrderListItemModel item;
-
-  const UserOrderListItemWidget({super.key, required this.item});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 12.0,
-          vertical: 10,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Text(
-                item.id.toString(),
-              ),
-            ),
-            Expanded(
-                flex: 3,
-                child: Text(
-                  item.datePlaced.formatLocal(),
-                )),
-            Expanded(
-              flex: 1,
-              child: Text(
-                item.orderItems.length.toString(),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Text(
-                item.totalPrice.toString(),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Text(
-                item.status,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class UserReviewWidget extends StatelessWidget {
-  final ReviewForAdmin item;
-
-  const UserReviewWidget({
-    super.key,
-    required this.item,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 12.0,
-          vertical: 10,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Text(
-                item.id,
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Text(
-                item.dateOfCreation.toString(),
-              ),
-            ),
-            Expanded(
-              flex: 4,
-              child: Text(
-                item.content,
-                style: const TextStyle(
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Text(
-                item.equipmentName ?? "",
-              ),
-            ),
-          ],
         ),
       ),
     );
