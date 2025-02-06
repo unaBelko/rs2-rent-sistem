@@ -9,6 +9,7 @@
         public string? Description { get; set; }
 
         public decimal? NumberOfStars { get; set; }
-        public virtual User? AddedByUser { get; set; }//todo:maybe just check if added by current user
+        public int OrderItemID { get; set; }
+        public virtual OrderItem OrderItem { get; set; }
     }
 }

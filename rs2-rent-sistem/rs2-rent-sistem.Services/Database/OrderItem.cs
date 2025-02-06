@@ -27,5 +27,5 @@ public partial class OrderItem
 
     public virtual Order Order { get; set; }
 
-    public virtual ICollection<Review> Reviews { get; } = new List<Review>();
+    public virtual Review Review { get; set; }
 }

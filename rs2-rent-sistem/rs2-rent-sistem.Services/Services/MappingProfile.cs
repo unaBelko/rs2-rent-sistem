@@ -36,6 +36,7 @@ namespace rs2_rent_sistem.Services.Services
             CreateMap<OrderItem, Database.OrderItem>();
 
             CreateMap<Database.Review, Review>();
+            CreateMap<Review, Database.Review>();
 
             CreateMap<Database.Role, Role>();
             CreateMap<Role, Database.Role>();

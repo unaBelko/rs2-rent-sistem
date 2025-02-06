@@ -21,12 +21,25 @@ namespace rs2_rent_sistem.Services.Services
             query = query.Include(oi => oi.Order)
                 .Include(oi => oi.Equipment);
 
-            //todo: return only not completed reservations
-
-            if (search?.UserId != null)
+            if (search.ReturnOnlyActiveReservations)
             {
-                query = query.Where(oi => oi.Order.UserID == search.UserId).OrderByDescending(oi => oi.Order.DatePlaced);
+                query = query.Where(oi => oi.Order.Status != "returned");
             }
+
+            if (search.OrderId != null && search.UserId != null)
+            {
+                query = query.Where(oi => oi.OrderID == search.OrderId && oi.Order.UserID == search.UserId);
+            }
+            else if (search.OrderId != null)
+            {
+                query = query.Where(oi => oi.OrderID == search.OrderId);
+            }
+            else if (search.UserId != null)
+            {
+                query = query.Where(oi => oi.Order.UserID == search.UserId);
+            }
+
+            query = query.OrderByDescending(oi => oi.Order.DatePlaced);
             return query;
         }
     }

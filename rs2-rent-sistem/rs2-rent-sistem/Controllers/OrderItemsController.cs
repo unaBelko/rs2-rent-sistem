@@ -14,13 +14,8 @@ namespace rs2_rent_sistem.Controllers
     [Route("api/[controller]")]
     public class OrderItemsController : BaseController<OrderItem, OrderItemSearchObject>
     {
-        private readonly IOrderItemsService _orderItemsService;
-        private readonly ILogger<OrderItemsController> _logger;
-
         public OrderItemsController(ILogger<OrderItemsController> logger, IOrderItemsService service) : base(logger, service)
         {
-            _orderItemsService = service;
-            _logger = logger;
         }
 
         public override Task<PageResult<OrderItem>> Get([FromQuery] OrderItemSearchObject? search = null)

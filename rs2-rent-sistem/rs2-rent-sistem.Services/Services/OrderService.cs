@@ -193,7 +193,8 @@ namespace rs2_rent_sistem.Services.Services
                 UserID = cart.UserID,
                 DatePlaced = DateTime.UtcNow,
                 IsActive = true,
-                TotalPrice = 0
+                TotalPrice = 0,
+                Status = "created"
             };
 
             foreach (var cartItem in cart.CartItems)

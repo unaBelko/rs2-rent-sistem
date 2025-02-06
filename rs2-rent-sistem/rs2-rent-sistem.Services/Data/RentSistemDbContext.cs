@@ -84,10 +84,16 @@ public partial class RentSistemDbContext : DbContext
            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<OrderItem>()
-            .HasOne(ci => ci.Equipment)
-            .WithMany()
-            .HasForeignKey(ci => ci.EquipmentID)
-            .OnDelete(DeleteBehavior.Restrict);
+           .HasOne(ci => ci.Equipment)
+           .WithMany()
+           .HasForeignKey(ci => ci.EquipmentID)
+           .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<OrderItem>()
+           .HasOne(oi => oi.Review)
+           .WithOne(r => r.OrderItem)
+           .HasForeignKey<Review>(r => r.OrderItemID)
+           .OnDelete(DeleteBehavior.Cascade);
 
         DatabaseSeed.SeedData(modelBuilder);
         OnModelCreatingPartial(modelBuilder);

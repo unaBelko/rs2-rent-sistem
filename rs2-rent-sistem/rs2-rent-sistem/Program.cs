@@ -33,6 +33,7 @@ builder.Services.AddTransient<ICartService, CartService>();
 builder.Services.AddTransient<IUsersService, UserService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IOrderItemsService, OrderItemsService>();
+builder.Services.AddTransient<IReviewService, ReviewService>();
 builder.Services.AddSingleton<IConverter, SynchronizedConverter>(provider => new SynchronizedConverter(new PdfTools()));
 // Add Controllers
 builder.Services.AddControllers();

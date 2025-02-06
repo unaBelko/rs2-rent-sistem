@@ -38,4 +38,7 @@ class Endpoints {
 
   //order items
   static const String orderItems = 'api/OrderItems';
+
+  //reviews
+  static const String review = 'api/Review';
 }
