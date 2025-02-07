@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using rs2_rent_sistem.Model.Models;
 using rs2_rent_sistem.Model.Requests;
 using rs2_rent_sistem.Model.SearchObjects;
 using rs2_rent_sistem.Services.Data;
@@ -27,7 +28,7 @@ namespace rs2_rent_sistem.Services.Services
             return await base.Insert(insert);
         }
 
-        public override async Task BeforeInsert(User entity, UserUpsertObject request)
+        public override async Task BeforeInsert(Database.User entity, UserUpsertObject request)
         {
             var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
             if (existingUser != null)
@@ -64,14 +65,14 @@ namespace rs2_rent_sistem.Services.Services
             return await base.Update(id, update);
         }
 
-        public override IQueryable<User> AddInclude(IQueryable<Database.User> query, UserSearchObject? search = null)
+        public override IQueryable<Database.User> AddInclude(IQueryable<Database.User> query, UserSearchObject? search = null)
         {
             query = query.Include(user => user.UserRoles);
 
             return base.AddInclude(query, search);
         }
 
-        public async Task<string> Login(string email, string password)
+        public async Task<LoginData> Login(string email, string password)
         {
             var entity = await _context.Users
                 .Include(u => u.UserRoles)
@@ -89,7 +90,10 @@ namespace rs2_rent_sistem.Services.Services
             }
 
             var token = UtilityFunctions.GenerateJwtToken(_mapper.Map<Model.Models.User>(entity), _configuration);
-            return token;
+            return new LoginData() { 
+                Token = token,
+                Role = string.Join(", ", entity.UserRoles.Select(ur => ur.Role.Name))
+            };
         }
 
 

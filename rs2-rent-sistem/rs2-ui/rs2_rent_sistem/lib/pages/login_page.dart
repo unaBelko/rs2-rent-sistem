@@ -33,20 +33,29 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
       if (loginRes.isSuccess && loginRes.data != null) {
         var token = loginRes.data!.token;
-        log('Token: $token');
-        log("token prije ${SecureStorageHandler.token}");
-        SecureStorageHandler.token = token;
-        ref.read(authTokenProvider.notifier).state = token;
-        log("token poslije ${SecureStorageHandler.token}");
-        // if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-        //   ref.read(authTokenProviderDesktop.notifier).state = token;
-        // } else {
-        //   log("token prije ${ref.read(authTokenProvider)}");
-        //   SecureStorageHandler.token = token;
-        //   ref.read(authTokenProvider.notifier).state = token;
-        //   log("token poslije ${ref.read(authTokenProvider)}");
-        //   // await SecureStorageHandler().saveToken(token);
-        // }
+        var role = loginRes.data!.role;
+        if ((Platform.isAndroid || Platform.isIOS) &&
+            !role.contains('end-user')) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                content: Text(
+                    'Ovaj korisnik nema pristup mobilnoj aplikaciji! Molimo vas da koristite desktop aplikaciju.')),
+          );
+        } else if ((Platform.isLinux ||
+                Platform.isWindows ||
+                Platform.isMacOS ||
+                Platform.isFuchsia) &&
+            !role.contains('employee')) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                content: Text(
+                    'Ovaj korisnik nema pristup desktop aplikaciji! Molimo vas da koristite mobilnu aplikaciju.')),
+          );
+        } else {
+          log('Token: $token');
+          SecureStorageHandler.token = token;
+          ref.read(authTokenProvider.notifier).state = token;
+        }
       } else {
         log('Login failed: ${loginRes.error}');
         ScaffoldMessenger.of(context).showSnackBar(
@@ -76,8 +85,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         child: Center(
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final isDesktop = constraints.maxWidth > 600; // Consider >600px as desktop
-              final formWidth = isDesktop ? constraints.maxWidth / 2 : double.infinity;
+              final isDesktop =
+                  constraints.maxWidth > 600; // Consider >600px as desktop
+              final formWidth =
+                  isDesktop ? constraints.maxWidth / 2 : double.infinity;
 
               return ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: formWidth),
@@ -90,7 +101,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       children: [
                         const Text(
                           'Prijava',
-                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 30),
                         GenericTextInputField(

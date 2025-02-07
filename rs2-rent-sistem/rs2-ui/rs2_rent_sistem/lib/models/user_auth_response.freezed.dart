@@ -21,6 +21,7 @@ UserAuthResponse _$UserAuthResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserAuthResponse {
   String get token => throw _privateConstructorUsedError;
+  String get role => throw _privateConstructorUsedError;
 
   /// Serializes this UserAuthResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +39,7 @@ abstract class $UserAuthResponseCopyWith<$Res> {
           UserAuthResponse value, $Res Function(UserAuthResponse) then) =
       _$UserAuthResponseCopyWithImpl<$Res, UserAuthResponse>;
   @useResult
-  $Res call({String token});
+  $Res call({String token, String role});
 }
 
 /// @nodoc
@@ -57,11 +58,16 @@ class _$UserAuthResponseCopyWithImpl<$Res, $Val extends UserAuthResponse>
   @override
   $Res call({
     Object? token = null,
+    Object? role = null,
   }) {
     return _then(_value.copyWith(
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +81,7 @@ abstract class _$$UserAuthResponseImplCopyWith<$Res>
       __$$UserAuthResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String token});
+  $Res call({String token, String role});
 }
 
 /// @nodoc
@@ -92,11 +98,16 @@ class __$$UserAuthResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? token = null,
+    Object? role = null,
   }) {
     return _then(_$UserAuthResponseImpl(
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -105,7 +116,7 @@ class __$$UserAuthResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserAuthResponseImpl implements _UserAuthResponse {
-  const _$UserAuthResponseImpl({this.token = ''});
+  const _$UserAuthResponseImpl({this.token = '', this.role = ''});
 
   factory _$UserAuthResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserAuthResponseImplFromJson(json);
@@ -113,10 +124,13 @@ class _$UserAuthResponseImpl implements _UserAuthResponse {
   @override
   @JsonKey()
   final String token;
+  @override
+  @JsonKey()
+  final String role;
 
   @override
   String toString() {
-    return 'UserAuthResponse(token: $token)';
+    return 'UserAuthResponse(token: $token, role: $role)';
   }
 
   @override
@@ -124,12 +138,13 @@ class _$UserAuthResponseImpl implements _UserAuthResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserAuthResponseImpl &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, token);
+  int get hashCode => Object.hash(runtimeType, token, role);
 
   /// Create a copy of UserAuthResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -149,7 +164,7 @@ class _$UserAuthResponseImpl implements _UserAuthResponse {
 }
 
 abstract class _UserAuthResponse implements UserAuthResponse {
-  const factory _UserAuthResponse({final String token}) =
+  const factory _UserAuthResponse({final String token, final String role}) =
       _$UserAuthResponseImpl;
 
   factory _UserAuthResponse.fromJson(Map<String, dynamic> json) =
@@ -157,6 +172,8 @@ abstract class _UserAuthResponse implements UserAuthResponse {
 
   @override
   String get token;
+  @override
+  String get role;
 
   /// Create a copy of UserAuthResponse
   /// with the given fields replaced by the non-null parameter values.

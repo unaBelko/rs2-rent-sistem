@@ -10,10 +10,12 @@ _$UserAuthResponseImpl _$$UserAuthResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$UserAuthResponseImpl(
       token: json['token'] as String? ?? '',
+      role: json['role'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$UserAuthResponseImplToJson(
         _$UserAuthResponseImpl instance) =>
     <String, dynamic>{
       'token': instance.token,
+      'role': instance.role,
     };

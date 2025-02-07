@@ -27,17 +27,14 @@ namespace rs2_rent_sistem.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var token = await _userService.Login(request.Email, request.Password);
+            var loginData = await _userService.Login(request.Email, request.Password);
 
-            if (token == null)
+            if (loginData == null)
             {
                 return Unauthorized(new { Message = "Invalid email or password." });
             }
 
-            return Ok(new
-            {
-                Token = token,
-            });
+            return Ok(loginData);
         }
 
         [Authorize(Roles = "employee")]

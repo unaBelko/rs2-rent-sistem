@@ -7,6 +7,7 @@ part 'user_auth_response.g.dart';
 class UserAuthResponse with _$UserAuthResponse {
   const factory UserAuthResponse({
     @Default('') String token,
+    @Default('') String role,
   }) = _UserAuthResponse;
   factory UserAuthResponse.fromJson(Map<String, dynamic> json) => _$UserAuthResponseFromJson(json);
 }
