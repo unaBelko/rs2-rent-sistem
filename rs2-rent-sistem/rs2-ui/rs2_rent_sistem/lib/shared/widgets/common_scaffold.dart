@@ -28,6 +28,16 @@ class CommonScaffold extends StatelessWidget {
           },
           icon: const Icon(Icons.arrow_back),
         ),
+        actions: showX
+            ? [
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: const Icon(Icons.close),
+                ),
+              ]
+            : null,
       ),
       body: SafeArea(
         child: child,

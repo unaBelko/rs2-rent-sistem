@@ -13,7 +13,7 @@ namespace rs2_rent_sistem.Services.Services
 
         public override IQueryable<Manufacturer> AddFilter(IQueryable<Manufacturer> query, ManufacturerSearchObject? search = null)
         {
-            query = query.Where(m => m.IsDeleted).OrderBy(ec => ec.Name);
+            query = query.Where(m => !m.IsDeleted).OrderBy(ec => ec.Name);
 
             if (!string.IsNullOrWhiteSpace(search?.ManufacturerName))
             {

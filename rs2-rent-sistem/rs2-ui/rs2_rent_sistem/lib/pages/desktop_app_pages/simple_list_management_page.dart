@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/simple_dropdown_item/simple_dropdown_item.dart';
@@ -19,6 +21,7 @@ class SimpleListManagementPage extends ConsumerStatefulWidget {
 class _SimpleListManagementPageState extends ConsumerState<SimpleListManagementPage> {
   @override
   Widget build(BuildContext context) {
+    log("building ${widget.listType}");
     return SingleChildScrollView(
       child: Column(
         children: [

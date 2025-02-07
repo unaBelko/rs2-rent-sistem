@@ -127,6 +127,7 @@ class _AddOrEditEquipmentPageState
         ref.watch(simpleListProvider(SimpleListType.manufacturer));
 
     return CommonScaffold(
+      showX: true,
       title:
           widget.equipment == null ? 'Dodavanje opreme' : 'Uređivanje opreme',
       child: SingleChildScrollView(

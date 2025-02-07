@@ -105,6 +105,7 @@ class _AddOrEditSimpleListItemPageState
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
+      showX: true,
       title: widget.item == null
           ? 'Dodavanje ${_getTypeLabel(widget.type).toLowerCase()}'
           : 'Uređivanje ${_getTypeLabel(widget.type).toLowerCase()}',
