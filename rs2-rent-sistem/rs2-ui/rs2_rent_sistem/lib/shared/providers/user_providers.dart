@@ -2,8 +2,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/registration_data/registration_data.dart';
 import 'package:rs2_rent_sistem/models/user/user.dart';
 import 'package:rs2_rent_sistem/shared/api_services/user_service.dart';
+import 'package:rs2_rent_sistem/shared/utilities/secure_storage_handler.dart';
 
-final authTokenProvider = StateProvider<String?>((ref) => null);
+final authTokenProvider = StateProvider<String?>((ref) => SecureStorageHandler.token);
 
 final userServiceProvider = Provider<UserService>((ref) {
   return UserService();

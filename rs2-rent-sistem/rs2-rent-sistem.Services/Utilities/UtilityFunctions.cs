@@ -58,7 +58,7 @@ namespace rs2_rent_sistem.Utilities
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = identity,
-                Expires = DateTime.UtcNow.AddHours(5),
+                Expires = DateTime.UtcNow.AddDays(90),
                 Issuer = config["Jwt:Issuer"],
                 Audience = config["Jwt:Issuer"],
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

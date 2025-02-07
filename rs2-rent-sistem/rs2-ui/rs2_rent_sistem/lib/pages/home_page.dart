@@ -15,48 +15,55 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var currentNavigationIndex = ref.watch(navigationIndexProvider);
     var token = ref.watch(authTokenProvider);
 
-    // Check if the platform is desktop
-    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-      if (token == null || token == '') {
-        return LoginPage();
-      } else {
-        return const DesktopHomePage();
-      }
-    } else {
-      // Platform is either Android or iOS
-      if (token == null) {
-        return const LoginPage();
-      } else {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(_getTitle(currentNavigationIndex)),
-            centerTitle: false,
-          ),
-          bottomNavigationBar: const BottomNavigationWidget(),
-          body: SafeArea(
-            child: currentNavigationIndex == 0
-                ? const ActiveReservationsPage()
-                : currentNavigationIndex == 1
-                    ? const AvailableEquipmentPage()
-                    : const SettingsPage(),
-          ),
-        );
-      }
+    if (token == null || token.isEmpty) {
+      return const LoginPage();
+    }
+
+    return _isDesktopPlatform() ? const DesktopHomePage() : _buildMobileHome(ref);
+  }
+
+  bool _isDesktopPlatform() {
+    return Platform.isWindows || Platform.isLinux || Platform.isMacOS || Platform.isFuchsia;
+  }
+
+  Widget _buildMobileHome(WidgetRef ref) {
+    var currentNavigationIndex = ref.watch(navigationIndexProvider);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(_getTitle(currentNavigationIndex)),
+        centerTitle: false,
+      ),
+      bottomNavigationBar: const BottomNavigationWidget(),
+      body: SafeArea(
+        child: _getBody(currentNavigationIndex),
+      ),
+    );
+  }
+
+  Widget _getBody(int index) {
+    switch (index) {
+      case 0:
+        return const ActiveReservationsPage();
+      case 1:
+        return const AvailableEquipmentPage();
+      case 2:
+      default:
+        return const SettingsPage();
     }
   }
 
-  String _getTitle(int currentNavigationIndex) {
-    var title = '';
-    if (currentNavigationIndex == 0) {
-      title = 'RENT APP';
-    } else if (currentNavigationIndex == 1) {
-      title = 'Oprema';
-    } else {
-      title = 'Postavke';
+  String _getTitle(int index) {
+    switch (index) {
+      case 0:
+        return 'RENT APP';
+      case 1:
+        return 'Oprema';
+      case 2:
+      default:
+        return 'Postavke';
     }
-    return title;
   }
 }
