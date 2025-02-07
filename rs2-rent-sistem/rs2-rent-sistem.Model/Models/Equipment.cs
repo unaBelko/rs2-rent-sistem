@@ -17,7 +17,7 @@
         public string? Description { get; set; }
 
         public decimal? CostPerUse { get; set; }
-
+        public decimal AverageRating { get; set; }
         public DateTime? DateAdded { get; set; }
         public int? EquipmentCategoryID { get; set; }
         public String? EquipmentCategory { get; set; }

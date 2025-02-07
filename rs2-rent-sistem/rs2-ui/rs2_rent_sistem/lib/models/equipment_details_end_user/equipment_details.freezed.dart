@@ -29,6 +29,7 @@ mixin _$EquipmentDetails {
   int get maxQuantity => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   double get costPerUse => throw _privateConstructorUsedError;
+  double get averageRating => throw _privateConstructorUsedError;
   String get manufacturer => throw _privateConstructorUsedError;
   String get equipmentCategory => throw _privateConstructorUsedError;
   List<DateTime> get availableDatesForRent =>
@@ -61,6 +62,7 @@ abstract class $EquipmentDetailsCopyWith<$Res> {
       int maxQuantity,
       String description,
       double costPerUse,
+      double averageRating,
       String manufacturer,
       String equipmentCategory,
       List<DateTime> availableDatesForRent,
@@ -91,6 +93,7 @@ class _$EquipmentDetailsCopyWithImpl<$Res, $Val extends EquipmentDetails>
     Object? maxQuantity = null,
     Object? description = null,
     Object? costPerUse = null,
+    Object? averageRating = null,
     Object? manufacturer = null,
     Object? equipmentCategory = null,
     Object? availableDatesForRent = null,
@@ -133,6 +136,10 @@ class _$EquipmentDetailsCopyWithImpl<$Res, $Val extends EquipmentDetails>
           ? _value.costPerUse
           : costPerUse // ignore: cast_nullable_to_non_nullable
               as double,
+      averageRating: null == averageRating
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
+              as double,
       manufacturer: null == manufacturer
           ? _value.manufacturer
           : manufacturer // ignore: cast_nullable_to_non_nullable
@@ -171,6 +178,7 @@ abstract class _$$EquipmentDetailsImplCopyWith<$Res>
       int maxQuantity,
       String description,
       double costPerUse,
+      double averageRating,
       String manufacturer,
       String equipmentCategory,
       List<DateTime> availableDatesForRent,
@@ -199,6 +207,7 @@ class __$$EquipmentDetailsImplCopyWithImpl<$Res>
     Object? maxQuantity = null,
     Object? description = null,
     Object? costPerUse = null,
+    Object? averageRating = null,
     Object? manufacturer = null,
     Object? equipmentCategory = null,
     Object? availableDatesForRent = null,
@@ -241,6 +250,10 @@ class __$$EquipmentDetailsImplCopyWithImpl<$Res>
           ? _value.costPerUse
           : costPerUse // ignore: cast_nullable_to_non_nullable
               as double,
+      averageRating: null == averageRating
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
+              as double,
       manufacturer: null == manufacturer
           ? _value.manufacturer
           : manufacturer // ignore: cast_nullable_to_non_nullable
@@ -274,6 +287,7 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
       this.maxQuantity = 1,
       this.description = '',
       this.costPerUse = 0.0,
+      this.averageRating = 0.0,
       this.manufacturer = '',
       this.equipmentCategory = '',
       final List<DateTime> availableDatesForRent = const [],
@@ -311,6 +325,9 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
   final double costPerUse;
   @override
   @JsonKey()
+  final double averageRating;
+  @override
+  @JsonKey()
   final String manufacturer;
   @override
   @JsonKey()
@@ -331,7 +348,7 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
 
   @override
   String toString() {
-    return 'EquipmentDetails(id: $id, itemName: $itemName, manufacturerID: $manufacturerID, equipmentCategoryID: $equipmentCategoryID, imageUrl: $imageUrl, minQuantity: $minQuantity, maxQuantity: $maxQuantity, description: $description, costPerUse: $costPerUse, manufacturer: $manufacturer, equipmentCategory: $equipmentCategory, availableDatesForRent: $availableDatesForRent, isInCart: $isInCart)';
+    return 'EquipmentDetails(id: $id, itemName: $itemName, manufacturerID: $manufacturerID, equipmentCategoryID: $equipmentCategoryID, imageUrl: $imageUrl, minQuantity: $minQuantity, maxQuantity: $maxQuantity, description: $description, costPerUse: $costPerUse, averageRating: $averageRating, manufacturer: $manufacturer, equipmentCategory: $equipmentCategory, availableDatesForRent: $availableDatesForRent, isInCart: $isInCart)';
   }
 
   @override
@@ -356,6 +373,8 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
                 other.description == description) &&
             (identical(other.costPerUse, costPerUse) ||
                 other.costPerUse == costPerUse) &&
+            (identical(other.averageRating, averageRating) ||
+                other.averageRating == averageRating) &&
             (identical(other.manufacturer, manufacturer) ||
                 other.manufacturer == manufacturer) &&
             (identical(other.equipmentCategory, equipmentCategory) ||
@@ -379,6 +398,7 @@ class _$EquipmentDetailsImpl implements _EquipmentDetails {
       maxQuantity,
       description,
       costPerUse,
+      averageRating,
       manufacturer,
       equipmentCategory,
       const DeepCollectionEquality().hash(_availableDatesForRent),
@@ -412,6 +432,7 @@ abstract class _EquipmentDetails implements EquipmentDetails {
       final int maxQuantity,
       final String description,
       final double costPerUse,
+      final double averageRating,
       final String manufacturer,
       final String equipmentCategory,
       final List<DateTime> availableDatesForRent,
@@ -438,6 +459,8 @@ abstract class _EquipmentDetails implements EquipmentDetails {
   String get description;
   @override
   double get costPerUse;
+  @override
+  double get averageRating;
   @override
   String get manufacturer;
   @override

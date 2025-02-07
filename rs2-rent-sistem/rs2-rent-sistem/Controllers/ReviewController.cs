@@ -19,7 +19,6 @@ namespace rs2_rent_sistem.Controllers
         {
         }
 
-        [Authorize(Roles = "employee")]
         public override async Task<PageResult<Review>> Get([FromQuery] ReviewSearchObject? search = null)
         {
             var userId = User.FindFirstValue(ClaimTypes.Name);

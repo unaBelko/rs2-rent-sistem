@@ -18,6 +18,7 @@ _$EquipmentDetailsImpl _$$EquipmentDetailsImplFromJson(
       maxQuantity: (json['maxQuantity'] as num?)?.toInt() ?? 1,
       description: json['description'] as String? ?? '',
       costPerUse: (json['costPerUse'] as num?)?.toDouble() ?? 0.0,
+      averageRating: (json['averageRating'] as num?)?.toDouble() ?? 0.0,
       manufacturer: json['manufacturer'] as String? ?? '',
       equipmentCategory: json['equipmentCategory'] as String? ?? '',
       availableDatesForRent: (json['availableDatesForRent'] as List<dynamic>?)
@@ -39,6 +40,7 @@ Map<String, dynamic> _$$EquipmentDetailsImplToJson(
       'maxQuantity': instance.maxQuantity,
       'description': instance.description,
       'costPerUse': instance.costPerUse,
+      'averageRating': instance.averageRating,
       'manufacturer': instance.manufacturer,
       'equipmentCategory': instance.equipmentCategory,
       'availableDatesForRent': instance.availableDatesForRent

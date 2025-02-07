@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/item_in_order/order_item.dart';
+import 'package:rs2_rent_sistem/shared/providers/equipment_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/order_item_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/review_providers.dart';
 import 'package:rs2_rent_sistem/shared/utilities/extensions/date_extensions.dart';
@@ -71,13 +72,15 @@ class _RentedEquipmentInOrderWidgetState
                   };
                   ref.read(addReviewProvider(params).future).then((_) {
                     ref.invalidate(orderItemsProvider);
+                    ref.invalidate(equipmentListProvider);
                     Navigator.of(context).pop();
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text("Recenzija je poslana!")),
                     );
                   }).catchError((error) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Greška pri slanju recenzije: $error")),
+                      SnackBar(
+                          content: Text("Greška pri slanju recenzije: $error")),
                     );
                   });
                 },
@@ -132,7 +135,9 @@ class _RentedEquipmentInOrderWidgetState
               Row(
                 children: [
                   RatingBar.builder(
-                    initialRating: _rating,
+                    initialRating:
+                        widget.orderItem.isReviewedByUser ? 3 : _rating,
+                    // initialRating: widget.orderItem.isReviewedByUser?widget.orderItem.equipment.averageRating:_rating,
                     minRating: 1,
                     direction: Axis.horizontal,
                     allowHalfRating: true,
@@ -141,17 +146,19 @@ class _RentedEquipmentInOrderWidgetState
                     itemBuilder: (context, _) =>
                         const Icon(Icons.star, color: Colors.amber),
                     onRatingUpdate: (rating) {
-                      setState(() {
-                        _rating = rating;
-                      });
-                      _showReviewBottomSheet(context, rating);
+                      if (!widget.orderItem.isReviewedByUser) {
+                        setState(() {
+                          _rating = rating;
+                        });
+                        _showReviewBottomSheet(context, rating);
+                      }
                     },
+                    ignoreGestures: widget.orderItem.isReviewedByUser,
                   ),
                 ],
               ),
             ],
             const SizedBox(height: 8),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -29,7 +29,7 @@ public partial class Equipment
     public bool IsDeleted { get; set; }
 
     public byte[]? Photo { get; set; }
-
+    public decimal AverageRating { get; set; } = 0;
     public virtual User AddedByUser { get; set; }
 
     public virtual ICollection<CartItem> CartItems { get; } = new List<CartItem>();

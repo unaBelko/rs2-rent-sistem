@@ -115,7 +115,8 @@ namespace rs2_rent_sistem.Services.Migrations
                     AddedByUserID = table.Column<int>(type: "int", nullable: false),
                     EquipmentCategoryId = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    Photo = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                    Photo = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    AverageRating = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -351,16 +352,16 @@ namespace rs2_rent_sistem.Services.Migrations
                 columns: new[] { "ID", "Email", "FirstName", "IsActive", "LastName", "PasswordHash", "Phone", "Salt" },
                 values: new object[,]
                 {
-                    { 1, "una.belko+radnik@edu.fit.ba", "Una", true, "Radnik", "Ft0sPfpCpbi3lC5nJe7nCpp2aVBxCUUVyWGi5EiDY20=", "0038763222111", "cLrsheOFupkD6F42+n+UuA==" },
-                    { 2, "una.belko+shopping@edu.fit.ba", "Una", true, "Shopping", "Ft0sPfpCpbi3lC5nJe7nCpp2aVBxCUUVyWGi5EiDY20=", "0038763222111", "cLrsheOFupkD6F42+n+UuA==" },
-                    { 3, "michael.johnson+user@rental.com", "Michael", true, "Johnson", "Ft0sPfpCpbi3lC5nJe7nCpp2aVBxCUUVyWGi5EiDY20=", "555-8765", "cLrsheOFupkD6F42+n+UuA==" },
-                    { 4, "emily.davis+user@rental.com", "Emily", true, "Davis", "Ft0sPfpCpbi3lC5nJe7nCpp2aVBxCUUVyWGi5EiDY20=", "555-4321", "cLrsheOFupkD6F42+n+UuA==" },
-                    { 5, "william.brown+user@rental.com", "William", true, "Brown", "Ft0sPfpCpbi3lC5nJe7nCpp2aVBxCUUVyWGi5EiDY20=", "555-6789", "cLrsheOFupkD6F42+n+UuA==" },
-                    { 6, "ava.wilson+user@rental.com", "Ava", true, "Wilson", "Ft0sPfpCpbi3lC5nJe7nCpp2aVBxCUUVyWGi5EiDY20=", "555-2345", "cLrsheOFupkD6F42+n+UuA==" },
-                    { 7, "james.taylor+user@rental.com", "James", true, "Taylor", "Ft0sPfpCpbi3lC5nJe7nCpp2aVBxCUUVyWGi5EiDY20=", "555-7890", "cLrsheOFupkD6F42+n+UuA==" },
-                    { 8, "olivia.anderson+user@rental.com", "Olivia", true, "Anderson", "Ft0sPfpCpbi3lC5nJe7nCpp2aVBxCUUVyWGi5EiDY20=", "555-3456", "cLrsheOFupkD6F42+n+UuA==" },
-                    { 9, "benjamin.thomas+user@rental.com", "Benjamin", true, "Thomas", "Ft0sPfpCpbi3lC5nJe7nCpp2aVBxCUUVyWGi5EiDY20=", "555-9012", "cLrsheOFupkD6F42+n+UuA==" },
-                    { 10, "sophia.moore+user@rental.com", "Sophia", true, "Moore", "Ft0sPfpCpbi3lC5nJe7nCpp2aVBxCUUVyWGi5EiDY20=", "555-6543", "cLrsheOFupkD6F42+n+UuA==" }
+                    { 1, "una.belko+radnik@edu.fit.ba", "Una", true, "Radnik", "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=", "0038763222111", "Q3jRl1B5J45ytORAfnfj+Q==" },
+                    { 2, "una.belko+shopping@edu.fit.ba", "Una", true, "Shopping", "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=", "0038763222111", "Q3jRl1B5J45ytORAfnfj+Q==" },
+                    { 3, "michael.johnson+user@rental.com", "Michael", true, "Johnson", "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=", "555-8765", "Q3jRl1B5J45ytORAfnfj+Q==" },
+                    { 4, "emily.davis+user@rental.com", "Emily", true, "Davis", "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=", "555-4321", "Q3jRl1B5J45ytORAfnfj+Q==" },
+                    { 5, "william.brown+user@rental.com", "William", true, "Brown", "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=", "555-6789", "Q3jRl1B5J45ytORAfnfj+Q==" },
+                    { 6, "ava.wilson+user@rental.com", "Ava", true, "Wilson", "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=", "555-2345", "Q3jRl1B5J45ytORAfnfj+Q==" },
+                    { 7, "james.taylor+user@rental.com", "James", true, "Taylor", "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=", "555-7890", "Q3jRl1B5J45ytORAfnfj+Q==" },
+                    { 8, "olivia.anderson+user@rental.com", "Olivia", true, "Anderson", "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=", "555-3456", "Q3jRl1B5J45ytORAfnfj+Q==" },
+                    { 9, "benjamin.thomas+user@rental.com", "Benjamin", true, "Thomas", "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=", "555-9012", "Q3jRl1B5J45ytORAfnfj+Q==" },
+                    { 10, "sophia.moore+user@rental.com", "Sophia", true, "Moore", "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=", "555-6543", "Q3jRl1B5J45ytORAfnfj+Q==" }
                 });
 
             migrationBuilder.InsertData(
@@ -368,70 +369,70 @@ namespace rs2_rent_sistem.Services.Migrations
                 columns: new[] { "ID", "DateAdded", "TotalPrice", "UserID" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 1, 31, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2623), 45.75m, 2 },
-                    { 2, new DateTime(2025, 2, 1, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2627), 120.00m, 3 },
-                    { 3, new DateTime(2025, 2, 2, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2629), 65.30m, 4 },
-                    { 4, new DateTime(2025, 2, 3, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2631), 78.40m, 5 },
-                    { 5, new DateTime(2025, 2, 4, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2633), 52.10m, 6 },
-                    { 6, new DateTime(2025, 2, 5, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2635), 98.25m, 7 },
-                    { 7, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2637), 36.60m, 8 }
+                    { 1, new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2925), 45.75m, 2 },
+                    { 2, new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2930), 120.00m, 3 },
+                    { 3, new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2931), 65.30m, 4 },
+                    { 4, new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2933), 78.40m, 5 },
+                    { 5, new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2935), 52.10m, 6 },
+                    { 6, new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2937), 98.25m, 7 },
+                    { 7, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2939), 36.60m, 8 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Equipment",
-                columns: new[] { "ID", "AddedByUserID", "CostPerUse", "DateAdded", "Description", "EquipmentCategoryId", "ImageUrl", "IsDeleted", "ItemName", "ManufacturerID", "MaxQuantity", "MinQuantity", "Photo", "StockQuantity" },
+                columns: new[] { "ID", "AddedByUserID", "AverageRating", "CostPerUse", "DateAdded", "Description", "EquipmentCategoryId", "ImageUrl", "IsDeleted", "ItemName", "ManufacturerID", "MaxQuantity", "MinQuantity", "Photo", "StockQuantity" },
                 values: new object[,]
                 {
-                    { 1, 1, 2.99m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1624), "Official size and weight.", 1, "soccerball.jpg", false, "Soccer Ball", 1, 50, 5, null, 30 },
-                    { 2, 1, 3.49m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1671), "High-quality leather basketball.", 2, "basketball.jpg", false, "Basketball", 2, 40, 5, null, 20 },
-                    { 3, 1, 4.99m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1673), "Lightweight racket for professional use.", 3, "tennisracket.jpg", false, "Tennis Racket", 3, 25, 2, null, 15 },
-                    { 4, 1, 9.98m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1773), "Description for Equipment 4", 7, "equipment4.jpg", false, "Equipment 4", 1, 50, 5, null, 27 },
-                    { 5, 1, 6.04m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1789), "Description for Equipment 5", 9, "equipment5.jpg", false, "Equipment 5", 7, 50, 5, null, 13 },
-                    { 6, 1, 4.65m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1799), "Description for Equipment 6", 9, "equipment6.jpg", false, "Equipment 6", 4, 50, 5, null, 25 },
-                    { 7, 1, 4.48m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1807), "Description for Equipment 7", 7, "equipment7.jpg", false, "Equipment 7", 2, 50, 5, null, 15 },
-                    { 8, 1, 5.55m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1816), "Description for Equipment 8", 4, "equipment8.jpg", false, "Equipment 8", 8, 50, 5, null, 39 },
-                    { 9, 1, 0.40m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1824), "Description for Equipment 9", 5, "equipment9.jpg", false, "Equipment 9", 6, 50, 5, null, 26 },
-                    { 10, 1, 2.22m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1834), "Description for Equipment 10", 4, "equipment10.jpg", false, "Equipment 10", 6, 50, 5, null, 36 },
-                    { 11, 1, 5.14m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1842), "Description for Equipment 11", 8, "equipment11.jpg", false, "Equipment 11", 2, 50, 5, null, 15 },
-                    { 12, 1, 6.59m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1851), "Description for Equipment 12", 9, "equipment12.jpg", false, "Equipment 12", 4, 50, 5, null, 22 },
-                    { 13, 1, 8.03m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1904), "Description for Equipment 13", 8, "equipment13.jpg", false, "Equipment 13", 4, 50, 5, null, 14 },
-                    { 14, 1, 1.42m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1913), "Description for Equipment 14", 2, "equipment14.jpg", false, "Equipment 14", 8, 50, 5, null, 41 },
-                    { 15, 1, 0.58m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1922), "Description for Equipment 15", 1, "equipment15.jpg", false, "Equipment 15", 4, 50, 5, null, 26 },
-                    { 16, 1, 3.25m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1930), "Description for Equipment 16", 7, "equipment16.jpg", false, "Equipment 16", 8, 50, 5, null, 27 },
-                    { 17, 1, 6.73m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1939), "Description for Equipment 17", 7, "equipment17.jpg", false, "Equipment 17", 9, 50, 5, null, 36 },
-                    { 18, 1, 1.61m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1949), "Description for Equipment 18", 7, "equipment18.jpg", false, "Equipment 18", 5, 50, 5, null, 17 },
-                    { 19, 1, 5.87m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1958), "Description for Equipment 19", 6, "equipment19.jpg", false, "Equipment 19", 3, 50, 5, null, 22 },
-                    { 20, 1, 6.63m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1966), "Description for Equipment 20", 1, "equipment20.jpg", false, "Equipment 20", 3, 50, 5, null, 36 },
-                    { 21, 1, 2.87m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1974), "Description for Equipment 21", 7, "equipment21.jpg", false, "Equipment 21", 7, 50, 5, null, 48 },
-                    { 22, 1, 2.14m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1982), "Description for Equipment 22", 4, "equipment22.jpg", false, "Equipment 22", 8, 50, 5, null, 14 },
-                    { 23, 1, 8.08m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(1991), "Description for Equipment 23", 6, "equipment23.jpg", false, "Equipment 23", 5, 50, 5, null, 12 },
-                    { 24, 1, 1.19m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2017), "Description for Equipment 24", 3, "equipment24.jpg", false, "Equipment 24", 5, 50, 5, null, 18 },
-                    { 25, 1, 5.54m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2025), "Description for Equipment 25", 7, "equipment25.jpg", false, "Equipment 25", 6, 50, 5, null, 26 },
-                    { 26, 1, 0.79m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2033), "Description for Equipment 26", 4, "equipment26.jpg", false, "Equipment 26", 2, 50, 5, null, 11 },
-                    { 27, 1, 9.21m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2041), "Description for Equipment 27", 7, "equipment27.jpg", false, "Equipment 27", 7, 50, 5, null, 42 },
-                    { 28, 1, 7.02m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2049), "Description for Equipment 28", 5, "equipment28.jpg", false, "Equipment 28", 9, 50, 5, null, 13 },
-                    { 29, 1, 5.40m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2057), "Description for Equipment 29", 8, "equipment29.jpg", false, "Equipment 29", 7, 50, 5, null, 47 },
-                    { 30, 1, 9.00m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2065), "Description for Equipment 30", 9, "equipment30.jpg", false, "Equipment 30", 8, 50, 5, null, 22 },
-                    { 31, 1, 8.68m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2073), "Description for Equipment 31", 9, "equipment31.jpg", false, "Equipment 31", 8, 50, 5, null, 30 },
-                    { 32, 1, 7.34m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2081), "Description for Equipment 32", 7, "equipment32.jpg", false, "Equipment 32", 8, 50, 5, null, 48 },
-                    { 33, 1, 2.16m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2089), "Description for Equipment 33", 6, "equipment33.jpg", false, "Equipment 33", 9, 50, 5, null, 14 },
-                    { 34, 1, 9.53m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2098), "Description for Equipment 34", 2, "equipment34.jpg", false, "Equipment 34", 2, 50, 5, null, 33 },
-                    { 35, 1, 6.04m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2128), "Description for Equipment 35", 5, "equipment35.jpg", false, "Equipment 35", 2, 50, 5, null, 32 },
-                    { 36, 1, 8.82m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2213), "Description for Equipment 36", 6, "equipment36.jpg", false, "Equipment 36", 1, 50, 5, null, 33 },
-                    { 37, 1, 6.98m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2222), "Description for Equipment 37", 6, "equipment37.jpg", false, "Equipment 37", 2, 50, 5, null, 46 },
-                    { 38, 1, 6.44m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2230), "Description for Equipment 38", 3, "equipment38.jpg", false, "Equipment 38", 6, 50, 5, null, 21 },
-                    { 39, 1, 6.71m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2238), "Description for Equipment 39", 6, "equipment39.jpg", false, "Equipment 39", 3, 50, 5, null, 33 },
-                    { 40, 1, 3.09m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2246), "Description for Equipment 40", 3, "equipment40.jpg", false, "Equipment 40", 4, 50, 5, null, 35 },
-                    { 41, 1, 1.85m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2254), "Description for Equipment 41", 5, "equipment41.jpg", false, "Equipment 41", 1, 50, 5, null, 13 },
-                    { 42, 1, 9.14m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2262), "Description for Equipment 42", 4, "equipment42.jpg", false, "Equipment 42", 5, 50, 5, null, 12 },
-                    { 43, 1, 4.33m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2270), "Description for Equipment 43", 4, "equipment43.jpg", false, "Equipment 43", 6, 50, 5, null, 41 },
-                    { 44, 1, 5.70m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2278), "Description for Equipment 44", 9, "equipment44.jpg", false, "Equipment 44", 9, 50, 5, null, 37 },
-                    { 45, 1, 4.58m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2286), "Description for Equipment 45", 4, "equipment45.jpg", false, "Equipment 45", 1, 50, 5, null, 30 },
-                    { 46, 1, 1.09m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2315), "Description for Equipment 46", 2, "equipment46.jpg", false, "Equipment 46", 8, 50, 5, null, 35 },
-                    { 47, 1, 2.58m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2323), "Description for Equipment 47", 8, "equipment47.jpg", false, "Equipment 47", 7, 50, 5, null, 34 },
-                    { 48, 1, 8.34m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2331), "Description for Equipment 48", 5, "equipment48.jpg", false, "Equipment 48", 3, 50, 5, null, 37 },
-                    { 49, 1, 7.81m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2339), "Description for Equipment 49", 3, "equipment49.jpg", false, "Equipment 49", 3, 50, 5, null, 48 },
-                    { 50, 1, 7.68m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2347), "Description for Equipment 50", 4, "equipment50.jpg", false, "Equipment 50", 7, 50, 5, null, 25 }
+                    { 1, 1, 0m, 2.99m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2010), "Official size and weight.", 1, "soccerball.jpg", false, "Soccer Ball", 1, 50, 5, null, 30 },
+                    { 2, 1, 0m, 3.49m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2055), "High-quality leather basketball.", 2, "basketball.jpg", false, "Basketball", 2, 40, 5, null, 20 },
+                    { 3, 1, 0m, 4.99m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2058), "Lightweight racket for professional use.", 3, "tennisracket.jpg", false, "Tennis Racket", 3, 25, 2, null, 15 },
+                    { 4, 1, 0m, 9.39m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2134), "Description for Equipment 4", 7, "equipment4.jpg", false, "Equipment 4", 5, 50, 5, null, 19 },
+                    { 5, 1, 0m, 7.60m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2146), "Description for Equipment 5", 8, "equipment5.jpg", false, "Equipment 5", 2, 50, 5, null, 10 },
+                    { 6, 1, 0m, 8.13m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2156), "Description for Equipment 6", 5, "equipment6.jpg", false, "Equipment 6", 4, 50, 5, null, 37 },
+                    { 7, 1, 0m, 2.09m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2166), "Description for Equipment 7", 8, "equipment7.jpg", false, "Equipment 7", 2, 50, 5, null, 45 },
+                    { 8, 1, 0m, 8.47m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2175), "Description for Equipment 8", 5, "equipment8.jpg", false, "Equipment 8", 4, 50, 5, null, 34 },
+                    { 9, 1, 0m, 4.47m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2184), "Description for Equipment 9", 2, "equipment9.jpg", false, "Equipment 9", 1, 50, 5, null, 49 },
+                    { 10, 1, 0m, 6.90m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2214), "Description for Equipment 10", 4, "equipment10.jpg", false, "Equipment 10", 5, 50, 5, null, 48 },
+                    { 11, 1, 0m, 8.48m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2224), "Description for Equipment 11", 5, "equipment11.jpg", false, "Equipment 11", 1, 50, 5, null, 23 },
+                    { 12, 1, 0m, 2.54m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2233), "Description for Equipment 12", 6, "equipment12.jpg", false, "Equipment 12", 3, 50, 5, null, 11 },
+                    { 13, 1, 0m, 9.97m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2241), "Description for Equipment 13", 4, "equipment13.jpg", false, "Equipment 13", 7, 50, 5, null, 42 },
+                    { 14, 1, 0m, 4.46m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2250), "Description for Equipment 14", 5, "equipment14.jpg", false, "Equipment 14", 6, 50, 5, null, 23 },
+                    { 15, 1, 0m, 1.22m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2259), "Description for Equipment 15", 8, "equipment15.jpg", false, "Equipment 15", 5, 50, 5, null, 25 },
+                    { 16, 1, 0m, 6.46m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2268), "Description for Equipment 16", 8, "equipment16.jpg", false, "Equipment 16", 2, 50, 5, null, 33 },
+                    { 17, 1, 0m, 7.63m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2277), "Description for Equipment 17", 1, "equipment17.jpg", false, "Equipment 17", 4, 50, 5, null, 47 },
+                    { 18, 1, 0m, 8.72m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2287), "Description for Equipment 18", 9, "equipment18.jpg", false, "Equipment 18", 4, 50, 5, null, 48 },
+                    { 19, 1, 0m, 7.73m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2296), "Description for Equipment 19", 5, "equipment19.jpg", false, "Equipment 19", 5, 50, 5, null, 36 },
+                    { 20, 1, 0m, 5.09m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2327), "Description for Equipment 20", 2, "equipment20.jpg", false, "Equipment 20", 4, 50, 5, null, 49 },
+                    { 21, 1, 0m, 4.23m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2336), "Description for Equipment 21", 3, "equipment21.jpg", false, "Equipment 21", 6, 50, 5, null, 22 },
+                    { 22, 1, 0m, 9.95m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2345), "Description for Equipment 22", 6, "equipment22.jpg", false, "Equipment 22", 8, 50, 5, null, 24 },
+                    { 23, 1, 0m, 5.27m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2354), "Description for Equipment 23", 8, "equipment23.jpg", false, "Equipment 23", 1, 50, 5, null, 47 },
+                    { 24, 1, 0m, 4.92m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2363), "Description for Equipment 24", 4, "equipment24.jpg", false, "Equipment 24", 9, 50, 5, null, 39 },
+                    { 25, 1, 0m, 5.43m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2372), "Description for Equipment 25", 7, "equipment25.jpg", false, "Equipment 25", 5, 50, 5, null, 24 },
+                    { 26, 1, 0m, 5.89m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2380), "Description for Equipment 26", 1, "equipment26.jpg", false, "Equipment 26", 9, 50, 5, null, 14 },
+                    { 27, 1, 0m, 2.09m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2389), "Description for Equipment 27", 4, "equipment27.jpg", false, "Equipment 27", 7, 50, 5, null, 34 },
+                    { 28, 1, 0m, 8.27m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2398), "Description for Equipment 28", 2, "equipment28.jpg", false, "Equipment 28", 2, 50, 5, null, 24 },
+                    { 29, 1, 0m, 7.72m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2407), "Description for Equipment 29", 7, "equipment29.jpg", false, "Equipment 29", 4, 50, 5, null, 21 },
+                    { 30, 1, 0m, 6.44m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2416), "Description for Equipment 30", 3, "equipment30.jpg", false, "Equipment 30", 8, 50, 5, null, 44 },
+                    { 31, 1, 0m, 7.33m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2444), "Description for Equipment 31", 8, "equipment31.jpg", false, "Equipment 31", 1, 50, 5, null, 17 },
+                    { 32, 1, 0m, 3.22m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2453), "Description for Equipment 32", 8, "equipment32.jpg", false, "Equipment 32", 5, 50, 5, null, 44 },
+                    { 33, 1, 0m, 4.34m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2462), "Description for Equipment 33", 6, "equipment33.jpg", false, "Equipment 33", 6, 50, 5, null, 16 },
+                    { 34, 1, 0m, 8.09m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2472), "Description for Equipment 34", 7, "equipment34.jpg", false, "Equipment 34", 1, 50, 5, null, 32 },
+                    { 35, 1, 0m, 6.52m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2481), "Description for Equipment 35", 6, "equipment35.jpg", false, "Equipment 35", 3, 50, 5, null, 35 },
+                    { 36, 1, 0m, 5.81m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2490), "Description for Equipment 36", 7, "equipment36.jpg", false, "Equipment 36", 4, 50, 5, null, 42 },
+                    { 37, 1, 0m, 7.58m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2500), "Description for Equipment 37", 9, "equipment37.jpg", false, "Equipment 37", 8, 50, 5, null, 26 },
+                    { 38, 1, 0m, 5.47m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2508), "Description for Equipment 38", 5, "equipment38.jpg", false, "Equipment 38", 6, 50, 5, null, 35 },
+                    { 39, 1, 0m, 1.45m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2517), "Description for Equipment 39", 7, "equipment39.jpg", false, "Equipment 39", 1, 50, 5, null, 49 },
+                    { 40, 1, 0m, 1.22m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2526), "Description for Equipment 40", 2, "equipment40.jpg", false, "Equipment 40", 1, 50, 5, null, 32 },
+                    { 41, 1, 0m, 7.37m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2534), "Description for Equipment 41", 5, "equipment41.jpg", false, "Equipment 41", 4, 50, 5, null, 24 },
+                    { 42, 1, 0m, 7.22m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2562), "Description for Equipment 42", 4, "equipment42.jpg", false, "Equipment 42", 8, 50, 5, null, 48 },
+                    { 43, 1, 0m, 4.01m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2571), "Description for Equipment 43", 4, "equipment43.jpg", false, "Equipment 43", 2, 50, 5, null, 25 },
+                    { 44, 1, 0m, 4.79m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2580), "Description for Equipment 44", 4, "equipment44.jpg", false, "Equipment 44", 7, 50, 5, null, 37 },
+                    { 45, 1, 0m, 0.65m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2589), "Description for Equipment 45", 2, "equipment45.jpg", false, "Equipment 45", 5, 50, 5, null, 15 },
+                    { 46, 1, 0m, 6.39m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2598), "Description for Equipment 46", 6, "equipment46.jpg", false, "Equipment 46", 9, 50, 5, null, 45 },
+                    { 47, 1, 0m, 5.87m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2607), "Description for Equipment 47", 1, "equipment47.jpg", false, "Equipment 47", 5, 50, 5, null, 37 },
+                    { 48, 1, 0m, 6.03m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2615), "Description for Equipment 48", 9, "equipment48.jpg", false, "Equipment 48", 1, 50, 5, null, 12 },
+                    { 49, 1, 0m, 2.23m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2624), "Description for Equipment 49", 4, "equipment49.jpg", false, "Equipment 49", 3, 50, 5, null, 33 },
+                    { 50, 1, 0m, 2.83m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2633), "Description for Equipment 50", 2, "equipment50.jpg", false, "Equipment 50", 7, 50, 5, null, 35 }
                 });
 
             migrationBuilder.InsertData(
@@ -439,16 +440,16 @@ namespace rs2_rent_sistem.Services.Migrations
                 columns: new[] { "ID", "DatePlaced", "IsActive", "Status", "TotalPrice", "UserID" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 1, 27, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2421), true, "returned", 59.94m, 3 },
-                    { 2, new DateTime(2025, 1, 29, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2425), true, "paid", 89.85m, 4 },
-                    { 3, new DateTime(2025, 2, 1, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2427), true, "rented", 29.97m, 4 },
-                    { 4, new DateTime(2025, 1, 30, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2428), true, "rented", 19.98m, 5 },
-                    { 5, new DateTime(2025, 2, 2, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2430), true, "returned", 99.90m, 5 },
-                    { 6, new DateTime(2025, 2, 3, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2432), true, "rented", 49.95m, 6 },
-                    { 7, new DateTime(2025, 2, 4, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2433), true, "returned", 69.93m, 7 },
-                    { 8, new DateTime(2025, 2, 5, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2436), true, "paid", 39.96m, 2 },
-                    { 9, new DateTime(2025, 1, 31, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2437), true, "rented", 149.85m, 2 },
-                    { 10, new DateTime(2025, 1, 28, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2439), true, "returned", 29.97m, 2 }
+                    { 1, new DateTime(2025, 1, 28, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2698), true, "returned", 59.94m, 3 },
+                    { 2, new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2735), true, "paid", 89.85m, 4 },
+                    { 3, new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2737), true, "rented", 29.97m, 4 },
+                    { 4, new DateTime(2025, 1, 31, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2739), true, "rented", 19.98m, 5 },
+                    { 5, new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2741), true, "returned", 99.90m, 5 },
+                    { 6, new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2742), true, "rented", 49.95m, 6 },
+                    { 7, new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2744), true, "returned", 69.93m, 7 },
+                    { 8, new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2745), true, "paid", 39.96m, 2 },
+                    { 9, new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2747), true, "rented", 149.85m, 2 },
+                    { 10, new DateTime(2025, 1, 29, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2749), true, "returned", 29.97m, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -473,16 +474,16 @@ namespace rs2_rent_sistem.Services.Migrations
                 columns: new[] { "ID", "CartID", "EndDate", "EquipmentID", "EquipmentID1", "Quantity", "StartDate" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2025, 2, 1, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2660), 1, null, 2, new DateTime(2025, 1, 31, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2658) },
-                    { 2, 1, new DateTime(2025, 2, 1, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2664), 2, null, 1, new DateTime(2025, 1, 31, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2663) },
-                    { 3, 2, new DateTime(2025, 2, 2, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2667), 3, null, 1, new DateTime(2025, 2, 1, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2666) },
-                    { 4, 3, new DateTime(2025, 2, 3, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2669), 1, null, 3, new DateTime(2025, 2, 2, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2668) },
-                    { 5, 3, new DateTime(2025, 2, 3, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2671), 2, null, 2, new DateTime(2025, 2, 2, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2670) },
-                    { 6, 4, new DateTime(2025, 2, 4, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2674), 2, null, 1, new DateTime(2025, 2, 3, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2673) },
-                    { 7, 4, new DateTime(2025, 2, 4, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2677), 3, null, 1, new DateTime(2025, 2, 3, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2676) },
-                    { 8, 5, new DateTime(2025, 2, 5, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2679), 1, null, 2, new DateTime(2025, 2, 4, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2678) },
-                    { 9, 6, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2681), 3, null, 3, new DateTime(2025, 2, 5, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2680) },
-                    { 10, 7, new DateTime(2025, 2, 7, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2684), 2, null, 1, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2683) }
+                    { 1, 1, new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2954), 1, null, 2, new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2953) },
+                    { 2, 1, new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2958), 2, null, 1, new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2957) },
+                    { 3, 2, new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2961), 3, null, 1, new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2960) },
+                    { 4, 3, new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2983), 1, null, 3, new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2981) },
+                    { 5, 3, new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2986), 2, null, 2, new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2985) },
+                    { 6, 4, new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2989), 2, null, 1, new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2988) },
+                    { 7, 4, new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2991), 3, null, 1, new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2990) },
+                    { 8, 5, new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2994), 1, null, 2, new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2993) },
+                    { 9, 6, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2996), 3, null, 3, new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2995) },
+                    { 10, 7, new DateTime(2025, 2, 8, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2999), 2, null, 1, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2998) }
                 });
 
             migrationBuilder.InsertData(
@@ -490,20 +491,20 @@ namespace rs2_rent_sistem.Services.Migrations
                 columns: new[] { "ID", "CostPerUse", "EndDate", "EquipmentID", "EquipmentID1", "IsReviewedByUser", "OrderID", "Price", "Quantity", "StartDate" },
                 values: new object[,]
                 {
-                    { 1, 2.99m, new DateTime(2025, 1, 28, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2495), 1, null, false, 1, 5.98m, 2, new DateTime(2025, 1, 27, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2486) },
-                    { 2, 4.99m, new DateTime(2025, 1, 29, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2500), 3, null, false, 1, 4.99m, 1, new DateTime(2025, 1, 27, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2499) },
-                    { 3, 3.49m, new DateTime(2025, 1, 30, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2505), 2, null, false, 2, 10.47m, 3, new DateTime(2025, 1, 29, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2504) },
-                    { 4, 2.99m, new DateTime(2025, 1, 31, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2508), 1, null, false, 2, 11.96m, 4, new DateTime(2025, 1, 29, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2507) },
-                    { 5, 4.99m, new DateTime(2025, 2, 2, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2511), 3, null, false, 3, 9.98m, 2, new DateTime(2025, 2, 1, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2509) },
-                    { 6, 2.99m, new DateTime(2025, 1, 31, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2514), 1, null, false, 4, 2.99m, 1, new DateTime(2025, 1, 30, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2513) },
-                    { 7, 3.49m, new DateTime(2025, 2, 4, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2517), 2, null, false, 5, 17.45m, 5, new DateTime(2025, 2, 2, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2516) },
-                    { 8, 4.99m, new DateTime(2025, 2, 5, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2522), 3, null, false, 6, 14.97m, 3, new DateTime(2025, 2, 3, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2521) },
-                    { 9, 2.99m, new DateTime(2025, 2, 7, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2544), 1, null, false, 7, 5.98m, 2, new DateTime(2025, 2, 4, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2543) },
-                    { 10, 3.49m, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2548), 2, null, false, 8, 10.47m, 3, new DateTime(2025, 2, 5, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2547) },
-                    { 11, 4.99m, new DateTime(2025, 2, 2, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2551), 3, null, false, 9, 4.99m, 1, new DateTime(2025, 1, 31, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2550) },
-                    { 12, 2.99m, new DateTime(2025, 2, 1, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2554), 1, null, false, 9, 14.95m, 5, new DateTime(2025, 1, 31, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2553) },
-                    { 13, 3.49m, new DateTime(2025, 1, 29, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2557), 2, null, false, 10, 6.98m, 2, new DateTime(2025, 1, 28, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2556) },
-                    { 14, 3.49m, new DateTime(2025, 1, 29, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2560), 4, null, true, 10, 6.98m, 2, new DateTime(2025, 1, 28, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2559) }
+                    { 1, 2.99m, new DateTime(2025, 1, 29, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2815), 1, null, false, 1, 5.98m, 2, new DateTime(2025, 1, 28, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2811) },
+                    { 2, 4.99m, new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2820), 3, null, false, 1, 4.99m, 1, new DateTime(2025, 1, 28, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2819) },
+                    { 3, 3.49m, new DateTime(2025, 1, 31, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2824), 2, null, false, 2, 10.47m, 3, new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2822) },
+                    { 4, 2.99m, new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2828), 1, null, false, 2, 11.96m, 4, new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2827) },
+                    { 5, 4.99m, new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2831), 3, null, false, 3, 9.98m, 2, new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2830) },
+                    { 6, 2.99m, new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2835), 1, null, false, 4, 2.99m, 1, new DateTime(2025, 1, 31, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2833) },
+                    { 7, 3.49m, new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2837), 2, null, false, 5, 17.45m, 5, new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2836) },
+                    { 8, 4.99m, new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2840), 3, null, false, 6, 14.97m, 3, new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2839) },
+                    { 9, 2.99m, new DateTime(2025, 2, 8, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2844), 1, null, false, 7, 5.98m, 2, new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2843) },
+                    { 10, 3.49m, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2848), 2, null, false, 8, 10.47m, 3, new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2847) },
+                    { 11, 4.99m, new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2851), 3, null, false, 9, 4.99m, 1, new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2850) },
+                    { 12, 2.99m, new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2853), 1, null, false, 9, 14.95m, 5, new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2852) },
+                    { 13, 3.49m, new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2857), 2, null, false, 10, 6.98m, 2, new DateTime(2025, 1, 29, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2856) },
+                    { 14, 3.49m, new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2859), 4, null, true, 10, 6.98m, 2, new DateTime(2025, 1, 29, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2859) }
                 });
 
             migrationBuilder.InsertData(
@@ -511,16 +512,16 @@ namespace rs2_rent_sistem.Services.Migrations
                 columns: new[] { "ID", "DateAdded", "Description", "IsDeleted", "NumberOfStars", "OrderItemID" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 1, 28, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2581), "Great quality and very durable!", false, 4.5m, 1 },
-                    { 2, new DateTime(2025, 1, 29, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2588), "Not as expected, could be better.", false, 2.0m, 2 },
-                    { 3, new DateTime(2025, 1, 30, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2590), "Perfect for my needs, highly recommended!", false, 5.0m, 3 },
-                    { 4, new DateTime(2025, 1, 31, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2592), "Good value for the price.", false, 4.0m, 4 },
-                    { 5, new DateTime(2025, 2, 1, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2593), "Satisfactory but delivery was delayed.", false, 3.0m, 5 },
-                    { 6, new DateTime(2025, 2, 2, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2596), "Excellent performance and quality.", false, 5.0m, 6 },
-                    { 7, new DateTime(2025, 2, 3, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2598), "Decent product but could use some improvements.", false, 3.5m, 7 },
-                    { 8, new DateTime(2025, 2, 4, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2599), "Very satisfied with the purchase.", false, 4.5m, 8 },
-                    { 9, new DateTime(2025, 2, 5, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2601), "The item was okay, nothing special.", false, 3.0m, 9 },
-                    { 10, new DateTime(2025, 2, 6, 22, 44, 50, 117, DateTimeKind.Local).AddTicks(2603), "Amazing product! Will buy again.", false, 5.0m, 14 }
+                    { 1, new DateTime(2025, 1, 29, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2887), "Great quality and very durable!", false, 4.5m, 1 },
+                    { 2, new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2893), "Not as expected, could be better.", false, 2.0m, 2 },
+                    { 3, new DateTime(2025, 1, 31, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2895), "Perfect for my needs, highly recommended!", false, 5.0m, 3 },
+                    { 4, new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2896), "Good value for the price.", false, 4.0m, 4 },
+                    { 5, new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2898), "Satisfactory but delivery was delayed.", false, 3.0m, 5 },
+                    { 6, new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2900), "Excellent performance and quality.", false, 5.0m, 6 },
+                    { 7, new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2903), "Decent product but could use some improvements.", false, 3.5m, 7 },
+                    { 8, new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2904), "Very satisfied with the purchase.", false, 4.5m, 8 },
+                    { 9, new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2906), "The item was okay, nothing special.", false, 3.0m, 9 },
+                    { 10, new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2908), "Amazing product! Will buy again.", false, 5.0m, 14 }
                 });
 
             migrationBuilder.CreateIndex(

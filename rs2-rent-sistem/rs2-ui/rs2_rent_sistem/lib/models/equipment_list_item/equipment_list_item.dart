@@ -11,7 +11,7 @@ class EquipmentListItem with _$EquipmentListItem {
     @Default('') String imageUrl,
     @Default(0.0) double costPerUse,
     @Default('') String manufacturer,
-    // @Default(0.0) double rating,
+    @Default(0.0) double averageRating,
     // @Default(0) int numberOfReviews,
     @Default(0) int stockQuantity,
     // @Default(false) bool isInCart,

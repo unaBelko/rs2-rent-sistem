@@ -14,6 +14,7 @@ _$EquipmentListItemImpl _$$EquipmentListItemImplFromJson(
       imageUrl: json['imageUrl'] as String? ?? '',
       costPerUse: (json['costPerUse'] as num?)?.toDouble() ?? 0.0,
       manufacturer: json['manufacturer'] as String? ?? '',
+      averageRating: (json['averageRating'] as num?)?.toDouble() ?? 0.0,
       stockQuantity: (json['stockQuantity'] as num?)?.toInt() ?? 0,
     );
 
@@ -25,5 +26,6 @@ Map<String, dynamic> _$$EquipmentListItemImplToJson(
       'imageUrl': instance.imageUrl,
       'costPerUse': instance.costPerUse,
       'manufacturer': instance.manufacturer,
+      'averageRating': instance.averageRating,
       'stockQuantity': instance.stockQuantity,
     };

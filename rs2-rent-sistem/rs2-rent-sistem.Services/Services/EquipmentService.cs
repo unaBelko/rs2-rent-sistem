@@ -110,7 +110,9 @@ namespace rs2_rent_sistem.Services.Services
 
         public override async Task<PageResult<Equipment>> Get(EquipmentSearchObject? search = null)
         {
-            var query = _context.Equipment.AsQueryable();
+            var query = _context.Equipment
+                .Include(e => e.Manufacturer)
+                .AsQueryable();
 
             // filter by name
             if (!string.IsNullOrWhiteSpace(search?.Name))
@@ -158,7 +160,6 @@ namespace rs2_rent_sistem.Services.Services
 
             return result;
         }
-
 
         public Task<PageResult<Equipment>> GetRecommended(int id)
         {
@@ -246,6 +247,24 @@ namespace rs2_rent_sistem.Services.Services
 
             return Task.FromResult(result);
         }
+
+        public async Task RecalculateAverageRating(int id)
+        {
+            var equipment = await _context.Equipment.FirstOrDefaultAsync(e => e.ID == id);
+
+            if (equipment == null)
+                throw new KeyNotFoundException("Equipment not found.");
+
+            var reviews = await _context.Reviews
+                .Where(r => r.OrderItem.EquipmentID == id)
+                .Select(r => r.NumberOfStars)
+                .ToListAsync();
+
+            equipment.AverageRating = reviews.Any() ? Math.Round((decimal)reviews.Average(), 2) : 0m;
+
+            await _context.SaveChangesAsync();
+        }
+
     }
 
     public class Copurchase_prediction

@@ -42,5 +42,14 @@ namespace rs2_rent_sistem.Services.Services
             query = query.OrderByDescending(oi => oi.Order.DatePlaced);
             return query;
         }
+
+        public async Task MarkOrderItemAsReviewed(int orderItemId)
+        {
+            var orderItem = _context.OrderItems.Where(oi => oi.ID == orderItemId).FirstOrDefault();
+            if (orderItem != null) {
+                orderItem.IsReviewedByUser = true;
+            }
+            await _context.SaveChangesAsync();
+        }
     }
 }

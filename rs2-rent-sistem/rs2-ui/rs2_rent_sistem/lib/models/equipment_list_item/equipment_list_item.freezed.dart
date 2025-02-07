@@ -24,9 +24,9 @@ mixin _$EquipmentListItem {
   String get itemName => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   double get costPerUse => throw _privateConstructorUsedError;
-  String get manufacturer =>
-      throw _privateConstructorUsedError; // @Default(0.0) double rating,
-// @Default(0) int numberOfReviews,
+  String get manufacturer => throw _privateConstructorUsedError;
+  double get averageRating =>
+      throw _privateConstructorUsedError; // @Default(0) int numberOfReviews,
   int get stockQuantity => throw _privateConstructorUsedError;
 
   /// Serializes this EquipmentListItem to a JSON map.
@@ -51,6 +51,7 @@ abstract class $EquipmentListItemCopyWith<$Res> {
       String imageUrl,
       double costPerUse,
       String manufacturer,
+      double averageRating,
       int stockQuantity});
 }
 
@@ -74,6 +75,7 @@ class _$EquipmentListItemCopyWithImpl<$Res, $Val extends EquipmentListItem>
     Object? imageUrl = null,
     Object? costPerUse = null,
     Object? manufacturer = null,
+    Object? averageRating = null,
     Object? stockQuantity = null,
   }) {
     return _then(_value.copyWith(
@@ -97,6 +99,10 @@ class _$EquipmentListItemCopyWithImpl<$Res, $Val extends EquipmentListItem>
           ? _value.manufacturer
           : manufacturer // ignore: cast_nullable_to_non_nullable
               as String,
+      averageRating: null == averageRating
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
+              as double,
       stockQuantity: null == stockQuantity
           ? _value.stockQuantity
           : stockQuantity // ignore: cast_nullable_to_non_nullable
@@ -119,6 +125,7 @@ abstract class _$$EquipmentListItemImplCopyWith<$Res>
       String imageUrl,
       double costPerUse,
       String manufacturer,
+      double averageRating,
       int stockQuantity});
 }
 
@@ -140,6 +147,7 @@ class __$$EquipmentListItemImplCopyWithImpl<$Res>
     Object? imageUrl = null,
     Object? costPerUse = null,
     Object? manufacturer = null,
+    Object? averageRating = null,
     Object? stockQuantity = null,
   }) {
     return _then(_$EquipmentListItemImpl(
@@ -163,6 +171,10 @@ class __$$EquipmentListItemImplCopyWithImpl<$Res>
           ? _value.manufacturer
           : manufacturer // ignore: cast_nullable_to_non_nullable
               as String,
+      averageRating: null == averageRating
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
+              as double,
       stockQuantity: null == stockQuantity
           ? _value.stockQuantity
           : stockQuantity // ignore: cast_nullable_to_non_nullable
@@ -180,6 +192,7 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
       this.imageUrl = '',
       this.costPerUse = 0.0,
       this.manufacturer = '',
+      this.averageRating = 0.0,
       this.stockQuantity = 0});
 
   factory _$EquipmentListItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -199,7 +212,9 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
   @override
   @JsonKey()
   final String manufacturer;
-// @Default(0.0) double rating,
+  @override
+  @JsonKey()
+  final double averageRating;
 // @Default(0) int numberOfReviews,
   @override
   @JsonKey()
@@ -207,7 +222,7 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
 
   @override
   String toString() {
-    return 'EquipmentListItem(id: $id, itemName: $itemName, imageUrl: $imageUrl, costPerUse: $costPerUse, manufacturer: $manufacturer, stockQuantity: $stockQuantity)';
+    return 'EquipmentListItem(id: $id, itemName: $itemName, imageUrl: $imageUrl, costPerUse: $costPerUse, manufacturer: $manufacturer, averageRating: $averageRating, stockQuantity: $stockQuantity)';
   }
 
   @override
@@ -224,6 +239,8 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
                 other.costPerUse == costPerUse) &&
             (identical(other.manufacturer, manufacturer) ||
                 other.manufacturer == manufacturer) &&
+            (identical(other.averageRating, averageRating) ||
+                other.averageRating == averageRating) &&
             (identical(other.stockQuantity, stockQuantity) ||
                 other.stockQuantity == stockQuantity));
   }
@@ -231,7 +248,7 @@ class _$EquipmentListItemImpl implements _EquipmentListItem {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, itemName, imageUrl,
-      costPerUse, manufacturer, stockQuantity);
+      costPerUse, manufacturer, averageRating, stockQuantity);
 
   /// Create a copy of EquipmentListItem
   /// with the given fields replaced by the non-null parameter values.
@@ -257,6 +274,7 @@ abstract class _EquipmentListItem implements EquipmentListItem {
       final String imageUrl,
       final double costPerUse,
       final String manufacturer,
+      final double averageRating,
       final int stockQuantity}) = _$EquipmentListItemImpl;
 
   factory _EquipmentListItem.fromJson(Map<String, dynamic> json) =
@@ -271,8 +289,9 @@ abstract class _EquipmentListItem implements EquipmentListItem {
   @override
   double get costPerUse;
   @override
-  String get manufacturer; // @Default(0.0) double rating,
-// @Default(0) int numberOfReviews,
+  String get manufacturer;
+  @override
+  double get averageRating; // @Default(0) int numberOfReviews,
   @override
   int get stockQuantity;
 

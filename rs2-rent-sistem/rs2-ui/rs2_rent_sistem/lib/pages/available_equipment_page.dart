@@ -229,6 +229,18 @@ class EquipmentCard extends ConsumerWidget {
                       if (isCartItem)
                         Text(DateFormat('dd.MM.yyyy')
                             .format(endDate!.toLocal())),
+                      RatingBar.builder(
+                        initialRating: equipmentListItem.averageRating,
+                        minRating: 0,
+                        direction: Axis.horizontal,
+                        itemSize: 20,
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (rating) {},
+                        ignoreGestures: true,
+                      ),
                       Text(
                         equipmentListItem.costPerUse.toString(),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(

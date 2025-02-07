@@ -10,6 +10,7 @@ class ItemInOrder with _$ItemInOrder {
     required int id,
     required DateTime startDate,
     required DateTime endDate,
+    @Default(false) bool isReviewedByUser,
     @Default(0) int quantity,
     @Default(0) double costPerUse,
     @Default(0) double price,

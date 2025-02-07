@@ -23,6 +23,7 @@ mixin _$ItemInOrder {
   int get id => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
   DateTime get endDate => throw _privateConstructorUsedError;
+  bool get isReviewedByUser => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   double get costPerUse => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
@@ -48,6 +49,7 @@ abstract class $ItemInOrderCopyWith<$Res> {
       {int id,
       DateTime startDate,
       DateTime endDate,
+      bool isReviewedByUser,
       int quantity,
       double costPerUse,
       double price,
@@ -74,6 +76,7 @@ class _$ItemInOrderCopyWithImpl<$Res, $Val extends ItemInOrder>
     Object? id = null,
     Object? startDate = null,
     Object? endDate = null,
+    Object? isReviewedByUser = null,
     Object? quantity = null,
     Object? costPerUse = null,
     Object? price = null,
@@ -92,6 +95,10 @@ class _$ItemInOrderCopyWithImpl<$Res, $Val extends ItemInOrder>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      isReviewedByUser: null == isReviewedByUser
+          ? _value.isReviewedByUser
+          : isReviewedByUser // ignore: cast_nullable_to_non_nullable
+              as bool,
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -138,6 +145,7 @@ abstract class _$$OrderItemImplCopyWith<$Res>
       {int id,
       DateTime startDate,
       DateTime endDate,
+      bool isReviewedByUser,
       int quantity,
       double costPerUse,
       double price,
@@ -163,6 +171,7 @@ class __$$OrderItemImplCopyWithImpl<$Res>
     Object? id = null,
     Object? startDate = null,
     Object? endDate = null,
+    Object? isReviewedByUser = null,
     Object? quantity = null,
     Object? costPerUse = null,
     Object? price = null,
@@ -181,6 +190,10 @@ class __$$OrderItemImplCopyWithImpl<$Res>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      isReviewedByUser: null == isReviewedByUser
+          ? _value.isReviewedByUser
+          : isReviewedByUser // ignore: cast_nullable_to_non_nullable
+              as bool,
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -208,6 +221,7 @@ class _$OrderItemImpl implements _OrderItem {
       {required this.id,
       required this.startDate,
       required this.endDate,
+      this.isReviewedByUser = false,
       this.quantity = 0,
       this.costPerUse = 0,
       this.price = 0,
@@ -224,6 +238,9 @@ class _$OrderItemImpl implements _OrderItem {
   final DateTime endDate;
   @override
   @JsonKey()
+  final bool isReviewedByUser;
+  @override
+  @JsonKey()
   final int quantity;
   @override
   @JsonKey()
@@ -236,7 +253,7 @@ class _$OrderItemImpl implements _OrderItem {
 
   @override
   String toString() {
-    return 'ItemInOrder(id: $id, startDate: $startDate, endDate: $endDate, quantity: $quantity, costPerUse: $costPerUse, price: $price, equipment: $equipment)';
+    return 'ItemInOrder(id: $id, startDate: $startDate, endDate: $endDate, isReviewedByUser: $isReviewedByUser, quantity: $quantity, costPerUse: $costPerUse, price: $price, equipment: $equipment)';
   }
 
   @override
@@ -248,6 +265,8 @@ class _$OrderItemImpl implements _OrderItem {
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.isReviewedByUser, isReviewedByUser) ||
+                other.isReviewedByUser == isReviewedByUser) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
             (identical(other.costPerUse, costPerUse) ||
@@ -259,8 +278,8 @@ class _$OrderItemImpl implements _OrderItem {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, startDate, endDate, quantity,
-      costPerUse, price, equipment);
+  int get hashCode => Object.hash(runtimeType, id, startDate, endDate,
+      isReviewedByUser, quantity, costPerUse, price, equipment);
 
   /// Create a copy of ItemInOrder
   /// with the given fields replaced by the non-null parameter values.
@@ -283,6 +302,7 @@ abstract class _OrderItem implements ItemInOrder {
       {required final int id,
       required final DateTime startDate,
       required final DateTime endDate,
+      final bool isReviewedByUser,
       final int quantity,
       final double costPerUse,
       final double price,
@@ -297,6 +317,8 @@ abstract class _OrderItem implements ItemInOrder {
   DateTime get startDate;
   @override
   DateTime get endDate;
+  @override
+  bool get isReviewedByUser;
   @override
   int get quantity;
   @override

@@ -15,6 +15,7 @@ class EquipmentDetails with _$EquipmentDetails {
     @Default(1) int maxQuantity,
     @Default('') String description,
     @Default(0.0) double costPerUse,
+    @Default(0.0) double averageRating,
     @Default('') String manufacturer,
     @Default('') String equipmentCategory,
     @Default([]) List<DateTime> availableDatesForRent,

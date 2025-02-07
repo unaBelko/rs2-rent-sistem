@@ -11,8 +11,12 @@ namespace rs2_rent_sistem.Services.Services
 {
     public class ReviewService : BaseService<Review, Database.Review, ReviewSearchObject>, IReviewService
     {
-        public ReviewService(RentSistemDbContext context, IMapper mapper) : base(context, mapper)
+        private readonly IOrderItemsService orderItemsService;
+        private readonly IEquipmentService equipmentService;
+        public ReviewService(RentSistemDbContext context, IMapper mapper, IOrderItemsService orderItemsService, IEquipmentService equipmentService) : base(context, mapper)
         {
+            this.orderItemsService = orderItemsService;
+            this.equipmentService = equipmentService;   
         }
 
         public override async Task<PageResult<Review>> Get(ReviewSearchObject? search = null)
@@ -89,6 +93,9 @@ namespace rs2_rent_sistem.Services.Services
 
             _context.Reviews.Add(newReview);
             await _context.SaveChangesAsync();
+
+            await orderItemsService.MarkOrderItemAsReviewed(review.OrderItemID);
+            await equipmentService.RecalculateAverageRating(orderItem.EquipmentID);
 
             return _mapper.Map<Review>(newReview);
         }
