@@ -11,6 +11,7 @@ class ItemInOrder with _$ItemInOrder {
     required DateTime startDate,
     required DateTime endDate,
     @Default(false) bool isReviewedByUser,
+    @Default(false) bool hasDamageReportedByUser,
     @Default(0) int quantity,
     @Default(0) double costPerUse,
     @Default(0) double price,

@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'review_for_admin.dart';
+part of 'review.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ReviewForAdminImpl _$$ReviewForAdminImplFromJson(Map<String, dynamic> json) =>
-    _$ReviewForAdminImpl(
+_$ReviewImpl _$$ReviewImplFromJson(Map<String, dynamic> json) => _$ReviewImpl(
       id: (json['id'] as num).toInt(),
       orderItem:
           ItemInOrder.fromJson(json['orderItem'] as Map<String, dynamic>),
@@ -18,8 +17,7 @@ _$ReviewForAdminImpl _$$ReviewForAdminImplFromJson(Map<String, dynamic> json) =>
       numberOfStars: (json['numberOfStars'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$ReviewForAdminImplToJson(
-        _$ReviewForAdminImpl instance) =>
+Map<String, dynamic> _$$ReviewImplToJson(_$ReviewImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'orderItem': instance.orderItem,

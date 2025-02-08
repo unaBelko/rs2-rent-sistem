@@ -1,5 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rs2_rent_sistem/models/review_for_admin.dart';
+import 'package:rs2_rent_sistem/models/review/review.dart';
 import 'package:rs2_rent_sistem/shared/api_services/review_service.dart';
 
 final addReviewProvider =
@@ -19,7 +19,7 @@ final addReviewProvider =
   }
 });
 
-final reviewsProvider = FutureProvider.family<List<ReviewForAdmin>,
+final reviewsProvider = FutureProvider.family<List<Review>,
     ({int? equipmentId, int? userId})>(
   (ref, params) async {
     final response = await ReviewService().getReviews(

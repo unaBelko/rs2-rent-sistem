@@ -40,6 +40,9 @@ namespace rs2_rent_sistem.Services.Services
             CreateMap<Database.Review, Review>();
             CreateMap<Review, Database.Review>();
 
+            CreateMap<Database.Damage, Damage>();
+            CreateMap<Damage, Database.Damage>();
+
             CreateMap<Database.Role, Role>();
             CreateMap<Role, Database.Role>();
 

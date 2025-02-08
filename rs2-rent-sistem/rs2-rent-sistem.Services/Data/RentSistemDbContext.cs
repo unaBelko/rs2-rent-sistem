@@ -78,22 +78,31 @@ public partial class RentSistemDbContext : DbContext
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<OrderItem>()
-           .HasOne(ci => ci.Order)
-           .WithMany(c => c.OrderItems)
-           .HasForeignKey(ci => ci.OrderID)
-           .OnDelete(DeleteBehavior.Cascade);
+            .HasOne(ci => ci.Order)
+            .WithMany(c => c.OrderItems)
+            .HasForeignKey(ci => ci.OrderID)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<OrderItem>()
-           .HasOne(ci => ci.Equipment)
-           .WithMany()
-           .HasForeignKey(ci => ci.EquipmentID)
-           .OnDelete(DeleteBehavior.Restrict);
+            .HasOne(ci => ci.Equipment)
+            .WithMany()
+            .HasForeignKey(ci => ci.EquipmentID)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<OrderItem>()
-           .HasOne(oi => oi.Review)
-           .WithOne(r => r.OrderItem)
-           .HasForeignKey<Review>(r => r.OrderItemID)
-           .OnDelete(DeleteBehavior.Cascade);
+            .HasOne(oi => oi.Review)
+            .WithOne(r => r.OrderItem)
+            .HasForeignKey<Review>(r => r.OrderItemID)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired(false);
+
+        modelBuilder.Entity<OrderItem>()
+            .HasOne(oi => oi.Damage)
+            .WithOne(d => d.OrderItem)
+            .HasForeignKey<Damage>(d => d.OrderItemID)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired(false);
+
 
         DatabaseSeed.SeedData(modelBuilder);
         OnModelCreatingPartial(modelBuilder);

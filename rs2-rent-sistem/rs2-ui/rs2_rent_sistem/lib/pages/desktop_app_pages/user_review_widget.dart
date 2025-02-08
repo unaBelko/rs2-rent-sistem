@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:rs2_rent_sistem/models/review_for_admin.dart';
+import 'package:rs2_rent_sistem/models/review/review.dart';
 import 'package:rs2_rent_sistem/shared/providers/review_providers.dart';
 import 'package:rs2_rent_sistem/shared/utilities/extensions/date_extensions.dart';
 import 'package:rs2_rent_sistem/shared/widgets/confirmation_modal.dart';
 
 class UserReviewWidget extends ConsumerWidget {
-  final ReviewForAdmin item;
+  final Review item;
   final bool showEquipmentName;
 
   const UserReviewWidget({

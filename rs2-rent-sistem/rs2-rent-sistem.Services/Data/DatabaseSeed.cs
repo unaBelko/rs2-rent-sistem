@@ -19,6 +19,7 @@ namespace rs2_rent_sistem.Services.Data
             SeedReviews(modelBuilder);
             SeedCarts(modelBuilder);
             SeedCartItems(modelBuilder);
+            SeedDamages(modelBuilder);
         }
 
         private static void SeedRole(ModelBuilder modelBuilder)
@@ -293,9 +294,17 @@ namespace rs2_rent_sistem.Services.Data
                 new OrderItem { ID = 11, OrderID = 9, EquipmentID = 3, Quantity = 1, CostPerUse = 4.99m, Price = 4.99m, StartDate = DateTime.Now.AddDays(-6), EndDate = DateTime.Now.AddDays(-4), IsReviewedByUser = false },
                 new OrderItem { ID = 12, OrderID = 9, EquipmentID = 1, Quantity = 5, CostPerUse = 2.99m, Price = 14.95m, StartDate = DateTime.Now.AddDays(-6), EndDate = DateTime.Now.AddDays(-5), IsReviewedByUser = false },
                 new OrderItem { ID = 13, OrderID = 10, EquipmentID = 2, Quantity = 2, CostPerUse = 3.49m, Price = 6.98m, StartDate = DateTime.Now.AddDays(-9), EndDate = DateTime.Now.AddDays(-8), IsReviewedByUser = false },
-                new OrderItem { ID = 14, OrderID = 10, EquipmentID = 4, Quantity = 2, CostPerUse = 3.49m, Price = 6.98m, StartDate = DateTime.Now.AddDays(-9), EndDate = DateTime.Now.AddDays(-8), IsReviewedByUser = true }
+                new OrderItem { ID = 14, OrderID = 10, EquipmentID = 4, Quantity = 2, CostPerUse = 3.49m, Price = 6.98m, StartDate = DateTime.Now.AddDays(-9), EndDate = DateTime.Now.AddDays(-8), IsReviewedByUser = true, HasDamageReportedByUser = true, }
             };
             modelBuilder.Entity<OrderItem>().HasData(orderItems);
+        }
+
+        private static void SeedDamages(ModelBuilder modelBuilder)
+        {
+            var damages = new List<Damage> {
+                new Damage { ID = 1, DateAdded = DateTime.Now, OrderItemID = 14, Comment = "This got some scratches while we were using it."},
+            };
+            modelBuilder.Entity<Damage>().HasData(damages);
         }
 
         private static void SeedReviews(ModelBuilder modelBuilder)

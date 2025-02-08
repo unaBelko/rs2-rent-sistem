@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:rs2_rent_sistem/pages/desktop_app_pages/damage_list_item_widget.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/tab_button.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/user_review_widget.dart';
+import 'package:rs2_rent_sistem/shared/providers/damage_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/equipment_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/review_providers.dart';
 import 'package:rs2_rent_sistem/shared/widgets/common_scaffold.dart';
@@ -156,8 +158,42 @@ class _EquipmentDetailsAdminPageState
                         ],
                       )
                     : Column(
-                        children: [],
-                      ),
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(12.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      'Datum kreiranja',
+                                    )),
+                                Expanded(
+                                  flex: 4,
+                                  child: Text(
+                                    'Komentar',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          ref
+                              .watch(damagesProvider(
+                                  (equipmentId: widget.equipmentId,)))
+                              .when(
+                                data: (data) => Column(
+                                  children: data
+                                      .map((el) => DamageListItemWidget(el))
+                                      .toList(),
+                                ),
+                                error: (e, st) =>
+                                    Text('Ostecenja nisu ucitana'),
+                                loading: () => Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              ),
+                        ],
+                      )
               ],
             ),
           ),

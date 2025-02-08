@@ -1,6 +1,6 @@
 import 'package:rs2_rent_sistem/models/registration_data/registration_data.dart';
 import 'package:rs2_rent_sistem/models/user/user.dart';
-import 'package:rs2_rent_sistem/models/user_auth_response.dart';
+import 'package:rs2_rent_sistem/models/user_auth_response/user_auth_response.dart';
 import 'package:rs2_rent_sistem/shared/api_services/dio_service.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 

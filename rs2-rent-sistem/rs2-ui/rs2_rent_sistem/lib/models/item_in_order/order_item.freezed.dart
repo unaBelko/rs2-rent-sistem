@@ -24,6 +24,7 @@ mixin _$ItemInOrder {
   DateTime get startDate => throw _privateConstructorUsedError;
   DateTime get endDate => throw _privateConstructorUsedError;
   bool get isReviewedByUser => throw _privateConstructorUsedError;
+  bool get hasDamageReportedByUser => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   double get costPerUse => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
@@ -50,6 +51,7 @@ abstract class $ItemInOrderCopyWith<$Res> {
       DateTime startDate,
       DateTime endDate,
       bool isReviewedByUser,
+      bool hasDamageReportedByUser,
       int quantity,
       double costPerUse,
       double price,
@@ -77,6 +79,7 @@ class _$ItemInOrderCopyWithImpl<$Res, $Val extends ItemInOrder>
     Object? startDate = null,
     Object? endDate = null,
     Object? isReviewedByUser = null,
+    Object? hasDamageReportedByUser = null,
     Object? quantity = null,
     Object? costPerUse = null,
     Object? price = null,
@@ -98,6 +101,10 @@ class _$ItemInOrderCopyWithImpl<$Res, $Val extends ItemInOrder>
       isReviewedByUser: null == isReviewedByUser
           ? _value.isReviewedByUser
           : isReviewedByUser // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasDamageReportedByUser: null == hasDamageReportedByUser
+          ? _value.hasDamageReportedByUser
+          : hasDamageReportedByUser // ignore: cast_nullable_to_non_nullable
               as bool,
       quantity: null == quantity
           ? _value.quantity
@@ -146,6 +153,7 @@ abstract class _$$OrderItemImplCopyWith<$Res>
       DateTime startDate,
       DateTime endDate,
       bool isReviewedByUser,
+      bool hasDamageReportedByUser,
       int quantity,
       double costPerUse,
       double price,
@@ -172,6 +180,7 @@ class __$$OrderItemImplCopyWithImpl<$Res>
     Object? startDate = null,
     Object? endDate = null,
     Object? isReviewedByUser = null,
+    Object? hasDamageReportedByUser = null,
     Object? quantity = null,
     Object? costPerUse = null,
     Object? price = null,
@@ -193,6 +202,10 @@ class __$$OrderItemImplCopyWithImpl<$Res>
       isReviewedByUser: null == isReviewedByUser
           ? _value.isReviewedByUser
           : isReviewedByUser // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasDamageReportedByUser: null == hasDamageReportedByUser
+          ? _value.hasDamageReportedByUser
+          : hasDamageReportedByUser // ignore: cast_nullable_to_non_nullable
               as bool,
       quantity: null == quantity
           ? _value.quantity
@@ -222,6 +235,7 @@ class _$OrderItemImpl implements _OrderItem {
       required this.startDate,
       required this.endDate,
       this.isReviewedByUser = false,
+      this.hasDamageReportedByUser = false,
       this.quantity = 0,
       this.costPerUse = 0,
       this.price = 0,
@@ -241,6 +255,9 @@ class _$OrderItemImpl implements _OrderItem {
   final bool isReviewedByUser;
   @override
   @JsonKey()
+  final bool hasDamageReportedByUser;
+  @override
+  @JsonKey()
   final int quantity;
   @override
   @JsonKey()
@@ -253,7 +270,7 @@ class _$OrderItemImpl implements _OrderItem {
 
   @override
   String toString() {
-    return 'ItemInOrder(id: $id, startDate: $startDate, endDate: $endDate, isReviewedByUser: $isReviewedByUser, quantity: $quantity, costPerUse: $costPerUse, price: $price, equipment: $equipment)';
+    return 'ItemInOrder(id: $id, startDate: $startDate, endDate: $endDate, isReviewedByUser: $isReviewedByUser, hasDamageReportedByUser: $hasDamageReportedByUser, quantity: $quantity, costPerUse: $costPerUse, price: $price, equipment: $equipment)';
   }
 
   @override
@@ -267,6 +284,9 @@ class _$OrderItemImpl implements _OrderItem {
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
             (identical(other.isReviewedByUser, isReviewedByUser) ||
                 other.isReviewedByUser == isReviewedByUser) &&
+            (identical(
+                    other.hasDamageReportedByUser, hasDamageReportedByUser) ||
+                other.hasDamageReportedByUser == hasDamageReportedByUser) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
             (identical(other.costPerUse, costPerUse) ||
@@ -278,8 +298,17 @@ class _$OrderItemImpl implements _OrderItem {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, startDate, endDate,
-      isReviewedByUser, quantity, costPerUse, price, equipment);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      startDate,
+      endDate,
+      isReviewedByUser,
+      hasDamageReportedByUser,
+      quantity,
+      costPerUse,
+      price,
+      equipment);
 
   /// Create a copy of ItemInOrder
   /// with the given fields replaced by the non-null parameter values.
@@ -303,6 +332,7 @@ abstract class _OrderItem implements ItemInOrder {
       required final DateTime startDate,
       required final DateTime endDate,
       final bool isReviewedByUser,
+      final bool hasDamageReportedByUser,
       final int quantity,
       final double costPerUse,
       final double price,
@@ -319,6 +349,8 @@ abstract class _OrderItem implements ItemInOrder {
   DateTime get endDate;
   @override
   bool get isReviewedByUser;
+  @override
+  bool get hasDamageReportedByUser;
   @override
   int get quantity;
   @override

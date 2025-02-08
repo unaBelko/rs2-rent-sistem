@@ -41,4 +41,7 @@ class Endpoints {
 
   //reviews
   static const String review = 'api/Review';
+
+  //damage
+  static const String damage = 'Damage';
 }

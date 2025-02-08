@@ -1,11 +1,11 @@
-import 'package:rs2_rent_sistem/models/review_for_admin.dart';
+import 'package:rs2_rent_sistem/models/review/review.dart';
 import 'package:rs2_rent_sistem/shared/api_services/dio_service.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';
 
 class ReviewService {
   var dioService = DioService();
 
-  Future<ApiResponse<List<ReviewForAdmin>>> getReviews(
+  Future<ApiResponse<List<Review>>> getReviews(
       {int? equipmentId, int? userId}) async {
     var endpoint = Endpoints.review;
 
@@ -22,7 +22,7 @@ class ReviewService {
       endpoint,
       queryParameters: queryParams.isNotEmpty ? queryParams : null,
       fromJson: (data) => (data['result'] as List)
-          .map((item) => ReviewForAdmin.fromJson(item))
+          .map((item) => Review.fromJson(item))
           .toList(),
     );
 

@@ -24,7 +24,8 @@ class OrderDetailsPage extends ConsumerWidget {
                     children: [
                       ...data.map((el) => RentedEquipmentInOrderWidget(
                             orderItem: el,
-                            showReview: orderStatus == "returned",
+                            showReview: orderStatus == 'returned',
+                            showDamage: orderStatus == 'rented',
                           )),
                     ],
                   );

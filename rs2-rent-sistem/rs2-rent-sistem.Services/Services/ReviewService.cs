@@ -78,9 +78,9 @@ namespace rs2_rent_sistem.Services.Services
             var orderItem = await _context.OrderItems
                 .Include(oi => oi.Order)
                 .FirstOrDefaultAsync(oi => oi.ID == review.OrderItemID) ?? throw new ArgumentException("Order item not found.");
-            if (orderItem.Order.Status.ToLower() != "returned")
+            if (orderItem.Order.Status.ToLower() != "returned" || orderItem.IsReviewedByUser)
             {
-                throw new InvalidOperationException("Cannot add a review. The order has not been returned.");
+                throw new InvalidOperationException("Nije moguce dodati review. Ova oprema nije vracena ili ste vec dali review.");
             }
 
             var newReview = new Database.Review()

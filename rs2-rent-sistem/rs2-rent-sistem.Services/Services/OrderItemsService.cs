@@ -43,6 +43,16 @@ namespace rs2_rent_sistem.Services.Services
             return query;
         }
 
+        public async Task MarkOrderItemAsDamaged(int orderItemId)
+        {
+            var orderItem = _context.OrderItems.Where(oi => oi.ID == orderItemId).FirstOrDefault();
+            if (orderItem != null)
+            {
+                orderItem.HasDamageReportedByUser = true;
+            }
+            await _context.SaveChangesAsync();
+        }
+
         public async Task MarkOrderItemAsReviewed(int orderItemId)
         {
             var orderItem = _context.OrderItems.Where(oi => oi.ID == orderItemId).FirstOrDefault();

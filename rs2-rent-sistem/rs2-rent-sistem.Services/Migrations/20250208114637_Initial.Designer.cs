@@ -12,7 +12,7 @@ using rs2_rent_sistem.Services.Data;
 namespace rs2_rent_sistem.Services.Migrations
 {
     [DbContext(typeof(RentSistemDbContext))]
-    [Migration("20250207215416_Initial")]
+    [Migration("20250208114637_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -52,49 +52,49 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 1,
-                            DateAdded = new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2925),
+                            DateAdded = new DateTime(2025, 2, 2, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5379),
                             TotalPrice = 45.75m,
                             UserID = 2
                         },
                         new
                         {
                             ID = 2,
-                            DateAdded = new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2930),
+                            DateAdded = new DateTime(2025, 2, 3, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5382),
                             TotalPrice = 120.00m,
                             UserID = 3
                         },
                         new
                         {
                             ID = 3,
-                            DateAdded = new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2931),
+                            DateAdded = new DateTime(2025, 2, 4, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5384),
                             TotalPrice = 65.30m,
                             UserID = 4
                         },
                         new
                         {
                             ID = 4,
-                            DateAdded = new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2933),
+                            DateAdded = new DateTime(2025, 2, 5, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5386),
                             TotalPrice = 78.40m,
                             UserID = 5
                         },
                         new
                         {
                             ID = 5,
-                            DateAdded = new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2935),
+                            DateAdded = new DateTime(2025, 2, 6, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5388),
                             TotalPrice = 52.10m,
                             UserID = 6
                         },
                         new
                         {
                             ID = 6,
-                            DateAdded = new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2937),
+                            DateAdded = new DateTime(2025, 2, 7, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5390),
                             TotalPrice = 98.25m,
                             UserID = 7
                         },
                         new
                         {
                             ID = 7,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2939),
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5391),
                             TotalPrice = 36.60m,
                             UserID = 8
                         });
@@ -141,91 +141,91 @@ namespace rs2_rent_sistem.Services.Migrations
                         {
                             ID = 1,
                             CartID = 1,
-                            EndDate = new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2954),
+                            EndDate = new DateTime(2025, 2, 3, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5413),
                             EquipmentID = 1,
                             Quantity = 2,
-                            StartDate = new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2953)
+                            StartDate = new DateTime(2025, 2, 2, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5411)
                         },
                         new
                         {
                             ID = 2,
                             CartID = 1,
-                            EndDate = new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2958),
+                            EndDate = new DateTime(2025, 2, 3, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5418),
                             EquipmentID = 2,
                             Quantity = 1,
-                            StartDate = new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2957)
+                            StartDate = new DateTime(2025, 2, 2, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5416)
                         },
                         new
                         {
                             ID = 3,
                             CartID = 2,
-                            EndDate = new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2961),
+                            EndDate = new DateTime(2025, 2, 4, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5420),
                             EquipmentID = 3,
                             Quantity = 1,
-                            StartDate = new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2960)
+                            StartDate = new DateTime(2025, 2, 3, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5419)
                         },
                         new
                         {
                             ID = 4,
                             CartID = 3,
-                            EndDate = new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2983),
+                            EndDate = new DateTime(2025, 2, 5, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5423),
                             EquipmentID = 1,
                             Quantity = 3,
-                            StartDate = new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2981)
+                            StartDate = new DateTime(2025, 2, 4, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5422)
                         },
                         new
                         {
                             ID = 5,
                             CartID = 3,
-                            EndDate = new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2986),
+                            EndDate = new DateTime(2025, 2, 5, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5425),
                             EquipmentID = 2,
                             Quantity = 2,
-                            StartDate = new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2985)
+                            StartDate = new DateTime(2025, 2, 4, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5424)
                         },
                         new
                         {
                             ID = 6,
                             CartID = 4,
-                            EndDate = new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2989),
+                            EndDate = new DateTime(2025, 2, 6, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5428),
                             EquipmentID = 2,
                             Quantity = 1,
-                            StartDate = new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2988)
+                            StartDate = new DateTime(2025, 2, 5, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5427)
                         },
                         new
                         {
                             ID = 7,
                             CartID = 4,
-                            EndDate = new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2991),
+                            EndDate = new DateTime(2025, 2, 6, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5431),
                             EquipmentID = 3,
                             Quantity = 1,
-                            StartDate = new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2990)
+                            StartDate = new DateTime(2025, 2, 5, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5430)
                         },
                         new
                         {
                             ID = 8,
                             CartID = 5,
-                            EndDate = new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2994),
+                            EndDate = new DateTime(2025, 2, 7, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5433),
                             EquipmentID = 1,
                             Quantity = 2,
-                            StartDate = new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2993)
+                            StartDate = new DateTime(2025, 2, 6, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5432)
                         },
                         new
                         {
                             ID = 9,
                             CartID = 6,
-                            EndDate = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2996),
+                            EndDate = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5436),
                             EquipmentID = 3,
                             Quantity = 3,
-                            StartDate = new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2995)
+                            StartDate = new DateTime(2025, 2, 7, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5435)
                         },
                         new
                         {
                             ID = 10,
                             CartID = 7,
-                            EndDate = new DateTime(2025, 2, 8, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2999),
+                            EndDate = new DateTime(2025, 2, 9, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5438),
                             EquipmentID = 2,
                             Quantity = 1,
-                            StartDate = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2998)
+                            StartDate = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5438)
                         });
                 });
 
@@ -248,9 +248,19 @@ namespace rs2_rent_sistem.Services.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("OrderItemID");
+                    b.HasIndex("OrderItemID")
+                        .IsUnique();
 
                     b.ToTable("Damages");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Comment = "This got some scratches while we were using it.",
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5455),
+                            OrderItemID = 14
+                        });
                 });
 
             modelBuilder.Entity("rs2_rent_sistem.Services.Database.Equipment", b =>
@@ -321,7 +331,7 @@ namespace rs2_rent_sistem.Services.Migrations
                             AddedByUserID = 1,
                             AverageRating = 0m,
                             CostPerUse = 2.99m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2010),
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4371),
                             Description = "Official size and weight.",
                             EquipmentCategoryId = 1,
                             ImageUrl = "soccerball.jpg",
@@ -338,7 +348,7 @@ namespace rs2_rent_sistem.Services.Migrations
                             AddedByUserID = 1,
                             AverageRating = 0m,
                             CostPerUse = 3.49m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2055),
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4417),
                             Description = "High-quality leather basketball.",
                             EquipmentCategoryId = 2,
                             ImageUrl = "basketball.jpg",
@@ -355,7 +365,7 @@ namespace rs2_rent_sistem.Services.Migrations
                             AddedByUserID = 1,
                             AverageRating = 0m,
                             CostPerUse = 4.99m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2058),
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4419),
                             Description = "Lightweight racket for professional use.",
                             EquipmentCategoryId = 3,
                             ImageUrl = "tennisracket.jpg",
@@ -371,799 +381,799 @@ namespace rs2_rent_sistem.Services.Migrations
                             ID = 4,
                             AddedByUserID = 1,
                             AverageRating = 0m,
-                            CostPerUse = 9.39m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2134),
+                            CostPerUse = 7.56m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4532),
                             Description = "Description for Equipment 4",
-                            EquipmentCategoryId = 7,
+                            EquipmentCategoryId = 2,
                             ImageUrl = "equipment4.jpg",
                             IsDeleted = false,
                             ItemName = "Equipment 4",
-                            ManufacturerID = 5,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 19
-                        },
-                        new
-                        {
-                            ID = 5,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 7.60m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2146),
-                            Description = "Description for Equipment 5",
-                            EquipmentCategoryId = 8,
-                            ImageUrl = "equipment5.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 5",
-                            ManufacturerID = 2,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 10
-                        },
-                        new
-                        {
-                            ID = 6,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 8.13m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2156),
-                            Description = "Description for Equipment 6",
-                            EquipmentCategoryId = 5,
-                            ImageUrl = "equipment6.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 6",
                             ManufacturerID = 4,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 37
-                        },
-                        new
-                        {
-                            ID = 7,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 2.09m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2166),
-                            Description = "Description for Equipment 7",
-                            EquipmentCategoryId = 8,
-                            ImageUrl = "equipment7.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 7",
-                            ManufacturerID = 2,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 45
-                        },
-                        new
-                        {
-                            ID = 8,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 8.47m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2175),
-                            Description = "Description for Equipment 8",
-                            EquipmentCategoryId = 5,
-                            ImageUrl = "equipment8.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 8",
-                            ManufacturerID = 4,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 34
-                        },
-                        new
-                        {
-                            ID = 9,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 4.47m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2184),
-                            Description = "Description for Equipment 9",
-                            EquipmentCategoryId = 2,
-                            ImageUrl = "equipment9.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 9",
-                            ManufacturerID = 1,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 49
-                        },
-                        new
-                        {
-                            ID = 10,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 6.90m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2214),
-                            Description = "Description for Equipment 10",
-                            EquipmentCategoryId = 4,
-                            ImageUrl = "equipment10.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 10",
-                            ManufacturerID = 5,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 48
-                        },
-                        new
-                        {
-                            ID = 11,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 8.48m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2224),
-                            Description = "Description for Equipment 11",
-                            EquipmentCategoryId = 5,
-                            ImageUrl = "equipment11.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 11",
-                            ManufacturerID = 1,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 23
-                        },
-                        new
-                        {
-                            ID = 12,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 2.54m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2233),
-                            Description = "Description for Equipment 12",
-                            EquipmentCategoryId = 6,
-                            ImageUrl = "equipment12.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 12",
-                            ManufacturerID = 3,
                             MaxQuantity = 50,
                             MinQuantity = 5,
                             StockQuantity = 11
                         },
                         new
                         {
-                            ID = 13,
+                            ID = 5,
                             AddedByUserID = 1,
                             AverageRating = 0m,
-                            CostPerUse = 9.97m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2241),
-                            Description = "Description for Equipment 13",
-                            EquipmentCategoryId = 4,
-                            ImageUrl = "equipment13.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 13",
-                            ManufacturerID = 7,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 42
-                        },
-                        new
-                        {
-                            ID = 14,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 4.46m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2250),
-                            Description = "Description for Equipment 14",
-                            EquipmentCategoryId = 5,
-                            ImageUrl = "equipment14.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 14",
-                            ManufacturerID = 6,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 23
-                        },
-                        new
-                        {
-                            ID = 15,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 1.22m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2259),
-                            Description = "Description for Equipment 15",
-                            EquipmentCategoryId = 8,
-                            ImageUrl = "equipment15.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 15",
-                            ManufacturerID = 5,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 25
-                        },
-                        new
-                        {
-                            ID = 16,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 6.46m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2268),
-                            Description = "Description for Equipment 16",
-                            EquipmentCategoryId = 8,
-                            ImageUrl = "equipment16.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 16",
-                            ManufacturerID = 2,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 33
-                        },
-                        new
-                        {
-                            ID = 17,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 7.63m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2277),
-                            Description = "Description for Equipment 17",
-                            EquipmentCategoryId = 1,
-                            ImageUrl = "equipment17.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 17",
-                            ManufacturerID = 4,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 47
-                        },
-                        new
-                        {
-                            ID = 18,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 8.72m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2287),
-                            Description = "Description for Equipment 18",
+                            CostPerUse = 6.67m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4562),
+                            Description = "Description for Equipment 5",
                             EquipmentCategoryId = 9,
-                            ImageUrl = "equipment18.jpg",
+                            ImageUrl = "equipment5.jpg",
                             IsDeleted = false,
-                            ItemName = "Equipment 18",
-                            ManufacturerID = 4,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 48
-                        },
-                        new
-                        {
-                            ID = 19,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 7.73m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2296),
-                            Description = "Description for Equipment 19",
-                            EquipmentCategoryId = 5,
-                            ImageUrl = "equipment19.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 19",
-                            ManufacturerID = 5,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 36
-                        },
-                        new
-                        {
-                            ID = 20,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 5.09m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2327),
-                            Description = "Description for Equipment 20",
-                            EquipmentCategoryId = 2,
-                            ImageUrl = "equipment20.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 20",
-                            ManufacturerID = 4,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 49
-                        },
-                        new
-                        {
-                            ID = 21,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 4.23m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2336),
-                            Description = "Description for Equipment 21",
-                            EquipmentCategoryId = 3,
-                            ImageUrl = "equipment21.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 21",
-                            ManufacturerID = 6,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 22
-                        },
-                        new
-                        {
-                            ID = 22,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 9.95m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2345),
-                            Description = "Description for Equipment 22",
-                            EquipmentCategoryId = 6,
-                            ImageUrl = "equipment22.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 22",
+                            ItemName = "Equipment 5",
                             ManufacturerID = 8,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 24
-                        },
-                        new
-                        {
-                            ID = 23,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 5.27m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2354),
-                            Description = "Description for Equipment 23",
-                            EquipmentCategoryId = 8,
-                            ImageUrl = "equipment23.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 23",
-                            ManufacturerID = 1,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 47
-                        },
-                        new
-                        {
-                            ID = 24,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 4.92m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2363),
-                            Description = "Description for Equipment 24",
-                            EquipmentCategoryId = 4,
-                            ImageUrl = "equipment24.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 24",
-                            ManufacturerID = 9,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 39
-                        },
-                        new
-                        {
-                            ID = 25,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 5.43m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2372),
-                            Description = "Description for Equipment 25",
-                            EquipmentCategoryId = 7,
-                            ImageUrl = "equipment25.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 25",
-                            ManufacturerID = 5,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 24
-                        },
-                        new
-                        {
-                            ID = 26,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 5.89m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2380),
-                            Description = "Description for Equipment 26",
-                            EquipmentCategoryId = 1,
-                            ImageUrl = "equipment26.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 26",
-                            ManufacturerID = 9,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 14
-                        },
-                        new
-                        {
-                            ID = 27,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 2.09m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2389),
-                            Description = "Description for Equipment 27",
-                            EquipmentCategoryId = 4,
-                            ImageUrl = "equipment27.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 27",
-                            ManufacturerID = 7,
                             MaxQuantity = 50,
                             MinQuantity = 5,
                             StockQuantity = 34
                         },
                         new
                         {
-                            ID = 28,
+                            ID = 6,
                             AddedByUserID = 1,
                             AverageRating = 0m,
-                            CostPerUse = 8.27m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2398),
-                            Description = "Description for Equipment 28",
+                            CostPerUse = 1.40m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4572),
+                            Description = "Description for Equipment 6",
                             EquipmentCategoryId = 2,
-                            ImageUrl = "equipment28.jpg",
+                            ImageUrl = "equipment6.jpg",
                             IsDeleted = false,
-                            ItemName = "Equipment 28",
-                            ManufacturerID = 2,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 24
-                        },
-                        new
-                        {
-                            ID = 29,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 7.72m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2407),
-                            Description = "Description for Equipment 29",
-                            EquipmentCategoryId = 7,
-                            ImageUrl = "equipment29.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 29",
-                            ManufacturerID = 4,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 21
-                        },
-                        new
-                        {
-                            ID = 30,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 6.44m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2416),
-                            Description = "Description for Equipment 30",
-                            EquipmentCategoryId = 3,
-                            ImageUrl = "equipment30.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 30",
+                            ItemName = "Equipment 6",
                             ManufacturerID = 8,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 44
-                        },
-                        new
-                        {
-                            ID = 31,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 7.33m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2444),
-                            Description = "Description for Equipment 31",
-                            EquipmentCategoryId = 8,
-                            ImageUrl = "equipment31.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 31",
-                            ManufacturerID = 1,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 17
-                        },
-                        new
-                        {
-                            ID = 32,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 3.22m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2453),
-                            Description = "Description for Equipment 32",
-                            EquipmentCategoryId = 8,
-                            ImageUrl = "equipment32.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 32",
-                            ManufacturerID = 5,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 44
-                        },
-                        new
-                        {
-                            ID = 33,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 4.34m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2462),
-                            Description = "Description for Equipment 33",
-                            EquipmentCategoryId = 6,
-                            ImageUrl = "equipment33.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 33",
-                            ManufacturerID = 6,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 16
-                        },
-                        new
-                        {
-                            ID = 34,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 8.09m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2472),
-                            Description = "Description for Equipment 34",
-                            EquipmentCategoryId = 7,
-                            ImageUrl = "equipment34.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 34",
-                            ManufacturerID = 1,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 32
-                        },
-                        new
-                        {
-                            ID = 35,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 6.52m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2481),
-                            Description = "Description for Equipment 35",
-                            EquipmentCategoryId = 6,
-                            ImageUrl = "equipment35.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 35",
-                            ManufacturerID = 3,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 35
-                        },
-                        new
-                        {
-                            ID = 36,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 5.81m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2490),
-                            Description = "Description for Equipment 36",
-                            EquipmentCategoryId = 7,
-                            ImageUrl = "equipment36.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 36",
-                            ManufacturerID = 4,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 42
-                        },
-                        new
-                        {
-                            ID = 37,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 7.58m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2500),
-                            Description = "Description for Equipment 37",
-                            EquipmentCategoryId = 9,
-                            ImageUrl = "equipment37.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 37",
-                            ManufacturerID = 8,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 26
-                        },
-                        new
-                        {
-                            ID = 38,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 5.47m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2508),
-                            Description = "Description for Equipment 38",
-                            EquipmentCategoryId = 5,
-                            ImageUrl = "equipment38.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 38",
-                            ManufacturerID = 6,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 35
-                        },
-                        new
-                        {
-                            ID = 39,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 1.45m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2517),
-                            Description = "Description for Equipment 39",
-                            EquipmentCategoryId = 7,
-                            ImageUrl = "equipment39.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 39",
-                            ManufacturerID = 1,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 49
-                        },
-                        new
-                        {
-                            ID = 40,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 1.22m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2526),
-                            Description = "Description for Equipment 40",
-                            EquipmentCategoryId = 2,
-                            ImageUrl = "equipment40.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 40",
-                            ManufacturerID = 1,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 32
-                        },
-                        new
-                        {
-                            ID = 41,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 7.37m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2534),
-                            Description = "Description for Equipment 41",
-                            EquipmentCategoryId = 5,
-                            ImageUrl = "equipment41.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 41",
-                            ManufacturerID = 4,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 24
-                        },
-                        new
-                        {
-                            ID = 42,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 7.22m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2562),
-                            Description = "Description for Equipment 42",
-                            EquipmentCategoryId = 4,
-                            ImageUrl = "equipment42.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 42",
-                            ManufacturerID = 8,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 48
-                        },
-                        new
-                        {
-                            ID = 43,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 4.01m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2571),
-                            Description = "Description for Equipment 43",
-                            EquipmentCategoryId = 4,
-                            ImageUrl = "equipment43.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 43",
-                            ManufacturerID = 2,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 25
-                        },
-                        new
-                        {
-                            ID = 44,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 4.79m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2580),
-                            Description = "Description for Equipment 44",
-                            EquipmentCategoryId = 4,
-                            ImageUrl = "equipment44.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 44",
-                            ManufacturerID = 7,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 37
-                        },
-                        new
-                        {
-                            ID = 45,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 0.65m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2589),
-                            Description = "Description for Equipment 45",
-                            EquipmentCategoryId = 2,
-                            ImageUrl = "equipment45.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 45",
-                            ManufacturerID = 5,
-                            MaxQuantity = 50,
-                            MinQuantity = 5,
-                            StockQuantity = 15
-                        },
-                        new
-                        {
-                            ID = 46,
-                            AddedByUserID = 1,
-                            AverageRating = 0m,
-                            CostPerUse = 6.39m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2598),
-                            Description = "Description for Equipment 46",
-                            EquipmentCategoryId = 6,
-                            ImageUrl = "equipment46.jpg",
-                            IsDeleted = false,
-                            ItemName = "Equipment 46",
-                            ManufacturerID = 9,
                             MaxQuantity = 50,
                             MinQuantity = 5,
                             StockQuantity = 45
                         },
                         new
                         {
-                            ID = 47,
+                            ID = 7,
                             AddedByUserID = 1,
                             AverageRating = 0m,
-                            CostPerUse = 5.87m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2607),
-                            Description = "Description for Equipment 47",
-                            EquipmentCategoryId = 1,
-                            ImageUrl = "equipment47.jpg",
+                            CostPerUse = 1.88m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4581),
+                            Description = "Description for Equipment 7",
+                            EquipmentCategoryId = 5,
+                            ImageUrl = "equipment7.jpg",
                             IsDeleted = false,
-                            ItemName = "Equipment 47",
-                            ManufacturerID = 5,
+                            ItemName = "Equipment 7",
+                            ManufacturerID = 9,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 16
+                        },
+                        new
+                        {
+                            ID = 8,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 1.74m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4589),
+                            Description = "Description for Equipment 8",
+                            EquipmentCategoryId = 8,
+                            ImageUrl = "equipment8.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 8",
+                            ManufacturerID = 6,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 47
+                        },
+                        new
+                        {
+                            ID = 9,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 1.29m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4597),
+                            Description = "Description for Equipment 9",
+                            EquipmentCategoryId = 2,
+                            ImageUrl = "equipment9.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 9",
+                            ManufacturerID = 4,
                             MaxQuantity = 50,
                             MinQuantity = 5,
                             StockQuantity = 37
                         },
                         new
                         {
-                            ID = 48,
+                            ID = 10,
                             AddedByUserID = 1,
                             AverageRating = 0m,
-                            CostPerUse = 6.03m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2615),
-                            Description = "Description for Equipment 48",
-                            EquipmentCategoryId = 9,
-                            ImageUrl = "equipment48.jpg",
+                            CostPerUse = 9.49m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4607),
+                            Description = "Description for Equipment 10",
+                            EquipmentCategoryId = 6,
+                            ImageUrl = "equipment10.jpg",
                             IsDeleted = false,
-                            ItemName = "Equipment 48",
+                            ItemName = "Equipment 10",
+                            ManufacturerID = 7,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 11
+                        },
+                        new
+                        {
+                            ID = 11,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 6.88m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4615),
+                            Description = "Description for Equipment 11",
+                            EquipmentCategoryId = 3,
+                            ImageUrl = "equipment11.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 11",
+                            ManufacturerID = 3,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 40
+                        },
+                        new
+                        {
+                            ID = 12,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 1.51m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4623),
+                            Description = "Description for Equipment 12",
+                            EquipmentCategoryId = 6,
+                            ImageUrl = "equipment12.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 12",
+                            ManufacturerID = 5,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 23
+                        },
+                        new
+                        {
+                            ID = 13,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 1.09m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4632),
+                            Description = "Description for Equipment 13",
+                            EquipmentCategoryId = 3,
+                            ImageUrl = "equipment13.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 13",
                             ManufacturerID = 1,
                             MaxQuantity = 50,
                             MinQuantity = 5,
-                            StockQuantity = 12
+                            StockQuantity = 10
+                        },
+                        new
+                        {
+                            ID = 14,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 5.68m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4640),
+                            Description = "Description for Equipment 14",
+                            EquipmentCategoryId = 9,
+                            ImageUrl = "equipment14.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 14",
+                            ManufacturerID = 1,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 38
+                        },
+                        new
+                        {
+                            ID = 15,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 6.81m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4674),
+                            Description = "Description for Equipment 15",
+                            EquipmentCategoryId = 4,
+                            ImageUrl = "equipment15.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 15",
+                            ManufacturerID = 9,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 19
+                        },
+                        new
+                        {
+                            ID = 16,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 4.66m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4682),
+                            Description = "Description for Equipment 16",
+                            EquipmentCategoryId = 6,
+                            ImageUrl = "equipment16.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 16",
+                            ManufacturerID = 5,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 47
+                        },
+                        new
+                        {
+                            ID = 17,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 2.57m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4690),
+                            Description = "Description for Equipment 17",
+                            EquipmentCategoryId = 5,
+                            ImageUrl = "equipment17.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 17",
+                            ManufacturerID = 1,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 29
+                        },
+                        new
+                        {
+                            ID = 18,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 9.82m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4699),
+                            Description = "Description for Equipment 18",
+                            EquipmentCategoryId = 5,
+                            ImageUrl = "equipment18.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 18",
+                            ManufacturerID = 8,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 24
+                        },
+                        new
+                        {
+                            ID = 19,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 0.26m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4707),
+                            Description = "Description for Equipment 19",
+                            EquipmentCategoryId = 9,
+                            ImageUrl = "equipment19.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 19",
+                            ManufacturerID = 4,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 28
+                        },
+                        new
+                        {
+                            ID = 20,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 6.99m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4715),
+                            Description = "Description for Equipment 20",
+                            EquipmentCategoryId = 3,
+                            ImageUrl = "equipment20.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 20",
+                            ManufacturerID = 3,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 10
+                        },
+                        new
+                        {
+                            ID = 21,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 0.59m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4723),
+                            Description = "Description for Equipment 21",
+                            EquipmentCategoryId = 9,
+                            ImageUrl = "equipment21.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 21",
+                            ManufacturerID = 4,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 35
+                        },
+                        new
+                        {
+                            ID = 22,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 3.13m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4732),
+                            Description = "Description for Equipment 22",
+                            EquipmentCategoryId = 4,
+                            ImageUrl = "equipment22.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 22",
+                            ManufacturerID = 8,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 15
+                        },
+                        new
+                        {
+                            ID = 23,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 6.21m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4739),
+                            Description = "Description for Equipment 23",
+                            EquipmentCategoryId = 6,
+                            ImageUrl = "equipment23.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 23",
+                            ManufacturerID = 3,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 21
+                        },
+                        new
+                        {
+                            ID = 24,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 9.55m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4748),
+                            Description = "Description for Equipment 24",
+                            EquipmentCategoryId = 8,
+                            ImageUrl = "equipment24.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 24",
+                            ManufacturerID = 1,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 46
+                        },
+                        new
+                        {
+                            ID = 25,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 3.57m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4756),
+                            Description = "Description for Equipment 25",
+                            EquipmentCategoryId = 7,
+                            ImageUrl = "equipment25.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 25",
+                            ManufacturerID = 1,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 10
+                        },
+                        new
+                        {
+                            ID = 26,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 8.48m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4790),
+                            Description = "Description for Equipment 26",
+                            EquipmentCategoryId = 7,
+                            ImageUrl = "equipment26.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 26",
+                            ManufacturerID = 7,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 46
+                        },
+                        new
+                        {
+                            ID = 27,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 7.69m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4799),
+                            Description = "Description for Equipment 27",
+                            EquipmentCategoryId = 5,
+                            ImageUrl = "equipment27.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 27",
+                            ManufacturerID = 9,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 40
+                        },
+                        new
+                        {
+                            ID = 28,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 2.04m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4806),
+                            Description = "Description for Equipment 28",
+                            EquipmentCategoryId = 8,
+                            ImageUrl = "equipment28.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 28",
+                            ManufacturerID = 4,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 13
+                        },
+                        new
+                        {
+                            ID = 29,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 0.98m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4815),
+                            Description = "Description for Equipment 29",
+                            EquipmentCategoryId = 1,
+                            ImageUrl = "equipment29.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 29",
+                            ManufacturerID = 6,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 25
+                        },
+                        new
+                        {
+                            ID = 30,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 6.12m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4823),
+                            Description = "Description for Equipment 30",
+                            EquipmentCategoryId = 3,
+                            ImageUrl = "equipment30.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 30",
+                            ManufacturerID = 2,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 24
+                        },
+                        new
+                        {
+                            ID = 31,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 2.11m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4830),
+                            Description = "Description for Equipment 31",
+                            EquipmentCategoryId = 4,
+                            ImageUrl = "equipment31.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 31",
+                            ManufacturerID = 6,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 11
+                        },
+                        new
+                        {
+                            ID = 32,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 1.52m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4838),
+                            Description = "Description for Equipment 32",
+                            EquipmentCategoryId = 5,
+                            ImageUrl = "equipment32.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 32",
+                            ManufacturerID = 8,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 36
+                        },
+                        new
+                        {
+                            ID = 33,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 2.01m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4846),
+                            Description = "Description for Equipment 33",
+                            EquipmentCategoryId = 6,
+                            ImageUrl = "equipment33.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 33",
+                            ManufacturerID = 5,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 26
+                        },
+                        new
+                        {
+                            ID = 34,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 2.64m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4855),
+                            Description = "Description for Equipment 34",
+                            EquipmentCategoryId = 4,
+                            ImageUrl = "equipment34.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 34",
+                            ManufacturerID = 3,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 43
+                        },
+                        new
+                        {
+                            ID = 35,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 9.31m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4863),
+                            Description = "Description for Equipment 35",
+                            EquipmentCategoryId = 7,
+                            ImageUrl = "equipment35.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 35",
+                            ManufacturerID = 2,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 23
+                        },
+                        new
+                        {
+                            ID = 36,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 1.37m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4896),
+                            Description = "Description for Equipment 36",
+                            EquipmentCategoryId = 8,
+                            ImageUrl = "equipment36.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 36",
+                            ManufacturerID = 4,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 11
+                        },
+                        new
+                        {
+                            ID = 37,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 6.98m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4904),
+                            Description = "Description for Equipment 37",
+                            EquipmentCategoryId = 9,
+                            ImageUrl = "equipment37.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 37",
+                            ManufacturerID = 1,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 38
+                        },
+                        new
+                        {
+                            ID = 38,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 3.98m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4912),
+                            Description = "Description for Equipment 38",
+                            EquipmentCategoryId = 7,
+                            ImageUrl = "equipment38.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 38",
+                            ManufacturerID = 5,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 27
+                        },
+                        new
+                        {
+                            ID = 39,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 0.41m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4920),
+                            Description = "Description for Equipment 39",
+                            EquipmentCategoryId = 5,
+                            ImageUrl = "equipment39.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 39",
+                            ManufacturerID = 1,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 31
+                        },
+                        new
+                        {
+                            ID = 40,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 10.00m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4928),
+                            Description = "Description for Equipment 40",
+                            EquipmentCategoryId = 9,
+                            ImageUrl = "equipment40.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 40",
+                            ManufacturerID = 8,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 31
+                        },
+                        new
+                        {
+                            ID = 41,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 2.43m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4936),
+                            Description = "Description for Equipment 41",
+                            EquipmentCategoryId = 6,
+                            ImageUrl = "equipment41.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 41",
+                            ManufacturerID = 6,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 18
+                        },
+                        new
+                        {
+                            ID = 42,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 7.29m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4945),
+                            Description = "Description for Equipment 42",
+                            EquipmentCategoryId = 2,
+                            ImageUrl = "equipment42.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 42",
+                            ManufacturerID = 5,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 16
+                        },
+                        new
+                        {
+                            ID = 43,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 9.50m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4953),
+                            Description = "Description for Equipment 43",
+                            EquipmentCategoryId = 2,
+                            ImageUrl = "equipment43.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 43",
+                            ManufacturerID = 5,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 49
+                        },
+                        new
+                        {
+                            ID = 44,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 9.90m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4961),
+                            Description = "Description for Equipment 44",
+                            EquipmentCategoryId = 8,
+                            ImageUrl = "equipment44.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 44",
+                            ManufacturerID = 7,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 38
+                        },
+                        new
+                        {
+                            ID = 45,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 4.34m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4969),
+                            Description = "Description for Equipment 45",
+                            EquipmentCategoryId = 5,
+                            ImageUrl = "equipment45.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 45",
+                            ManufacturerID = 2,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 18
+                        },
+                        new
+                        {
+                            ID = 46,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 3.60m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4977),
+                            Description = "Description for Equipment 46",
+                            EquipmentCategoryId = 4,
+                            ImageUrl = "equipment46.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 46",
+                            ManufacturerID = 2,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 34
+                        },
+                        new
+                        {
+                            ID = 47,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 9.05m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(4985),
+                            Description = "Description for Equipment 47",
+                            EquipmentCategoryId = 4,
+                            ImageUrl = "equipment47.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 47",
+                            ManufacturerID = 2,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 19
+                        },
+                        new
+                        {
+                            ID = 48,
+                            AddedByUserID = 1,
+                            AverageRating = 0m,
+                            CostPerUse = 6.36m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5024),
+                            Description = "Description for Equipment 48",
+                            EquipmentCategoryId = 7,
+                            ImageUrl = "equipment48.jpg",
+                            IsDeleted = false,
+                            ItemName = "Equipment 48",
+                            ManufacturerID = 5,
+                            MaxQuantity = 50,
+                            MinQuantity = 5,
+                            StockQuantity = 25
                         },
                         new
                         {
                             ID = 49,
                             AddedByUserID = 1,
                             AverageRating = 0m,
-                            CostPerUse = 2.23m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2624),
+                            CostPerUse = 3.16m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5032),
                             Description = "Description for Equipment 49",
                             EquipmentCategoryId = 4,
                             ImageUrl = "equipment49.jpg",
                             IsDeleted = false,
                             ItemName = "Equipment 49",
-                            ManufacturerID = 3,
+                            ManufacturerID = 7,
                             MaxQuantity = 50,
                             MinQuantity = 5,
-                            StockQuantity = 33
+                            StockQuantity = 46
                         },
                         new
                         {
                             ID = 50,
                             AddedByUserID = 1,
                             AverageRating = 0m,
-                            CostPerUse = 2.83m,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2633),
+                            CostPerUse = 5.11m,
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5041),
                             Description = "Description for Equipment 50",
-                            EquipmentCategoryId = 2,
+                            EquipmentCategoryId = 3,
                             ImageUrl = "equipment50.jpg",
                             IsDeleted = false,
                             ItemName = "Equipment 50",
-                            ManufacturerID = 7,
+                            ManufacturerID = 9,
                             MaxQuantity = 50,
                             MinQuantity = 5,
-                            StockQuantity = 35
+                            StockQuantity = 43
                         });
                 });
 
@@ -1390,7 +1400,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 1,
-                            DatePlaced = new DateTime(2025, 1, 28, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2698),
+                            DatePlaced = new DateTime(2025, 1, 29, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5105),
                             IsActive = true,
                             Status = "returned",
                             TotalPrice = 59.94m,
@@ -1399,7 +1409,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 2,
-                            DatePlaced = new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2735),
+                            DatePlaced = new DateTime(2025, 1, 31, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5109),
                             IsActive = true,
                             Status = "paid",
                             TotalPrice = 89.85m,
@@ -1408,7 +1418,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 3,
-                            DatePlaced = new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2737),
+                            DatePlaced = new DateTime(2025, 2, 3, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5111),
                             IsActive = true,
                             Status = "rented",
                             TotalPrice = 29.97m,
@@ -1417,7 +1427,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 4,
-                            DatePlaced = new DateTime(2025, 1, 31, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2739),
+                            DatePlaced = new DateTime(2025, 2, 1, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5113),
                             IsActive = true,
                             Status = "rented",
                             TotalPrice = 19.98m,
@@ -1426,7 +1436,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 5,
-                            DatePlaced = new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2741),
+                            DatePlaced = new DateTime(2025, 2, 4, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5114),
                             IsActive = true,
                             Status = "returned",
                             TotalPrice = 99.90m,
@@ -1435,7 +1445,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 6,
-                            DatePlaced = new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2742),
+                            DatePlaced = new DateTime(2025, 2, 5, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5116),
                             IsActive = true,
                             Status = "rented",
                             TotalPrice = 49.95m,
@@ -1444,7 +1454,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 7,
-                            DatePlaced = new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2744),
+                            DatePlaced = new DateTime(2025, 2, 6, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5185),
                             IsActive = true,
                             Status = "returned",
                             TotalPrice = 69.93m,
@@ -1453,7 +1463,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 8,
-                            DatePlaced = new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2745),
+                            DatePlaced = new DateTime(2025, 2, 7, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5187),
                             IsActive = true,
                             Status = "paid",
                             TotalPrice = 39.96m,
@@ -1462,7 +1472,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 9,
-                            DatePlaced = new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2747),
+                            DatePlaced = new DateTime(2025, 2, 2, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5189),
                             IsActive = true,
                             Status = "rented",
                             TotalPrice = 149.85m,
@@ -1471,7 +1481,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 10,
-                            DatePlaced = new DateTime(2025, 1, 29, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2749),
+                            DatePlaced = new DateTime(2025, 1, 30, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5191),
                             IsActive = true,
                             Status = "returned",
                             TotalPrice = 29.97m,
@@ -1498,6 +1508,9 @@ namespace rs2_rent_sistem.Services.Migrations
 
                     b.Property<int?>("EquipmentID1")
                         .HasColumnType("int");
+
+                    b.Property<bool>("HasDamageReportedByUser")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsReviewedByUser")
                         .HasColumnType("bit");
@@ -1529,169 +1542,183 @@ namespace rs2_rent_sistem.Services.Migrations
                         {
                             ID = 1,
                             CostPerUse = 2.99m,
-                            EndDate = new DateTime(2025, 1, 29, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2815),
+                            EndDate = new DateTime(2025, 1, 30, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5235),
                             EquipmentID = 1,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 1,
                             Price = 5.98m,
                             Quantity = 2,
-                            StartDate = new DateTime(2025, 1, 28, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2811)
+                            StartDate = new DateTime(2025, 1, 29, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5232)
                         },
                         new
                         {
                             ID = 2,
                             CostPerUse = 4.99m,
-                            EndDate = new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2820),
+                            EndDate = new DateTime(2025, 1, 31, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5241),
                             EquipmentID = 3,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 1,
                             Price = 4.99m,
                             Quantity = 1,
-                            StartDate = new DateTime(2025, 1, 28, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2819)
+                            StartDate = new DateTime(2025, 1, 29, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5240)
                         },
                         new
                         {
                             ID = 3,
                             CostPerUse = 3.49m,
-                            EndDate = new DateTime(2025, 1, 31, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2824),
+                            EndDate = new DateTime(2025, 2, 1, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5248),
                             EquipmentID = 2,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 2,
                             Price = 10.47m,
                             Quantity = 3,
-                            StartDate = new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2822)
+                            StartDate = new DateTime(2025, 1, 31, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5247)
                         },
                         new
                         {
                             ID = 4,
                             CostPerUse = 2.99m,
-                            EndDate = new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2828),
+                            EndDate = new DateTime(2025, 2, 2, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5251),
                             EquipmentID = 1,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 2,
                             Price = 11.96m,
                             Quantity = 4,
-                            StartDate = new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2827)
+                            StartDate = new DateTime(2025, 1, 31, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5250)
                         },
                         new
                         {
                             ID = 5,
                             CostPerUse = 4.99m,
-                            EndDate = new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2831),
+                            EndDate = new DateTime(2025, 2, 4, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5254),
                             EquipmentID = 3,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 3,
                             Price = 9.98m,
                             Quantity = 2,
-                            StartDate = new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2830)
+                            StartDate = new DateTime(2025, 2, 3, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5253)
                         },
                         new
                         {
                             ID = 6,
                             CostPerUse = 2.99m,
-                            EndDate = new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2835),
+                            EndDate = new DateTime(2025, 2, 2, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5258),
                             EquipmentID = 1,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 4,
                             Price = 2.99m,
                             Quantity = 1,
-                            StartDate = new DateTime(2025, 1, 31, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2833)
+                            StartDate = new DateTime(2025, 2, 1, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5257)
                         },
                         new
                         {
                             ID = 7,
                             CostPerUse = 3.49m,
-                            EndDate = new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2837),
+                            EndDate = new DateTime(2025, 2, 6, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5262),
                             EquipmentID = 2,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 5,
                             Price = 17.45m,
                             Quantity = 5,
-                            StartDate = new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2836)
+                            StartDate = new DateTime(2025, 2, 4, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5261)
                         },
                         new
                         {
                             ID = 8,
                             CostPerUse = 4.99m,
-                            EndDate = new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2840),
+                            EndDate = new DateTime(2025, 2, 7, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5264),
                             EquipmentID = 3,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 6,
                             Price = 14.97m,
                             Quantity = 3,
-                            StartDate = new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2839)
+                            StartDate = new DateTime(2025, 2, 5, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5263)
                         },
                         new
                         {
                             ID = 9,
                             CostPerUse = 2.99m,
-                            EndDate = new DateTime(2025, 2, 8, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2844),
+                            EndDate = new DateTime(2025, 2, 9, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5267),
                             EquipmentID = 1,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 7,
                             Price = 5.98m,
                             Quantity = 2,
-                            StartDate = new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2843)
+                            StartDate = new DateTime(2025, 2, 6, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5266)
                         },
                         new
                         {
                             ID = 10,
                             CostPerUse = 3.49m,
-                            EndDate = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2848),
+                            EndDate = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5271),
                             EquipmentID = 2,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 8,
                             Price = 10.47m,
                             Quantity = 3,
-                            StartDate = new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2847)
+                            StartDate = new DateTime(2025, 2, 7, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5270)
                         },
                         new
                         {
                             ID = 11,
                             CostPerUse = 4.99m,
-                            EndDate = new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2851),
+                            EndDate = new DateTime(2025, 2, 4, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5274),
                             EquipmentID = 3,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 9,
                             Price = 4.99m,
                             Quantity = 1,
-                            StartDate = new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2850)
+                            StartDate = new DateTime(2025, 2, 2, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5273)
                         },
                         new
                         {
                             ID = 12,
                             CostPerUse = 2.99m,
-                            EndDate = new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2853),
+                            EndDate = new DateTime(2025, 2, 3, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5276),
                             EquipmentID = 1,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 9,
                             Price = 14.95m,
                             Quantity = 5,
-                            StartDate = new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2852)
+                            StartDate = new DateTime(2025, 2, 2, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5275)
                         },
                         new
                         {
                             ID = 13,
                             CostPerUse = 3.49m,
-                            EndDate = new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2857),
+                            EndDate = new DateTime(2025, 1, 31, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5279),
                             EquipmentID = 2,
+                            HasDamageReportedByUser = false,
                             IsReviewedByUser = false,
                             OrderID = 10,
                             Price = 6.98m,
                             Quantity = 2,
-                            StartDate = new DateTime(2025, 1, 29, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2856)
+                            StartDate = new DateTime(2025, 1, 30, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5278)
                         },
                         new
                         {
                             ID = 14,
                             CostPerUse = 3.49m,
-                            EndDate = new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2859),
+                            EndDate = new DateTime(2025, 1, 31, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5282),
                             EquipmentID = 4,
+                            HasDamageReportedByUser = true,
                             IsReviewedByUser = true,
                             OrderID = 10,
                             Price = 6.98m,
                             Quantity = 2,
-                            StartDate = new DateTime(2025, 1, 29, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2859)
+                            StartDate = new DateTime(2025, 1, 30, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5281)
                         });
                 });
 
@@ -1729,7 +1756,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 1,
-                            DateAdded = new DateTime(2025, 1, 29, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2887),
+                            DateAdded = new DateTime(2025, 1, 30, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5338),
                             Description = "Great quality and very durable!",
                             IsDeleted = false,
                             NumberOfStars = 4.5m,
@@ -1738,7 +1765,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 2,
-                            DateAdded = new DateTime(2025, 1, 30, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2893),
+                            DateAdded = new DateTime(2025, 1, 31, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5345),
                             Description = "Not as expected, could be better.",
                             IsDeleted = false,
                             NumberOfStars = 2.0m,
@@ -1747,7 +1774,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 3,
-                            DateAdded = new DateTime(2025, 1, 31, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2895),
+                            DateAdded = new DateTime(2025, 2, 1, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5347),
                             Description = "Perfect for my needs, highly recommended!",
                             IsDeleted = false,
                             NumberOfStars = 5.0m,
@@ -1756,7 +1783,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 4,
-                            DateAdded = new DateTime(2025, 2, 1, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2896),
+                            DateAdded = new DateTime(2025, 2, 2, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5349),
                             Description = "Good value for the price.",
                             IsDeleted = false,
                             NumberOfStars = 4.0m,
@@ -1765,7 +1792,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 5,
-                            DateAdded = new DateTime(2025, 2, 2, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2898),
+                            DateAdded = new DateTime(2025, 2, 3, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5350),
                             Description = "Satisfactory but delivery was delayed.",
                             IsDeleted = false,
                             NumberOfStars = 3.0m,
@@ -1774,7 +1801,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 6,
-                            DateAdded = new DateTime(2025, 2, 3, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2900),
+                            DateAdded = new DateTime(2025, 2, 4, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5353),
                             Description = "Excellent performance and quality.",
                             IsDeleted = false,
                             NumberOfStars = 5.0m,
@@ -1783,7 +1810,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 7,
-                            DateAdded = new DateTime(2025, 2, 4, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2903),
+                            DateAdded = new DateTime(2025, 2, 5, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5354),
                             Description = "Decent product but could use some improvements.",
                             IsDeleted = false,
                             NumberOfStars = 3.5m,
@@ -1792,7 +1819,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 8,
-                            DateAdded = new DateTime(2025, 2, 5, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2904),
+                            DateAdded = new DateTime(2025, 2, 6, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5356),
                             Description = "Very satisfied with the purchase.",
                             IsDeleted = false,
                             NumberOfStars = 4.5m,
@@ -1801,7 +1828,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 9,
-                            DateAdded = new DateTime(2025, 2, 6, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2906),
+                            DateAdded = new DateTime(2025, 2, 7, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5358),
                             Description = "The item was okay, nothing special.",
                             IsDeleted = false,
                             NumberOfStars = 3.0m,
@@ -1810,7 +1837,7 @@ namespace rs2_rent_sistem.Services.Migrations
                         new
                         {
                             ID = 10,
-                            DateAdded = new DateTime(2025, 2, 7, 22, 54, 15, 52, DateTimeKind.Local).AddTicks(2908),
+                            DateAdded = new DateTime(2025, 2, 8, 12, 46, 36, 879, DateTimeKind.Local).AddTicks(5360),
                             Description = "Amazing product! Will buy again.",
                             IsDeleted = false,
                             NumberOfStars = 5.0m,
@@ -1898,9 +1925,9 @@ namespace rs2_rent_sistem.Services.Migrations
                             FirstName = "Una",
                             IsActive = true,
                             LastName = "Radnik",
-                            PasswordHash = "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=",
+                            PasswordHash = "FMYt39xct6cZc9nKv9qrc+zO4wx/q2mvWVtJ32ekuZI=",
                             Phone = "0038763222111",
-                            Salt = "Q3jRl1B5J45ytORAfnfj+Q=="
+                            Salt = "y8PLIcF40l5TKX7zLboY0w=="
                         },
                         new
                         {
@@ -1909,9 +1936,9 @@ namespace rs2_rent_sistem.Services.Migrations
                             FirstName = "Una",
                             IsActive = true,
                             LastName = "Shopping",
-                            PasswordHash = "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=",
+                            PasswordHash = "FMYt39xct6cZc9nKv9qrc+zO4wx/q2mvWVtJ32ekuZI=",
                             Phone = "0038763222111",
-                            Salt = "Q3jRl1B5J45ytORAfnfj+Q=="
+                            Salt = "y8PLIcF40l5TKX7zLboY0w=="
                         },
                         new
                         {
@@ -1920,9 +1947,9 @@ namespace rs2_rent_sistem.Services.Migrations
                             FirstName = "Michael",
                             IsActive = true,
                             LastName = "Johnson",
-                            PasswordHash = "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=",
+                            PasswordHash = "FMYt39xct6cZc9nKv9qrc+zO4wx/q2mvWVtJ32ekuZI=",
                             Phone = "555-8765",
-                            Salt = "Q3jRl1B5J45ytORAfnfj+Q=="
+                            Salt = "y8PLIcF40l5TKX7zLboY0w=="
                         },
                         new
                         {
@@ -1931,9 +1958,9 @@ namespace rs2_rent_sistem.Services.Migrations
                             FirstName = "Emily",
                             IsActive = true,
                             LastName = "Davis",
-                            PasswordHash = "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=",
+                            PasswordHash = "FMYt39xct6cZc9nKv9qrc+zO4wx/q2mvWVtJ32ekuZI=",
                             Phone = "555-4321",
-                            Salt = "Q3jRl1B5J45ytORAfnfj+Q=="
+                            Salt = "y8PLIcF40l5TKX7zLboY0w=="
                         },
                         new
                         {
@@ -1942,9 +1969,9 @@ namespace rs2_rent_sistem.Services.Migrations
                             FirstName = "William",
                             IsActive = true,
                             LastName = "Brown",
-                            PasswordHash = "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=",
+                            PasswordHash = "FMYt39xct6cZc9nKv9qrc+zO4wx/q2mvWVtJ32ekuZI=",
                             Phone = "555-6789",
-                            Salt = "Q3jRl1B5J45ytORAfnfj+Q=="
+                            Salt = "y8PLIcF40l5TKX7zLboY0w=="
                         },
                         new
                         {
@@ -1953,9 +1980,9 @@ namespace rs2_rent_sistem.Services.Migrations
                             FirstName = "Ava",
                             IsActive = true,
                             LastName = "Wilson",
-                            PasswordHash = "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=",
+                            PasswordHash = "FMYt39xct6cZc9nKv9qrc+zO4wx/q2mvWVtJ32ekuZI=",
                             Phone = "555-2345",
-                            Salt = "Q3jRl1B5J45ytORAfnfj+Q=="
+                            Salt = "y8PLIcF40l5TKX7zLboY0w=="
                         },
                         new
                         {
@@ -1964,9 +1991,9 @@ namespace rs2_rent_sistem.Services.Migrations
                             FirstName = "James",
                             IsActive = true,
                             LastName = "Taylor",
-                            PasswordHash = "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=",
+                            PasswordHash = "FMYt39xct6cZc9nKv9qrc+zO4wx/q2mvWVtJ32ekuZI=",
                             Phone = "555-7890",
-                            Salt = "Q3jRl1B5J45ytORAfnfj+Q=="
+                            Salt = "y8PLIcF40l5TKX7zLboY0w=="
                         },
                         new
                         {
@@ -1975,9 +2002,9 @@ namespace rs2_rent_sistem.Services.Migrations
                             FirstName = "Olivia",
                             IsActive = true,
                             LastName = "Anderson",
-                            PasswordHash = "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=",
+                            PasswordHash = "FMYt39xct6cZc9nKv9qrc+zO4wx/q2mvWVtJ32ekuZI=",
                             Phone = "555-3456",
-                            Salt = "Q3jRl1B5J45ytORAfnfj+Q=="
+                            Salt = "y8PLIcF40l5TKX7zLboY0w=="
                         },
                         new
                         {
@@ -1986,9 +2013,9 @@ namespace rs2_rent_sistem.Services.Migrations
                             FirstName = "Benjamin",
                             IsActive = true,
                             LastName = "Thomas",
-                            PasswordHash = "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=",
+                            PasswordHash = "FMYt39xct6cZc9nKv9qrc+zO4wx/q2mvWVtJ32ekuZI=",
                             Phone = "555-9012",
-                            Salt = "Q3jRl1B5J45ytORAfnfj+Q=="
+                            Salt = "y8PLIcF40l5TKX7zLboY0w=="
                         },
                         new
                         {
@@ -1997,9 +2024,9 @@ namespace rs2_rent_sistem.Services.Migrations
                             FirstName = "Sophia",
                             IsActive = true,
                             LastName = "Moore",
-                            PasswordHash = "BTipVo0Ggceex4ZoHa97/6eHxZ7u4ml8XBoIN3vnhgo=",
+                            PasswordHash = "FMYt39xct6cZc9nKv9qrc+zO4wx/q2mvWVtJ32ekuZI=",
                             Phone = "555-6543",
-                            Salt = "Q3jRl1B5J45ytORAfnfj+Q=="
+                            Salt = "y8PLIcF40l5TKX7zLboY0w=="
                         });
                 });
 
@@ -2110,10 +2137,9 @@ namespace rs2_rent_sistem.Services.Migrations
             modelBuilder.Entity("rs2_rent_sistem.Services.Database.Damage", b =>
                 {
                     b.HasOne("rs2_rent_sistem.Services.Database.OrderItem", "OrderItem")
-                        .WithMany("Damages")
-                        .HasForeignKey("OrderItemID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithOne("Damage")
+                        .HasForeignKey("rs2_rent_sistem.Services.Database.Damage", "OrderItemID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("OrderItem");
                 });
@@ -2180,8 +2206,7 @@ namespace rs2_rent_sistem.Services.Migrations
                     b.HasOne("rs2_rent_sistem.Services.Database.OrderItem", "OrderItem")
                         .WithOne("Review")
                         .HasForeignKey("rs2_rent_sistem.Services.Database.Review", "OrderItemID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("OrderItem");
                 });
@@ -2234,10 +2259,9 @@ namespace rs2_rent_sistem.Services.Migrations
 
             modelBuilder.Entity("rs2_rent_sistem.Services.Database.OrderItem", b =>
                 {
-                    b.Navigation("Damages");
+                    b.Navigation("Damage");
 
-                    b.Navigation("Review")
-                        .IsRequired();
+                    b.Navigation("Review");
                 });
 
             modelBuilder.Entity("rs2_rent_sistem.Services.Database.Role", b =>

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/item_in_order/order_item.dart';
+import 'package:rs2_rent_sistem/shared/providers/damage_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/equipment_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/order_item_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/review_providers.dart';
@@ -11,11 +12,13 @@ import 'package:rs2_rent_sistem/shared/utilities/extensions/date_extensions.dart
 class RentedEquipmentInOrderWidget extends ConsumerStatefulWidget {
   final ItemInOrder orderItem;
   final bool showReview;
+  final bool showDamage;
 
   const RentedEquipmentInOrderWidget({
     super.key,
     required this.orderItem,
     this.showReview = false,
+    this.showDamage = false,
   });
 
   @override
@@ -27,8 +30,9 @@ class _RentedEquipmentInOrderWidgetState
     extends ConsumerState<RentedEquipmentInOrderWidget> {
   double _rating = 0.0;
 
-  void _showReviewBottomSheet(BuildContext context, double rating) {
-    TextEditingController reviewController = TextEditingController();
+  void _showReviewOrDamageBottomSheet(BuildContext context, double rating,
+      {bool isReview = true}) {
+    TextEditingController textCtrl = TextEditingController();
 
     showModalBottomSheet(
       context: context,
@@ -46,7 +50,9 @@ class _RentedEquipmentInOrderWidgetState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Dodajte recenziju (${rating.toStringAsFixed(1)} ★)",
+                isReview
+                    ? "Dodajte recenziju (${rating.toStringAsFixed(1)} ★)"
+                    : "Opisite ostecenje opreme",
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -54,7 +60,7 @@ class _RentedEquipmentInOrderWidgetState
               ),
               const SizedBox(height: 12),
               TextField(
-                controller: reviewController,
+                controller: textCtrl,
                 maxLines: 3,
                 decoration: const InputDecoration(
                   labelText: "Unesite komentar",
@@ -64,27 +70,49 @@ class _RentedEquipmentInOrderWidgetState
               const SizedBox(height: 12),
               ElevatedButton(
                 onPressed: () {
-                  String review = reviewController.text.trim();
-                  final params = {
-                    'orderItemID': widget.orderItem.id,
-                    'numberOfStars': rating,
-                    'description': review,
-                  };
-                  ref.read(addReviewProvider(params).future).then((_) {
-                    ref.invalidate(orderItemsProvider);
-                    ref.invalidate(equipmentListProvider);
-                    Navigator.of(context).pop();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Recenzija je poslana!")),
-                    );
-                  }).catchError((error) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                          content: Text("Greška pri slanju recenzije: $error")),
-                    );
-                  });
+                  String comment = textCtrl.text.trim();
+                  if (isReview) {
+                    final params = {
+                      'orderItemID': widget.orderItem.id,
+                      'numberOfStars': rating,
+                      'description': comment,
+                    };
+                    ref.read(addReviewProvider(params).future).then((_) {
+                      ref.invalidate(orderItemsProvider);
+                      ref.invalidate(equipmentListProvider);
+                      Navigator.of(context).pop();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Recenzija je poslana!")),
+                      );
+                    }).catchError((error) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content:
+                                Text("Greška pri slanju recenzije: $error")),
+                      );
+                    });
+                  } else {
+                    final params = {
+                      'orderItemID': widget.orderItem.id,
+                      'comment': comment,
+                    };
+                    ref.read(addDamageProvider(params).future).then((_) {
+                      ref.invalidate(orderItemsProvider);
+                      Navigator.of(context).pop();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text("Prijava ostecenja je poslana!")),
+                      );
+                    }).catchError((error) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content: Text(
+                                "Greška pri slanju prijave ostecenja: $error")),
+                      );
+                    });
+                  }
                 },
-                child: const Text("Pošalji recenziju"),
+                child: const Text("Pošalji"),
               ),
             ],
           ),
@@ -135,9 +163,9 @@ class _RentedEquipmentInOrderWidgetState
               Row(
                 children: [
                   RatingBar.builder(
-                    initialRating:
-                        widget.orderItem.isReviewedByUser ? 3 : _rating,
-                    // initialRating: widget.orderItem.isReviewedByUser?widget.orderItem.equipment.averageRating:_rating,
+                    initialRating: widget.orderItem.isReviewedByUser
+                        ? widget.orderItem.equipment?.averageRating ?? 0
+                        : _rating,
                     minRating: 1,
                     direction: Axis.horizontal,
                     allowHalfRating: true,
@@ -150,7 +178,7 @@ class _RentedEquipmentInOrderWidgetState
                         setState(() {
                           _rating = rating;
                         });
-                        _showReviewBottomSheet(context, rating);
+                        _showReviewOrDamageBottomSheet(context, rating);
                       }
                     },
                     ignoreGestures: widget.orderItem.isReviewedByUser,
@@ -158,6 +186,20 @@ class _RentedEquipmentInOrderWidgetState
                 ],
               ),
             ],
+            if (widget.showDamage && !widget.orderItem.hasDamageReportedByUser)
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      _showReviewOrDamageBottomSheet(context, _rating,
+                          isReview: false);
+                    },
+                    child: Text(
+                      'Prijava ostecenja',
+                    ),
+                  ),
+                ],
+              ),
             const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
