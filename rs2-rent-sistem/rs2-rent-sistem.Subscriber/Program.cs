@@ -13,7 +13,7 @@ class Program
 
         var configuration = builder.Build();
         Console.WriteLine("Current Directory: " + Directory.GetCurrentDirectory());
-        Env.Load("../../../../.env");
+        
 
         var emailService = new EmailService();
 

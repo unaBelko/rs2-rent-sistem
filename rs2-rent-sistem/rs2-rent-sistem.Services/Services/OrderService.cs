@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Text;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using RabbitMQ.Client;
 using rs2_rent_sistem.Model;
@@ -17,14 +18,14 @@ namespace rs2_rent_sistem.Services.Services
 
         public OrderService(RentSistemDbContext context, IMapper mapper, ICartService cartService, ConnectionFactory factory) : base(context, mapper)
         {
-            //var connection = factory.CreateConnection();
-            //_channel = connection.CreateModel();
-            //_channel.QueueDeclare(queue: "reservationQueue",
-            //                     durable: false,
-            //                     exclusive: false,
-            //                     autoDelete: false,
-            //                     arguments: null);
-            //
+            var connection = factory.CreateConnection();
+            _channel = connection.CreateModel();
+            _channel.QueueDeclare(queue: "reservationQueue",
+                                 durable: false,
+                                 exclusive: false,
+                                 autoDelete: false,
+                                 arguments: null);
+
             _cartService = cartService;
         }
 
@@ -254,19 +255,19 @@ namespace rs2_rent_sistem.Services.Services
 
             var user = await _context.Users.Where(u => u.ID == userId).FirstOrDefaultAsync();
 
-            //if (user != null)
-            //{
-            //    var userEmail = user.Email;
-            //    if (!string.IsNullOrEmpty(userEmail))
-            //    {
-            //        var message = $"Order created for {userEmail}";
-            //        var body = Encoding.UTF8.GetBytes(message);
-            //        _channel.BasicPublish(exchange: "",
-            //                              routingKey: "notificationsQueue",
-            //                              basicProperties: null,
-            //                              body: body);
-            //    }
-            //}
+            if (user != null)
+            {
+                var userEmail = user.Email;
+                if (!string.IsNullOrEmpty(userEmail))
+                {
+                    var message = $"Order created for {userEmail}";
+                    var body = Encoding.UTF8.GetBytes(message);
+                    _channel.BasicPublish(exchange: "",
+                                          routingKey: "notificationsQueue",
+                                          basicProperties: null,
+                                          body: body);
+                }
+            }
 
             return _mapper.Map<Order>(newOrder);
         }

@@ -61,6 +61,11 @@ services:
     volumes:
       - ./docker_data/rabbitmq_data:/var/lib/rabbitmq
       - ./docker_data/rabbitmq_logs:/var/log/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
 #NotificationMailingService
 
@@ -72,20 +77,10 @@ services:
     build: 
       context: .
       dockerfile: NotificationEmailConsumerDockerfile
-    environment:
-      - RABBITMQ_HOST=erent-rabbitmq
-      - RABBITMQ_USERNAME=guest
-      - RABBITMQ_PASSWORD=guest
-      - RABBITMQ_VIRTUALHOST=/
-      - RABBITMQ_QUEUENAME=notificationsQueue
-      - RABBITMQ_PORT=5672
-      - FromEmail=erentrs2ube@gmail.com
-      - SmtpPass="zgdm xsge pkve eeus"
-      - SmtpServer=smtp.gmail.com 
-      - SmtpUser=erentrs2ube@gmail.com
+    env_file:
+      - .env
     depends_on:
-      - erent-rabbitmq
-      - erent-api
-      - erent-sql 
+      erent-rabbitmq:
+        condition: service_healthy
     networks:
       - erentnet2023
