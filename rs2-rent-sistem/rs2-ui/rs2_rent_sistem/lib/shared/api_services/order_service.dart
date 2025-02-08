@@ -9,6 +9,10 @@ class OrderService {
     return await dioService.post(Endpoints.createOrder, data: {});
   }
 
+  Future<ApiResponse> updateOrderStatus(int id) async {
+    return await dioService.put('${Endpoints.order}/$id/status', data: {});
+  }
+
   Future<ApiResponse<List<AdminOrderListItemModel>>> getOrders(
       {int? userId}) async {
     var endpoint = Endpoints.order;

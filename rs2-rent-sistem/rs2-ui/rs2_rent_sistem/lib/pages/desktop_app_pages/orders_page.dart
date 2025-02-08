@@ -9,52 +9,58 @@ class OrdersPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20.0,
-            vertical: 12.0,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20.0,
+              vertical: 12.0,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Text('Id'),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Text('Korisnik'),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Text('Datum kreiranja'),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Text('Cijena'),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Text('Status'),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Text('Akcija'),
+                ),
+              ],
+            ),
           ),
-          child: Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Text('Id'),
-              ),
-              Expanded(
-                flex: 1,
-                child: Text('Korisnik'),
-              ),
-              Expanded(
-                flex: 2,
-                child: Text('Datum kreiranja'),
-              ),
-              Expanded(
-                flex: 1,
-                child: Text('Cijena'),
-              ),
-              Expanded(
-                flex: 1,
-                child: Text('Status'),
-              ),
-            ],
-          ),
-        ),
-        ref.watch(ordersListProvider(null)).when(
-              data: (data) => SingleChildScrollView(
-                child: Column(
-                  children: data
-                      .map((item) => AdminOrderItemWidget(item: item))
-                      .toList(),
+          ref.watch(ordersListProvider(null)).when(
+                data: (data) => SingleChildScrollView(
+                  child: Column(
+                    children: data
+                        .map((item) => AdminOrderItemWidget(item: item))
+                        .toList(),
+                  ),
+                ),
+                error: (e, st) => Text('Narudzbe se trenutno ne mogu ucitati.'),
+                loading: () => Center(
+                  child: CircularProgressIndicator(),
                 ),
               ),
-              error: (e, st) => Text('Narudzbe se trenutno ne mogu ucitati.'),
-              loading: () => Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -96,6 +102,45 @@ class AdminOrderItemWidget extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Text(item.status),
+            ),
+            Expanded(
+              flex: 1,
+              child: Consumer(
+                builder: (context, ref, child) {
+                  final updateStatus =
+                      ref.watch(updateOrderStatusProvider(item.id));
+
+                  return ElevatedButton(
+                    onPressed: item.status == "returned"
+                        ? null
+                        : () {
+                            ref
+                                .read(updateOrderStatusProvider(item.id).future)
+                                .then((_) {
+                              ref.invalidate(ordersListProvider);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Status uspješno ažuriran!')),
+                              );
+                              ref.invalidate(
+                                  updateOrderStatusProvider); // Refresh state if needed
+                            }).catchError((error) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Greška: $error')),
+                              );
+                            });
+                          },
+                    child: updateStatus.isLoading
+                        ? const CircularProgressIndicator()
+                        : Wrap(
+                            children: const [
+                              Icon(Icons.arrow_right),
+                              Text('Azuriraj status'),
+                            ],
+                          ),
+                  );
+                },
+              ),
             ),
           ],
         ),

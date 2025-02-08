@@ -7,5 +7,6 @@ namespace rs2_rent_sistem.Services.Interfaces
     {
         Task<Order> CreateOrder(int userId);
         Task<List<object>> GetAll(DateTime? startDate, DateTime? endDate, string reportType);
+        Task<string> UpdateOrderStatus(int orderId);
     }
 }

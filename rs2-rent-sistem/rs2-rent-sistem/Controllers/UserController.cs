@@ -11,7 +11,7 @@ using rs2_rent_sistem_api.Controllers;
 namespace rs2_rent_sistem.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : BaseController<User, UserSearchObject>
     {
         private readonly IUsersService _userService;

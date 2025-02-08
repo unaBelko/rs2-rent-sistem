@@ -52,6 +52,28 @@ namespace rs2_rent_sistem.Services.Services
             };
         }
 
+        public async Task<string> UpdateOrderStatus(int orderId)
+        {
+            var order = await _context.Orders.FirstOrDefaultAsync(o => o.ID == orderId);
+
+            if (order == null)
+                throw new KeyNotFoundException("Order not found.");
+
+            var statusSequence = new List<string> { "created", "paid", "rented", "returned" };
+
+            var currentIndex = statusSequence.IndexOf(order.Status.ToLower());
+
+            if (currentIndex == -1 || currentIndex == statusSequence.Count - 1)
+                throw new InvalidOperationException($"Cannot change status from {order.Status}.");
+
+            order.Status = statusSequence[currentIndex + 1];
+
+            await _context.SaveChangesAsync();
+
+            return order.Status;
+        }
+
+
 
         private List<object> GetMostRentedEquipment(List<Database.Order> orders)
         {

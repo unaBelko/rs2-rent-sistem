@@ -12,6 +12,7 @@ namespace rs2_rent_sistem.Controllers
 {
     [Authorize]
     [ApiController]
+    [Route("api/[controller]")]
     public class DamageController : BaseController<Damage, DamageSearchObject>
     {
         public DamageController(ILogger<DamageController> logger, IDamageService service) : base(logger, service)

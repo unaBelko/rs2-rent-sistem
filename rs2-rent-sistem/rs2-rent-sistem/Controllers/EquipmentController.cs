@@ -9,6 +9,7 @@ using rs2_rent_sistem.Services.Interfaces;
 namespace rs2_rent_sistem_api.Controllers
 {
     [ApiController]
+    [Route("api/[controller]")]
     public class EquipmentController : BaseCRUDController<Equipment, EquipmentSearchObject, EquipmentUpsertObject, EquipmentUpsertObject>
     {
         public EquipmentController(ILogger<BaseController<Equipment, EquipmentSearchObject>> logger, IEquipmentService service) : base(logger, service) { }

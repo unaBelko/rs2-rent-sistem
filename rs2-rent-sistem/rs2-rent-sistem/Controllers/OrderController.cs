@@ -39,6 +39,33 @@ namespace rs2_rent_sistem.Controllers
             }
         }
 
+        [HttpPut("{orderId}/status")]
+        [Authorize(Roles = "employee")]
+        public async Task<IActionResult> UpdateOrderStatus(int orderId)
+        {
+            try
+            {
+                await _orderService.UpdateOrderStatus(orderId);
+                return Ok();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while updating order status.", Details = ex.Message });
+            }
+        }
+
         [HttpPost("CreateOrder")]
         public async Task<IActionResult> CreateOrder()
         {

@@ -1,5 +1,5 @@
 class Constants {
-  static const String apiUrl = 'http://172.18.32.1:5119/';
+  static const String apiUrl = 'http://172.18.32.1:5119/api/';
 }
 
 class Endpoints {
@@ -10,11 +10,11 @@ class Endpoints {
   static const String userWithParams = 'User/{1}';
 
   //cart
-  static const String addItemToCart = 'api/Cart/AddItem';
-  static const String removeItemFromCart = 'api/Cart/RemoveItem';
-  static const String emptyCart = 'api/Cart/Empty/{id}';
-  static const String getCart = 'api/Cart/GetUsersCart';
-  static const String getCartDetails = 'api/Cart/{1}';
+  static const String addItemToCart = 'Cart/AddItem';
+  static const String removeItemFromCart = 'Cart/RemoveItem';
+  static const String emptyCart = 'Cart/Empty/{id}';
+  static const String getCart = 'Cart/GetUsersCart';
+  static const String getCartDetails = 'Cart/{1}';
 
   //equipment
   static const String getRecommendedEquipment = 'Equipment/{1}/recommend';
@@ -30,15 +30,15 @@ class Endpoints {
   static const String manufacturerWithParams = 'Manufacturer/{1}';
 
   //order
-  static const String createOrder = 'api/Order/CreateOrder';
-  static const String order = 'api/Order';
+  static const String createOrder = 'Order/CreateOrder';
+  static const String order = 'Order';
   static const String orderWithParams = 'Order/{1}';
 
   //order items
-  static const String orderItems = 'api/OrderItems';
+  static const String orderItems = 'OrderItems';
 
   //reviews
-  static const String review = 'api/Review';
+  static const String review = 'Review';
 
   //damage
   static const String damage = 'Damage';
