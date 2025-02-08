@@ -26,7 +26,7 @@ mixin _$EquipmentCreationModel {
   DateTime get dateAdded => throw _privateConstructorUsedError;
   int get equipmentCategoryID => throw _privateConstructorUsedError;
   int get manufacturerID => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
+  String get photoBase64 => throw _privateConstructorUsedError;
   int get stockQuantity => throw _privateConstructorUsedError;
   int get minQuantity => throw _privateConstructorUsedError;
   int get maxQuantity => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $EquipmentCreationModelCopyWith<$Res> {
       DateTime dateAdded,
       int equipmentCategoryID,
       int manufacturerID,
-      String imageUrl,
+      String photoBase64,
       int stockQuantity,
       int minQuantity,
       int maxQuantity,
@@ -82,7 +82,7 @@ class _$EquipmentCreationModelCopyWithImpl<$Res,
     Object? dateAdded = null,
     Object? equipmentCategoryID = null,
     Object? manufacturerID = null,
-    Object? imageUrl = null,
+    Object? photoBase64 = null,
     Object? stockQuantity = null,
     Object? minQuantity = null,
     Object? maxQuantity = null,
@@ -109,9 +109,9 @@ class _$EquipmentCreationModelCopyWithImpl<$Res,
           ? _value.manufacturerID
           : manufacturerID // ignore: cast_nullable_to_non_nullable
               as int,
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      photoBase64: null == photoBase64
+          ? _value.photoBase64
+          : photoBase64 // ignore: cast_nullable_to_non_nullable
               as String,
       stockQuantity: null == stockQuantity
           ? _value.stockQuantity
@@ -148,7 +148,7 @@ abstract class _$$EquipmentCreationModelImplCopyWith<$Res>
       DateTime dateAdded,
       int equipmentCategoryID,
       int manufacturerID,
-      String imageUrl,
+      String photoBase64,
       int stockQuantity,
       int minQuantity,
       int maxQuantity,
@@ -175,7 +175,7 @@ class __$$EquipmentCreationModelImplCopyWithImpl<$Res>
     Object? dateAdded = null,
     Object? equipmentCategoryID = null,
     Object? manufacturerID = null,
-    Object? imageUrl = null,
+    Object? photoBase64 = null,
     Object? stockQuantity = null,
     Object? minQuantity = null,
     Object? maxQuantity = null,
@@ -202,9 +202,9 @@ class __$$EquipmentCreationModelImplCopyWithImpl<$Res>
           ? _value.manufacturerID
           : manufacturerID // ignore: cast_nullable_to_non_nullable
               as int,
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      photoBase64: null == photoBase64
+          ? _value.photoBase64
+          : photoBase64 // ignore: cast_nullable_to_non_nullable
               as String,
       stockQuantity: null == stockQuantity
           ? _value.stockQuantity
@@ -235,7 +235,7 @@ class _$EquipmentCreationModelImpl implements _EquipmentCreationModel {
       required this.dateAdded,
       required this.equipmentCategoryID,
       required this.manufacturerID,
-      this.imageUrl = '',
+      this.photoBase64 = '',
       this.stockQuantity = 1,
       this.minQuantity = 1,
       this.maxQuantity = 1,
@@ -256,7 +256,7 @@ class _$EquipmentCreationModelImpl implements _EquipmentCreationModel {
   final int manufacturerID;
   @override
   @JsonKey()
-  final String imageUrl;
+  final String photoBase64;
   @override
   @JsonKey()
   final int stockQuantity;
@@ -272,7 +272,7 @@ class _$EquipmentCreationModelImpl implements _EquipmentCreationModel {
 
   @override
   String toString() {
-    return 'EquipmentCreationModel(itemName: $itemName, costPerUse: $costPerUse, dateAdded: $dateAdded, equipmentCategoryID: $equipmentCategoryID, manufacturerID: $manufacturerID, imageUrl: $imageUrl, stockQuantity: $stockQuantity, minQuantity: $minQuantity, maxQuantity: $maxQuantity, description: $description)';
+    return 'EquipmentCreationModel(itemName: $itemName, costPerUse: $costPerUse, dateAdded: $dateAdded, equipmentCategoryID: $equipmentCategoryID, manufacturerID: $manufacturerID, photoBase64: $photoBase64, stockQuantity: $stockQuantity, minQuantity: $minQuantity, maxQuantity: $maxQuantity, description: $description)';
   }
 
   @override
@@ -290,8 +290,8 @@ class _$EquipmentCreationModelImpl implements _EquipmentCreationModel {
                 other.equipmentCategoryID == equipmentCategoryID) &&
             (identical(other.manufacturerID, manufacturerID) ||
                 other.manufacturerID == manufacturerID) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
+            (identical(other.photoBase64, photoBase64) ||
+                other.photoBase64 == photoBase64) &&
             (identical(other.stockQuantity, stockQuantity) ||
                 other.stockQuantity == stockQuantity) &&
             (identical(other.minQuantity, minQuantity) ||
@@ -311,7 +311,7 @@ class _$EquipmentCreationModelImpl implements _EquipmentCreationModel {
       dateAdded,
       equipmentCategoryID,
       manufacturerID,
-      imageUrl,
+      photoBase64,
       stockQuantity,
       minQuantity,
       maxQuantity,
@@ -341,7 +341,7 @@ abstract class _EquipmentCreationModel implements EquipmentCreationModel {
       required final DateTime dateAdded,
       required final int equipmentCategoryID,
       required final int manufacturerID,
-      final String imageUrl,
+      final String photoBase64,
       final int stockQuantity,
       final int minQuantity,
       final int maxQuantity,
@@ -361,7 +361,7 @@ abstract class _EquipmentCreationModel implements EquipmentCreationModel {
   @override
   int get manufacturerID;
   @override
-  String get imageUrl;
+  String get photoBase64;
   @override
   int get stockQuantity;
   @override

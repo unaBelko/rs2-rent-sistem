@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:form_builder_file_picker/form_builder_file_picker.dart';
@@ -37,6 +38,7 @@ class _AddOrEditEquipmentPageState
   SimpleDropdownItem? selectedCategory;
   SimpleDropdownItem? selectedManufacturer;
   File? _selectedImage;
+  String? _photoBase64;
 
   @override
   void initState() {
@@ -74,6 +76,23 @@ class _AddOrEditEquipmentPageState
     super.dispose();
   }
 
+  Future<void> _convertImageToBase64(File image) async {
+    List<int> imageBytes = await image.readAsBytes();
+    setState(() {
+      _photoBase64 = base64Encode(imageBytes);
+    });
+  }
+
+  void _onImageSelected(List<PlatformFile>? files) {
+    if (files != null && files.isNotEmpty) {
+      setState(() {
+        _selectedImage = File(files.first.path!);
+      });
+
+      _convertImageToBase64(_selectedImage!);
+    }
+  }
+
   void _saveForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
@@ -84,7 +103,7 @@ class _AddOrEditEquipmentPageState
         dateAdded: DateTime.now(),
         equipmentCategoryID: selectedCategory!.id,
         manufacturerID: selectedManufacturer!.id,
-        imageUrl: '',
+        photoBase64: _photoBase64 ?? "",
         stockQuantity: int.parse(_stockQuantityController.text),
         minQuantity: int.parse(_minQuantityController.text),
         maxQuantity: int.parse(_maxQuantityController.text),
@@ -227,7 +246,11 @@ class _AddOrEditEquipmentPageState
                   children: [
                     const Text('Slika opreme',
                         style: TextStyle(fontWeight: FontWeight.bold)),
-                    FormBuilderFilePicker(name: 'image'),
+                    FormBuilderFilePicker(
+                      name: 'image',
+                      maxFiles: 1,
+                      onChanged: _onImageSelected,
+                    ),
                     const SizedBox(height: 20),
                     RentSystemButton(label: 'Spremi', onTap: _saveForm),
                   ],

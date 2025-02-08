@@ -11,7 +11,7 @@ class EquipmentCreationModel with _$EquipmentCreationModel {
     required DateTime dateAdded,
     required int equipmentCategoryID,
     required int manufacturerID,
-    @Default('') String imageUrl,
+    @Default('') String photoBase64,
     @Default(1) int stockQuantity,
     @Default(1) int minQuantity,
     @Default(1) int maxQuantity,

@@ -87,6 +87,8 @@ class _EquipmentDetailsAdminPageState
                     ),
                     Image.memory(
                       base64Decode(details.photo),
+                      height: 200,
+                      width: 200,
                     ),
                   ],
                 ),
