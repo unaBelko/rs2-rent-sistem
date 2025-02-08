@@ -135,7 +135,6 @@ class _AvailableEquipmentPageState
                       right: 20,
                       child: FloatingActionButton(
                         onPressed: () {
-                          ref.invalidate(cartProvider);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => const CartPage()));
                         },

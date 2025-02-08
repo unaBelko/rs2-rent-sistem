@@ -7,11 +7,14 @@ import 'package:rs2_rent_sistem/shared/providers/order_providers.dart';
 import 'package:rs2_rent_sistem/shared/widgets/common_scaffold.dart';
 
 class CartPage extends ConsumerWidget {
-  const CartPage({super.key});
+  final int numberOfPops;
+
+  const CartPage({this.numberOfPops = 1, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return CommonScaffold(
+      numberOfPopsOnBack: numberOfPops,
       title: 'Korpa',
       child: Stack(
         children: [
