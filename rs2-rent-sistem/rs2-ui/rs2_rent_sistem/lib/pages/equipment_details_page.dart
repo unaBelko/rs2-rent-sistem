@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -143,8 +145,8 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
                               height: 200,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
-                                child: CachedNetworkImage(
-                                    imageUrl: Constants.imageUrl),
+                                child: Image.memory(
+                                   base64Decode(data.photo)),
                               ),
                             ),
                             const SizedBox(height: 20),

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/damage_list_item_widget.dart';
@@ -43,37 +45,50 @@ class _EquipmentDetailsAdminPageState
                     DeleteEquipmentButton(widget.equipmentId),
                   ],
                 ),
-                TextWithLabel(
-                  label: 'Naziv opreme',
-                  text: details.itemName,
-                ),
-                TextWithLabel(
-                  label: 'Proizvodjac',
-                  text: details.manufacturer,
-                ),
-                TextWithLabel(
-                  label: 'Kategorija',
-                  text: details.equipmentCategory,
-                ),
-                TextWithLabel(
-                  label: 'Minimalna kolicina',
-                  text: details.minQuantity.toString(),
-                ),
-                TextWithLabel(
-                  label: 'Maksimalna kolicina',
-                  text: details.maxQuantity.toString(),
-                ),
-                TextWithLabel(
-                  label: 'Cijena po upotrebi',
-                  text: details.costPerUse.toStringAsFixed(2),
-                ),
-                TextWithLabel(
-                  label: 'Stanje',
-                  text: details.stockQuantity.toString(),
-                ),
-                TextWithLabel(
-                  label: 'Opis',
-                  text: details.description,
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: [
+                          TextWithLabel(
+                            label: 'Naziv opreme',
+                            text: details.itemName,
+                          ),
+                          TextWithLabel(
+                            label: 'Proizvodjac',
+                            text: details.manufacturer,
+                          ),
+                          TextWithLabel(
+                            label: 'Kategorija',
+                            text: details.equipmentCategory,
+                          ),
+                          TextWithLabel(
+                            label: 'Minimalna kolicina',
+                            text: details.minQuantity.toString(),
+                          ),
+                          TextWithLabel(
+                            label: 'Maksimalna kolicina',
+                            text: details.maxQuantity.toString(),
+                          ),
+                          TextWithLabel(
+                            label: 'Cijena po upotrebi',
+                            text: details.costPerUse.toStringAsFixed(2),
+                          ),
+                          TextWithLabel(
+                            label: 'Stanje',
+                            text: details.stockQuantity.toString(),
+                          ),
+                          TextWithLabel(
+                            label: 'Opis',
+                            text: details.description,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Image.memory(
+                      base64Decode(details.photo),
+                    ),
+                  ],
                 ),
                 const SizedBox(
                   height: 20,

@@ -25,14 +25,13 @@ mixin _$EquipmentDetailsAdmin {
   String get itemName => throw _privateConstructorUsedError;
   int get manufacturerID => throw _privateConstructorUsedError;
   int get equipmentCategoryID => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
+  String get photo => throw _privateConstructorUsedError;
   int get minQuantity => throw _privateConstructorUsedError;
   int get maxQuantity => throw _privateConstructorUsedError;
   int get stockQuantity => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   double get costPerUse => throw _privateConstructorUsedError;
   DateTime get dateAdded => throw _privateConstructorUsedError;
-  String get photoBase64 => throw _privateConstructorUsedError;
   String get manufacturer => throw _privateConstructorUsedError;
   String get equipmentCategory => throw _privateConstructorUsedError;
   List<AvailableDate> get availableDates => throw _privateConstructorUsedError;
@@ -59,14 +58,13 @@ abstract class $EquipmentDetailsAdminCopyWith<$Res> {
       String itemName,
       int manufacturerID,
       int equipmentCategoryID,
-      String imageUrl,
+      String photo,
       int minQuantity,
       int maxQuantity,
       int stockQuantity,
       String description,
       double costPerUse,
       DateTime dateAdded,
-      String photoBase64,
       String manufacturer,
       String equipmentCategory,
       List<AvailableDate> availableDates,
@@ -93,14 +91,13 @@ class _$EquipmentDetailsAdminCopyWithImpl<$Res,
     Object? itemName = null,
     Object? manufacturerID = null,
     Object? equipmentCategoryID = null,
-    Object? imageUrl = null,
+    Object? photo = null,
     Object? minQuantity = null,
     Object? maxQuantity = null,
     Object? stockQuantity = null,
     Object? description = null,
     Object? costPerUse = null,
     Object? dateAdded = null,
-    Object? photoBase64 = null,
     Object? manufacturer = null,
     Object? equipmentCategory = null,
     Object? availableDates = null,
@@ -123,9 +120,9 @@ class _$EquipmentDetailsAdminCopyWithImpl<$Res,
           ? _value.equipmentCategoryID
           : equipmentCategoryID // ignore: cast_nullable_to_non_nullable
               as int,
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      photo: null == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
               as String,
       minQuantity: null == minQuantity
           ? _value.minQuantity
@@ -151,10 +148,6 @@ class _$EquipmentDetailsAdminCopyWithImpl<$Res,
           ? _value.dateAdded
           : dateAdded // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      photoBase64: null == photoBase64
-          ? _value.photoBase64
-          : photoBase64 // ignore: cast_nullable_to_non_nullable
-              as String,
       manufacturer: null == manufacturer
           ? _value.manufacturer
           : manufacturer // ignore: cast_nullable_to_non_nullable
@@ -189,14 +182,13 @@ abstract class _$$EquipmentDetailsAdminImplCopyWith<$Res>
       String itemName,
       int manufacturerID,
       int equipmentCategoryID,
-      String imageUrl,
+      String photo,
       int minQuantity,
       int maxQuantity,
       int stockQuantity,
       String description,
       double costPerUse,
       DateTime dateAdded,
-      String photoBase64,
       String manufacturer,
       String equipmentCategory,
       List<AvailableDate> availableDates,
@@ -221,14 +213,13 @@ class __$$EquipmentDetailsAdminImplCopyWithImpl<$Res>
     Object? itemName = null,
     Object? manufacturerID = null,
     Object? equipmentCategoryID = null,
-    Object? imageUrl = null,
+    Object? photo = null,
     Object? minQuantity = null,
     Object? maxQuantity = null,
     Object? stockQuantity = null,
     Object? description = null,
     Object? costPerUse = null,
     Object? dateAdded = null,
-    Object? photoBase64 = null,
     Object? manufacturer = null,
     Object? equipmentCategory = null,
     Object? availableDates = null,
@@ -251,9 +242,9 @@ class __$$EquipmentDetailsAdminImplCopyWithImpl<$Res>
           ? _value.equipmentCategoryID
           : equipmentCategoryID // ignore: cast_nullable_to_non_nullable
               as int,
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      photo: null == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
               as String,
       minQuantity: null == minQuantity
           ? _value.minQuantity
@@ -279,10 +270,6 @@ class __$$EquipmentDetailsAdminImplCopyWithImpl<$Res>
           ? _value.dateAdded
           : dateAdded // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      photoBase64: null == photoBase64
-          ? _value.photoBase64
-          : photoBase64 // ignore: cast_nullable_to_non_nullable
-              as String,
       manufacturer: null == manufacturer
           ? _value.manufacturer
           : manufacturer // ignore: cast_nullable_to_non_nullable
@@ -311,14 +298,13 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
       this.itemName = '',
       this.manufacturerID = 0,
       this.equipmentCategoryID = 0,
-      this.imageUrl = '',
+      this.photo = '',
       this.minQuantity = 1,
       this.maxQuantity = 1,
       this.stockQuantity = 1,
       this.description = '',
       this.costPerUse = 0.0,
       required this.dateAdded,
-      this.photoBase64 = '',
       this.manufacturer = '',
       this.equipmentCategory = '',
       final List<AvailableDate> availableDates = const [],
@@ -341,7 +327,7 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
   final int equipmentCategoryID;
   @override
   @JsonKey()
-  final String imageUrl;
+  final String photo;
   @override
   @JsonKey()
   final int minQuantity;
@@ -359,9 +345,6 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
   final double costPerUse;
   @override
   final DateTime dateAdded;
-  @override
-  @JsonKey()
-  final String photoBase64;
   @override
   @JsonKey()
   final String manufacturer;
@@ -383,7 +366,7 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
 
   @override
   String toString() {
-    return 'EquipmentDetailsAdmin(id: $id, itemName: $itemName, manufacturerID: $manufacturerID, equipmentCategoryID: $equipmentCategoryID, imageUrl: $imageUrl, minQuantity: $minQuantity, maxQuantity: $maxQuantity, stockQuantity: $stockQuantity, description: $description, costPerUse: $costPerUse, dateAdded: $dateAdded, photoBase64: $photoBase64, manufacturer: $manufacturer, equipmentCategory: $equipmentCategory, availableDates: $availableDates, isInCart: $isInCart)';
+    return 'EquipmentDetailsAdmin(id: $id, itemName: $itemName, manufacturerID: $manufacturerID, equipmentCategoryID: $equipmentCategoryID, photo: $photo, minQuantity: $minQuantity, maxQuantity: $maxQuantity, stockQuantity: $stockQuantity, description: $description, costPerUse: $costPerUse, dateAdded: $dateAdded, manufacturer: $manufacturer, equipmentCategory: $equipmentCategory, availableDates: $availableDates, isInCart: $isInCart)';
   }
 
   @override
@@ -398,8 +381,7 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
                 other.manufacturerID == manufacturerID) &&
             (identical(other.equipmentCategoryID, equipmentCategoryID) ||
                 other.equipmentCategoryID == equipmentCategoryID) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
+            (identical(other.photo, photo) || other.photo == photo) &&
             (identical(other.minQuantity, minQuantity) ||
                 other.minQuantity == minQuantity) &&
             (identical(other.maxQuantity, maxQuantity) ||
@@ -412,8 +394,6 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
                 other.costPerUse == costPerUse) &&
             (identical(other.dateAdded, dateAdded) ||
                 other.dateAdded == dateAdded) &&
-            (identical(other.photoBase64, photoBase64) ||
-                other.photoBase64 == photoBase64) &&
             (identical(other.manufacturer, manufacturer) ||
                 other.manufacturer == manufacturer) &&
             (identical(other.equipmentCategory, equipmentCategory) ||
@@ -432,14 +412,13 @@ class _$EquipmentDetailsAdminImpl implements _EquipmentDetailsAdmin {
       itemName,
       manufacturerID,
       equipmentCategoryID,
-      imageUrl,
+      photo,
       minQuantity,
       maxQuantity,
       stockQuantity,
       description,
       costPerUse,
       dateAdded,
-      photoBase64,
       manufacturer,
       equipmentCategory,
       const DeepCollectionEquality().hash(_availableDates),
@@ -468,14 +447,13 @@ abstract class _EquipmentDetailsAdmin implements EquipmentDetailsAdmin {
       final String itemName,
       final int manufacturerID,
       final int equipmentCategoryID,
-      final String imageUrl,
+      final String photo,
       final int minQuantity,
       final int maxQuantity,
       final int stockQuantity,
       final String description,
       final double costPerUse,
       required final DateTime dateAdded,
-      final String photoBase64,
       final String manufacturer,
       final String equipmentCategory,
       final List<AvailableDate> availableDates,
@@ -493,7 +471,7 @@ abstract class _EquipmentDetailsAdmin implements EquipmentDetailsAdmin {
   @override
   int get equipmentCategoryID;
   @override
-  String get imageUrl;
+  String get photo;
   @override
   int get minQuantity;
   @override
@@ -506,8 +484,6 @@ abstract class _EquipmentDetailsAdmin implements EquipmentDetailsAdmin {
   double get costPerUse;
   @override
   DateTime get dateAdded;
-  @override
-  String get photoBase64;
   @override
   String get manufacturer;
   @override

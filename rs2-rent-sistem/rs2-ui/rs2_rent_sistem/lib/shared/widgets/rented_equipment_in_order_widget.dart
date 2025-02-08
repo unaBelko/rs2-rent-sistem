@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -149,12 +149,10 @@ class _RentedEquipmentInOrderWidgetState
                     ),
                   ],
                 ),
-                CachedNetworkImage(
+                Image.memory(
+                  base64Decode(widget.orderItem.equipment!.photo,),
                   height: 70,
                   width: 70,
-                  imageUrl: widget.orderItem.equipment!.imageUrl,
-                  errorWidget: (_, __, ___) =>
-                      const Icon(Icons.warning_rounded),
                 ),
               ],
             ),

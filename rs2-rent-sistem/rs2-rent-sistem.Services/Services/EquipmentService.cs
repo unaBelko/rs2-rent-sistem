@@ -36,7 +36,6 @@ namespace rs2_rent_sistem.Services.Services
             var equipmentEntity = new Database.Equipment
             {
                 ItemName = equipmentUpsertObject.ItemName,
-                ImageUrl = equipmentUpsertObject.ImageUrl,
                 StockQuantity = equipmentUpsertObject.StockQuantity,
                 MinQuantity = equipmentUpsertObject.MinQuantity,
                 MaxQuantity = equipmentUpsertObject.MaxQuantity,
@@ -45,7 +44,7 @@ namespace rs2_rent_sistem.Services.Services
                 DateAdded = equipmentUpsertObject.DateAdded ?? DateTime.UtcNow, // Use current date if DateAdded is null
                 ManufacturerID = equipmentUpsertObject.ManufacturerID,
                 EquipmentCategoryId = equipmentUpsertObject.EquipmentCategoryID,
-                Photo = photoBytes
+                Photo = photoBytes,
             };
 
             try

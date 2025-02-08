@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using rs2_rent_sistem.Services.Data;
 
@@ -11,9 +12,11 @@ using rs2_rent_sistem.Services.Data;
 namespace rs2_rent_sistem.Services.Migrations
 {
     [DbContext(typeof(RentSistemDbContext))]
-    partial class RentSistemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250208183918_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

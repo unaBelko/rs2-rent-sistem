@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -10,12 +11,8 @@ import 'package:rs2_rent_sistem/pages/cart_page.dart';
 import 'package:rs2_rent_sistem/pages/equipment_details_page.dart';
 import 'package:rs2_rent_sistem/pages/equipment_filters_page.dart';
 import 'package:rs2_rent_sistem/pages/paypal_payment_page.dart';
-import 'package:rs2_rent_sistem/shared/constants.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:rs2_rent_sistem/shared/providers/cart_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/equipment_providers.dart';
-import 'package:rs2_rent_sistem/shared/providers/simple_list_management_providers.dart';
-import 'package:rs2_rent_sistem/shared/utilities/enumerations.dart';
 
 class AvailableEquipmentPage extends ConsumerStatefulWidget {
   const AvailableEquipmentPage({super.key});
@@ -192,8 +189,8 @@ class EquipmentCard extends ConsumerWidget {
                     topLeft: Radius.circular(12),
                     bottomLeft: Radius.circular(12),
                   ),
-                  child: CachedNetworkImage(
-                    imageUrl: Constants.imageUrl,
+                  child: Image.memory(
+                    base64Decode(equipmentListItem.photo),
                     height: 100,
                     width: 100,
                   ),

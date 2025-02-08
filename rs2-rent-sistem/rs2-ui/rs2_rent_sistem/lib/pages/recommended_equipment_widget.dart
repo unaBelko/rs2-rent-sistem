@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -52,16 +54,11 @@ class RecommendedEquipmentWidget extends ConsumerWidget {
                         ClipRRect(
                           borderRadius: const BorderRadius.vertical(
                               top: Radius.circular(12.0)),
-                          child: CachedNetworkImage(
-                            imageUrl: item.imageUrl,
+                          child: Image.memory(
+                            base64Decode(item.photo),
                             height: 100,
                             width: double.infinity,
                             fit: BoxFit.cover,
-                            placeholder: (context, url) => const Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
                           ),
                         ),
                         Padding(

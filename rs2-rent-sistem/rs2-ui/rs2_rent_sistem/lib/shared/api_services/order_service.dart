@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:rs2_rent_sistem/models/admin_order_list_item/order_list_item.dart';
 import 'package:rs2_rent_sistem/shared/api_services/dio_service.dart';
 import 'package:rs2_rent_sistem/shared/constants.dart';

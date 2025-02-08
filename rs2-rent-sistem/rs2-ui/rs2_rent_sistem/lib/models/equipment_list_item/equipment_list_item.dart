@@ -8,13 +8,11 @@ class EquipmentListItem with _$EquipmentListItem {
   const factory EquipmentListItem({
     required int id,
     @Default('') String itemName,
-    @Default('') String imageUrl,
     @Default(0.0) double costPerUse,
     @Default('') String manufacturer,
     @Default(0.0) double averageRating,
-    // @Default(0) int numberOfReviews,
     @Default(0) int stockQuantity,
-    // @Default(false) bool isInCart,
+    @Default('') String photo,
   }) = _EquipmentListItem;
 
   factory EquipmentListItem.fromJson(Map<String, dynamic> json) => _$EquipmentListItemFromJson(json);
