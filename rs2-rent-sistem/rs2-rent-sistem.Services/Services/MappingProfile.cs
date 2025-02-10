@@ -19,7 +19,9 @@ namespace rs2_rent_sistem.Services.Services
                 .ForMember(dest => dest.Manufacturer, opt => opt.MapFrom(src => src.Manufacturer != null ? src.Manufacturer.Name : null)) 
                 .ForMember(dest => dest.EquipmentCategory, opt => opt.MapFrom(src => src.EquipmentCategory != null ? src.EquipmentCategory.Name : null));
             CreateMap<EquipmentUpsertObject, Database.Equipment>()
-                .ForMember(dest => dest.IsDeleted, opt => opt.MapFrom(src => false));
+                .ForMember(dest => dest.IsDeleted, opt => opt.MapFrom(src => false))
+                .ForMember(dest => dest.DateAdded, opt => opt.MapFrom(src => src.DateAdded ?? DateTime.UtcNow)) 
+                .ForMember(dest => dest.Photo, opt => opt.MapFrom(src =>!string.IsNullOrEmpty(src.PhotoBase64) ? Convert.FromBase64String(src.PhotoBase64) : null)); 
 
 
             CreateMap<Database.EquipmentCategory, EquipmentCategory>();
