@@ -1,5 +1,20 @@
+import 'dart:io';
+
 class Constants {
-  static const String apiUrl = 'http://172.18.32.1:5119/api/';
+  static final String apiUrl = String.fromEnvironment(
+    'API_BASE_URL',
+    defaultValue: _getDefaultApiUrl(),
+  );
+
+  static String _getDefaultApiUrl() {
+    if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+      return 'http://localhost:5119/api/';
+    } else if (Platform.isAndroid) {
+      return 'http://10.0.2.2:5119/api/';
+    } else {
+      return '';
+    }
+  }
 }
 
 class Endpoints {
