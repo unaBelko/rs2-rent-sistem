@@ -66,10 +66,13 @@ final addEquipmentProvider =
   },
 );
 
-final editEquipmentProvider =
-    FutureProvider.autoDispose.family<void, EquipmentCreationModel>(
-  (ref, ecm) async {
-    final response = await EquipmentService.editEquipment(ecm: ecm);
+final editEquipmentProvider = FutureProvider.autoDispose
+    .family<void, ({int id, EquipmentCreationModel ecm})>(
+  (ref, params) async {
+    final response = await EquipmentService.editEquipment(
+      ecm: params.ecm,
+      itemId: params.id,
+    );
 
     if (!response.isSuccess) {
       throw Exception(response.error);

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:form_builder_file_picker/form_builder_file_picker.dart';
@@ -15,8 +16,15 @@ import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
 
 class AddOrEditEquipmentPage extends ConsumerStatefulWidget {
   final EquipmentDetailsAdmin? equipment;
+  final List<SimpleDropdownItem> equipmentCategories;
+  final List<SimpleDropdownItem> manufacturers;
 
-  const AddOrEditEquipmentPage({super.key, this.equipment});
+  const AddOrEditEquipmentPage({
+    super.key,
+    this.equipment,
+    required this.equipmentCategories,
+    required this.manufacturers,
+  });
 
   @override
   ConsumerState<AddOrEditEquipmentPage> createState() =>
@@ -53,14 +61,10 @@ class _AddOrEditEquipmentPageState
         _costPerUseController.text = widget.equipment!.costPerUse.toString();
         _stockQuantityController.text =
             widget.equipment!.stockQuantity.toString();
-        // selectedCategory = SimpleDropdownItem(
-        //   id: widget.equipment!.equipmentCategoryID,
-        //   name: 'test',
-        // );
-        // selectedManufacturer = SimpleDropdownItem(
-        //   id: widget.equipment!.manufacturerID,
-        //   name: 'testt',
-        // );
+        selectedCategory = widget.equipmentCategories.firstWhere(
+            (cat) => cat.id == widget.equipment!.equipmentCategoryID);
+        selectedManufacturer = widget.manufacturers
+            .firstWhere((cat) => cat.id == widget.equipment!.manufacturerID);
       });
     }
   }
@@ -86,6 +90,7 @@ class _AddOrEditEquipmentPageState
   void _onImageSelected(List<PlatformFile>? files) {
     if (files != null && files.isNotEmpty) {
       setState(() {
+        log("imageeee ${_selectedImage?.path.toString()}");
         _selectedImage = File(files.first.path!);
       });
 
@@ -116,6 +121,7 @@ class _AddOrEditEquipmentPageState
             const SnackBar(content: Text('Oprema uspješno dodana!')),
           );
           ref.invalidate(equipmentListProvider);
+          ref.invalidate(equipmentDetailsForAdminProvider);
           Navigator.pop(context);
         }).catchError((error) {
           ref.invalidate(equipmentListProvider);
@@ -124,7 +130,12 @@ class _AddOrEditEquipmentPageState
           );
         });
       } else {
-        ref.read(editEquipmentProvider(equipmentModel).future).then((_) {
+        ref
+            .read(editEquipmentProvider(
+                (ecm: equipmentModel, id: widget.equipment!.id)).future)
+            .then((_) {
+          ref.invalidate(equipmentListProvider);
+          ref.invalidate(equipmentDetailsForAdminProvider);
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Oprema uspješno ažurirana!')),
           );
@@ -140,11 +151,6 @@ class _AddOrEditEquipmentPageState
 
   @override
   Widget build(BuildContext context) {
-    final categoryList =
-        ref.watch(simpleListProvider(SimpleListType.equipmentCategory));
-    final manufacturerList =
-        ref.watch(simpleListProvider(SimpleListType.manufacturer));
-
     return CommonScaffold(
       showX: true,
       title:
@@ -168,40 +174,28 @@ class _AddOrEditEquipmentPageState
                     ),
                     GenericTextInputField(
                         label: 'Opis', controller: _descriptionController),
-                    categoryList.when(
-                      data: (categories) =>
-                          DropdownButtonFormField<SimpleDropdownItem>(
-                        value: selectedCategory,
-                        decoration: const InputDecoration(
-                            labelText: 'Odabir kategorije'),
-                        items: categories.map((category) {
-                          return DropdownMenuItem(
-                              value: category, child: Text(category.name));
-                        }).toList(),
-                        onChanged: (value) =>
-                            setState(() => selectedCategory = value),
-                      ),
-                      loading: () => const CircularProgressIndicator(),
-                      error: (_, __) =>
-                          const Text('Greška pri učitavanju kategorija'),
+                    DropdownButtonFormField<SimpleDropdownItem>(
+                      value: selectedCategory,
+                      decoration:
+                          const InputDecoration(labelText: 'Odabir kategorije'),
+                      items: widget.equipmentCategories.map((category) {
+                        return DropdownMenuItem(
+                            value: category, child: Text(category.name));
+                      }).toList(),
+                      onChanged: (value) =>
+                          setState(() => selectedCategory = value),
                     ),
-                    manufacturerList.when(
-                      data: (manufacturers) =>
-                          DropdownButtonFormField<SimpleDropdownItem>(
-                        value: selectedManufacturer,
-                        decoration: const InputDecoration(
-                            labelText: 'Odabir proizvođača'),
-                        items: manufacturers.map((manufacturer) {
-                          return DropdownMenuItem(
-                              value: manufacturer,
-                              child: Text(manufacturer.name));
-                        }).toList(),
-                        onChanged: (value) =>
-                            setState(() => selectedManufacturer = value),
-                      ),
-                      loading: () => const CircularProgressIndicator(),
-                      error: (_, __) =>
-                          const Text('Greška pri učitavanju proizvođača'),
+                    DropdownButtonFormField<SimpleDropdownItem>(
+                      value: selectedManufacturer,
+                      decoration: const InputDecoration(
+                          labelText: 'Odabir proizvođača'),
+                      items: widget.manufacturers.map((manufacturer) {
+                        return DropdownMenuItem(
+                            value: manufacturer,
+                            child: Text(manufacturer.name));
+                      }).toList(),
+                      onChanged: (value) =>
+                          setState(() => selectedManufacturer = value),
                     ),
                     const SizedBox(
                       height: 12,
@@ -244,8 +238,12 @@ class _AddOrEditEquipmentPageState
                 flex: 2,
                 child: Column(
                   children: [
-                    const Text('Slika opreme',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    const Text(
+                      'Slika opreme',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     FormBuilderFilePicker(
                       name: 'image',
                       maxFiles: 1,

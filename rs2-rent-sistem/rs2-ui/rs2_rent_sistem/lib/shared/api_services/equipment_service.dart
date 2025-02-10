@@ -52,9 +52,10 @@ class EquipmentService {
   }
 
   static Future<ApiResponse> editEquipment(
-      {required EquipmentCreationModel ecm}) async {
+      {required EquipmentCreationModel ecm, required int itemId}) async {
+    var endpoint = "${Endpoints.equipment}/$itemId";
     return DioService().put(
-      Endpoints.equipment,
+      endpoint,
       data: ecm.toJson(),
     );
   }

@@ -22,30 +22,37 @@ namespace rs2_rent_sistem.Services.Services
         {
         }
 
+        public override async Task BeforeUpdate(Database.Equipment db, EquipmentUpsertObject update)
+        {
+            if (!string.IsNullOrEmpty(update.PhotoBase64))
+            {
+                db.Photo = Convert.FromBase64String(update.PhotoBase64);
+            }
+            await Task.CompletedTask;
+        }
+
+        public override async Task<Equipment> Update(int id, EquipmentUpsertObject update)
+        {
+            var set = _context.Set<Database.Equipment>();
+
+            var entity = await set.FindAsync(id);
+            if (entity == null)
+                throw new KeyNotFoundException($"Equipment with ID {id} not found.");
+
+            await BeforeUpdate(entity, update); 
+
+            _mapper.Map(update, entity); 
+
+            await _context.SaveChangesAsync();
+            return _mapper.Map<Equipment>(entity);
+        }
+
         public override async Task<Equipment> Insert(EquipmentUpsertObject equipmentUpsertObject)
         {
             if (equipmentUpsertObject == null)
                 throw new ArgumentNullException(nameof(equipmentUpsertObject));
 
-            byte[]? photoBytes = null;
-            if (!string.IsNullOrEmpty(equipmentUpsertObject.PhotoBase64))
-            {
-                photoBytes = Convert.FromBase64String(equipmentUpsertObject.PhotoBase64);
-            }
-            //Zbog manjka vremena nije naisan mapper
-            var equipmentEntity = new Database.Equipment
-            {
-                ItemName = equipmentUpsertObject.ItemName,
-                StockQuantity = equipmentUpsertObject.StockQuantity,
-                MinQuantity = equipmentUpsertObject.MinQuantity,
-                MaxQuantity = equipmentUpsertObject.MaxQuantity,
-                Description = equipmentUpsertObject.Description,
-                CostPerUse = equipmentUpsertObject.CostPerUse,
-                DateAdded = equipmentUpsertObject.DateAdded ?? DateTime.UtcNow, // Use current date if DateAdded is null
-                ManufacturerID = equipmentUpsertObject.ManufacturerID,
-                EquipmentCategoryId = equipmentUpsertObject.EquipmentCategoryID,
-                Photo = photoBytes,
-            };
+            var equipmentEntity = _mapper.Map<Database.Equipment>(equipmentUpsertObject);
 
             try
             {

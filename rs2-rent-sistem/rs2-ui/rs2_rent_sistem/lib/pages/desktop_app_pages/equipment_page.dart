@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart'
     as EquipmentItemModel;
+import 'package:rs2_rent_sistem/models/simple_dropdown_item/simple_dropdown_item.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/add_equipment_page.dart';
 import 'package:rs2_rent_sistem/pages/desktop_app_pages/equipment_details_admin_page.dart';
 import 'package:rs2_rent_sistem/shared/providers/equipment_providers.dart';
+import 'package:rs2_rent_sistem/shared/providers/simple_list_management_providers.dart';
+import 'package:rs2_rent_sistem/shared/utilities/enumerations.dart';
 import 'package:rs2_rent_sistem/shared/widgets/delete_equipment_button.dart';
 import 'package:rs2_rent_sistem/shared/widgets/rent_system_button.dart';
 
@@ -28,10 +31,22 @@ class EquipmentPage extends ConsumerWidget {
                 children: [
                   RentSystemButton(
                     label: 'Dodaj',
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              const AddOrEditEquipmentPage()));
+                    onTap: () async {
+                      final categoryList = await ref.read(
+                          simpleListProvider(SimpleListType.equipmentCategory)
+                              .future);
+                      final manufacturerList = await ref.read(
+                          simpleListProvider(SimpleListType.manufacturer)
+                              .future);
+
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => AddOrEditEquipmentPage(
+                            equipmentCategories: categoryList,
+                            manufacturers: manufacturerList,
+                          ),
+                        ),
+                      );
                     },
                     icon: const Icon(
                       Icons.add,
@@ -134,7 +149,13 @@ class EquipmentListItem extends ConsumerWidget {
               child: Row(
                 children: [
                   IconButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      final categoryList = await ref.read(
+                          simpleListProvider(SimpleListType.equipmentCategory)
+                              .future);
+                      final manufacturerList = await ref.read(
+                          simpleListProvider(SimpleListType.manufacturer)
+                              .future);
                       ref
                           .read(
                               equipmentDetailsForAdminProvider(item.id).future)
@@ -143,6 +164,8 @@ class EquipmentListItem extends ConsumerWidget {
                           MaterialPageRoute(
                             builder: (context) => AddOrEditEquipmentPage(
                               equipment: equipmentDetails,
+                              manufacturers: manufacturerList,
+                              equipmentCategories: categoryList,
                             ),
                           ),
                         );
