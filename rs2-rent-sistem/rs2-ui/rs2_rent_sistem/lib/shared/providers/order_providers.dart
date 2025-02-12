@@ -11,7 +11,8 @@ final orderCreationProvider = FutureProvider<ApiResponse>((ref) async {
   return response;
 });
 
-final updateOrderStatusProvider = FutureProvider.family<void, int>((ref, orderId) async {
+final updateOrderStatusProvider =
+    FutureProvider.family<void, int>((ref, orderId) async {
   final response = await OrderService().updateOrderStatus(orderId);
 
   if (!response.isSuccess) {
@@ -19,9 +20,8 @@ final updateOrderStatusProvider = FutureProvider.family<void, int>((ref, orderId
   }
 });
 
-final ordersListProvider =
-    FutureProvider.family.autoDispose<List<AdminOrderListItemModel>, int?>(
-        (ref, userId) async {
+final ordersListProvider = FutureProvider.family
+    .autoDispose<List<AdminOrderListItemModel>, int?>((ref, userId) async {
   final response = await OrderService().getOrders(userId: userId);
 
   if (response.isSuccess && response.data != null) {

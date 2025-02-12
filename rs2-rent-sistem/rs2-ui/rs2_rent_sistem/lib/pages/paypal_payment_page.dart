@@ -1,80 +1,70 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal/flutter_paypal.dart';
-import 'package:rs2_rent_sistem/shared/widgets/common_scaffold.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class PaypalPaymentPage extends StatelessWidget {
+class PaypalPaymentPage extends ConsumerWidget {
   final double amount;
 
   const PaypalPaymentPage({super.key, required this.amount});
 
   @override
-  Widget build(BuildContext context) {
-    return CommonScaffold(
-      title: 'Placanje',
-      child: UsePaypal(
-        sandboxMode: true,
-        clientId:
-            'AXSDXgrU-Y1SA2D66batXQ9Y0u6M2ICYF-ZUThLq2E7QpL3_L_n2QPyDyUx0kofBlHyVI4pdvqwrZJ7K',
-        secretKey:
-            'EGRa16KzlCDGqwkCbRTcu-Zj7HLsDF9iUGOuque9g2G2FHzsYt7C69oepVrKm9XZVKsGPJNVUDwKpPuM',
-        transactions: const [
-          {
-            "amount": {
-              "total": '10.12',
-              "currency": "EUR",
-              "details": {
-                "subtotal": '10.12',
-                "shipping": '0',
-                "shipping_discount": 0
-              }
-            },
-            "description": "Placanje rezervacije.",
-            // "payment_options": {
-            //   "allowed_payment_method":
-            //       "INSTANT_FUNDING_SOURCE"
-            // },
-            "item_list": {
-              "items": [
-                {
-                  "name": "A demo product",
-                  "quantity": 1,
-                  "price": '10.12',
-                  "currency": "EUR"
-                }
-              ],
-
-              // shipping address is not required though
-              "shipping_address": {
-                "recipient_name": "Jane Foster",
-                "line1": "Travis County",
-                "line2": "",
-                "city": "Austin",
-                "country_code": "US",
-                "postal_code": "73301",
-                "phone": "+00000000",
-                "state": "Texas"
-              },
+  Widget build(BuildContext context, WidgetRef ref) {
+    return UsePaypal(
+      sandboxMode: true,
+      clientId:
+          'AY2OUScscRr96J0OgR0P9z3m9MUIDcf9rL1yQiPDWZ7Km1qctQ3wkrtuNqBhTmx0YyGLK_Hn2HFPJegr',
+      secretKey:
+          'EEX3oSKJP7U4DLIEwRSwkXFWZ4OfYOby3wIVy3D-h4X8M12YdGShgElb2K7X-MF_K97PQtBOOcTWFx34',
+      transactions: [
+        {
+          "amount": {
+            "total": '$amount',
+            "currency": "EUR",
+            "details": {
+              "subtotal": '$amount',
+              "shipping": '0',
+              "shipping_discount": 0
             }
+          },
+          "description": "Placanje rezervacije.",
+          "item_list": {
+            "items": [
+              {
+                "name": "Rezervacija",
+                "quantity": 1,
+                "price": '$amount',
+                "currency": "EUR"
+              }
+            ],
+            "shipping_address": {
+              "recipient_name": "Jane Foster",
+              "line1": "Travis County",
+              "line2": "",
+              "city": "Austin",
+              "country_code": "US",
+              "postal_code": "73301",
+              "phone": "+00000000",
+              "state": "Texas"
+            },
           }
-        ],
-        note: "Contact us for any questions on your order.",
-        onSuccess: (Map params) async {
-          print("onSuccess: $params");
-          log('uspjelooo');
-        },
-        onError: (error) {
-          print("onError: $error");
-          log('hapeninggg');
-          Navigator.of(context).pop();
-        },
-        onCancel: () {
-          print('cancelled:');
-        },
-        returnURL: 'https://samplesite.com/return',
-        cancelURL: 'https://samplesite.com/return',
-      ),
+        }
+      ],
+      note: "Contact us for any questions on your order.",
+      onSuccess: (Map<dynamic, dynamic> params) async {
+        log('Uspjesno placanje: $params');
+      },
+      onError: (dynamic error) {
+        log('Placanje nije uspjelo: $error');
+      },
+      onCancel: () {
+        log('Placanje otkazano');
+        if (context.mounted) {
+          Navigator.pop(context, false);
+        }
+      },
+      returnURL: 'https://samplesite.com/return',
+      cancelURL: 'https://samplesite.com/return',
     );
   }
 }

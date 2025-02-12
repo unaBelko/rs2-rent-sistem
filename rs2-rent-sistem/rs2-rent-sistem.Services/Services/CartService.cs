@@ -36,16 +36,11 @@ namespace rs2_rent_sistem.Services.Services
 
         public async Task<Cart> AddToCart(CartItemUpsertObject cartItem)
         {
-            // Validation to ensure StartDate is not after EndDate
             if (cartItem.StartDate > cartItem.EndDate)
             {
                 throw new ArgumentException("StartDate cannot be after EndDate.");
             }
 
-            if (cartItem.EndDate < cartItem.StartDate)
-            {
-                throw new ArgumentException("EndDate cannot be before StartDate.");
-            }
             var existingCart = await _context.Carts
                 .Include(c => c.CartItems)
                 .FirstOrDefaultAsync(c => c.UserID == cartItem.UserID);
@@ -84,15 +79,13 @@ namespace rs2_rent_sistem.Services.Services
                 _context.CartItems.Add(cartItemEntity);
             }
 
-            // Recalculate the total price of the cart
             cartEntity.TotalPrice = 0;
             foreach (var item in cartEntity.CartItems)
             {
-                // Load the Equipment entity for each cart item
                 var equipment = await _context.Equipment.FindAsync(item.EquipmentID);
                 if (equipment != null)
                 {
-                    var days = (item.EndDate - item.StartDate).Days;
+                    var days = (item.EndDate - item.StartDate).Days + 1;
                     cartEntity.TotalPrice += item.Quantity * equipment.CostPerUse * days;
                 }
             }
@@ -101,9 +94,6 @@ namespace rs2_rent_sistem.Services.Services
 
             return _mapper.Map<Cart>(cartEntity);
         }
-
-
-
 
         public async Task<Cart> RemoveFromCart(int cartItemID)
         {

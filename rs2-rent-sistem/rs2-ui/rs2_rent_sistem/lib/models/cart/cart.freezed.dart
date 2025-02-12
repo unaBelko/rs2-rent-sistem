@@ -22,7 +22,7 @@ Cart _$CartFromJson(Map<String, dynamic> json) {
 mixin _$Cart {
   int get id => throw _privateConstructorUsedError;
   List<CartItem> get cartItems => throw _privateConstructorUsedError;
-  dynamic get totalPrice => throw _privateConstructorUsedError;
+  double get totalPrice => throw _privateConstructorUsedError;
 
   /// Serializes this Cart to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $CartCopyWith<$Res> {
   factory $CartCopyWith(Cart value, $Res Function(Cart) then) =
       _$CartCopyWithImpl<$Res, Cart>;
   @useResult
-  $Res call({int id, List<CartItem> cartItems, dynamic totalPrice});
+  $Res call({int id, List<CartItem> cartItems, double totalPrice});
 }
 
 /// @nodoc
@@ -58,7 +58,7 @@ class _$CartCopyWithImpl<$Res, $Val extends Cart>
   $Res call({
     Object? id = null,
     Object? cartItems = null,
-    Object? totalPrice = freezed,
+    Object? totalPrice = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -69,10 +69,10 @@ class _$CartCopyWithImpl<$Res, $Val extends Cart>
           ? _value.cartItems
           : cartItems // ignore: cast_nullable_to_non_nullable
               as List<CartItem>,
-      totalPrice: freezed == totalPrice
+      totalPrice: null == totalPrice
           ? _value.totalPrice
           : totalPrice // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as double,
     ) as $Val);
   }
 }
@@ -84,7 +84,7 @@ abstract class _$$CartImplCopyWith<$Res> implements $CartCopyWith<$Res> {
       __$$CartImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, List<CartItem> cartItems, dynamic totalPrice});
+  $Res call({int id, List<CartItem> cartItems, double totalPrice});
 }
 
 /// @nodoc
@@ -101,7 +101,7 @@ class __$$CartImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? cartItems = null,
-    Object? totalPrice = freezed,
+    Object? totalPrice = null,
   }) {
     return _then(_$CartImpl(
       id: null == id
@@ -112,7 +112,10 @@ class __$$CartImplCopyWithImpl<$Res>
           ? _value._cartItems
           : cartItems // ignore: cast_nullable_to_non_nullable
               as List<CartItem>,
-      totalPrice: freezed == totalPrice ? _value.totalPrice! : totalPrice,
+      totalPrice: null == totalPrice
+          ? _value.totalPrice
+          : totalPrice // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -142,7 +145,7 @@ class _$CartImpl implements _Cart {
 
   @override
   @JsonKey()
-  final dynamic totalPrice;
+  final double totalPrice;
 
   @override
   String toString() {
@@ -157,17 +160,14 @@ class _$CartImpl implements _Cart {
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._cartItems, _cartItems) &&
-            const DeepCollectionEquality()
-                .equals(other.totalPrice, totalPrice));
+            (identical(other.totalPrice, totalPrice) ||
+                other.totalPrice == totalPrice));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      const DeepCollectionEquality().hash(_cartItems),
-      const DeepCollectionEquality().hash(totalPrice));
+  int get hashCode => Object.hash(runtimeType, id,
+      const DeepCollectionEquality().hash(_cartItems), totalPrice);
 
   /// Create a copy of Cart
   /// with the given fields replaced by the non-null parameter values.
@@ -189,7 +189,7 @@ abstract class _Cart implements Cart {
   const factory _Cart(
       {required final int id,
       final List<CartItem> cartItems,
-      final dynamic totalPrice}) = _$CartImpl;
+      final double totalPrice}) = _$CartImpl;
 
   factory _Cart.fromJson(Map<String, dynamic> json) = _$CartImpl.fromJson;
 
@@ -198,7 +198,7 @@ abstract class _Cart implements Cart {
   @override
   List<CartItem> get cartItems;
   @override
-  dynamic get totalPrice;
+  double get totalPrice;
 
   /// Create a copy of Cart
   /// with the given fields replaced by the non-null parameter values.

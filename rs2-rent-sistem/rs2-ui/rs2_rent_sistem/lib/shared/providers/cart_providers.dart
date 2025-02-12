@@ -3,7 +3,7 @@ import 'package:rs2_rent_sistem/models/add_to_cart_model/add_to_cart_model.dart'
 import 'package:rs2_rent_sistem/models/cart/cart.dart';
 import 'package:rs2_rent_sistem/shared/api_services/cart_service.dart';
 
-final cartProvider = FutureProvider<Cart>((ref) async {
+final cartProvider = FutureProvider.autoDispose<Cart>((ref) async {
   final response = await CartService().getCart();
 
   if (response.isSuccess && response.data != null) {

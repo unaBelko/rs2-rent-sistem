@@ -98,13 +98,11 @@ class CartPage extends ConsumerWidget {
                   ref.watch(cartProvider).whenData((cartData) {
                     if (cartData.cartItems.isNotEmpty) {
                       // Trigger order creation
-                      ref.read(orderCreationProvider.future).then((_) {
-                        ref.invalidate(ordersListProvider);
-                        ref.invalidate(cartProvider);
-                        Navigator.of(context).pushReplacement(
+                      ref.read(orderCreationProvider.future).then((_) async {
+                        Navigator.of(context).push(
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const OrderCreationInfoPage()),
+                                  OrderCreationInfoPage(cartData.totalPrice)),
                         );
                       }).catchError((error) {
                         // Show error message

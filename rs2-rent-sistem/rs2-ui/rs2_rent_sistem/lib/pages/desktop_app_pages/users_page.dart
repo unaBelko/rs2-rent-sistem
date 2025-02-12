@@ -110,26 +110,26 @@ class UserListItem extends ConsumerWidget {
                       color: Colors.lightBlue.withOpacity(0.5),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) => ConfirmationModal(
-                                title: 'Deaktivacija korisnika',
-                                content:
-                                    "Da li ste sigurni da zelite deaktivirati ovog korisnika?",
-                                buttonText: "Deaktiviraj",
-                                onConfirm: () {
-                                  log("deaktiviran");
-                                },
-                                isDestructiveAction: true,
-                              ));
-                    },
-                    icon: const Icon(
-                      Icons.dangerous,
-                      color: Colors.red,
-                    ),
-                  ),
+                  // IconButton(
+                  //   onPressed: () {
+                  //     showDialog(
+                  //         context: context,
+                  //         builder: (context) => ConfirmationModal(
+                  //               title: 'Deaktivacija korisnika',
+                  //               content:
+                  //                   "Da li ste sigurni da zelite deaktivirati ovog korisnika?",
+                  //               buttonText: "Deaktiviraj",
+                  //               onConfirm: () {
+                  //                 log("deaktiviran");
+                  //               },
+                  //               isDestructiveAction: true,
+                  //             ));
+                  //   },
+                  //   icon: const Icon(
+                  //     Icons.dangerous,
+                  //     color: Colors.red,
+                  //   ),
+                  // ),
                 ],
               ),
             ),

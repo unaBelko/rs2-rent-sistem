@@ -12,7 +12,7 @@ _$CartImpl _$$CartImplFromJson(Map<String, dynamic> json) => _$CartImpl(
               ?.map((e) => CartItem.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <CartItem>[],
-      totalPrice: json['totalPrice'] ?? 0,
+      totalPrice: (json['totalPrice'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$CartImplToJson(_$CartImpl instance) =>
