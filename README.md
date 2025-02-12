@@ -16,7 +16,8 @@ Pokretanje Android aplikacije na emulatoru: flutter run -d emulator-5554
 
 Prijava za desktop app: una.belko+radnik@edu.fit.ba test123  
 Prijava za mobile app: una.belko+shopping@edu.fit.ba test123  
-Prijava za paypal account: email: rs2.personal@gmail.com password: ;2&c7&C3
+Prijava za paypal account: email: rs2.personal@gmail.com password: ;2&c7&C3  
+
 Screenshots:
 
 ## Screenshots
