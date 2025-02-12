@@ -1249,7 +1249,7 @@ Temporary Items
 *.7z
 *.jar
 *.rar
-*.zip
+#*.zip
 *.gz
 *.gzip
 *.tgz
