@@ -69,7 +69,7 @@ class _ReportsPageState extends ConsumerState<ReportsPage> {
     log('start ${selectedDateRange?.start.toIso8601String()}');
     log('end ${selectedDateRange?.end}');
     String reportUrl =
-        '${Constants.apiUrl}api/Reports/GenerateReport?reportType=$reportType&startDate=${selectedDateRange?.start.toIso8601String()}&endDate=${selectedDateRange?.end.toIso8601String()}';
+        '${Constants.apiUrl}Reports/GenerateReport?reportType=$reportType&startDate=${selectedDateRange?.start.toIso8601String()}&endDate=${selectedDateRange?.end.toIso8601String()}';
 
     Navigator.push(
       context,
