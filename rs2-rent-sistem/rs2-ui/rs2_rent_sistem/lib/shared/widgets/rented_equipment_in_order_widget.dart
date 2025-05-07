@@ -92,24 +92,33 @@ class _RentedEquipmentInOrderWidgetState
                       );
                     });
                   } else {
-                    final params = {
-                      'orderItemID': widget.orderItem.id,
-                      'comment': comment,
-                    };
-                    ref.read(addDamageProvider(params).future).then((_) {
-                      ref.invalidate(orderItemsProvider);
+                    if (comment.isEmpty) {
                       Navigator.of(context).pop();
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                            content: Text("Prijava ostecenja je poslana!")),
-                      );
-                    }).catchError((error) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
                             content: Text(
-                                "Greška pri slanju prijave ostecenja: $error")),
+                                "Slanje praznog opisa ostecenja nije moguce!")),
                       );
-                    });
+                    } else {
+                      final params = {
+                        'orderItemID': widget.orderItem.id,
+                        'comment': comment,
+                      };
+                      ref.read(addDamageProvider(params).future).then((_) {
+                        ref.invalidate(orderItemsProvider);
+                        Navigator.of(context).pop();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text("Prijava ostecenja je poslana!")),
+                        );
+                      }).catchError((error) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content: Text(
+                                  "Greška pri slanju prijave ostecenja: $error")),
+                        );
+                      });
+                    }
                   }
                 },
                 child: const Text("Pošalji"),
@@ -150,7 +159,9 @@ class _RentedEquipmentInOrderWidgetState
                   ],
                 ),
                 Image.memory(
-                  base64Decode(widget.orderItem.equipment!.photo,),
+                  base64Decode(
+                    widget.orderItem.equipment!.photo,
+                  ),
                   height: 70,
                   width: 70,
                 ),
