@@ -18,7 +18,6 @@ class OrderCreationInfoPage extends ConsumerWidget {
     return PopScope(
       canPop: false,
       child: CommonScaffold(
-        showX: true,
         numberOfPopsOnBack: 0,
         title: 'Kreiranje rezervacije',
         child: ref.watch(orderCreationProvider).when(

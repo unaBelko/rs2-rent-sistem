@@ -143,8 +143,7 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
                               height: 200,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
-                                child: Image.memory(
-                                   base64Decode(data.photo)),
+                                child: Image.memory(base64Decode(data.photo)),
                               ),
                             ),
                             const SizedBox(height: 20),
@@ -309,6 +308,7 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
                             content:
                                 Text('Proizvod je uspješno dodan u korpu.')),
                       );
+                      Navigator.of(context).pop();
                     }).catchError((error) {
                       // Show error message
                       ScaffoldMessenger.of(context).showSnackBar(
