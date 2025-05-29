@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:rs2_rent_sistem/models/cart/cart.dart';
 import 'package:rs2_rent_sistem/models/equipment_list_item/equipment_list_item.dart';
 import 'package:rs2_rent_sistem/pages/cart_page.dart';
 import 'package:rs2_rent_sistem/pages/equipment_details_page.dart';
@@ -128,14 +129,58 @@ class _AvailableEquipmentPageState
                             ),
                     ),
                     Positioned(
-                      bottom: 20,
-                      right: 20,
-                      child: FloatingActionButton(
-                        onPressed: () {
+                      bottom: 30,
+                      right: 30,
+                      child: GestureDetector(
+                        onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => const CartPage()));
                         },
-                        child: const Icon(Icons.shopping_cart),
+                        child: Container(
+                          padding: const EdgeInsets.all(14),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Stack(
+                            alignment: Alignment.bottomRight,
+                            clipBehavior: Clip.none,
+                            children: [
+                              Icon(Icons.shopping_cart),
+                              ref.watch(cartProvider).when(data: (Cart data) {
+                                if (data.cartItems.isNotEmpty) {
+                                  return Positioned(
+                                    bottom: -14,
+                                    right: -10,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                          30,
+                                        ),
+                                        color: Colors.green,
+                                      ),
+                                      padding: const EdgeInsets.all(6),
+                                      child: Text(
+                                        data.cartItems.length.toString(),
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  return Container();
+                                }
+                              }, error: (Object error, StackTrace stackTrace) {
+                                return Container();
+                              }, loading: () {
+                                return Container();
+                              }),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ],
