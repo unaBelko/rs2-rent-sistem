@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:rs2_rent_sistem/models/add_to_cart_model/add_to_cart_model.dart';
+import 'package:rs2_rent_sistem/models/equipment_details_admin/equipment_details_admin.dart';
 import 'package:rs2_rent_sistem/pages/cart_page.dart';
 import 'package:rs2_rent_sistem/pages/recommended_equipment_widget.dart';
 import 'package:rs2_rent_sistem/shared/providers/cart_providers.dart';
@@ -28,6 +29,7 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
   DateTime? startDate;
   DateTime? endDate;
   List<DateTime> availableDates = [];
+  bool itemIsInCart = false;
 
   @override
   void initState() {
@@ -112,6 +114,7 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    var currentCartState = ref.watch(cartProvider);
     return CommonScaffold(
       title: widget.equipmentName,
       action: IconButton(
@@ -131,6 +134,7 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
                 .watch(equipmentDetailsForAdminProvider(widget.equipmentId))
                 .when(
                   data: (data) {
+                    _checkIfItemIsInCart(data);
                     setState(() {
                       availableDates =
                           data.availableDates.map((el) => el.date).toList();
@@ -268,7 +272,7 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 12.0, vertical: 12.0),
                 child: RentSystemButton(
-                  label: 'Dodaj u korpu',
+                  label: itemIsInCart ? 'Azuriraj rezervaciju' : 'Dodaj u korpu',
                   onTap: () {
                     if (startDate == null || endDate == null) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -341,5 +345,21 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
     final double price = quantity * costPerUse * days;
 
     return price.toStringAsFixed(2);
+  }
+
+  void _checkIfItemIsInCart(EquipmentDetailsAdmin equipment) {
+    var currentCartState = ref.watch(cartProvider);
+    if (currentCartState.hasValue) {
+      for (var item in currentCartState.value!.cartItems) {
+        if (item.equipment.itemName == equipment.itemName) {
+          setState(() {
+            quantityTextController.text = item.quantity.toString();
+            startDate = item.startDate;
+            endDate = item.endDate;
+            itemIsInCart = true;
+          });
+        }
+      }
+    }
   }
 }
