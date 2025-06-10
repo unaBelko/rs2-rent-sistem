@@ -24,6 +24,7 @@ mixin _$CartItem {
   DateTime get startDate => throw _privateConstructorUsedError;
   DateTime get endDate => throw _privateConstructorUsedError;
   EquipmentListItem get equipment => throw _privateConstructorUsedError;
+  int get equipmentID => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
 
   /// Serializes this CartItem to a JSON map.
@@ -46,6 +47,7 @@ abstract class $CartItemCopyWith<$Res> {
       DateTime startDate,
       DateTime endDate,
       EquipmentListItem equipment,
+      int equipmentID,
       int quantity});
 
   $EquipmentListItemCopyWith<$Res> get equipment;
@@ -70,6 +72,7 @@ class _$CartItemCopyWithImpl<$Res, $Val extends CartItem>
     Object? startDate = null,
     Object? endDate = null,
     Object? equipment = null,
+    Object? equipmentID = null,
     Object? quantity = null,
   }) {
     return _then(_value.copyWith(
@@ -89,6 +92,10 @@ class _$CartItemCopyWithImpl<$Res, $Val extends CartItem>
           ? _value.equipment
           : equipment // ignore: cast_nullable_to_non_nullable
               as EquipmentListItem,
+      equipmentID: null == equipmentID
+          ? _value.equipmentID
+          : equipmentID // ignore: cast_nullable_to_non_nullable
+              as int,
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -120,6 +127,7 @@ abstract class _$$CartItemImplCopyWith<$Res>
       DateTime startDate,
       DateTime endDate,
       EquipmentListItem equipment,
+      int equipmentID,
       int quantity});
 
   @override
@@ -143,6 +151,7 @@ class __$$CartItemImplCopyWithImpl<$Res>
     Object? startDate = null,
     Object? endDate = null,
     Object? equipment = null,
+    Object? equipmentID = null,
     Object? quantity = null,
   }) {
     return _then(_$CartItemImpl(
@@ -162,6 +171,10 @@ class __$$CartItemImplCopyWithImpl<$Res>
           ? _value.equipment
           : equipment // ignore: cast_nullable_to_non_nullable
               as EquipmentListItem,
+      equipmentID: null == equipmentID
+          ? _value.equipmentID
+          : equipmentID // ignore: cast_nullable_to_non_nullable
+              as int,
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -178,6 +191,7 @@ class _$CartItemImpl implements _CartItem {
       required this.startDate,
       required this.endDate,
       required this.equipment,
+      required this.equipmentID,
       this.quantity = 0});
 
   factory _$CartItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -192,12 +206,14 @@ class _$CartItemImpl implements _CartItem {
   @override
   final EquipmentListItem equipment;
   @override
+  final int equipmentID;
+  @override
   @JsonKey()
   final int quantity;
 
   @override
   String toString() {
-    return 'CartItem(id: $id, startDate: $startDate, endDate: $endDate, equipment: $equipment, quantity: $quantity)';
+    return 'CartItem(id: $id, startDate: $startDate, endDate: $endDate, equipment: $equipment, equipmentID: $equipmentID, quantity: $quantity)';
   }
 
   @override
@@ -211,14 +227,16 @@ class _$CartItemImpl implements _CartItem {
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
             (identical(other.equipment, equipment) ||
                 other.equipment == equipment) &&
+            (identical(other.equipmentID, equipmentID) ||
+                other.equipmentID == equipmentID) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, startDate, endDate, equipment, quantity);
+  int get hashCode => Object.hash(
+      runtimeType, id, startDate, endDate, equipment, equipmentID, quantity);
 
   /// Create a copy of CartItem
   /// with the given fields replaced by the non-null parameter values.
@@ -242,6 +260,7 @@ abstract class _CartItem implements CartItem {
       required final DateTime startDate,
       required final DateTime endDate,
       required final EquipmentListItem equipment,
+      required final int equipmentID,
       final int quantity}) = _$CartItemImpl;
 
   factory _CartItem.fromJson(Map<String, dynamic> json) =
@@ -255,6 +274,8 @@ abstract class _CartItem implements CartItem {
   DateTime get endDate;
   @override
   EquipmentListItem get equipment;
+  @override
+  int get equipmentID;
   @override
   int get quantity;
 

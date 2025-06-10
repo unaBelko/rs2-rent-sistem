@@ -11,6 +11,7 @@ class CartItem with _$CartItem {
     required DateTime startDate,
     required DateTime endDate,
     required EquipmentListItem equipment,
+    required int equipmentID,
     @Default(0) int quantity,
   }) = _CartItem;
 

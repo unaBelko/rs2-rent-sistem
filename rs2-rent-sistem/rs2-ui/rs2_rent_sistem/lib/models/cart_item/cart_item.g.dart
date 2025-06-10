@@ -13,6 +13,7 @@ _$CartItemImpl _$$CartItemImplFromJson(Map<String, dynamic> json) =>
       endDate: DateTime.parse(json['endDate'] as String),
       equipment:
           EquipmentListItem.fromJson(json['equipment'] as Map<String, dynamic>),
+      equipmentID: (json['equipmentID'] as num).toInt(),
       quantity: (json['quantity'] as num?)?.toInt() ?? 0,
     );
 
@@ -22,5 +23,6 @@ Map<String, dynamic> _$$CartItemImplToJson(_$CartItemImpl instance) =>
       'startDate': instance.startDate.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'equipment': instance.equipment,
+      'equipmentID': instance.equipmentID,
       'quantity': instance.quantity,
     };

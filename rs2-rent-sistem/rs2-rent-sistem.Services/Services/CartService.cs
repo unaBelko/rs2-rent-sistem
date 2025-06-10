@@ -69,7 +69,7 @@ namespace rs2_rent_sistem.Services.Services
 
             if (existingCartItem != null)
             {
-                existingCartItem.Quantity += (int)cartItem.Quantity;
+                existingCartItem.Quantity = (int)cartItem.Quantity;
                 _context.CartItems.Update(existingCartItem);
             }
             else
