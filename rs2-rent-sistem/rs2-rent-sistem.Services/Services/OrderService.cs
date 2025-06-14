@@ -227,7 +227,7 @@ namespace rs2_rent_sistem.Services.Services
                     throw new Exception($"Equipment not found for CartItem with EquipmentID {cartItem.EquipmentID}.");
                 }
 
-                var numberOfDays = (cartItem.EndDate - cartItem.StartDate).TotalDays;
+                var numberOfDays = (cartItem.EndDate - cartItem.StartDate).TotalDays+1;
 
                 var quantity = cartItem.Quantity;
                 var costPerUse = cartItem.Equipment.CostPerUse ?? 0m;

@@ -6,6 +6,7 @@ class CommonScaffold extends StatelessWidget {
   final int numberOfPopsOnBack;
   final bool showX;
   final Widget? action;
+  final Function? onClose;
 
   const CommonScaffold({
     super.key,
@@ -14,6 +15,7 @@ class CommonScaffold extends StatelessWidget {
     this.numberOfPopsOnBack = 1,
     this.showX = false,
     this.action,
+    this.onClose,
   });
 
   @override
@@ -24,6 +26,9 @@ class CommonScaffold extends StatelessWidget {
           title: Text(title),
           leading: IconButton(
             onPressed: () {
+              if (onClose != null) {
+                onClose!();
+              }
               for (int i = 0; i < numberOfPopsOnBack; i++) {
                 Navigator.of(context).pop();
               }

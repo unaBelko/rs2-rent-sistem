@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rs2_rent_sistem/pages/paypal_payment_page.dart';
 import 'package:rs2_rent_sistem/shared/providers/cart_providers.dart';
+import 'package:rs2_rent_sistem/shared/providers/order_item_providers.dart';
 import 'package:rs2_rent_sistem/shared/providers/order_providers.dart';
 import 'package:rs2_rent_sistem/shared/widgets/common_scaffold.dart';
 
@@ -16,9 +17,13 @@ class OrderCreationInfoPage extends ConsumerWidget {
     ref.invalidate(cartProvider);
 
     return PopScope(
-      canPop: false,
+      canPop: true,
       child: CommonScaffold(
-        numberOfPopsOnBack: 0,
+        numberOfPopsOnBack: 2,
+        onClose: () {
+          ref.invalidate(orderItemsProvider);
+          ref.invalidate(cartProvider);
+        },
         title: 'Kreiranje rezervacije',
         child: ref.watch(orderCreationProvider).when(
               data: (_) => Center(
@@ -55,13 +60,18 @@ class OrderCreationInfoPage extends ConsumerWidget {
                     ),
                     const SizedBox(height: 30),
                     ElevatedButton.icon(
-                      onPressed: () {
-                        Navigator.of(context).push(
+                      onPressed: () async {
+                        var res = await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) =>
                                 PaypalPaymentPage(amount: amount),
                           ),
                         );
+                        if (res == true) {
+                          ref.invalidate(orderItemsProvider);
+                          ref.invalidate(cartProvider);
+                          Navigator.of(context).pop();
+                        }
                       },
                       icon: const Icon(Icons.payment),
                       label: const Text("Plati Online"),

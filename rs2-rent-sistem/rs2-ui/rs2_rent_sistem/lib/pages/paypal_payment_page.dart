@@ -111,11 +111,11 @@ class _PaypalPaymentPageState extends ConsumerState<PaypalPaymentPage> {
               onLoadStop: (controller, url) {
                 if (url == null) return;
 
-                if (url
-                    .toString()
-                    .contains('samplesite')) {
+                if (url.toString().contains('samplesite')) {
                   log('✅ Payment completed at: $url');
-                  if (context.mounted) Navigator.of(context).pop();
+                  if (context.mounted) {
+                    Navigator.of(context).pop(true);
+                  }
                 }
               },
               onLoadError: (controller, url, code, message) {
