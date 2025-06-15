@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:rs2_rent_sistem/models/add_to_cart_model/add_to_cart_model.dart';
+import 'package:rs2_rent_sistem/models/cart/cart.dart';
 import 'package:rs2_rent_sistem/pages/cart_page.dart';
 import 'package:rs2_rent_sistem/pages/recommended_equipment_widget.dart';
 import 'package:rs2_rent_sistem/shared/providers/cart_providers.dart';
@@ -119,15 +120,55 @@ class _EquipmentDetailsPageState extends ConsumerState<EquipmentDetailsPage> {
   Widget build(BuildContext context) {
     return CommonScaffold(
       title: widget.equipmentName,
-      action: IconButton(
-          onPressed: () {
-            ref.invalidate(cartProvider);
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => CartPage(
-                      numberOfPops: 2,
-                    )));
-          },
-          icon: Icon(Icons.shopping_cart)),
+      action: Padding(
+        padding: const EdgeInsets.only(right: 12.0),
+        child: GestureDetector(
+            onTap: () {
+              ref.invalidate(cartProvider);
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => CartPage(
+                        numberOfPops: 2,
+                      )));
+            },
+            child: Stack(
+              alignment: Alignment.bottomRight,
+              clipBehavior: Clip.none,
+              children: [
+                Icon(Icons.shopping_cart),
+                ref.watch(cartProvider).when(data: (Cart data) {
+                  if (data.cartItems.isNotEmpty) {
+                    return Positioned(
+                      bottom: -14,
+                      right: -10,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            30,
+                          ),
+                          color: Colors.green,
+                        ),
+                        padding: const EdgeInsets.all(6),
+                        child: Text(
+                          data.cartItems.length.toString(),
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return Container();
+                  }
+                }, error: (Object error, StackTrace stackTrace) {
+                  return Container();
+                }, loading: () {
+                  return Container();
+                }),
+              ],
+            )),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
         child: Column(

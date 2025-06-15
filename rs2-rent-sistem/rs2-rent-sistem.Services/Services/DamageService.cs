@@ -63,7 +63,7 @@ namespace rs2_rent_sistem.Services.Services
             var orderItem = await _context.OrderItems
             .Include(oi => oi.Order)
                 .FirstOrDefaultAsync(oi => oi.ID == damage.OrderItemID) ?? throw new ArgumentException("Order item not found.");
-            if (orderItem.Order.Status.ToLower() != "returned" || orderItem.HasDamageReportedByUser)
+            if (orderItem.Order.Status.ToLower() != "rented" || orderItem.HasDamageReportedByUser)
             {
                 throw new InvalidOperationException("Nije moguce prijaviti ostecenje!");
             }

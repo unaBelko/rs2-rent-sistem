@@ -74,7 +74,7 @@ class _PaypalPaymentPageState extends ConsumerState<PaypalPaymentPage> {
           {
             'amount': {
               'currency_code': 'EUR',
-              'value': '0.1',
+              'value': widget.amount.toStringAsFixed(2),
             },
           },
         ],

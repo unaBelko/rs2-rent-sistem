@@ -281,20 +281,20 @@ namespace rs2_rent_sistem.Services.Data
         {
             var orderItems = new List<OrderItem>
             {
-                new OrderItem { ID = 1, OrderID = 1, EquipmentID = 1, Quantity = 2, CostPerUse = 2.99m, Price = 5.98m, StartDate = DateTime.Now.AddDays(-10), EndDate = DateTime.Now.AddDays(-9), IsReviewedByUser = false },
-                new OrderItem { ID = 2, OrderID = 1, EquipmentID = 3, Quantity = 1, CostPerUse = 4.99m, Price = 4.99m, StartDate = DateTime.Now.AddDays(-10), EndDate = DateTime.Now.AddDays(-8), IsReviewedByUser = false },
-                new OrderItem { ID = 3, OrderID = 2, EquipmentID = 2, Quantity = 3, CostPerUse = 3.49m, Price = 10.47m, StartDate = DateTime.Now.AddDays(-8), EndDate = DateTime.Now.AddDays(-7), IsReviewedByUser = false },
-                new OrderItem { ID = 4, OrderID = 2, EquipmentID = 1, Quantity = 4, CostPerUse = 2.99m, Price = 11.96m, StartDate = DateTime.Now.AddDays(-8), EndDate = DateTime.Now.AddDays(-6), IsReviewedByUser = false },
-                new OrderItem { ID = 5, OrderID = 3, EquipmentID = 3, Quantity = 2, CostPerUse = 4.99m, Price = 9.98m, StartDate = DateTime.Now.AddDays(-5), EndDate = DateTime.Now.AddDays(-4), IsReviewedByUser = false },
-                new OrderItem { ID = 6, OrderID = 4, EquipmentID = 1, Quantity = 1, CostPerUse = 2.99m, Price = 2.99m, StartDate = DateTime.Now.AddDays(-7), EndDate = DateTime.Now.AddDays(-6), IsReviewedByUser = false },
-                new OrderItem { ID = 7, OrderID = 5, EquipmentID = 2, Quantity = 5, CostPerUse = 3.49m, Price = 17.45m, StartDate = DateTime.Now.AddDays(-4), EndDate = DateTime.Now.AddDays(-2), IsReviewedByUser = false },
-                new OrderItem { ID = 8, OrderID = 6, EquipmentID = 3, Quantity = 3, CostPerUse = 4.99m, Price = 14.97m, StartDate = DateTime.Now.AddDays(-3), EndDate = DateTime.Now.AddDays(-1), IsReviewedByUser = false },
+                new OrderItem { ID = 1, OrderID = 1, EquipmentID = 1, Quantity = 2, CostPerUse = 2.99m, Price = 5.98m, StartDate = DateTime.Now.AddDays(-10), EndDate = DateTime.Now.AddDays(9), IsReviewedByUser = false },
+                new OrderItem { ID = 2, OrderID = 1, EquipmentID = 3, Quantity = 1, CostPerUse = 4.99m, Price = 4.99m, StartDate = DateTime.Now.AddDays(-10), EndDate = DateTime.Now.AddDays(8), IsReviewedByUser = false },
+                new OrderItem { ID = 3, OrderID = 2, EquipmentID = 2, Quantity = 3, CostPerUse = 3.49m, Price = 10.47m, StartDate = DateTime.Now.AddDays(-8), EndDate = DateTime.Now.AddDays(7), IsReviewedByUser = false },
+                new OrderItem { ID = 4, OrderID = 2, EquipmentID = 1, Quantity = 4, CostPerUse = 2.99m, Price = 11.96m, StartDate = DateTime.Now.AddDays(-8), EndDate = DateTime.Now.AddDays(6), IsReviewedByUser = false },
+                new OrderItem { ID = 5, OrderID = 3, EquipmentID = 3, Quantity = 2, CostPerUse = 4.99m, Price = 9.98m, StartDate = DateTime.Now.AddDays(-5), EndDate = DateTime.Now.AddDays(4), IsReviewedByUser = false },
+                new OrderItem { ID = 6, OrderID = 4, EquipmentID = 1, Quantity = 1, CostPerUse = 2.99m, Price = 2.99m, StartDate = DateTime.Now.AddDays(-7), EndDate = DateTime.Now.AddDays(6), IsReviewedByUser = false },
+                new OrderItem { ID = 7, OrderID = 5, EquipmentID = 2, Quantity = 5, CostPerUse = 3.49m, Price = 17.45m, StartDate = DateTime.Now.AddDays(-4), EndDate = DateTime.Now.AddDays(2), IsReviewedByUser = false },
+                new OrderItem { ID = 8, OrderID = 6, EquipmentID = 3, Quantity = 3, CostPerUse = 4.99m, Price = 14.97m, StartDate = DateTime.Now.AddDays(-3), EndDate = DateTime.Now.AddDays(1), IsReviewedByUser = false },
                 new OrderItem { ID = 9, OrderID = 7, EquipmentID = 1, Quantity = 2, CostPerUse = 2.99m, Price = 5.98m, StartDate = DateTime.Now.AddDays(-2), EndDate = DateTime.Now.AddDays(1), IsReviewedByUser = false },
                 new OrderItem { ID = 10, OrderID = 8, EquipmentID = 2, Quantity = 3, CostPerUse = 3.49m, Price = 10.47m, StartDate = DateTime.Now.AddDays(-1), EndDate = DateTime.Now, IsReviewedByUser = false },
-                new OrderItem { ID = 11, OrderID = 9, EquipmentID = 3, Quantity = 1, CostPerUse = 4.99m, Price = 4.99m, StartDate = DateTime.Now.AddDays(-6), EndDate = DateTime.Now.AddDays(-4), IsReviewedByUser = false },
-                new OrderItem { ID = 12, OrderID = 9, EquipmentID = 1, Quantity = 5, CostPerUse = 2.99m, Price = 14.95m, StartDate = DateTime.Now.AddDays(-6), EndDate = DateTime.Now.AddDays(-5), IsReviewedByUser = false },
-                new OrderItem { ID = 13, OrderID = 10, EquipmentID = 2, Quantity = 2, CostPerUse = 3.49m, Price = 6.98m, StartDate = DateTime.Now.AddDays(-9), EndDate = DateTime.Now.AddDays(-8), IsReviewedByUser = false },
-                new OrderItem { ID = 14, OrderID = 10, EquipmentID = 4, Quantity = 2, CostPerUse = 3.49m, Price = 6.98m, StartDate = DateTime.Now.AddDays(-9), EndDate = DateTime.Now.AddDays(-8), IsReviewedByUser = true, HasDamageReportedByUser = true, }
+                new OrderItem { ID = 11, OrderID = 9, EquipmentID = 3, Quantity = 1, CostPerUse = 4.99m, Price = 4.99m, StartDate = DateTime.Now.AddDays(-6), EndDate = DateTime.Now.AddDays(4), IsReviewedByUser = false },
+                new OrderItem { ID = 12, OrderID = 9, EquipmentID = 1, Quantity = 5, CostPerUse = 2.99m, Price = 14.95m, StartDate = DateTime.Now.AddDays(-6), EndDate = DateTime.Now.AddDays(5), IsReviewedByUser = false },
+                new OrderItem { ID = 13, OrderID = 10, EquipmentID = 2, Quantity = 2, CostPerUse = 3.49m, Price = 6.98m, StartDate = DateTime.Now.AddDays(-9), EndDate = DateTime.Now.AddDays(8), IsReviewedByUser = false },
+                new OrderItem { ID = 14, OrderID = 10, EquipmentID = 4, Quantity = 2, CostPerUse = 3.49m, Price = 6.98m, StartDate = DateTime.Now.AddDays(-9), EndDate = DateTime.Now.AddDays(8), IsReviewedByUser = true, HasDamageReportedByUser = true, }
             };
             modelBuilder.Entity<OrderItem>().HasData(orderItems);
         }
@@ -344,15 +344,15 @@ namespace rs2_rent_sistem.Services.Data
         {
             var cartItems = new List<CartItem>
             {
-                new CartItem { ID = 1, CartID = 1, EquipmentID = 1, Quantity = 2, StartDate = DateTime.Now.AddDays(-6), EndDate = DateTime.Now.AddDays(-5) },
-                new CartItem { ID = 2, CartID = 1, EquipmentID = 2, Quantity = 1, StartDate = DateTime.Now.AddDays(-6), EndDate = DateTime.Now.AddDays(-5) },
-                new CartItem { ID = 3, CartID = 2, EquipmentID = 3, Quantity = 1, StartDate = DateTime.Now.AddDays(-5), EndDate = DateTime.Now.AddDays(-4) },
-                new CartItem { ID = 4, CartID = 3, EquipmentID = 1, Quantity = 3, StartDate = DateTime.Now.AddDays(-4), EndDate = DateTime.Now.AddDays(-3) },
-                new CartItem { ID = 5, CartID = 3, EquipmentID = 2, Quantity = 2, StartDate = DateTime.Now.AddDays(-4), EndDate = DateTime.Now.AddDays(-3) },
-                new CartItem { ID = 6, CartID = 4, EquipmentID = 2, Quantity = 1, StartDate = DateTime.Now.AddDays(-3), EndDate = DateTime.Now.AddDays(-2) },
-                new CartItem { ID = 7, CartID = 4, EquipmentID = 3, Quantity = 1, StartDate = DateTime.Now.AddDays(-3), EndDate = DateTime.Now.AddDays(-2) },
-                new CartItem { ID = 8, CartID = 5, EquipmentID = 1, Quantity = 2, StartDate = DateTime.Now.AddDays(-2), EndDate = DateTime.Now.AddDays(-1) },
-                new CartItem { ID = 9, CartID = 6, EquipmentID = 3, Quantity = 3, StartDate = DateTime.Now.AddDays(-1), EndDate = DateTime.Now },
+                new CartItem { ID = 1, CartID = 1, EquipmentID = 1, Quantity = 2, StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(5) },
+                new CartItem { ID = 2, CartID = 1, EquipmentID = 2, Quantity = 1, StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(5) },
+                new CartItem { ID = 3, CartID = 2, EquipmentID = 3, Quantity = 1, StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(4) },
+                new CartItem { ID = 4, CartID = 3, EquipmentID = 1, Quantity = 3, StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(3) },
+                new CartItem { ID = 5, CartID = 3, EquipmentID = 2, Quantity = 2, StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(3) },
+                new CartItem { ID = 6, CartID = 4, EquipmentID = 2, Quantity = 1, StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(2) },
+                new CartItem { ID = 7, CartID = 4, EquipmentID = 3, Quantity = 1, StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(2) },
+                new CartItem { ID = 8, CartID = 5, EquipmentID = 1, Quantity = 2, StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(1) },
+                new CartItem { ID = 9, CartID = 6, EquipmentID = 3, Quantity = 3, StartDate = DateTime.Now, EndDate = DateTime.Now },
                 new CartItem { ID = 10, CartID = 7, EquipmentID = 2, Quantity = 1, StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(1) }
             };
             modelBuilder.Entity<CartItem>().HasData(cartItems);
